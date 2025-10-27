@@ -29,19 +29,15 @@ export default function Home() {
                 Subscribe to get access to detailed player rankings, analysis, and scouting reports.
               </p>
               <div className="flex gap-4 justify-center flex-wrap">
-                <Link href="/products">
-                  <a>
-                    <Button size="lg" variant="default" data-testid="button-view-packages">
-                      View Packages
-                    </Button>
-                  </a>
+                <Link href="/products" asChild>
+                  <Button size="lg" variant="default" data-testid="button-view-packages">
+                    View Packages
+                  </Button>
                 </Link>
-                <Link href="/rankings/2025">
-                  <a>
-                    <Button size="lg" variant="outline" data-testid="button-view-rankings">
-                      View Rankings
-                    </Button>
-                  </a>
+                <Link href="/rankings/2025" asChild>
+                  <Button size="lg" variant="outline" data-testid="button-view-rankings">
+                    View Rankings
+                  </Button>
                 </Link>
               </div>
             </div>

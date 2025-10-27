@@ -96,12 +96,10 @@ export default function Cart() {
                 <p className="text-muted-foreground mb-6">
                   Add some packages to get started with our scouting services
                 </p>
-                <Link href="/products">
-                  <a>
-                    <Button variant="default" data-testid="button-shop-now">
-                      Shop Packages
-                    </Button>
-                  </a>
+                <Link href="/products" asChild>
+                  <Button variant="default" data-testid="button-shop-now">
+                    Shop Packages
+                  </Button>
                 </Link>
               </CardContent>
             </Card>

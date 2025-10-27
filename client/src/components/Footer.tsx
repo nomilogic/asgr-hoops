@@ -19,25 +19,17 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <div className="flex flex-col gap-2">
-              <Link href="/">
-                <a className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-events">
-                  Events
-                </a>
+              <Link href="/" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-events">
+                Events
               </Link>
-              <Link href="/products">
-                <a className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-products">
-                  Scouting Service
-                </a>
+              <Link href="/products" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-products">
+                Scouting Service
               </Link>
-              <Link href="/rankings/2025">
-                <a className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-rankings">
-                  Player Rankings
-                </a>
+              <Link href="/rankings/2025" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-rankings">
+                Player Rankings
               </Link>
-              <Link href="/contact">
-                <a className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-contact">
-                  Contact
-                </a>
+              <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-contact">
+                Contact
               </Link>
             </div>
           </div>

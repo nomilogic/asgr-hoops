@@ -60,10 +60,8 @@ export default function ProductDetail() {
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">Product not found</h1>
-            <Link href="/products">
-              <a>
-                <Button variant="default">Back to Products</Button>
-              </a>
+            <Link href="/products" asChild>
+              <Button variant="default">Back to Products</Button>
             </Link>
           </div>
         </main>
@@ -78,11 +76,9 @@ export default function ProductDetail() {
       
       <main className="flex-1 py-8 px-4">
         <div className="container mx-auto max-w-6xl">
-          <Link href="/products">
-            <a className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6" data-testid="link-back-to-products">
-              <ArrowLeft className="h-4 w-4" />
-              Back to all products
-            </a>
+          <Link href="/products" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6" data-testid="link-back-to-products">
+            <ArrowLeft className="h-4 w-4" />
+            Back to all products
           </Link>
 
           {!product ? (

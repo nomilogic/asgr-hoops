@@ -12,15 +12,13 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Card className="hover-elevate overflow-hidden flex flex-col" data-testid={`card-product-${product.id}`}>
       <Link href={`/products/${product.slug}`}>
-        <a>
-          <div className="aspect-[4/3] overflow-hidden bg-muted">
-            <img
-              src={product.imageUrl}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </a>
+        <div className="aspect-[4/3] overflow-hidden bg-muted">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
       </Link>
       
       <CardHeader className="gap-2 space-y-0 pb-4">
@@ -28,11 +26,9 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.category}
         </Badge>
         <Link href={`/products/${product.slug}`}>
-          <a>
-            <CardTitle className="text-xl hover:text-primary transition-colors" data-testid={`text-product-name-${product.id}`}>
-              {product.name}
-            </CardTitle>
-          </a>
+          <CardTitle className="text-xl hover:text-primary transition-colors" data-testid={`text-product-name-${product.id}`}>
+            {product.name}
+          </CardTitle>
         </Link>
       </CardHeader>
 
@@ -46,12 +42,10 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="text-2xl font-bold text-primary" data-testid={`text-price-${product.id}`}>
           ${product.price}
         </div>
-        <Link href={`/products/${product.slug}`}>
-          <a>
-            <Button variant="default" data-testid={`button-view-details-${product.id}`}>
-              View Details
-            </Button>
-          </a>
+        <Link href={`/products/${product.slug}`} asChild>
+          <Button variant="default" data-testid={`button-view-details-${product.id}`}>
+            View Details
+          </Button>
         </Link>
       </CardFooter>
     </Card>
