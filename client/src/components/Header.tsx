@@ -31,12 +31,12 @@ export function Header() {
   const cartCount = cart?.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-red-900/30 bg-background/98 backdrop-blur supports-[backdrop-filter]:bg-background/95 shadow-lg shadow-red-900/10 transition-all duration-300">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 animate-fade-in">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 hover-elevate active-elevate-2 px-2 py-1 rounded-md" data-testid="link-home">
-            <img src={logoImage} alt="ASGR Basketball" className="h-10 w-auto" />
-            <span className="font-bold text-lg hidden sm:inline">ASGR Basketball</span>
+          <Link href="/" className="flex items-center gap-2 hover-elevate active-elevate-2 px-2 py-1 rounded-md group transition-all duration-300" data-testid="link-home">
+            <img src={logoImage} alt="ASGR Basketball" className="h-10 w-auto group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,0.5)] transition-all duration-300" />
+            <span className="font-bold text-lg hidden sm:inline bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">ASGR Basketball</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
