@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
-import logoImage from "@assets/ASGR_Basketball_logo_5cbeba91.png";
+import logoImage from "@/assets/ASGR_Basketball_logo_5cbeba91.png";
 import { useQuery } from "@tanstack/react-query";
 import type { CartItem } from "@shared/schema";
 
