@@ -6,7 +6,6 @@ const player1 = "/assets/Female_basketball_player_headshot_1_031d6a83.png";
 const player2 = "/assets/Female_basketball_player_headshot_2_31430bef.png";
 const player3 = "/assets/Female_basketball_player_headshot_3_9e48d5c0.png";
 const player4 = "/assets/Female_basketball_player_headshot_4_3826a6d7.png";
-const player4 = "/attached_assets/generated_images/Female_basketball_player_headshot_4_3826a6d7.png";
 
 export interface IStorage {
   getAllProducts(): Promise<Product[]>;
