@@ -19,7 +19,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { CartItem } from "@shared/schema";
 
-const logoImage = "/attached_assets/generated_images/ASGR_Basketball_logo_5cbeba91.png";
+const logoImage = "/attached_assets/asgr_basketball.png";
 
 export function Header() {
   const [location] = useLocation();
