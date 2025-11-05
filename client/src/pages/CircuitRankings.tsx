@@ -32,8 +32,10 @@ export default function CircuitRankings() {
     if (!players) return [];
     
     return players
-      .filter((player) => player.circuitProgram)
       .filter((player) => {
+        // Only show players with circuit program data
+        if (!player.circuitProgram) return false;
+        
         const matchesSearch = searchQuery === "" || 
           player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           player.circuitProgram?.toLowerCase().includes(searchQuery.toLowerCase());
@@ -44,8 +46,8 @@ export default function CircuitRankings() {
         return matchesSearch && matchesCircuit && matchesPosition;
       })
       .sort((a, b) => {
-        const rankA = a.rankNumber || 999;
-        const rankB = b.rankNumber || 999;
+        const rankA = a.rankNumber || 999999;
+        const rankB = b.rankNumber || 999999;
         return rankA - rankB;
       });
   }, [players, searchQuery, circuitFilter, positionFilter]);

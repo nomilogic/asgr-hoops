@@ -43,8 +43,8 @@ export default function HighSchoolRankings() {
         return matchesSearch && matchesState && matchesPosition;
       })
       .sort((a, b) => {
-        const rankA = a.rankNumber || 999;
-        const rankB = b.rankNumber || 999;
+        const rankA = a.rankNumber || 999999;
+        const rankB = b.rankNumber || 999999;
         return rankA - rankB;
       });
   }, [players, searchQuery, stateFilter, positionFilter]);

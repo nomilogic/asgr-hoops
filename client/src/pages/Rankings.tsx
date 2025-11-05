@@ -46,8 +46,8 @@ export default function Rankings() {
         return matchesSearch && matchesPosition && matchesState;
       })
       .sort((a, b) => {
-        const rankA = a.rankNumber || 999;
-        const rankB = b.rankNumber || 999;
+        const rankA = a.rankNumber || 999999;
+        const rankB = b.rankNumber || 999999;
         return rankA - rankB;
       });
   }, [players, searchQuery, positionFilter, stateFilter]);
