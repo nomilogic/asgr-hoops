@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { useRoute } from "wouter";
 import { Header } from "@/components/Header";
@@ -5,11 +6,19 @@ import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Player } from "@shared/schema";
+import { useState, useMemo } from "react";
+import { Search, Filter } from "lucide-react";
 
 export default function Rankings() {
   const [, params] = useRoute("/rankings/:year");
   const year = params?.year ? parseInt(params.year) : 2025;
+  const [searchQuery, setSearchQuery] = useState("");
+  const [positionFilter, setPositionFilter] = useState<string>("all");
+  const [stateFilter, setStateFilter] = useState<string>("all");
 
   const { data: players, isLoading } = useQuery<Player[]>({
     queryKey: ["/api/players/year", year],
@@ -22,140 +31,248 @@ export default function Rankings() {
     },
   });
 
-  const sortedPlayers = players?.sort((a, b) => {
-    const rankA = a.rankNumber || 999;
-    const rankB = b.rankNumber || 999;
-    return rankA - rankB;
-  });
+  const filteredPlayers = useMemo(() => {
+    if (!players) return [];
+    
+    return players
+      .filter((player) => {
+        const matchesSearch = searchQuery === "" || 
+          player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          player.school?.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesPosition = positionFilter === "all" || player.position === positionFilter;
+        const matchesState = stateFilter === "all" || player.state === stateFilter;
+        
+        return matchesSearch && matchesPosition && matchesState;
+      })
+      .sort((a, b) => {
+        const rankA = a.rankNumber || 999;
+        const rankB = b.rankNumber || 999;
+        return rankA - rankB;
+      });
+  }, [players, searchQuery, positionFilter, stateFilter]);
+
+  const positions = useMemo(() => {
+    if (!players) return [];
+    const uniquePositions = new Set(players.map(p => p.position).filter(Boolean));
+    return Array.from(uniquePositions).sort();
+  }, [players]);
+
+  const states = useMemo(() => {
+    if (!players) return [];
+    const uniqueStates = new Set(players.map(p => p.state).filter(Boolean));
+    return Array.from(uniqueStates).sort();
+  }, [players]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
       <main className="flex-1">
-        <section className="bg-muted py-12 px-4">
-          <div className="container mx-auto max-w-7xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-page-title">
-              Top 350 High School Class {year}
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Comprehensive rankings of the nation's top high school basketball players
-            </p>
+        {/* Hero Section */}
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
+          <div className="container mx-auto max-w-7xl relative z-10">
+            <div className="text-center mb-8">
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
+                Top 350 Rankings
+              </h1>
+              <p className="text-xl text-gray-300 mb-2">
+                Class of {year}
+              </p>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Comprehensive rankings of the nation's top high school basketball players
+              </p>
+            </div>
+
+            {/* Filter Controls */}
+            <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search players or schools..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 bg-background/50"
+                  />
+                </div>
+                
+                <Select value={positionFilter} onValueChange={setPositionFilter}>
+                  <SelectTrigger className="bg-background/50">
+                    <SelectValue placeholder="All Positions" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Positions</SelectItem>
+                    {positions.map((pos) => (
+                      <SelectItem key={pos} value={pos}>{pos}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <Select value={stateFilter} onValueChange={setStateFilter}>
+                  <SelectTrigger className="bg-background/50">
+                    <SelectValue placeholder="All States" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All States</SelectItem>
+                    {states.map((state) => (
+                      <SelectItem key={state} value={state}>{state}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
+                <div className="mt-4 flex items-center justify-between">
+                  <p className="text-sm text-muted-foreground">
+                    Showing {filteredPlayers.length} of {players?.length || 0} players
+                  </p>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setPositionFilter("all");
+                      setStateFilter("all");
+                    }}
+                  >
+                    Clear Filters
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </section>
 
-        <section className="py-8 px-4">
+        {/* Rankings List */}
+        <section className="py-12 px-4">
           <div className="container mx-auto max-w-7xl">
             {isLoading ? (
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                  <Skeleton key={i} className="h-32 w-full" />
+                  <Skeleton key={i} className="h-40 w-full rounded-xl" />
                 ))}
               </div>
-            ) : sortedPlayers && sortedPlayers.length > 0 ? (
+            ) : filteredPlayers && filteredPlayers.length > 0 ? (
               <div className="space-y-4">
-                <div className="hidden lg:grid grid-cols-12 gap-4 px-4 py-3 bg-muted rounded-md font-semibold text-sm">
-                  <div className="col-span-1">Rank</div>
-                  <div className="col-span-3">Player</div>
-                  <div className="col-span-1">Height</div>
-                  <div className="col-span-1">Pos</div>
-                  <div className="col-span-3">High School</div>
-                  <div className="col-span-2">State</div>
-                  <div className="col-span-1">Committed</div>
-                </div>
-
-                {sortedPlayers.map((player) => (
+                {filteredPlayers.map((player, index) => (
                   <Card
                     key={player.id}
-                    className="overflow-hidden hover-elevate"
+                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 group"
                     data-testid={`card-player-${player.id}`}
                   >
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 p-4 items-center">
-                      <div className="lg:col-span-1 flex lg:block items-center gap-4">
-                        <Badge 
-                          className="font-bold text-base min-w-12 min-h-12 flex items-center justify-center"
-                          data-testid={`badge-rank-${player.id}`}
-                        >
-                          {player.rankNumber || '—'}
-                        </Badge>
-                        {player.imageUrl && (
-                          <img
-                            src={player.imageUrl}
-                            alt={player.name}
-                            className="lg:hidden w-16 h-20 object-cover rounded"
-                            data-testid={`img-player-mobile-${player.id}`}
-                          />
-                        )}
-                      </div>
-
-                      <div className="lg:col-span-3 flex items-center gap-3">
-                        {player.imageUrl && (
-                          <img
-                            src={player.imageUrl}
-                            alt={player.name}
-                            className="hidden lg:block w-12 h-16 object-cover rounded"
-                            data-testid={`img-player-${player.id}`}
-                          />
-                        )}
-                        <div>
-                          <div className="font-semibold text-lg" data-testid={`text-player-name-${player.id}`}>
-                            {player.name}
-                          </div>
-                          <div className="lg:hidden text-sm text-muted-foreground">
-                            {player.heightFormatted && `${player.heightFormatted} • `}
-                            {player.position && `${player.position} • `}
-                            Class of {player.gradYear}
-                          </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6">
+                      {/* Rank Badge */}
+                      <div className="lg:col-span-1 flex items-center justify-center lg:justify-start">
+                        <div className="relative">
+                          <Badge 
+                            className="font-bold text-2xl w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50 shadow-lg shadow-red-900/30 group-hover:shadow-red-900/50 transition-all duration-300"
+                            data-testid={`badge-rank-${player.id}`}
+                          >
+                            {player.rankNumber || '—'}
+                          </Badge>
                         </div>
                       </div>
 
-                      <div className="hidden lg:block lg:col-span-1 text-sm" data-testid={`text-height-${player.id}`}>
-                        {player.heightFormatted || '—'}
-                      </div>
-                      
-                      <div className="hidden lg:block lg:col-span-1 text-sm" data-testid={`text-position-${player.id}`}>
-                        <Badge variant="outline">{player.position || '—'}</Badge>
-                      </div>
-                      
-                      <div className="hidden lg:block lg:col-span-3 text-sm" data-testid={`text-high-school-${player.id}`}>
-                        {player.school || '—'}
-                      </div>
-                      
-                      <div className="hidden lg:block lg:col-span-2 text-sm text-muted-foreground" data-testid={`text-state-${player.id}`}>
-                        {player.state || '—'}
-                      </div>
-                      
-                      <div className="hidden lg:block lg:col-span-1 text-sm" data-testid={`text-committed-${player.id}`}>
-                        {player.committedTo ? (
-                          <Badge variant="secondary">{player.committedTo}</Badge>
+                      {/* Player Image */}
+                      <div className="lg:col-span-2 flex justify-center lg:justify-start">
+                        {player.imageUrl ? (
+                          <div className="relative w-32 h-40 rounded-lg overflow-hidden border-2 border-red-900/30 group-hover:border-red-600/50 transition-colors duration-300">
+                            <img
+                              src={player.imageUrl}
+                              alt={player.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              data-testid={`img-player-${player.id}`}
+                            />
+                          </div>
                         ) : (
-                          <span className="text-muted-foreground">—</span>
+                          <div className="w-32 h-40 rounded-lg bg-muted/50 border-2 border-muted flex items-center justify-center text-muted-foreground">
+                            No Image
+                          </div>
                         )}
                       </div>
 
-                      <div className="lg:hidden grid grid-cols-2 gap-2 text-sm">
-                        <div>
-                          <span className="text-muted-foreground">School:</span> {player.school || '—'}
-                        </div>
-                        <div>
-                          <span className="text-muted-foreground">State:</span> {player.state || '—'}
-                        </div>
-                        {player.committedTo && (
-                          <div className="col-span-2">
-                            <span className="text-muted-foreground">Committed:</span>{' '}
-                            <Badge variant="secondary">{player.committedTo}</Badge>
+                      {/* Player Info */}
+                      <div className="lg:col-span-9">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="text-2xl font-bold mb-3 group-hover:text-red-400 transition-colors duration-300" data-testid={`text-player-name-${player.id}`}>
+                              {player.name}
+                            </h3>
+                            
+                            <div className="space-y-2 text-sm">
+                              <div className="flex items-center gap-2">
+                                <span className="text-muted-foreground font-medium min-w-20">Position:</span>
+                                <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                                  {player.position || '—'}
+                                </Badge>
+                              </div>
+                              
+                              <div className="flex items-center gap-2">
+                                <span className="text-muted-foreground font-medium min-w-20">Height:</span>
+                                <span className="text-foreground font-medium">{player.heightFormatted || '—'}</span>
+                              </div>
+                              
+                              <div className="flex items-center gap-2">
+                                <span className="text-muted-foreground font-medium min-w-20">Class:</span>
+                                <span className="text-foreground font-medium">{player.gradYear}</span>
+                              </div>
+                            </div>
                           </div>
-                        )}
+
+                          <div className="space-y-2 text-sm">
+                            <div className="flex items-start gap-2">
+                              <span className="text-muted-foreground font-medium min-w-20">High School:</span>
+                              <span className="text-foreground font-medium" data-testid={`text-high-school-${player.id}`}>
+                                {player.school || '—'}
+                              </span>
+                            </div>
+                            
+                            <div className="flex items-center gap-2">
+                              <span className="text-muted-foreground font-medium min-w-20">State:</span>
+                              <span className="text-foreground font-medium" data-testid={`text-state-${player.id}`}>
+                                {player.state || '—'}
+                              </span>
+                            </div>
+                            
+                            {player.committedTo && (
+                              <div className="flex items-center gap-2">
+                                <span className="text-muted-foreground font-medium min-w-20">Committed:</span>
+                                <Badge variant="secondary" className="bg-green-950/30 text-green-400 border-green-700/30" data-testid={`text-committed-${player.id}`}>
+                                  {player.committedTo}
+                                </Badge>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Card>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <p className="text-lg text-muted-foreground">
-                  No players found for class of {year}
+              <div className="text-center py-20">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+                  <Filter className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">No players found</h3>
+                <p className="text-muted-foreground mb-6">
+                  {searchQuery || positionFilter !== "all" || stateFilter !== "all"
+                    ? "Try adjusting your filters"
+                    : `No players found for class of ${year}`}
                 </p>
+                {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
+                  <Button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setPositionFilter("all");
+                      setStateFilter("all");
+                    }}
+                  >
+                    Clear All Filters
+                  </Button>
+                )}
               </div>
             )}
           </div>
