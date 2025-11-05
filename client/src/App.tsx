@@ -7,6 +7,9 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
 import Rankings from "@/pages/Rankings";
+import Rankings2024 from "@/pages/Rankings2024";
+import CircuitRankings from "@/pages/CircuitRankings";
+import HighSchoolRankings from "@/pages/HighSchoolRankings";
 import Cart from "@/pages/Cart";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
@@ -18,6 +21,9 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/products/:slug" component={ProductDetail} />
       <Route path="/rankings/:year" component={Rankings} />
+      <Route path="/rankings-2024" component={Rankings2024} />
+      <Route path="/circuit-rankings" component={CircuitRankings} />
+      <Route path="/high-school-rankings" component={HighSchoolRankings} />
       <Route path="/cart" component={Cart} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
