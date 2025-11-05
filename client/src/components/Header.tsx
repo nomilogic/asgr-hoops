@@ -74,6 +74,12 @@ export function Header() {
                         <Link href="/rankings/2028" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2028">
                           Top 350 High School Class 2028
                         </Link>
+                        <Link href="/rankings/2029" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2029">
+                          Top 350 High School Class 2029
+                        </Link>
+                        <Link href="/rankings/2030" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2030">
+                          Top 350 High School Class 2030
+                        </Link>
                       </div>
                     </div>
                   </NavigationMenuContent>
@@ -127,6 +133,12 @@ export function Header() {
                     </Link>
                     <Link href="/rankings/2028" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2028">
                       Class 2028
+                    </Link>
+                    <Link href="/rankings/2029" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2029">
+                      Class 2029
+                    </Link>
+                    <Link href="/rankings/2030" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
+                      Class 2030
                     </Link>
                   </div>
                 </div>

@@ -80,9 +80,26 @@ export default function Rankings() {
               <p className="text-xl text-gray-300 mb-2">
                 Class of {year}
               </p>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Comprehensive rankings of the nation's top high school basketball players
               </p>
+              
+              {/* Year Selector */}
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                {[2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
+                  <a
+                    key={y}
+                    href={`/rankings/${y}`}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                      y === year
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
+                        : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                    }`}
+                  >
+                    {y}
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Filter Controls */}
@@ -124,7 +141,7 @@ export default function Rankings() {
               </div>
               
               {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
                     Showing {filteredPlayers.length} of {players?.length || 0} players
                   </p>
@@ -203,45 +220,56 @@ export default function Rankings() {
                             
                             <div className="space-y-2 text-sm">
                               <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-20">Position:</span>
-                                <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                                <span className="text-muted-foreground font-medium min-w-24">Position:</span>
+                                <Badge variant="outline" className="border-red-700/30 bg-red-950/20 font-semibold">
                                   {player.position || '—'}
                                 </Badge>
                               </div>
                               
                               <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-20">Height:</span>
-                                <span className="text-foreground font-medium">{player.heightFormatted || '—'}</span>
+                                <span className="text-muted-foreground font-medium min-w-24">Height:</span>
+                                <span className="text-foreground font-semibold">{player.heightFormatted || '—'}</span>
                               </div>
                               
                               <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-20">Class:</span>
-                                <span className="text-foreground font-medium">{player.gradYear}</span>
+                                <span className="text-muted-foreground font-medium min-w-24">Class:</span>
+                                <span className="text-foreground font-semibold">{player.gradYear}</span>
                               </div>
                             </div>
                           </div>
 
                           <div className="space-y-2 text-sm">
                             <div className="flex items-start gap-2">
-                              <span className="text-muted-foreground font-medium min-w-20">High School:</span>
-                              <span className="text-foreground font-medium" data-testid={`text-high-school-${player.id}`}>
+                              <span className="text-muted-foreground font-medium min-w-24">High School:</span>
+                              <span className="text-foreground font-semibold" data-testid={`text-high-school-${player.id}`}>
                                 {player.school || '—'}
                               </span>
                             </div>
                             
                             <div className="flex items-center gap-2">
-                              <span className="text-muted-foreground font-medium min-w-20">State:</span>
-                              <span className="text-foreground font-medium" data-testid={`text-state-${player.id}`}>
+                              <span className="text-muted-foreground font-medium min-w-24">State:</span>
+                              <span className="text-foreground font-semibold" data-testid={`text-state-${player.id}`}>
                                 {player.state || '—'}
                               </span>
                             </div>
                             
                             {player.committedTo && (
                               <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-20">Committed:</span>
-                                <Badge variant="secondary" className="bg-green-950/30 text-green-400 border-green-700/30" data-testid={`text-committed-${player.id}`}>
-                                  {player.committedTo}
-                                </Badge>
+                                <span className="text-muted-foreground font-medium min-w-24">Committed:</span>
+                                <div className="flex items-center gap-2">
+                                  <Badge variant="secondary" className="bg-green-950/30 text-green-400 border-green-700/30 font-semibold" data-testid={`text-committed-${player.id}`}>
+                                    {player.committedTo}
+                                  </Badge>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {player.circuitProgram && (
+                              <div className="flex items-center gap-2">
+                                <span className="text-muted-foreground font-medium min-w-24">Circuit:</span>
+                                <span className="text-foreground font-semibold">
+                                  {player.circuitProgram}
+                                </span>
                               </div>
                             )}
                           </div>
