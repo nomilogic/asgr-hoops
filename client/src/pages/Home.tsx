@@ -35,7 +35,7 @@ export default function Home() {
                     View Packages
                   </Button>
                 </Link>
-                <Link href="/rankings/2025" asChild>
+                <Link href="/rankings/top350/2025" asChild>
                   <Button size="lg" variant="outline" className="border-red-600 hover:bg-red-950 hover:scale-105 transition-all duration-300" data-testid="button-view-rankings">
                     View Rankings
                   </Button>

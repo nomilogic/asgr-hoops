@@ -14,16 +14,26 @@ import { useState, useMemo } from "react";
 import { Search, Filter } from "lucide-react";
 
 export default function Rankings() {
-  const [, params] = useRoute("/rankings/:year");
+  const [, params] = useRoute("/rankings/:type/:year?");
+  const type = params?.type || "top350";
   const year = params?.year ? parseInt(params.year) : 2025;
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<string>("all");
   const [stateFilter, setStateFilter] = useState<string>("all");
+  const [circuitFilter, setCircuitFilter] = useState<string>("all");
+
+  // Determine API endpoint based on ranking type
+  const getApiEndpoint = () => {
+    if (type === "circuit") return "/api/players";
+    if (type === "high-school") return "/api/players";
+    return `/api/players/year/${year}`;
+  };
 
   const { data: players, isLoading } = useQuery<Player[]>({
-    queryKey: ["/api/players/year", year],
+    queryKey: ["/api/players", type, year],
     queryFn: async () => {
-      const response = await fetch(`/api/players/year/${year}`);
+      const response = await fetch(getApiEndpoint());
       if (!response.ok) {
         throw new Error("Failed to fetch players");
       }
@@ -36,21 +46,26 @@ export default function Rankings() {
     
     return players
       .filter((player) => {
+        // Type-specific filtering
+        if (type === "circuit" && !player.circuitProgram) return false;
+        
         const matchesSearch = searchQuery === "" || 
           player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          player.school?.toLowerCase().includes(searchQuery.toLowerCase());
+          player.school?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          player.circuitProgram?.toLowerCase().includes(searchQuery.toLowerCase());
         
         const matchesPosition = positionFilter === "all" || player.position === positionFilter;
         const matchesState = stateFilter === "all" || player.state === stateFilter;
+        const matchesCircuit = circuitFilter === "all" || player.circuitProgram === circuitFilter;
         
-        return matchesSearch && matchesPosition && matchesState;
+        return matchesSearch && matchesPosition && matchesState && matchesCircuit;
       })
       .sort((a, b) => {
         const rankA = a.rankNumber || 999;
         const rankB = b.rankNumber || 999;
         return rankA - rankB;
       });
-  }, [players, searchQuery, positionFilter, stateFilter]);
+  }, [players, searchQuery, positionFilter, stateFilter, circuitFilter, type]);
 
   const positions = useMemo(() => {
     if (!players) return [];
@@ -64,6 +79,36 @@ export default function Rankings() {
     return Array.from(uniqueStates).sort();
   }, [players]);
 
+  const circuits = useMemo(() => {
+    if (!players) return [];
+    const uniqueCircuits = new Set(players.map(p => p.circuitProgram).filter(Boolean));
+    return Array.from(uniqueCircuits).sort();
+  }, [players]);
+
+  // Get title and description based on type
+  const getPageInfo = () => {
+    switch (type) {
+      case "circuit":
+        return {
+          title: "Circuit Rankings",
+          subtitle: "Top players ranked by their circuit program performance",
+        };
+      case "high-school":
+        return {
+          title: "High School Rankings",
+          subtitle: "Top high school basketball players ranked by performance and potential",
+        };
+      default:
+        return {
+          title: "Top 350 Rankings",
+          subtitle: `Comprehensive rankings of the nation's top high school basketball players`,
+          showYear: true,
+        };
+    }
+  };
+
+  const pageInfo = getPageInfo();
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -75,31 +120,35 @@ export default function Rankings() {
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
-                Top 350 Rankings
+                {pageInfo.title}
               </h1>
-              <p className="text-xl text-gray-300 mb-2">
-                Class of {year}
-              </p>
+              {pageInfo.showYear && (
+                <p className="text-xl text-gray-300 mb-2">
+                  Class of {year}
+                </p>
+              )}
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                Comprehensive rankings of the nation's top high school basketball players
+                {pageInfo.subtitle}
               </p>
               
-              {/* Year Selector */}
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                {[2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
-                  <a
-                    key={y}
-                    href={`/rankings/${y}`}
-                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
-                      y === year
-                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
-                        : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
-                    }`}
-                  >
-                    {y}
-                  </a>
-                ))}
-              </div>
+              {/* Year Selector - only for top350 */}
+              {type === "top350" && (
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  {[2024, 2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
+                    <a
+                      key={y}
+                      href={`/rankings/top350/${y}`}
+                      className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                        y === year
+                          ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
+                          : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                      }`}
+                    >
+                      {y}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Filter Controls */}
@@ -115,6 +164,32 @@ export default function Rankings() {
                   />
                 </div>
                 
+                {type === "circuit" ? (
+                  <Select value={circuitFilter} onValueChange={setCircuitFilter}>
+                    <SelectTrigger className="bg-background/50">
+                      <SelectValue placeholder="All Circuits" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Circuits</SelectItem>
+                      {circuits.map((circuit) => (
+                        <SelectItem key={circuit} value={circuit}>{circuit}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <Select value={stateFilter} onValueChange={setStateFilter}>
+                    <SelectTrigger className="bg-background/50">
+                      <SelectValue placeholder="All States" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All States</SelectItem>
+                      {states.map((state) => (
+                        <SelectItem key={state} value={state}>{state}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+
                 <Select value={positionFilter} onValueChange={setPositionFilter}>
                   <SelectTrigger className="bg-background/50">
                     <SelectValue placeholder="All Positions" />
@@ -126,21 +201,9 @@ export default function Rankings() {
                     ))}
                   </SelectContent>
                 </Select>
-
-                <Select value={stateFilter} onValueChange={setStateFilter}>
-                  <SelectTrigger className="bg-background/50">
-                    <SelectValue placeholder="All States" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All States</SelectItem>
-                    {states.map((state) => (
-                      <SelectItem key={state} value={state}>{state}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </div>
               
-              {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
+              {(searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
                     Showing {filteredPlayers.length} of {players?.length || 0} players
@@ -152,6 +215,7 @@ export default function Rankings() {
                       setSearchQuery("");
                       setPositionFilter("all");
                       setStateFilter("all");
+                      setCircuitFilter("all");
                     }}
                   >
                     Clear Filters
@@ -187,7 +251,7 @@ export default function Rankings() {
               </div>
             ) : filteredPlayers && filteredPlayers.length > 0 ? (
               <div className="space-y-4">
-                {filteredPlayers.map((player, index) => (
+                {filteredPlayers.map((player) => (
                   <Card
                     key={player.id}
                     className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
@@ -283,16 +347,17 @@ export default function Rankings() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">No players found</h3>
                 <p className="text-muted-foreground mb-6">
-                  {searchQuery || positionFilter !== "all" || stateFilter !== "all"
+                  {searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all"
                     ? "Try adjusting your filters"
-                    : `No players found for class of ${year}`}
+                    : `No players found for this ranking`}
                 </p>
-                {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
+                {(searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all") && (
                   <Button
                     onClick={() => {
                       setSearchQuery("");
                       setPositionFilter("all");
                       setStateFilter("all");
+                      setCircuitFilter("all");
                     }}
                   >
                     Clear All Filters
