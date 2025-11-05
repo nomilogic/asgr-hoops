@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -8,58 +7,47 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { Player } from "@shared/schema";
+import type { SchoolRanking } from "@shared/schema";
 import { useState, useMemo } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, Trophy } from "lucide-react";
 
 export default function HighSchoolRankings() {
   const [searchQuery, setSearchQuery] = useState("");
   const [stateFilter, setStateFilter] = useState<string>("all");
-  const [positionFilter, setPositionFilter] = useState<string>("all");
+  const [season, setSeason] = useState<string>("2023-24");
 
-  const { data: players, isLoading } = useQuery<Player[]>({
-    queryKey: ["/api/players"],
+  const { data: rankings, isLoading } = useQuery<SchoolRanking[]>({
+    queryKey: ["/api/school-rankings/season", season],
     queryFn: async () => {
-      const response = await fetch(`/api/players`);
+      const response = await fetch(`/api/school-rankings/season/${season}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch players");
+        throw new Error("Failed to fetch school rankings");
       }
       return response.json();
     },
   });
 
-  const filteredPlayers = useMemo(() => {
-    if (!players) return [];
+  const filteredRankings = useMemo(() => {
+    if (!rankings) return [];
     
-    return players
-      .filter((player) => {
+    return rankings
+      .filter((ranking) => {
         const matchesSearch = searchQuery === "" || 
-          player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          player.school?.toLowerCase().includes(searchQuery.toLowerCase());
+          ranking.schoolName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          ranking.keyWins?.toLowerCase().includes(searchQuery.toLowerCase());
         
-        const matchesState = stateFilter === "all" || player.state === stateFilter;
-        const matchesPosition = positionFilter === "all" || player.position === positionFilter;
+        const matchesState = stateFilter === "all" || ranking.schoolState === stateFilter;
         
-        return matchesSearch && matchesState && matchesPosition;
+        return matchesSearch && matchesState;
       })
-      .sort((a, b) => {
-        const rankA = a.rankNumber || 999999;
-        const rankB = b.rankNumber || 999999;
-        return rankA - rankB;
-      });
-  }, [players, searchQuery, stateFilter, positionFilter]);
+      .sort((a, b) => a.rank - b.rank);
+  }, [rankings, searchQuery, stateFilter]);
 
   const states = useMemo(() => {
-    if (!players) return [];
-    const uniqueStates = new Set(players.map(p => p.state).filter(Boolean));
+    if (!rankings) return [];
+    const uniqueStates = new Set(rankings.map(r => r.schoolState).filter(Boolean));
     return Array.from(uniqueStates).sort();
-  }, [players]);
-
-  const positions = useMemo(() => {
-    if (!players) return [];
-    const uniquePositions = new Set(players.map(p => p.position).filter(Boolean));
-    return Array.from(uniquePositions).sort();
-  }, [players]);
+  }, [rankings]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -70,55 +58,61 @@ export default function HighSchoolRankings() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
-              <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
-                High School Rankings
-              </h1>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Trophy className="h-12 w-12 text-red-500" />
+                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
+                  High School Rankings
+                </h1>
+              </div>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                Top high school basketball players ranked by performance and potential
+                Top-ranked high school basketball programs nationwide
               </p>
+
+              <div className="flex items-center justify-center gap-2 flex-wrap mb-6">
+                {["2024-25", "2023-24"].map((s) => (
+                  <Button
+                    key={s}
+                    onClick={() => setSeason(s)}
+                    variant={s === season ? "default" : "outline"}
+                    className={s === season ? "bg-red-600 hover:bg-red-700" : ""}
+                    data-testid={`button-season-${s}`}
+                  >
+                    {s} Season
+                  </Button>
+                ))}
+              </div>
             </div>
 
             <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search players or schools..."
+                    placeholder="Search schools or key wins..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 bg-background/50"
+                    data-testid="input-search"
                   />
                 </div>
                 
                 <Select value={stateFilter} onValueChange={setStateFilter}>
-                  <SelectTrigger className="bg-background/50">
+                  <SelectTrigger className="bg-background/50" data-testid="select-state-filter">
                     <SelectValue placeholder="All States" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">All States</SelectItem>
                     {states.map((state) => (
-                      <SelectItem key={state} value={state}>{state}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                <Select value={positionFilter} onValueChange={setPositionFilter}>
-                  <SelectTrigger className="bg-background/50">
-                    <SelectValue placeholder="All Positions" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Positions</SelectItem>
-                    {positions.map((pos) => (
-                      <SelectItem key={pos} value={pos}>{pos}</SelectItem>
+                      <SelectItem key={state} value={state || ""}>{state}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               
-              {(searchQuery || stateFilter !== "all" || positionFilter !== "all") && (
+              {(searchQuery || stateFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
-                    Showing {filteredPlayers.length} of {players?.length || 0} players
+                    Showing {filteredRankings.length} of {rankings?.length || 0} schools
                   </p>
                   <Button
                     variant="ghost"
@@ -126,8 +120,8 @@ export default function HighSchoolRankings() {
                     onClick={() => {
                       setSearchQuery("");
                       setStateFilter("all");
-                      setPositionFilter("all");
                     }}
+                    data-testid="button-clear-filters"
                   >
                     Clear Filters
                   </Button>
@@ -142,90 +136,77 @@ export default function HighSchoolRankings() {
             <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
-                <div className="col-span-3">Name</div>
-                <div className="col-span-1 text-center">HT</div>
-                <div className="col-span-1 text-center">POS</div>
-                <div className="col-span-1 text-center">Grad Year</div>
-                <div className="col-span-2">High School</div>
-                <div className="col-span-2">Circuit Program</div>
-                <div className="col-span-1 text-center">College</div>
+                <div className="col-span-4">High School</div>
+                <div className="col-span-2 text-center">State</div>
+                <div className="col-span-1 text-center">W/L</div>
+                <div className="col-span-4">Key Wins</div>
               </div>
             </div>
 
             {isLoading ? (
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                  <Skeleton key={i} className="h-40 w-full rounded-xl" />
+                  <Skeleton key={i} className="h-24 w-full rounded-xl" />
                 ))}
               </div>
-            ) : filteredPlayers && filteredPlayers.length > 0 ? (
+            ) : filteredRankings && filteredRankings.length > 0 ? (
               <div className="space-y-4">
-                {filteredPlayers.map((player) => (
+                {filteredRankings.map((ranking) => (
                   <Card
-                    key={player.id}
-                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
+                    key={ranking.id}
+                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-300"
+                    data-testid={`card-school-${ranking.id}`}
                   >
                     <div className="grid grid-cols-12 gap-4 p-6 items-center">
                       <div className="col-span-1 flex justify-center">
-                        <Badge className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50">
-                          {player.rankNumber || '—'}
+                        <Badge 
+                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                          data-testid={`badge-rank-${ranking.id}`}
+                        >
+                          {ranking.rank}
                         </Badge>
                       </div>
 
-                      <div className="col-span-3 flex items-center gap-3">
-                        {player.imageUrl ? (
+                      <div className="col-span-4 flex items-center gap-3">
+                        {ranking.logoUrl ? (
                           <img
-                            src={player.imageUrl}
-                            alt={player.name}
-                            className="w-12 h-16 object-cover rounded border border-red-900/30"
-                          />
-                        ) : (
-                          <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-xs text-muted-foreground">
-                            N/A
-                          </div>
-                        )}
-                        <span className="font-bold text-base">{player.name}</span>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.heightFormatted || '—'}</span>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                          {player.position || '—'}
-                        </Badge>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.gradYear}</span>
-                      </div>
-
-                      <div className="col-span-2">
-                        <span className="text-sm">{player.school || '—'}</span>
-                      </div>
-
-                      <div className="col-span-2">
-                        <span className="text-sm">{player.circuitProgram || '—'}</span>
-                      </div>
-
-                      <div className="col-span-1 flex justify-center">
-                        {player.committedTo && (
-                          <img
-                            src={`/attached_assets/${player.committedTo.replace(/\s+/g, '-')}-Logo.png`}
-                            alt={player.committedTo}
-                            className="h-10 w-10 object-contain"
+                            src={ranking.logoUrl}
+                            alt={ranking.schoolName}
+                            className="w-16 h-16 object-contain rounded"
+                            data-testid={`img-school-logo-${ranking.id}`}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
-                              const parent = target.parentElement;
-                              if (parent) {
-                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedTo}</span>`;
-                              }
                             }}
                           />
+                        ) : (
+                          <div className="w-16 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center">
+                            <Trophy className="h-8 w-8 text-muted-foreground" />
+                          </div>
                         )}
-                        {!player.committedTo && <span className="text-xs text-muted-foreground">—</span>}
+                        <span className="font-bold text-lg" data-testid={`text-school-name-${ranking.id}`}>
+                          {ranking.schoolName}
+                        </span>
+                      </div>
+
+                      <div className="col-span-2 text-center">
+                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                          {ranking.schoolState || '—'}
+                        </Badge>
+                      </div>
+
+                      <div className="col-span-1 text-center">
+                        <span className="text-sm font-bold" data-testid={`text-record-${ranking.id}`}>
+                          {ranking.wins !== null && ranking.losses !== null 
+                            ? `${ranking.wins}-${ranking.losses}` 
+                            : '—'}
+                        </span>
+                      </div>
+
+                      <div className="col-span-4">
+                        <span className="text-sm text-muted-foreground" data-testid={`text-key-wins-${ranking.id}`}>
+                          {ranking.keyWins || '—'}
+                        </span>
                       </div>
                     </div>
                   </Card>
@@ -236,7 +217,7 @@ export default function HighSchoolRankings() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
                   <Filter className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">No players found</h3>
+                <h3 className="text-xl font-semibold mb-2">No schools found</h3>
                 <p className="text-muted-foreground">
                   Try adjusting your search criteria
                 </p>

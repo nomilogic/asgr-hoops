@@ -71,6 +71,18 @@ export const rankings = pgTable("rankings", {
   ratingDescription: text("rating_description"),
 });
 
+export const schoolRankings = pgTable("school_rankings", {
+  id: serial("id").primaryKey(),
+  rank: integer("rank").notNull(),
+  schoolName: text("school_name").notNull(),
+  schoolState: text("school_state"),
+  logoUrl: text("logo_url"),
+  wins: integer("wins"),
+  losses: integer("losses"),
+  keyWins: text("key_wins"),
+  season: text("season").notNull(),
+});
+
 export const insertSchoolSchema = createInsertSchema(schools).omit({
   id: true,
 });
@@ -95,6 +107,10 @@ export const insertRankingSchema = createInsertSchema(rankings).omit({
   id: true,
 });
 
+export const insertSchoolRankingSchema = createInsertSchema(schoolRankings).omit({
+  id: true,
+});
+
 export type InsertSchool = z.infer<typeof insertSchoolSchema>;
 export type School = typeof schools.$inferSelect;
 
@@ -112,3 +128,6 @@ export type Event = typeof events.$inferSelect;
 
 export type InsertRanking = z.infer<typeof insertRankingSchema>;
 export type Ranking = typeof rankings.$inferSelect;
+
+export type InsertSchoolRanking = z.infer<typeof insertSchoolRankingSchema>;
+export type SchoolRanking = typeof schoolRankings.$inferSelect;

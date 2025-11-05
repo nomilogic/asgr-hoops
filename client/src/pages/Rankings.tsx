@@ -119,7 +119,7 @@ export default function Rankings() {
                   <SelectContent>
                     <SelectItem value="all">All States</SelectItem>
                     {states.map((state) => (
-                      <SelectItem key={state} value={state}>{state}</SelectItem>
+                      <SelectItem key={state} value={state || ""}>{state}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -131,7 +131,7 @@ export default function Rankings() {
                   <SelectContent>
                     <SelectItem value="all">All Positions</SelectItem>
                     {positions.map((pos) => (
-                      <SelectItem key={pos} value={pos}>{pos}</SelectItem>
+                      <SelectItem key={pos} value={pos || ""}>{pos}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>

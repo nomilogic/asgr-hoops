@@ -13,12 +13,15 @@ import {
   type InsertEvent,
   type Ranking,
   type InsertRanking,
+  type SchoolRanking,
+  type InsertSchoolRanking,
   schools,
   players,
   circuitTeams,
   playerCircuitTeams,
   events,
   rankings,
+  schoolRankings,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -48,6 +51,11 @@ export interface IStorage {
   getRankingsByPlayerId(playerId: number): Promise<Ranking[]>;
   getRankingsByType(rankType: string, year?: number): Promise<Ranking[]>;
   createRanking(ranking: InsertRanking): Promise<Ranking>;
+  
+  getAllSchoolRankings(): Promise<SchoolRanking[]>;
+  getSchoolRankingsBySeason(season: string): Promise<SchoolRanking[]>;
+  createSchoolRanking(ranking: InsertSchoolRanking): Promise<SchoolRanking>;
+  bulkCreateSchoolRankings(rankings: InsertSchoolRanking[]): Promise<void>;
 }
 
 export class DbStorage implements IStorage {
@@ -148,6 +156,24 @@ export class DbStorage implements IStorage {
   async createRanking(ranking: InsertRanking): Promise<Ranking> {
     const result = await db.insert(rankings).values(ranking).returning();
     return result[0];
+  }
+
+  async getAllSchoolRankings(): Promise<SchoolRanking[]> {
+    return await db.select().from(schoolRankings);
+  }
+
+  async getSchoolRankingsBySeason(season: string): Promise<SchoolRanking[]> {
+    return await db.select().from(schoolRankings).where(eq(schoolRankings.season, season));
+  }
+
+  async createSchoolRanking(ranking: InsertSchoolRanking): Promise<SchoolRanking> {
+    const result = await db.insert(schoolRankings).values(ranking).returning();
+    return result[0];
+  }
+
+  async bulkCreateSchoolRankings(rankings: InsertSchoolRanking[]): Promise<void> {
+    if (rankings.length === 0) return;
+    await db.insert(schoolRankings).values(rankings);
   }
 }
 

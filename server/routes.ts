@@ -177,6 +177,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // School rankings routes
+  app.get("/api/school-rankings", async (_req, res) => {
+    try {
+      const rankings = await storage.getAllSchoolRankings();
+      res.json(rankings);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch school rankings" });
+    }
+  });
+
+  app.get("/api/school-rankings/season/:season", async (req, res) => {
+    try {
+      const season = req.params.season;
+      const rankings = await storage.getSchoolRankingsBySeason(season);
+      res.json(rankings);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch school rankings by season" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

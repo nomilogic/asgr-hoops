@@ -135,11 +135,19 @@ async function importData() {
     console.log(`Processing ${circuitTeamsData.length} circuit team relationships...`);
     
     // Get unique team names
-    const uniqueTeamNames = [...new Set(circuitTeamsData
+    const teamMap = new Map<string, { teamName: string; state: string | null }>();
+    circuitTeamsData
       .filter(row => row.team_name && row.team_name !== "NULL")
-      .map(row => ({ teamName: row.team_name, state: row.state === "NULL" ? null : row.state })))];
+      .forEach(row => {
+        if (!teamMap.has(row.team_name)) {
+          teamMap.set(row.team_name, {
+            teamName: row.team_name,
+            state: row.state === "NULL" ? null : row.state
+          });
+        }
+      });
 
-    const circuitTeamsToInsert = Array.from(new Map(uniqueTeamNames.map(t => [t.teamName, t])).values());
+    const circuitTeamsToInsert = Array.from(teamMap.values());
     const insertedCircuitTeams = await db.insert(circuitTeams).values(circuitTeamsToInsert).returning();
     console.log(`Imported ${insertedCircuitTeams.length} circuit teams`);
 
