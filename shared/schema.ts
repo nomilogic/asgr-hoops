@@ -1,42 +1,76 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, serial } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const products = pgTable("products", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: text("name").notNull(),
-  slug: text("slug").notNull().unique(),
-  description: text("description").notNull(),
-  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-  category: text("category").notNull(),
-  imageUrl: text("image_url").notNull(),
-  features: text("features").array().notNull(),
+export const schools = pgTable("schools", {
+  id: serial("id").primaryKey(),
+  schoolName: text("school_name").notNull(),
+  cleanName: text("clean_name"),
+  city: text("city"),
+  state: text("state"),
+  category: text("category"),
 });
 
 export const players = pgTable("players", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  rank: integer("rank").notNull(),
+  id: serial("id").primaryKey(),
+  oldId: text("old_id"),
   name: text("name").notNull(),
-  height: text("height").notNull(),
-  position: text("position").notNull(),
-  gradYear: integer("grad_year").notNull(),
-  highSchool: text("high_school").notNull(),
-  circuitProgram: text("circuit_program").notNull(),
-  college: text("college"),
-  collegeLogo: text("college_logo"),
-  rating: integer("rating").notNull(),
-  ratingDescription: text("rating_description").notNull(),
-  photoUrl: text("photo_url").notNull(),
+  rankNumber: integer("rank_number"),
+  position: text("position"),
+  heightRaw: text("height_raw"),
+  heightFeet: integer("height_feet"),
+  heightInches: integer("height_inches"),
+  heightFormatted: text("height_formatted"),
+  school: text("school"),
+  city: text("city"),
+  state: text("state"),
+  gradYear: integer("grad_year"),
+  committedTo: text("committed_to"),
+  previousSchool: text("previous_school"),
+  twitter: text("twitter"),
+  schoolId: integer("school_id"),
+  schoolClean: text("school_clean"),
+  schoolType: text("school_type"),
+  imageUrl: text("image_url"),
 });
 
-export const cartItems = pgTable("cart_items", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  productId: varchar("product_id").notNull(),
-  quantity: integer("quantity").notNull().default(1),
+export const circuitTeams = pgTable("circuit_teams", {
+  id: serial("id").primaryKey(),
+  teamName: text("team_name").notNull(),
+  state: text("state"),
 });
 
-export const insertProductSchema = createInsertSchema(products).omit({
+export const playerCircuitTeams = pgTable("player_circuit_teams", {
+  id: serial("id").primaryKey(),
+  playerId: integer("player_id").notNull(),
+  circuitTeamId: integer("circuit_team_id"),
+  eventIndex: integer("event_index"),
+  teamIndex: integer("team_index"),
+  wins: integer("wins"),
+  losses: integer("losses"),
+});
+
+export const events = pgTable("events", {
+  id: serial("id").primaryKey(),
+  eventName: text("event_name").notNull(),
+  eventDate: text("event_date"),
+  location: text("location"),
+  description: text("description"),
+  imageUrl: text("image_url"),
+});
+
+export const rankings = pgTable("rankings", {
+  id: serial("id").primaryKey(),
+  playerId: integer("player_id").notNull(),
+  rankType: text("rank_type").notNull(),
+  rank: integer("rank").notNull(),
+  year: integer("year"),
+  rating: integer("rating"),
+  ratingDescription: text("rating_description"),
+});
+
+export const insertSchoolSchema = createInsertSchema(schools).omit({
   id: true,
 });
 
@@ -44,15 +78,36 @@ export const insertPlayerSchema = createInsertSchema(players).omit({
   id: true,
 });
 
-export const insertCartItemSchema = createInsertSchema(cartItems).omit({
+export const insertCircuitTeamSchema = createInsertSchema(circuitTeams).omit({
   id: true,
 });
 
-export type InsertProduct = z.infer<typeof insertProductSchema>;
-export type Product = typeof products.$inferSelect;
+export const insertPlayerCircuitTeamSchema = createInsertSchema(playerCircuitTeams).omit({
+  id: true,
+});
+
+export const insertEventSchema = createInsertSchema(events).omit({
+  id: true,
+});
+
+export const insertRankingSchema = createInsertSchema(rankings).omit({
+  id: true,
+});
+
+export type InsertSchool = z.infer<typeof insertSchoolSchema>;
+export type School = typeof schools.$inferSelect;
 
 export type InsertPlayer = z.infer<typeof insertPlayerSchema>;
 export type Player = typeof players.$inferSelect;
 
-export type InsertCartItem = z.infer<typeof insertCartItemSchema>;
-export type CartItem = typeof cartItems.$inferSelect;
+export type InsertCircuitTeam = z.infer<typeof insertCircuitTeamSchema>;
+export type CircuitTeam = typeof circuitTeams.$inferSelect;
+
+export type InsertPlayerCircuitTeam = z.infer<typeof insertPlayerCircuitTeamSchema>;
+export type PlayerCircuitTeam = typeof playerCircuitTeams.$inferSelect;
+
+export type InsertEvent = z.infer<typeof insertEventSchema>;
+export type Event = typeof events.$inferSelect;
+
+export type InsertRanking = z.infer<typeof insertRankingSchema>;
+export type Ranking = typeof rankings.$inferSelect;
