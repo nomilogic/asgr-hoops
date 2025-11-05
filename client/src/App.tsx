@@ -1,3 +1,4 @@
+
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,7 +8,6 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
 import Rankings from "@/pages/Rankings";
-import Rankings2024 from "@/pages/Rankings2024";
 import CircuitRankings from "@/pages/CircuitRankings";
 import HighSchoolRankings from "@/pages/HighSchoolRankings";
 import Cart from "@/pages/Cart";
@@ -20,8 +20,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/products" component={Products} />
       <Route path="/products/:slug" component={ProductDetail} />
-      <Route path="/rankings/:type/:year" component={Rankings} />
-      <Route path="/rankings/:type" component={Rankings} />
+      <Route path="/rankings/:year" component={Rankings} />
+      <Route path="/rankings/circuit" component={CircuitRankings} />
+      <Route path="/rankings/high-school" component={HighSchoolRankings} />
       <Route path="/cart" component={Cart} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />

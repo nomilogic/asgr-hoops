@@ -63,25 +63,25 @@ export function Header() {
                     <div className="w-[400px] p-4">
                       <div className="grid gap-2">
                         <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase">Top 350 Rankings</div>
-                        <Link href="/rankings/top350/2024" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2024">
+                        <Link href="/rankings/2024" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2024">
                           Class 2024
                         </Link>
-                        <Link href="/rankings/top350/2025" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2025">
+                        <Link href="/rankings/2025" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2025">
                           Class 2025
                         </Link>
-                        <Link href="/rankings/top350/2026" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2026">
+                        <Link href="/rankings/2026" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2026">
                           Class 2026
                         </Link>
-                        <Link href="/rankings/top350/2027" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2027">
+                        <Link href="/rankings/2027" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2027">
                           Class 2027
                         </Link>
-                        <Link href="/rankings/top350/2028" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2028">
+                        <Link href="/rankings/2028" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2028">
                           Class 2028
                         </Link>
-                        <Link href="/rankings/top350/2029" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2029">
+                        <Link href="/rankings/2029" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2029">
                           Class 2029
                         </Link>
-                        <Link href="/rankings/top350/2030" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2030">
+                        <Link href="/rankings/2030" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2030">
                           Class 2030
                         </Link>
                         <div className="border-t border-border my-2"></div>
@@ -135,32 +135,32 @@ export function Header() {
                   <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Player Rankings</div>
                   <div className="ml-4 flex flex-col gap-2 mt-2">
                     <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">TOP 350</div>
-                    <Link href="/rankings-2024" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2024">
+                    <Link href="/rankings/2024" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2024">
                       Class 2024
                     </Link>
-                    <Link href="/rankings/top350/2025" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2025">
+                    <Link href="/rankings/2025" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2025">
                       Class 2025
                     </Link>
-                    <Link href="/rankings/top350/2026" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2026">
+                    <Link href="/rankings/2026" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2026">
                       Class 2026
                     </Link>
-                    <Link href="/rankings/top350/2027" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2027">
+                    <Link href="/rankings/2027" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2027">
                       Class 2027
                     </Link>
-                    <Link href="/rankings/top350/2028" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2028">
+                    <Link href="/rankings/2028" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2028">
                       Class 2028
                     </Link>
-                    <Link href="/rankings/top350/2029" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2029">
+                    <Link href="/rankings/2029" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2029">
                       Class 2029
                     </Link>
-                    <Link href="/rankings/top350/2030" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
+                    <Link href="/rankings/2030" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
                       Class 2030
                     </Link>
                     <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70 mt-2">OTHER</div>
-                    <Link href="/circuit-rankings" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-rankings">
+                    <Link href="/rankings/circuit" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-rankings">
                       Circuit Rankings
                     </Link>
-                    <Link href="/high-school-rankings" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-high-school-rankings">
+                    <Link href="/rankings/high-school" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-high-school-rankings">
                       High School Rankings
                     </Link>
                   </div>

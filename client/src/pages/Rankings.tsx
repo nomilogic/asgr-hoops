@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { useRoute } from "wouter";
 import { Header } from "@/components/Header";
@@ -14,26 +13,17 @@ import { useState, useMemo } from "react";
 import { Search, Filter } from "lucide-react";
 
 export default function Rankings() {
-  const [, params] = useRoute("/rankings/:type/:year?");
-  const type = params?.type || "top350";
+  const [, params] = useRoute("/rankings/:year");
   const year = params?.year ? parseInt(params.year) : 2025;
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<string>("all");
   const [stateFilter, setStateFilter] = useState<string>("all");
-  const [circuitFilter, setCircuitFilter] = useState<string>("all");
-
-  // Determine API endpoint based on ranking type
-  const getApiEndpoint = () => {
-    if (type === "circuit") return "/api/players";
-    if (type === "high-school") return "/api/players";
-    return `/api/players/year/${year}`;
-  };
 
   const { data: players, isLoading } = useQuery<Player[]>({
-    queryKey: ["/api/players", type, year],
+    queryKey: ["/api/players/year", year],
     queryFn: async () => {
-      const response = await fetch(getApiEndpoint());
+      const response = await fetch(`/api/players/year/${year}`);
       if (!response.ok) {
         throw new Error("Failed to fetch players");
       }
@@ -43,29 +33,24 @@ export default function Rankings() {
 
   const filteredPlayers = useMemo(() => {
     if (!players) return [];
-    
+
     return players
       .filter((player) => {
-        // Type-specific filtering
-        if (type === "circuit" && !player.circuitProgram) return false;
-        
         const matchesSearch = searchQuery === "" || 
           player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          player.school?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          player.circuitProgram?.toLowerCase().includes(searchQuery.toLowerCase());
-        
+          player.school?.toLowerCase().includes(searchQuery.toLowerCase());
+
         const matchesPosition = positionFilter === "all" || player.position === positionFilter;
         const matchesState = stateFilter === "all" || player.state === stateFilter;
-        const matchesCircuit = circuitFilter === "all" || player.circuitProgram === circuitFilter;
-        
-        return matchesSearch && matchesPosition && matchesState && matchesCircuit;
+
+        return matchesSearch && matchesPosition && matchesState;
       })
       .sort((a, b) => {
         const rankA = a.rankNumber || 999;
         const rankB = b.rankNumber || 999;
         return rankA - rankB;
       });
-  }, [players, searchQuery, positionFilter, stateFilter, circuitFilter, type]);
+  }, [players, searchQuery, positionFilter, stateFilter]);
 
   const positions = useMemo(() => {
     if (!players) return [];
@@ -79,79 +64,42 @@ export default function Rankings() {
     return Array.from(uniqueStates).sort();
   }, [players]);
 
-  const circuits = useMemo(() => {
-    if (!players) return [];
-    const uniqueCircuits = new Set(players.map(p => p.circuitProgram).filter(Boolean));
-    return Array.from(uniqueCircuits).sort();
-  }, [players]);
-
-  // Get title and description based on type
-  const getPageInfo = () => {
-    switch (type) {
-      case "circuit":
-        return {
-          title: "Circuit Rankings",
-          subtitle: "Top players ranked by their circuit program performance",
-        };
-      case "high-school":
-        return {
-          title: "High School Rankings",
-          subtitle: "Top high school basketball players ranked by performance and potential",
-        };
-      default:
-        return {
-          title: "Top 350 Rankings",
-          subtitle: `Comprehensive rankings of the nation's top high school basketball players`,
-          showYear: true,
-        };
-    }
-  };
-
-  const pageInfo = getPageInfo();
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
+
       <main className="flex-1">
-        {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
-                {pageInfo.title}
+                Top 350 Rankings
               </h1>
-              {pageInfo.showYear && (
-                <p className="text-xl text-gray-300 mb-2">
-                  Class of {year}
-                </p>
-              )}
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                {pageInfo.subtitle}
+              <p className="text-xl text-gray-300 mb-2">
+                Class of {year}
               </p>
-              
-              {/* Year Selector - only for top350 */}
-              {type === "top350" && (
-                <div className="flex items-center justify-center gap-2 flex-wrap">
-                  {[2024, 2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
-                    <a
-                      key={y}
-                      href={`/rankings/top350/${y}`}
-                      className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
-                        y === year
-                          ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
-                          : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
-                      }`}
-                    >
-                      {y}
-                    </a>
-                  ))}
-                </div>
-              )}
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+                Comprehensive rankings of the nation's top high school basketball players
+              </p>
+
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                {[2024, 2025, 2026, 2027, 2028, 2029, 2030].map((y) => (
+                  <a
+                    key={y}
+                    href={`/rankings/${y}`}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                      y === year
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
+                        : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                    }`}
+                  >
+                    {y}
+                  </a>
+                ))}
+              </div>
             </div>
 
-            {/* Filter Controls */}
             <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="relative">
@@ -163,32 +111,18 @@ export default function Rankings() {
                     className="pl-10 bg-background/50"
                   />
                 </div>
-                
-                {type === "circuit" ? (
-                  <Select value={circuitFilter} onValueChange={setCircuitFilter}>
-                    <SelectTrigger className="bg-background/50">
-                      <SelectValue placeholder="All Circuits" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Circuits</SelectItem>
-                      {circuits.map((circuit) => (
-                        <SelectItem key={circuit} value={circuit}>{circuit}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                ) : (
-                  <Select value={stateFilter} onValueChange={setStateFilter}>
-                    <SelectTrigger className="bg-background/50">
-                      <SelectValue placeholder="All States" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All States</SelectItem>
-                      {states.map((state) => (
-                        <SelectItem key={state} value={state}>{state}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
+
+                <Select value={stateFilter} onValueChange={setStateFilter}>
+                  <SelectTrigger className="bg-background/50">
+                    <SelectValue placeholder="All States" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All States</SelectItem>
+                    {states.map((state) => (
+                      <SelectItem key={state} value={state}>{state}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
                 <Select value={positionFilter} onValueChange={setPositionFilter}>
                   <SelectTrigger className="bg-background/50">
@@ -202,8 +136,8 @@ export default function Rankings() {
                   </SelectContent>
                 </Select>
               </div>
-              
-              {(searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all") && (
+
+              {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
                     Showing {filteredPlayers.length} of {players?.length || 0} players
@@ -215,7 +149,6 @@ export default function Rankings() {
                       setSearchQuery("");
                       setPositionFilter("all");
                       setStateFilter("all");
-                      setCircuitFilter("all");
                     }}
                   >
                     Clear Filters
@@ -226,10 +159,8 @@ export default function Rankings() {
           </div>
         </section>
 
-        {/* Rankings List */}
         <section className="py-12 px-4">
           <div className="container mx-auto max-w-7xl">
-            {/* Table Header */}
             <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
@@ -258,7 +189,6 @@ export default function Rankings() {
                     data-testid={`card-player-${player.id}`}
                   >
                     <div className="grid grid-cols-12 gap-4 p-6 items-center">
-                      {/* Rank */}
                       <div className="col-span-1 flex justify-center">
                         <Badge 
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
@@ -268,7 +198,6 @@ export default function Rankings() {
                         </Badge>
                       </div>
 
-                      {/* Name with Image */}
                       <div className="col-span-3 flex items-center gap-3">
                         {player.imageUrl ? (
                           <img
@@ -287,36 +216,30 @@ export default function Rankings() {
                         </span>
                       </div>
 
-                      {/* Height */}
                       <div className="col-span-1 text-center">
                         <span className="text-sm font-semibold">{player.heightFormatted || '—'}</span>
                       </div>
 
-                      {/* Position */}
                       <div className="col-span-1 text-center">
                         <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
                           {player.position || '—'}
                         </Badge>
                       </div>
 
-                      {/* Grad Year */}
                       <div className="col-span-1 text-center">
                         <span className="text-sm font-semibold">{player.gradYear}</span>
                       </div>
 
-                      {/* High School */}
                       <div className="col-span-2">
                         <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
                           {player.school || '—'}
                         </span>
                       </div>
 
-                      {/* Circuit Program */}
                       <div className="col-span-2">
                         <span className="text-sm">{player.circuitProgram || '—'}</span>
                       </div>
 
-                      {/* College */}
                       <div className="col-span-1 flex justify-center">
                         {player.committedTo && (
                           <img
@@ -347,17 +270,16 @@ export default function Rankings() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2">No players found</h3>
                 <p className="text-muted-foreground mb-6">
-                  {searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all"
+                  {searchQuery || positionFilter !== "all" || stateFilter !== "all"
                     ? "Try adjusting your filters"
-                    : `No players found for this ranking`}
+                    : `No players found for class of ${year}`}
                 </p>
-                {(searchQuery || positionFilter !== "all" || stateFilter !== "all" || circuitFilter !== "all") && (
+                {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
                   <Button
                     onClick={() => {
                       setSearchQuery("");
                       setPositionFilter("all");
                       setStateFilter("all");
-                      setCircuitFilter("all");
                     }}
                   >
                     Clear All Filters
