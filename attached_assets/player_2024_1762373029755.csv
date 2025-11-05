@@ -1,0 +1,583 @@
+old_id,name,rank_number,position,height_raw,height_feet,height_inches,school,city,state,grad_year,committed_to,previous_school,twitter,height_formatted
+42089,"Jade Richard",,G,66,5,6,"Lafayette Christian, LA",,Country,2024,,,,66
+42080,"Jasmine Bascoe",,G,67,5,7,"Kings Christian Collegiate, ONT",,Country,2024,,,,67
+42081,"Mila Holloway",,G,68,5,8,"Legacy Early College, SC",,Country,2024,,,,68
+42087,"Sienna Dauer",,G,70,5,10,"IMG Academy, FL",,Country,2024,,,,70
+42084,"Kambree Barber",,W,72,6,0,"Rigby, ID",,Country,2024,,,,72
+42086,"Arek Angui",,C,80,6,8,"Greenforest, GA",,Country,2024,,,,80
+42088,"Edina Strazusz",,F,76,6,4,"Winston Salem Christian, NC",,Country,2024,,,,76
+42090,"Ariel Little",,G,64,5,4,"South Shore, NY",,Country,2024,,,,64
+42091,"Heloisa Carrera",,F,76,6,4,"IMG Academy, FL",,Country,2024,,,,76
+42092,"Anaisha Carriere",,W,75,6,3,"Harrison Central, MS",,Country,2024,,,,75
+42065,"Izela Arenas",,G,69,5,9,"Sierra Canyon, CA",Chatsworth,CA,2024,,,,69
+42069,"Kamryn Fafua",,F,74,6,2,"Folsom, CA",,Country,2024,,,,74
+42073,"Kylee Kitts",,F,76,6,4,"Hagarity, FL",,FL,2024,,,,76
+42083,"Sarah Bartholomew",,F,75,6,3,"Lone Peak, UT",,Country,2024,,,,75
+42066,"Khloe Miller",,F,75,6,3,"NCGBB, NC",,NC,2024,,,,75
+42067,"Delanie Hill",,G,67,5,7,"Providence, NC",,NC,2024,,,,67
+42070,"Timya Grace",,C,77,6,5,"Taylor, TX",,TX,2024,,,,77
+42071,"Gabrielle Abigor",,F,75,6,3,"Berean Christian, CA",,Country,2024,,,,75
+42072,"Lola Donez",,G,71,5,11,"Lahainaluna, HI",,HI,2024,,,,71
+42075,"Lorena Awou",,C,77,6,5,"United Township, IL",,IL,2024,,,,77
+42068,"Anaya Hardy",,F,75,6,3,"Renaissance, MI",,MI,2024,,,,75
+42074,"Ramiya White",,C,77,6,5,"Butler Traditional, KY",,KY,2024,,,,77
+42076,"Ahnay Adams",,G,66,5,6,"Tilton School, NH",,Country,2024,,,,66
+42077,"Brooke Walker",,G,68,5,8,"Andover, KS",,Country,2024,,,,68
+42078,"Toby Nweke",,G,69,5,9,"Georgetown Visitation, DC",,Country,2024,,,,69
+42050,"Alyssa Ervin",,G,70,5,10,"Carroll County, VA",,VA,2024,,,,70
+42059,"Tabitha Betson",,F,74,6,2,"DME Academy, FL",,Country,2024,,,,74
+42062,"Ines Goryanova",,G,68,5,8,"DME Academy, FL","Daytona Beach",FL,2024,,,,68
+42053,"Trinity Wilson",,C,75,6,3,"Lakeville North, MN",Lakeville,MN,2024,,,,75
+42064,"Avery Howell",,G,72,6,0,"Boise, ID",Boise,ID,2024,,,,72
+42041,"Taliyah Logwood",,SG,69,5,9,,,CA,2024,,,,69
+42052,"Grace Oliver",,W,73,6,1,"Noble & Greenough, MA",,MA,2024,,,,73
+42063,"Emely Rodriguez",,W,73,6,1,"Central Pointe Christian, FL",Orlando,FL,2024,,,,73
+42046,"Kimiko Kennedy",,SG,72,6,0,,,CA,2024,,,,72
+42034,"Hannah Coons",,W,73,6,1,Kiefer,"Kiefer, OK",OK,2024,,,,73
+42029,"Alicia Newell",,SG,67,5,7,,Clinton,MD,2024,,,,67
+42031,"Gabriella Kelley",,F,73,6,1,"SFU, CA","San Francisco",CA,2024,,,,73
+42032,"Mahliya Wilson",,PG,69,5,9,,,CA,2024,,,,69
+42033,"Emily Eadie",,W,73,6,1,"Sage Hill, CA","Newport Beach",CA,2024,,,,73
+42039,"Sira Thienou",,W,74,6,2,"S3 Academy, VA",,VA,2024,,,,74
+42047,"Syla Swords",,G,72,6,0,"Long Island Lutheran, FL",,NY,2024,,,,72
+42022,"Annabelle Spotts",,W,74,6,2,"Sage Hill, CA",,CA,2024,,,,74
+42026,"Diora Ressaissi",,PF,72,6,0,,,NY,2024,,,,72
+42030,"Natalia Martinez",,G,67,5,7,"Piedmont, CA",Leandro,CA,2024,,,,67
+42019,"Taylin Serlen",,PF,73,6,1,"Stanley Lake",,CO,2024,,,,73
+42011,"Lauren Gerken",,W,72,6,0,"Liberty-Benton, OH",,OH,2024,,,,72
+41995,"Ava Heiden",,F,76,6,4,"Sherwood, OR",Sherwood,OR,2024,,,,76
+41998,"Aaliyah Guyton",,G,67,5,7,"Peoria, IL",Peoria,IL,2024,,,,67
+42001,"Taylor Holt",,F,74,6,2,"East Hickman, TN",Lyles,TN,2024,,,,74
+42006,"Brinley Cannon",,G,72,6,0,"Shelley, IA",,ID,2024,,,,72
+42020,"Reagan Lentell",,WF,72,6,0,,,,2024,,,,72
+41996,"Reagan Jamison",,WF,72,6,0,,Camas,WA,2024,,,,72
+41997,"Jennah Johnson",,PG,70,5,10,,Woodbridge,NJ,2024,,,,70
+42004,"Kennedy Evans",,G,70,5,10,"Legion Prep, TX","Little Elm",TX,2024,,,,70
+42005,"Jordan Zubich",,G,71,5,11,"Mountain Iron-Buhl, MN","Mountain Iron",MN,2024,,,,71
+41992,"Jordyn Poole",,G,67,5,7,"R. Nelson Snider, IN","Fort Wayne",IN,2024,,,,67
+41993,"Kelian Cedano",,G,69,5,9,"Putnam Science Academy, CT",Stoughton,MA,2024,,,,69
+42002,"Gabbie Grooms",,G,68,5,8,"Trinity Christian, GA",,GA,2024,,,,68
+42003,"Alyssa Wirth",,F,77,6,5,"Altoona, PA",,WI,2024,,,,77
+41981,"Teryn Gardner",,G,69,5,9,"Mead, WA",Spokane,WA,2024,,,,69
+41984,"Brooke Wilson",,PG,69,5,9,,Mawr,PA,2024,,,,69
+41990,"Azailah Funches",,WF,71,5,11,,"Lone Jack",MO,2024,,,,71
+41976,"Avery Waddington",,F,75,6,3,"Lake City, ID",,ID,2024,,,,75
+41980,"Kiara Stone",,SG,66,5,6,"Bellarmine Prepatory",,WA,2024,,,,66
+41982,"Taylee Chirrick",,PG,71,5,11,,Billings,MT,2024,,,,71
+41986,"Paris Triplett",,PF,74,6,2,,Orlando,FL,2024,,,,74
+41988,"Juliann Woodard",,F,72,6,0,"Jennings, IN","North Vernon",IN,2024,,,,72
+41975,"Rocio Jimenez",,C,79,6,7,"Central Pointe Christian, FL",,FL,2024,,,,79
+41977,"Sophia Zufelt",,SG,67,5,7,,,ID,2024,,,,67
+41983,"Morgan Miller",,F,74,6,2,"Andover, MN","Ham Lake",MN,2024,,,,74
+41989,"Cady Huffman",,C,79,6,7,,"Lee Summit",MO,2024,,,,79
+41969,"Maddie Pounds",,G,69,5,9,"NCGBB, NC",,NC,2024,,,,69
+41968,"Naomi Panganiban",,PG,67,5,7,"La Jolla Country Day",,CA,2024,,,,67
+41951,"Kendall Davis",,SG,69,5,9,,,GA,2024,,,,69
+41954,"Vivian Iwuchukwu",,F,76,6,4,"Montverde Academy, FL",,FL,2024,,,,76
+41945,"Zakyra McGee",,PF,73,6,1,,Columbus,GA,2024,,,,73
+41936,"Adeang Ring",,F,77,6,5,"Bella Vista Prep, AZ",,AZ,2024,,,,77
+41946,"Nyla Patrizio",,PF,74,6,2,,Rockledge,FL,2024,,,,74
+41919,"Summer Yancy",,F,72,6,0,"Cardinal Ritter College Prep","Raytown, MO",MO,2024,,,,72
+41942,"Kaelyn Flowers",,G,66,5,6,"Blackmon, TN",,TN,2024,,,,66
+41918,"Arianna Roberson",,F,76,6,4,"Clark, TX","San Antonio",TX,2024,,,,76
+41921,"McKenzie Swanson",,F,75,6,3,"Marian, MI",,WI,2024,,,,75
+41922,"Alexa Kinas",,G,68,5,8,"Kaukauna, WI",,WI,2024,,,,68
+41905,"Michelle Olak",,PF,74,6,2,,"Quebec City",,2024,,,,74
+41908,"Lena Newby",,WF,73,6,1,,Cibolo,TX,2024,,,,73
+41909,"Anastacia Baker",,SG,71,5,11,,Austin,TX,2024,,,,71
+41920,"Rachel Wirts",,C,75,6,3,"Center Grove, IN",Greenwood,IN,2024,,,,75
+41930,"Mykelle Richards",,W,73,6,1,"Etiwanda, CA",,CA,2024,,,,73
+41907,"Logan Reed",,SG,71,5,11,,Godley,TX,2024,,,,71
+41912,"Daniya McDonald",,WF,71,5,11,,Columbus,OH,2024,,,,71
+41914,"Brilynn Findley",,SG,68,5,8,,Bryant,AR,2024,,,,68
+41916,"Allie Ziebell",,G,72,6,0,"Neenah, WI",,WI,2024,,,,72
+41917,"Faith Wiseman",,F,76,6,4,"Indian Creek, IN",,IN,2024,,,,76
+41906,"Breanna Williams",,W,74,6,2,"Skyview, MT",Billings,MT,2024,,,,74
+41910,"Mia Hammonds",,WF,74,6,2,,Cibolo,TX,2024,,,,74
+41911,"Jasmynne Gibson",,WF,72,6,0,,Apopka,FL,2024,,,,72
+41915,"Adhel Tac",,C,77,6,5,"South Grand Prairie, TX","South Grand Prairie",TX,2024,,,,77
+41898,"Sophie Nichols",,SG,70,5,10,Ripley,Ripley,WV,2024,,,,70
+41899,"Aniya Rowe",,G,69,5,9,"AZ Compass, AZ",Rochester,NY,2024,,,,69
+41903,"Morgan Cheli",,W,74,6,2,"Archbishop Mitty, CA","San Jose",CA,2024,,,,74
+41890,"Allison Clarke",,SG,70,5,10,"Rosary Academy",Anaheim,CA,2024,,,,70
+41875,"Ranon Suttle",,SG,71,5,11,"1 of 1 Prep,Academy",Waxhaw,NC,2024,,,,71
+41878,"Berry Wallace",,W,72,6,0,"Pickerington Central, OH",Pickerington,OH,2024,,,,72
+41886,"Allison Schwertner",,PF,75,6,3,Mullen,Denver,CO,2024,,,,75
+41882,"Marley Long",,PF,74,6,2,"Sidwell Friends",Washington,DC,2024,,,,74
+41884,"Sydney Fenn",,F,75,6,3,"Arizona Compass, AZ",Phoenix,AZ,2024,,,,75
+41881,"Amanda Smith",,PG,68,5,8,"Christ the King",Commack,NY,2024,,,,68
+41885,"Ariana Williams",,WF,74,6,2,"Kenwood Academy",Chicago,IL,2024,,,,74
+41863,"Erica King",,SG,69,5,9,"AKRON Hoban",Akron,OH,2024,,,,69
+41861,"Brooklyn Vaughn",,PG,71,5,11,"Toledo Central Catholic",Toledo,OH,2024,,,,71
+41865,"Chloe Mann",,G,70,5,10,"Duncanville, TX",Saginaw,TX,2024,,,,70
+41867,"Maya McCorkle",,SG,69,5,9,"Cannon School",Concord,NC,2024,,,,69
+41873,"Olivia Tucker",,PG,67,5,7,"Panther Creek",Cary,NC,2024,,,,67
+41874,"Laniya Scales",,F,73,6,1,"Quality Education Academy, NC",,NC,2024,,,,73
+41871,"Maya Robinson",,SG,69,5,9,"NYC Good Better Best Academy",Raleigh,NC,2024,,,,69
+41872,"Alexandria Benton",,PG,66,5,6,"Legacy Early College",Simpsonville,SC,2024,,,,66
+41869,"Jazlyn Harris",,PG,66,5,6,Chambers,,NC,2024,,,,66
+41870,"Raven LeXander",,SG,72,6,0,"Concord Academy",Concord,NC,2024,,,,72
+41852,"Sarah Nakamura Miller",,G,71,5,11,"Xavier College Prep, AZ",,AZ,2024,,,,71
+41853,"Lexi Sepluveda",,SG,69,5,9,"Plainfield East",Plainfield,IL,2024,,,,69
+41860,"Riley Smith",,WF,74,6,2,"Kettering Alter",Kettering,OH,2024,,,,74
+41858,"Jada Bates",,F,74,6,2,"McEachern, GA","Powder Springs",GA,2024,,,,74
+41859,"Helen Holley",,F,74,6,2,"Gilmour Academy, OH",Cleveland,OH,2024,,,,74
+41856,"Nya Smith",,G,70,5,10,"Milton, GA",Roswell,GA,2024,,,,70
+41857,"Kate Koval",,C,77,6,5,"Long Island Lutheran, NY","Long Island",NY,2024,,,,77
+41854,"Emory Klatt",,PF,73,6,1,Stevenson,,IL,2024,,,,73
+41797,"Channing Warren",,PF,75,6,3,,Orlando,FL,2024,,,,75
+41785,"Gabby Wilke",,PF,73,6,1,"Beaver Dam","Beaver Dam",WI,2024,,,,73
+41782,"Jessica Ross",,PF,75,6,3,"Tabor Academy",Eastham,MA,2024,,,,75
+41783,"Allison Timm",,WF,71,5,11,"Divine Savior Holy Angels","Menomonee Falls",WI,2024,,,,71
+41784,"Mary Stroebel",,SG,69,5,9,Cedarburg,Saukville,WI,2024,,,,69
+41786,"Julianna Almedia",,PG,69,5,9,"Saddle River Day School","North Arlington",NJ,2024,,,,69
+41787,"Erin Rodgers",,W,72,6,0,"Grayson, GA",Lawrenceville,GA,2024,,,,72
+41788,"Mya Wardle",,PG,67,5,7,"Peoria Notre Dame",Edwards,IL,2024,,,,67
+41789,"Alyssa Staten",,C,75,6,3,SHS,Statesboro,GA,2024,,,,75
+41791,"Jamia Woolfolk",,F,74,6,2,"Manchester, VA",Midlothian,VA,2024,,,,74
+41767,"Allison Howe",,WF,72,6,0,"Smithson Valley","San Antonio",TX,2024,,,,72
+41768,"Avery Mills",,G,67,5,7,"Liberty Christian, CA",WINSTON-Salem,NC,2024,,,,67
+41772,"Kayleigh Heckel",,G,69,5,9,"Long Island Lutheran, NY","Port Chester",NY,2024,,,,69
+41775,"Mylasia Smith",,PG,67,5,7,DeSoto,"Cedar Hill",TX,2024,,,,67
+41776,"Trinity Turner",,G,68,5,8,"Dr Phillips, FL",Orlando,FL,2024,,,,68
+41777,"Mahogany C. Roberts",,F,75,6,3,"Benson Polytechnic, OR",Portland,OR,2024,,,,75
+41780,"Gracie Grzesk",,WF,71,5,11,"Notre Dame Academy","Green Bay",WI,2024,,,,71
+41781,"Trista Fayta",,G,68,5,8,"Notre Dame Academy, WI","Green Bay",WI,2024,,,,68
+41758,"Maya Anderson",,G,70,5,10,"Cass Tech, MI",Detroit,MI,2024,,,,70
+41754,"Delaney Gibb",,G,70,5,10,"Raymond, Alberta",Provo,UT,2024,,,,70
+41755,"Mia Hollingsworth",,PG,69,5,9,Hamilton,Hamilton,AL,2024,,,,69
+41759,"Danielle Williamsen",,PG,65,5,5,"St JOSEPH by the Sea","Staten Island",NY,2024,,,,65
+41760,"Mauriana Hashemian-Orr",,PG,65,5,5,Benson,Portland,OR,2024,,,,65
+41766,"Aniya Robinson",,PG,65,5,5,Banneker,Atlanta,GA,2024,,,,65
+41762,"Savannah Curry",,G,71,5,11,"Westtown, PA",Fallston,MD,2024,,,,71
+41763,"Danielle Camegie",,SG,69,5,9,"Rockdale County",Conyers,GA,2024,,,,69
+41750,"Eris Lester",,G,70,5,10,"Montverde Academy, FL",,FL,2024,,,,70
+41724,"Kamryn Kitchen",,G,70,5,10,"Independence, NC",Charlotte,NC,2024,,,,70
+41721,"Amiyah Ware",,PG,68,5,8,"The Burlington School",Durham,NC,2024,,,,68
+41722,"Kayla Wilkins",,PG,65,5,5,Franklinton,Youngsville,NC,2024,,,,65
+41705,"Jadyn Wooten",,PG,64,5,4,"Blue Valley",,MO,2024,,,,64
+41707,"Mary Carden",,C,77,6,5,Idabel,Elkins,AR,2024,,,,77
+41709,"Jayla Johnson",,PG,68,5,8,Fayetteville,Fayetteville,AR,2024,,,,68
+41711,"Delaney Roller",,SG,69,5,9,"Shiloh Christian",Fayetteville,AR,2024,,,,69
+41712,"Dani Ceseretti",,G,72,6,0,"NMH, MA",Barrington,RI,2024,,,,72
+41720,"Elliott Jessup",,WF,72,6,0,"RJ Reynolds",Hookerton,NC,2024,,,,72
+41718,"Zoe Adams",,SG,72,6,0,TPLS,Apex,NC,2024,,,,72
+41719,"Laynie Smith",,PF,75,6,3,"East Chapel Hill",Durham,NC,2024,,,,75
+41717,"Jada Cook",,PG,69,5,9,"PATRICK Henry",Roanoke,VA,2024,,,,69
+41714,"Leila Wells",,G,69,5,9,"Chelsea, MI",Chelsea,MI,2024,,,,69
+41715,"Sinai Douglas",,G,67,5,7,"Toledo Start, OH",Toledo,OH,2024,,,,67
+41691,"Hana Belibi",,W,72,6,0,"Regis Jesuit",Englewood,CO,2024,,,,72
+41695,"Kaylee Carson",,SG,68,5,8,Independence,Charlotte,NC,2024,,,,68
+41697,"Destiny Agubata",,G,72,6,0,"Santiago, CA","Moreno Valley",CA,2024,,,,72
+41698,"Keshia Vitalicio",,PG,67,5,7,Carondelet,"Bay Point",CA,2024,,,,67
+41704,"Chloe Gonzales",,PG,68,5,8,"Glenbrook South",,IL,2024,,,,68
+41692,"Jayda Angel",,G,68,5,8,"Cape Fear, NC",Fayetteville,NC,2024,,,,68
+41689,"Liz Freihofer",,SG,70,5,10,Cooper,Union,KY,2024,,,,70
+41694,"Erica Hicks",,PF,70,5,10,"Cannon School",Charlotte,NC,2024,,,,70
+41674,"Jada Collins",,WF,73,6,1,"Kalamazoo Central",Kalamazoo,MI,2024,,,,73
+41675,"Anna Lassan",,WF,71,5,11,"South Lyon East","South Lyon",MI,2024,,,,71
+41678,"Madison Wagner",,WF,71,5,11,Carroll,,IN,2024,,,,71
+41679,"Reagan Wilson",,G,67,5,7,"Noblesville, IN",Noblesville,IN,2024,,,,67
+41684,"Claire Johnson",,PG,67,5,7,"McCracken County",Paducah,KY,2024,,,,67
+41685,"Elisa Proffitt",,PG,67,5,7,"CAMPBELL County",Jacksboro,TN,2024,,,,67
+41682,"Anais Lavasseur",,PG,68,5,8,"Seminaries Saint Francois","St-Augustin De Desmaures Quebec Canada",,2024,,,,68
+41663,"Khadee Hession",,G,69,5,9,"St. Thomas Aquinas, FL",Boca,FL,2024,,,,69
+41664,"SaMya Wyatt",,C,72,6,0,"St Francis","Powder Springs",GA,2024,,,,72
+41660,"Katherine Righeimer",,SG,72,6,0,"Sage Hill","Costa Mesa",CA,2024,,,,72
+41661,"Zoie Lamkin",,PG,67,5,7,"Sage Hill","Newport Beach",CA,2024,,,,67
+41666,"Devin Quigley",,G,69,5,9,"Manchester Township, NJ",Whiting,NY,2024,,,,69
+41672,"Gwen Jenkins",,PG,69,5,9,"Hilliard Davidson",Hilliard,OH,2024,,,,69
+41673,"Lauren Arnold",,PG,67,5,7,Chanhassen,Chanhassen,MN,2024,,,,67
+41670,"Brooke Baisley",,WF,70,5,10,"Gill St Bernards",Flanders,NJ,2024,,,,70
+41671,"GiGi Bower",,PG,69,5,9,"Olentangy Liberty",Powell,OH,2024,,,,69
+41668,"Mia Bergstrom",,SG,70,5,10,"Saint Viator","Mount Prospect",IL,2024,,,,70
+41669,"Maya Summerville",,PF,72,6,0,Morristown,Morristown,NJ,2024,,,,72
+41646,"Abigail Long",,SG,68,5,8,"Shawnee Mission East","Mission Hills",KS,2024,,,,68
+41647,"Jamya McPherson",,PG,66,5,6,"Saint Thomas Aquinas",Lenexa,KS,2024,,,,66
+41667,"Tayla Thomas",,F,76,6,4,"IMG Academy, FL","East Orange",NJ,2024,,,,76
+41645,"Zoe Canfield",,G,72,6,0,"Washburn Rural, KS",Auburn,KS,2024,,,,72
+41648,"Kaylynn Janes",,WF,72,6,0,,Wildwood,MO,2024,,,,72
+41649,"McKenna Johnson",,G,70,5,10,"Wilmot Union, WI",Trevor,WI,2024,,,,70
+41655,"Clarice Borges",,SG,72,6,0,"Newton North",Newton,MA,2024,,,,72
+41657,"Zhieyah Rolack",,PF,70,5,10,"Dayton Early College Academy",Dayton,OH,2024,,,,70
+41658,"Avery Cain",,G,72,6,0,"St Joseph, CA","Santa Maria",CA,2024,,,,72
+41653,"Yasmyn Palmer",,C,74,6,2,"Cranbrook Kingswood, MI","Lathrup Village",MI,2024,,,,74
+41654,"Julia Hunt",,WF,73,6,1,"Holy Cross",Independence,KY,2024,,,,73
+41651,"Hayven Smith",,C,78,6,6,"Lincoln-Way East, IL",Frankfort,IL,2024,,,,78
+41652,"Anna Rosenberger",,PF,74,6,2,"Glenbrook South",Glenview,IL,2024,,,,74
+41632,"Ava McKennie",,W,74,6,2,"McDonogh, MD",McSherrytown,PA,2024,,,,74
+41634,"Gianna Johnson",,C,76,6,4,"Harry S Truman",Levittown,PA,2024,,,,76
+41638,"Finley Ohnstad",,W,72,6,0,"Lakeville South, MN",Elko,MN,2024,,,,72
+41639,"Kylie Waytashek",,WF,74,6,2,Royalton,Royalton,MN,2024,,,,74
+41636,"Audrey Shields",,WF,73,6,1,"Emma Willard School",Troy,NY,2024,,,,73
+41637,"Tori McKinney",,G,72,6,0,"Minnetonka, MN",Minnetonka,MN,2024,,,,72
+41613,"Keana Foz",,PG,69,5,9,"Applewood Heights","Toronto Ontario Canada",,2024,,,,69
+41614,"Samaria Taylor",,SG,68,5,8,Fulton,Knoxville,TN,2024,,,,68
+41612,"Wesleigh Ferguson",,WF,72,6,0,Benton,Benton,AR,2024,,,,72
+41610,"Caroline Hill",,SG,68,5,8,Dobyns-Bennett,Kingsport,TN,2024,,,,68
+41609,"Molly Masingale",,SG,68,5,8,"McMinn Central",Englewood,TN,2024,,,,68
+41594,"Jillian Jekot",,G,71,5,11,"Cumberland Valley, PA",Enola,PA,2024,,,,71
+41622,"Sarah Strong",,F,74,6,2,"Grace Christian, NC",Fuquay-Varina,NC,2024,,,,74
+41596,"Lauren Patnoe",,SG,72,6,0,"Perkiomen School","Saratoga Springs",NY,2024,,,,72
+41597,"Tahira Jean Muhammad",,SG,67,5,7,"Noble & Greenough","Hyde Park",MA,2024,,,,67
+41598,"Angelina Mbengo",,PG,69,5,9,"ES Saint Laurent","Montreal Quebec Canada",,2024,,,,69
+41600,"Mary Stout",,F,75,6,3,"Liberty Christian, VA",,VA,2024,,,,75
+41603,"Danielle Carnegie",,G,69,5,9,"Grayson, GA",,GA,2024,,,,69
+41604,"Taylor Stremlow",,G,70,5,10,"Verona Area, WI",Verona,WI,2024,,,,70
+41605,"Kayl Petersen",,W,72,6,0,"Waupun Jr-Sr, WI",Waupun,WI,2024,,,,72
+41606,"Kallie Peppler",,WF,73,6,1,Hortonville,Hortonville,WI,2024,,,,73
+41608,"Sydney Mains",,WF,71,5,11,"Knoxville Catholic",Knoxville,TN,2024,,,,71
+41593,"Zania Socka-Nguemen",,F,75,6,3,"Sidwell Friends, DC","Silver Spring",MD,2024,,,,75
+41591,"Brooke Suttle",,WF,72,6,0,"Holy Innocents Episcopal School",Atlanta,GA,2024,,,,72
+41587,"Claire Sheppard",,SG,72,6,0,"Flandreau Public",Egan,SD,2024,,,,72
+41588,"Madelyn Davis",,PG,69,5,9,"Ursuline Acdemy of Dallas",Plano,TX,2024,,,,69
+41590,"Teagan Mallegni",,G,72,6,0,"McFarland, WI","McFarland, WI",WI,2024,,,,72
+41560,"Rhyan Holmgren",,SG,69,5,9,"St Peter","St Peter",MN,2024,,,,69
+41566,"Jaidyn Dunn",,F,75,6,3,"Jefferson, SD","Sioux Falls",SD,2024,,,,75
+41567,"Maggie Taylor",,C,76,6,4,"Hill City","Rapid City",SD,2024,,,,76
+41568,"Emilee Fox",,G,68,5,8,"Mount Vernon, SD","Mount Vernon",SD,2024,,,,68
+41549,"Gracie Jo Wilder",,WF,71,5,11,"Whitley County",Williamsburg,KY,2024,,,,71
+41548,"Reagan Bender",,G,70,5,10,"Sacred Heart, KY",Louisville,KY,2024,,,,70
+41546,"Aili Tanke",,G,71,5,11,"Johnston, IA",Johnston,IA,2024,,,,71
+41544,"Saniyah King",,SG,68,5,8,"Bishop Ireton",Washington,DC,2024,,,,68
+41551,"Angelina Pelayo",,C,75,6,3,"Sacred Heart, KY",Louisville,KY,2024,,,,75
+41558,"Doneelah Washington",,PF,73,6,1,"Lincoln Northeast",Lincoln,NE,2024,,,,73
+41555,"Mackenzie Pettinelli",,WF,70,5,10,Spring-Ford,Collegeville,PA,2024,,,,70
+41552,"Harper Peterson",,F,75,6,3,"Whitney, CA",Rocklin,CA,2024,,,,75
+41532,"Natalie Fox",,PF,76,6,4,Millbrook,Millbrook,NY,2024,,,,76
+41529,"Paris Bradley",,PG,70,5,10,Hebron,Carrollton,TX,2024,,,,70
+41530,"Jordan Lee",,G,72,6,0,"St. Mary's, CA",Stockton,CA,2024,,,,72
+41528,"Elizabeth Gentry",,F,75,6,3,"Arapahoe, CO",Littleton,CO,2024,,,,75
+41540,"Devin Coppinger",,G,70,5,10,"Nooksack Valley, WA",,WA,2024,,,,70
+41535,"Madison Ruff",,PG,66,5,6,Baldwin,Baldwin,GA,2024,,,,66
+41543,"Kyndal Walker",,G,69,5,9,"St. John's College, MD",Washington,DC,2024,,,,69
+41542,"Myah Hazelton",,F,77,6,5,"Sparrows Point, MD",Baltimore,MD,2024,,,,77
+41539,"Bryanna Preston",,G,70,5,10,"Wesleyan, GA",Lovejoy,GA,2024,,,,70
+41515,"Kiara Williams",,F,73,6,1,"Palm Bay, FL","Palm Bay",FL,2024,,,,73
+41512,"Sophia Hope",,PF,72,6,0,"West Des Moines","Des Moines",IA,2024,,,,72
+41514,"Peyton McCabe",,PG,68,5,8,"Skutt Catholic",Blair,NE,2024,,,,68
+41518,"MacKenley Randolph",,F,72,6,0,"Sierra Canyon, CA",,CA,2024,,,,72
+41526,"Tahj Bloom",,F,75,6,3,"DME Academy, FL",Chicago,IL,2024,,,Tahj_bloom,75
+41522,"Mia Wolfolk",,C,74,6,2,Trinity,,VA,2024,,,,74
+41499,"Callie Levin",,G,70,5,10,"Solon, IA",Solon,IA,2024,,,CallieLevin23,70
+41500,"Britt Prince",,G,71,5,11,"Elkhorn North, NE",Elkhorn,NE,2024,,,,71
+41496,"Blanca Thomas",,C,77,6,5,"Charlotte Catholic, NC",Charlotte,NC,2024,,,,77
+41497,"Claire Mathews",,PG,69,5,9,"Archbishop Spalding",,MD,2024,,,,69
+41502,"Ashlee Shaw",,SG,68,5,8,"West Cabarrus",Concord,NC,2024,,,,68
+41505,"Madison Bob",,SG,70,5,10,,,TX,2024,,,,70
+41506,"Holly Horton",,C,76,6,4,,Houston,TX,2024,,,,76
+41480,"Simone Pelish",,W,72,6,0,"Our Lady of Lourdes, NY",Poughkeepsie,NY,2024,,,,72
+41481,"Ellery Minch",,G,74,6,2,"Mt Vernon, IN",McCordsville,IN,2024,,,,74
+41482,"Shakirah Edwards",,G,69,5,9,"Rutherford, FL","Panama City",FL,2024,,,,69
+41486,"Talayah Walker",,G,70,5,10,"Good Counsel, MD",Odenton,MD,2024,,,,70
+41487,"Ayanna Franks",,SG,71,5,11,Winsdor,,CT,2024,,,,71
+41489,"Leah Brooks",,F,74,6,2,"Hazel Green, AL",Harvest,AL,2024,,,,74
+41491,"Zyriah Price",,WF,73,6,1,Buckhorn,Huntsville,AL,2024,,,,73
+41467,"LeAire Nicks",,F,72,6,0,"Wylie East, TX",Sachse,TX,2024,,,,72
+41468,"Jordan Hunter",,G,69,5,9,"Hewitt-Trussville, AL",Trussville,AL,2024,,,,69
+41469,"Athena Tomlinson",,G,65,5,5,"Clovis West, CA",Fresno,CA,2024,,,,65
+41465,"Kamryn Wilson",,SG,67,5,7,"Mansfield Timberview",Dallas,TX,2024,,,,67
+41466,"DaNae Crosby",,PG,68,5,8,Braswell,"Little Elm",TX,2024,,,,68
+41472,"Alivia McGill",,G,67,5,7,"Hopkins, MN","Brooklyn Park",MN,2024,,,,67
+41473,"Morganne Postell",,PG,66,5,6,DECA,Dayton,OH,2024,,,,66
+41478,"Taylor Barner",,G,68,5,8,"Panther Creek, NC","Fuquay Varina",NC,2024,,,,68
+41479,"Roisin Grandberry",,F,75,6,3,"Rolling Meadows, IL","ARLINGTON Heights",IL,2024,,,,75
+41476,"Trinity Vance",,G,69,5,9,"Legacy Early College, SC",Waterloo,SC,2024,,,,69
+41477,"Elle Cerf",,PG,63,5,3,"Bethlehem Central",Delmar,NY,2024,,,,63
+41475,"Nasi Simmons",,SG,68,5,8,"Noble& Greenough",Boston,MA,2024,,,,68
+41454,"Alana Hutchins",,PG,63,5,3,"Putnam City West",Bethany,OK,2024,,,,63
+41450,"Kendall Sneed",,G,68,5,8,"Hardin Jefferson, TX",China,TX,2024,,,,68
+41451,"Dominique Nesland",,PG,69,5,9,"Xavier Prep",Anthem,AZ,2024,,,,69
+41448,"Zachara Perkins",,F,75,6,3,"Summer Creek, TX",Humble,TX,2024,,,,75
+41449,"Taylor Craver",,PG,69,5,9,Lancaster,Lancaster,TX,2024,,,,69
+41456,"Neenah George",,PG,68,5,8,Sachse,Rowlett,TX,2024,,,,68
+41457,"Londyn Oliphant",,G,68,5,8,"Prestonwood Christian Acadmey, TX",Rowlett,TX,2024,,,,68
+41461,"Cameron Rust",,W,74,6,2,"Worcester Academy, MA",Worcester,MA,2024,,,,74
+41458,"Kennedi Alexander",,SG,71,5,11,,Houston,TX,2024,,,,71
+41436,"Aniah Alexis",,G,72,6,0,"Cypress Lakes, TX",Hockley,TX,2024,,,,72
+41437,"Jada Ingram",,SG,71,5,11,"Washburn Rural",Topeka,KS,2024,,,,71
+41438,"Adalyn Koelling",,F,73,6,1,"Helias Catholic, MO","Jefferson City",MO,2024,,,,73
+41435,"Justice Carlton",,F,74,6,2,"Seven Lakes, TX",Katy,TX,2024,,,,74
+41433,"Laura Williams",,F,74,6,2,"PAUL VI Catholic, VA",Ashburn,VA,2024,,,,74
+41439,"Brooklyn Shamblin",,G,69,5,9,"Oaks Christian, CA",Carpinteria,CA,2024,,,,69
+41440,"Rachel Griffin",,F,74,6,2,"RCA, TN",Oakland,TN,2024,,,,74
+41441,"Imari Berry",,G,70,5,10,"Clarksville, TN",Clarksville,TN,2024,,,,70
+41447,"Gianna Angiolet",,PG,69,5,9,,Austin,TX,2024,,,,69
+41445,"Cristina Parrella",,G,70,5,10,"Saddle River, NJ",Closter,NJ,2024,,,,70
+41443,"Grace Kinum",,PG,67,5,7,"New Providence","New Providence",NJ,2024,,,,67
+41444,"Jaidyn Harper",,G,67,5,7,"St. Johns College, DC",Vienna,VA,2024,,,,67
+41423,"Adrena Gordon",,SG,72,6,0,"Archbishop Hoban",Akron,OH,2024,,,adrena_gordon,72
+41442,"Micah Cooper",,PG,70,5,10,Sachse,Rowlett,TX,2024,,,,70
+41420,"Ella Hobbs",,F,76,6,4,"J.M. Robinson, NC",Mooresville,NC,2024,,,,76
+41421,"Sophie Eble",,SG,68,5,8,,"Little Rock",AR,2024,,,,68
+41422,"Alyssa Horsley",,PG,67,5,7,,,OH,2024,,,,67
+41417,"Sophia LeGoullon",,W,73,6,1,"Tilton, NH",,NH,2024,,,,73
+41418,"Olivia Olson",,W,73,6,1,"Benilde St Margarets, MN","Brooklyn Park",MN,2024,,,,73
+41419,"Alana Rouser",,W,72,6,0,"Germantown, MS",Madison,MS,2024,,,,72
+41425,"Kamryn Grant",,W,72,6,0,"Africentric, OH",Columbus,OH,2024,,,,72
+41432,"Tajianna Avant-Roberts",,G,69,5,9,"IMG Academy, FL",Bradenton,FL,2024,,,,69
+41428,"Emma West",,PG,69,5,9,"Georgetown Visitation","Great Falls",VA,2024,,,,69
+41429,"Tatiana Butenko",,SG,68,5,8,"College Station","College Station",TX,2024,,,,68
+41407,"Josie Horner",,WF,72,6,0,"Northview Academy",,TN,2024,,,,72
+41426,"Addison Melton",,G,70,5,10,"Central Magnet, TN",Murfreesboro,TN,2024,,,,70
+41427,"Syriah Daniels",,G,72,6,0,"Auburn, AL",Auburn,AL,2024,,,,72
+41405,"Payton Acey",,WF,72,6,0,Somerset,"Science Hill",KY,2024,,,,72
+41406,"Kendall Braden",,PG,67,5,7,"South Bend Washington",Northwood,OH,2024,,,@KendallBraden1,67
+41403,"Sydney Roundtree",,W,72,6,0,"Bishop Kenny, FL",Jacksonville,FL,2024,,,,72
+41404,"Hayden Barrier",,SG,67,5,7,"Montgomery County","Mt Sterling",KY,2024,,,,67
+41402,"Kennedy Umeh",,F,74,6,2,"McDonough, MD",Columbia,MD,2024,,,,74
+41409,"Trinity Rowe",,G,66,5,6,Pikeville,"Pikeville, KY",KY,2024,,,,66
+41410,"Jayla Cornelius",,,66,5,6,"Blue Springs","Kansas City",MO,2024,,,,66
+41416,"Macie Mallory",,SG,69,5,9,"GEORGE Washington","South Charleston",WV,2024,,,,69
+41413,"Aaliyah Price",,C,73,6,1,,,NC,2024,,,,73
+41412,"Katie Vasecka",,G,73,6,1,"Tea Area, SD",Tea,SD,2024,,,,73
+41390,"Khouri White",,PG,66,5,6,"Kipp Spirit",Houston,TX,2024,,,,66
+41387,"Nicolette Polocheck",,WF,72,6,0,"Spring Branch",Houston,TX,2024,,,,72
+41389,"Amiyah Cotton",,SG,70,5,10,"Thompson Elementary",Houston,TX,2024,,,,70
+41386,"Gwendlyn McGrew",,G,72,6,0,"Pasadena Memorial, TX",Pasadena,TX,2024,,,,72
+41391,"Mariah Houston",,PG,66,5,6,Leander,,TX,2024,,,,66
+41395,"Madison McKinnon",,PG,68,5,8,Fredericksburg,Fredricksburg,TX,2024,,,,68
+41392,"Lauren Danz",,WF,70,5,10,Fredricksburg,Fredricksburg,TX,2024,,,,70
+41401,"Roxanne Williams",,SG,66,5,6,"Dripping Springs",Houston,TX,2024,,,,66
+41398,"Calyssa Sevier",,SG,67,5,7,Lytle,"San Antonio",TX,2024,,,,67
+41399,"Ashlynn Alexander",,SG,67,5,7,"West Memorial",Houston,TX,2024,,,,67
+41374,"Finley Lohan",,PG,70,5,10,"GEORGE Washington",Charleston,WV,2024,,,,70
+41393,"Rian Forestier",,G,71,5,11,"Louis Brandeis, TX","San Antonio",TX,2024,,,,71
+41372,"Shamar Bert",,PG,65,5,5,"Western Oaks MS",Bethany,OK,2024,,,,65
+41373,"Tyasia Williams",,PG,66,5,6,Uniondale,Uniondale,NY,2024,,,,66
+41369,"Taliyah Parker",,W,73,6,1,"South Grand Prairie, TX",,TX,2024,,,,73
+41370,"Caya Smith",,W,73,6,1,"Putnam City West, OK",Langston,OK,2024,,,,73
+41377,"Ashley Dinges",,WF,73,6,1,"Bradford Christian Academy",Haverhill,MA,2024,,,,73
+41383,"Kalise Hill",,PG,65,5,5,"Copper MS","Powder Springs",GA,2024,,,,65
+41382,"Layla Hampton",,PG,61,5,1,"HavenView MS",Memphis,TN,2024,,,,61
+41378,"Leah Barnes",,SG,71,5,11,"Carrollwood Day School","Wesley Chapel",FL,2024,,,,71
+41380,"Persais Williams",,WF,71,5,11,,Bolingbrook,IL,2024,,,,71
+41357,"Daisy Ann Dawyot",,PG,67,5,7,"Andrew Lewis MS",Salem,VA,2024,,,,67
+41358,"Christyonna Jackson",,WF,71,5,11,"Dutch Fork ME",Columbia,SC,2024,,,,71
+41353,"Audrey Biggs",,W,72,6,0,"Boyd County, KY",Catlettsburg,KY,2024,,,,72
+41355,"Toby Fournier",,F,74,6,2,"Crestwood Prep, ONT","Toronto Ontario Canada",Country,2024,,,,74
+41356,"Natalia Rosa",,SG,69,5,9,,,,2024,,,,69
+41359,"Quinn Eubank",,SG,71,5,11,Ryle,Union,KY,2024,,,,71
+41360,"Chantelle Stuart",,SG,68,5,8,"Crestwood Prep","Scarborough Ontario Canada",,2024,,,,68
+41368,"Violet McNece",,SG,69,5,9,"Incarnate Word Academy","St Louis",MO,2024,,,,69
+41366,"Brooke Coffey",,WF,72,6,0,"Incarnate Word Academy","St Louis",MO,2024,,,,72
+41367,"Olivia Hahn",,SG,68,5,8,"Incarnate Word Academy","St Louis",MO,2024,,,,68
+41365,"Sarah Baker",,F,74,6,2,"Ryle, KY",Florence,KY,2024,,,,74
+41362,"Kayla Nelms",,F,73,6,1,"Miami Country Day, FL",Miami,FL,2024,,,,73
+41363,"Charisse Martin",,SG,68,5,8,"Miami Country Day",Miami,FL,2024,,,,68
+41342,"Jasmine Howard",,PG,65,5,5,,,WI,2024,,,,65
+41339,"Noriah Broomfield",,PF,71,5,11,,,WI,2024,,,,71
+41337,"Yahri Smith",,PG,64,5,4,,,IL,2024,,,,64
+41338,"Jaylin Rankin",,PG,65,5,5,,,WI,2024,,,,65
+41343,"Ava Collier-White",,PG,65,5,5,,,WI,2024,,,,65
+41344,"Ariel Rose",,PG,66,5,6,,,IL,2024,,,,66
+41352,"Shaelyn Steele",,G,66,5,6,"Russell, KY",Ashland,KY,2024,,,,66
+41350,"Laniece Bowen",,PG,65,5,5,"Elk Grove Charter School","Elk Grove",CA,2024,,,,65
+41351,"Katie Fiso",,G,68,5,8,"Garfield, WA",Seattle,WA,2024,,,,68
+41349,"Keona McGee",,SG,67,5,7,,,WI,2024,,,,67
+41346,"Morgan Williams",,SG,67,5,7,,,WI,2024,,,,67
+41322,"Bryanne Lopez-Wood",,PG,68,5,8,"Bishop Alemany","North Hollywood",CA,2024,,,,68
+41324,"Kaniya Boyd",,G,70,5,10,"Centennial, NV","Las Vegas",NV,2024,,,,70
+41320,"Saroiya Ajomale",,WF,71,5,11,,"Las Vegas",NV,2024,,,,71
+41326,"Dejah Saldivar",,PG,64,5,4,"Xavier College Prep",,CA,2024,,,,64
+41327,"Jaila Childress",,SG,71,5,11,"Spring Valley",Henderson,NV,2024,,,,71
+41334,"Wrenwyck Ijiwoye",,G,66,5,6,"Desert Vista, AZ",Phoenix,AZ,2024,,,,66
+41332,"Kennedy Smith",,W,73,6,1,"Etiwanda, CA",Rialto,CA,2024,,,,73
+41333,"Sara Shein",,PG,68,5,8,Frontier,Bakersfield,CA,2024,,,,68
+41330,"Faith Curry",,F,72,6,0,"Liberty, CA",Bakersfield,CA,2024,,,,72
+41331,"Sheridan Kennedi",,,67,5,7,,,CA,2024,,,,67
+41328,"Janessa Cotton",,F,74,6,2,"Mater Dei, CA",Orange,CA,2024,,,,74
+41329,"Ryann Bennett",,PG,68,5,8,"St Anthony",Lakewood,CA,2024,,,,68
+41306,"Ava Sawi",,PG,67,5,7,"Key MS",Springfield,VA,2024,,,,67
+41307,"Jaeda Wilson",,G,69,5,9,"Connelly School, MD",Potomac,MD,2024,,,,69
+41308,"Kloe Froebe",,G,69,5,9,"Lincoln Community, IL",Lincoln,IL,2024,,,,69
+41305,"Lanie Grant",,G,67,5,7,"James River, VA",Midlothian,VA,2024,,,,67
+41310,"Alexis Rosenfeld",,PF,74,6,2,"Ben Franklin MS",Ridgewood,NJ,2024,,,,74
+41314,"Sofia Mendez",,SG,67,5,7,"Miami Country Day",Miramar,FL,2024,,,,67
+41311,"Emma Dasovich",,PF,73,6,1,Minnetonka,Wayzata,MN,2024,,,,73
+41315,"Zya Vann",,G,70,5,10,"Bethany, OK",Rowlett,TX,2024,,,,70
+41316,"Jailun Sullivan",,WF,71,5,11,NULL,Simpsonville,SC,2024,,,,71
+41317,"Claire Keswick",,G,72,6,0,"Tabor Academy, MA",Wrentham,MA,2024,,,,72
+41318,"Christy Reynoso",,PG,66,5,6,"Sierra Canyon","Los Angeles",CA,2024,,,,66
+41296,"Kiara Smith",,SG,68,5,8,"Midwest City","Oklahoma City",OK,2024,,,,68
+41319,"Cyriah Coleman",,PG,65,5,5,,,CA,2024,,,,65
+41295,"Dominique Mack",,PF,74,6,2,"North Bend",Omaha,NE,2024,,,,74
+41293,"Gianna Corbitt",,SG,73,6,1,"Blanche Ely","Oakland Park",FL,2024,,,,73
+41297,"Joyce Edwards",1,F,74,6,2,"Camden, SC",Rembert,SC,2024,,,,74
+41300,"Aniyah Robinson",,PG,66,5,6,Buna,Buna,TX,2024,,,,66
+41301,"Kendall Puryear",,F,74,6,2,"Blue Springs South, MO",,MO,2024,,,,74
+41303,"Teagan Colvin",,G,67,5,7,"Coeur d'Alene, ID","Liberty Lake",WA,2024,,,,67
+41304,"Mikayla Blakes",,G,68,5,8,"Rutgers Prep, NJ",Somerset,NJ,2024,,Iowa,,68
+41289,"Janessa Kelley",,SG,68,5,8,"Blanche Ely","Lake Worrh",FL,2024,,,,68
+41290,"Alexandra Blue",,G,74,6,2,"Lake Highland Prep, FL",Orlando,FL,2024,,,,74
+41291,"Amiah Hargrove",,W,74,6,2,"Christopher, IL",Christopher,IL,2024,,,,74
+41292,"Brianna Pelote",,C,74,6,2,"Calvary Day School",Savannah,GA,2024,,,,74
+41302,"Zahra King",,G,70,5,10,"Westtown School, PA",Brooklyn,NY,2024,,,,70
+41275,"Allie Turner",,SG,68,5,8,"John Burroughs School",,MO,2024,,,,68
+41277,"Savannah Scruggs",,SG,68,5,8,Germantown,Memphis,TN,2024,,,,68
+41278,"Savannah Davis",,PG,67,5,7,"McKenzie MS",,TN,2024,,,,67
+41280,"Mariah Knight",,PF,73,6,1,"Christian Academy",,KY,2024,,,,73
+41281,"Hope Drake",,SG,69,5,9,"Saint Theresa",,VA,2024,,,,69
+41282,"Aaliyah Smith",,WF,70,5,10,"Carver MS",,OK,2024,,,,70
+41284,"Mia Gex",,PF,72,6,0,,,LA,2024,,,,72
+41285,"Aliyah Al-Hameed",,PG,67,5,7,"Ankeny Centennial",Ankeny,IA,2024,,,,67
+41287,"Kiara Croskey",,PG,64,5,4,Sumter,Sumter,SC,2024,,,,64
+41288,"Lauryn Swann",,G,66,5,6,"Long Island Lutheran, NY","Valley Stream",NY,2024,,,,66
+41258,"Destiny Thompson",,PG,60,5,0,"Paisley IB Magnet",Winston-Salem,NC,2024,,,,60
+41260,"Danaya Ross",,SG,69,5,9,,,LA,2024,,,,69
+41262,"Jackie Kozakiewicz",,PG,63,5,3,"Hyde Park",,NY,2024,,,,63
+41263,"Maya Bateau",,WF,72,6,0,Hotchkiss,"Floral Park",NY,2024,,,,72
+41264,"Angel Allen",,PG,63,5,3,,,NY,2024,,,,63
+41265,"Joslyn Cardona",,SG,69,5,9,,"Staten Island",NY,2024,,,,69
+41266,"Vanessa McManus",,PG,66,5,6,"Nazareth Regional","Staten Island",NY,2024,,,,66
+41268,"Keira Scott",,W,73,6,1,"DME Academy, FL","Daytona Beach",FL,2024,,,,73
+41269,"Audra Hillman",,SG,71,5,11,"Wake Forest","Wake Forest",NC,2024,,,,71
+41242,"Samitra Sriram",,SG,65,5,5,,,NC,2024,,,,65
+41244,"Jasmine Frierson",,SG,67,5,7,"Heathwood Hall Episcopal",Orangeburg,SC,2024,,,,67
+41245,"Jerin Truesdale",,WF,69,5,9,"MYERS Park",Charlotte,NC,2024,,,,69
+41246,"Olivia Schmitt",,G,66,5,6,"DME Academy, FL","Staten Island",NY,2024,,,,66
+41247,"Princess Akojenu",,WF,68,5,8,"IS 27","Staten Island",NY,2024,,,,68
+41248,"Amelia Pfeiffer",,C,74,6,2,Alcoa,Maryville,TN,2024,,,,74
+41250,"Kyla Greene",,PG,67,5,7,"Renaissance MS",Atlanta,GA,2024,,,,67
+41251,"Jaida Cameron",,PG,65,5,5,"Williams MS",Florence,SC,2024,,,,65
+41252,"Jordan Brooks",,PG,61,5,1,"Union Grove MS",McDonough,GA,2024,,,,61
+41255,"Malaya Jones",,PG,65,5,5,"Arabia Mountain",Tucker,GA,2024,,,,65
+41256,"Jasmine Perez",,PG,63,5,3,"River Trail MS","Johns Creek",GA,2024,,,,63
+41226,"Jordan Thomas",,F,75,6,3,"Hebron, TX",,TX,2024,,,,75
+41227,"Airrielle Lawrence",,SG,67,5,7,,"St Louis",MO,2024,,,,67
+41257,"Frankee Payne",,PG,64,5,4,"Snellville MS",Snellville,GA,2024,,,,64
+41228,"Alyssa Lewis",,PG,64,5,4,,"St Louis",MO,2024,,,,64
+41229,"Ariana Williams",,PF,72,6,0,,Chicago,IL,2024,,,,72
+41230,"Lanyra McGill",,C,75,6,3,"Fairmont MS",Lockport,IL,2024,,,,75
+41231,"McKenzie DeVille",,PG,63,5,3,"SJ Welsh","Lake Charles",LA,2024,,,,63
+41234,"Kathryn Van Burik",,PG,66,5,6,"St Catherine of Siena",Raleigh,NC,2024,,,,66
+41235,"Ava Maaske",,PG,57,4,9,,,NC,2024,,,,57
+41236,"Bianca Bellamy",,PG,64,5,4,,,NC,2024,,,,64
+41237,"Justice Everette",,PG,66,5,6,,,NC,2024,,,,66
+41238,"Mackenzie Warren",,PG,63,5,3,,,NC,2024,,,,63
+41239,"Molly Chappell",,SG,66,5,6,,,NC,2024,,,,66
+41240,"Elle Williams",,WF,71,5,11,,,NC,2024,,,,71
+41210,"Amari Dydell",,PG,66,5,6,,"St Joseph",MO,2024,,,,66
+41241,"Johara Walker",,SG,66,5,6,,,NC,2024,,,,66
+41211,"Avery Simmons",,WF,71,5,11,"Parkhill South","Kansas City",MO,2024,,,,71
+41212,"Inia Jones",,G,66,5,6,"Omaha Central, NE",Omaha,NE,2024,,,,66
+41213,"Destini Sullivan",,WF,71,5,11,,NULL,MO,2024,,,,71
+41220,"Sophia Shannon",,WF,71,5,11,,Norwalk,IA,2024,,,,71
+41221,"Yahaira Bueno",,PG,66,5,6,,Bolingbrook,IL,2024,,,,66
+41222,"Zoe Navarro",,PG,62,5,2,,Naperville,IL,2024,,,,62
+41223,"Hannah Laub",,SG,71,5,11,"Waubonsie Valley",Naperville,IL,2024,,,,71
+41224,"Kylee Norkus",,SG,70,5,10,"Nequa Valley",Bolingbrook,IL,2024,,,,70
+41225,"Amyracle Hardimon",,WF,69,5,9,,"St Louis",MO,2024,,,,69
+41196,"Kennedy Holmes",,SG,67,5,7,,Milwaukee,WI,2024,,,,67
+41197,"Tailor Lawrence",,SG,68,5,8,,Milwaukee,WI,2024,,,,68
+41198,"Lauren Klem",,PG,64,5,4,"Franklin Community",Franklin,IN,2024,,,,64
+41180,"Anna Rodgers",,SG,69,5,9,,"Mt Washington",KY,2024,,,,69
+41181,"Campbell Conner",,PG,65,5,5,,,IL,2024,,,,65
+41182,"Hannah Glantz",,PG,67,5,7,,,,2024,,,,67
+41184,"Elle Bruschuk",,PG,66,5,6,,,IL,2024,,,,66
+41185,"Magdalena Sularski",,PG,68,5,8,,,IL,2024,,,,68
+41186,"Indya Davis",,G,69,5,9,"West Bloomfield","West Bloomfield, MI",MI,2024,,,,69
+41187,"Summer Davis",,G,69,5,9,"West Bloomfield, MI","Farmington Hills",MI,2024,,,,69
+41188,"Avianna Thompson",,SG,72,6,0,"Ecole Secondary","Montreal Quebec Canada",,2024,,,,72
+41189,"Brooke Carlson",,G,68,5,8,"Batavia, KY",Batavia,IL,2024,,,,68
+41190,"Lexi Carlsen",,SG,67,5,7,,Sycamore,IL,2024,,,,67
+41191,"Monroe McGhee",,SG,67,5,7,,Sycamore,IL,2024,,,,67
+41192,"Lexi DiOrio",,SG,69,5,9,,"Saint Charles",IL,2024,,,,69
+41193,"Dathy Botuna",,PF,74,6,2,,"Black Jack",MO,2024,,,,74
+41164,"Briana Rivera",,PG,67,5,7,"Lake Highland Prep",Orlando,FL,2024,,,,67
+41194,"Celia Thayer",,PG,63,5,3,,"St Louis",MO,2024,,,,63
+41165,"Hailei Henderson",,PG,61,5,1,,,OH,2024,,,,61
+41166,"Layla Pierce",,PG,66,5,6,,Joliet,IL,2024,,,,66
+41167,"Erikka Gooden",,WF,68,5,8,,,OK,2024,,,,68
+41168,"Breona Hurd",,F,74,6,2,"Waynesville, MO",Fayetteville,AR,2024,,,,74
+41169,"Leia Trinh",,PG,59,4,11,,,KY,2024,,,,59
+41170,"Grace Leverton",,PG,61,5,1,,,TX,2024,,,,61
+41171,"Becca Sanders",,WF,68,5,8,,Mason,OH,2024,,,,68
+41172,"Chloe Spreen",,G,69,5,9,"Bedford North Lawrence, IN",Bedford,IN,2024,,,,69
+41173,"Emma Arico",,PG,65,5,5,"Saline MS",Saline,MI,2024,,,,65
+41175,"Madelyne Davis",,PG,63,5,3,,,TX,2024,,,,63
+41176,"Caitlin Washington",,PG,68,5,8,"Neuqua Valley",Naperville,IL,2024,,,,68
+41177,"Amelia Rogers",,WF,67,5,7,,,AR,2024,,,,67
+41179,"Cyriah Griffin",,SG,68,5,8,"Princess Anne","Virginia Beach",VA,2024,,,,68
+41150,"Shamya Grissom",,SG,64,5,4,,"St Louis",MO,2024,,,,64
+41151,"Ella Guerrero",,PG,60,5,0,,Collinsville,IL,2024,,,,60
+41152,"Janyla Bush",,PG,64,5,4,,"St Louis",MO,2024,,,,64
+41153,"Chantrel Clayton",,PG,66,5,6,,Hazelwood,MO,2024,,,,66
+41155,"Amani Anderson",,PG,62,5,2,,Alton,IL,2024,,,,62
+41156,"Zoe Newland",,PG,61,5,1,,"St Louis",MO,2024,,,,61
+41157,"Ravyn Thomas",,SG,66,5,6,,"St Louis",MO,2024,,,,66
+41158,"Reagan Sipla",,SG,72,6,0,"St Charles North","St Charles",IL,2024,,,,72
+41160,"Kalysta Martin",,G,73,6,1,"Providence Catholic, TX",,TX,2024,,,,73
+41161,"Raegan Jordan",,PG,63,5,3,,,MS,2024,,,,63
+41132,"Jayla Bennett",,SG,70,5,10,,Atlanta,GA,2024,,,,70
+41162,"Amber Perry",,PG,59,4,11,,,MD,2024,,,,59
+41163,"Devin Hagemann",,PG,67,5,7,"Detroit Edison",Clemens,MI,2024,,,,67
+41133,"Taliah Cornish",,PG,64,5,4,"Inman MS",DeCatur,GA,2024,,,,64
+41135,"Reese Wilson",,SG,70,5,10,"MYERS park",Charlotte,NC,2024,,,reesewilson2024,70
+41137,"Tatum Greene",,W,75,6,3,"St. Johns, DC",Baltimore,MD,2024,,,,75
+41138,"Hope Masonius",,PG,67,5,7,NULL,"Spring Lake",NJ,2024,,,,67
+41139,"Jamari Ervin",,PG,58,4,10,,"Kansas City",MO,2024,,,,58
+41140,"Camryn Smith",,SG,68,5,8,,"Overland Park",KS,2024,,,,68
+41142,"Elise Jaeger",,SG,71,5,11,,Norwalk,IA,2024,,,,71
+41143,"Kendall McDaniel",,PF,72,6,0,,Indianola,IA,2024,,,,72
+41144,"Chloe Hayes",,SG,70,5,10,,Waukee,IA,2024,,,,70
+41145,"Layla Handsaker",,WF,71,5,11,,Winterset,IA,2024,,,,71
+41146,"Eva Solseth",,PF,71,5,11,"Southeast Polk",Altoona,IA,2024,,,,71
+41147,"Vanessa Bickford",,SG,68,5,8,"Dallas Center Grimes MS",Grimes,IA,2024,,,,68
+41116,"Zaynah Preston",,PG,67,5,7,"Holy Innocents Episcopal",Austell,GA,2024,,,,67
+41117,"Taelar Felton",,PG,60,5,0,"Clinton JHS",Clinton,MS,2024,,,,60
+41118,"Kaci Jeffries",,PG,65,5,5,,,AL,2024,,,,65
+41119,"Chazadi Wright",,G,65,5,5,"Wesleyan, GA",Decatur,GA,2024,,,,65
+41120,"Yasmine Allen",,WF,71,5,11,,Atlanta,GA,2024,,,,71
+41121,"Reagan Jordan",,PG,66,5,6,Germantown,Canton,MS,2024,,,,66
+41122,"Precious Benford",,WF,71,5,11,,Atlanta,GA,2024,,,,71
+41124,"Tianna Thompson",,G,70,5,10,"Galloway, GA",Atlanta,GA,2024,,,,70
+41125,"Madisen McDaniel",,G,67,5,7,"Bishop McNamara, MD","Upper Marlboro",MD,2024,,,,67
+41126,"Taylor Bartrum",,PG,65,5,5,Meigs,Pomeroy,OH,2024,,,,65
+41127,"Ava Watson",,G,68,5,8,"Buford, GA","Flowery Branch",GA,2024,,,,68
+41129,"Kendall Dudley",,W,73,6,1,"Sidwell Friends, DC","Manassas Park",VA,2024,,,,73
+41130,"Mya Gray",,PG,64,5,4,,,MD,2024,,,,64
+41131,"Paige Atwater",,PG,67,5,7,,"Spring Hill",FL,2024,,,,67
+41101,"Angelina Smith",,G,69,5,9,"Bolingbrook, IL","Bolingbrook, IL",IL,2024,,,,69
+41102,"Cydney Jackson",,PG,63,5,3,,Chicago,IL,2024,,,,63
+41103,"Talia Harris",,PG,65,5,5,,Noblesville,IN,2024,,,,65
+41104,"Joirdyn Smith",,PG,62,5,2,"Hamilton Southeastern",Fishers,IN,2024,,,,62
+41105,"Neleh Samelton",,SG,68,5,8,,"Calumet City",IL,2024,,,,68
+41107,"Caleigh Adams",,SG,71,5,11,"Downtown MS",Bakersfield,CA,2024,,,,71
+41108,"Libby Oxciano",,PG,62,5,2,"Emblem Academy Elementary","Santa Clarita",CA,2024,,,,62
+41109,"Mykaylia Banks",,PG,50,4,2,Rivercrest,Joiner,AR,2024,,,,50
+41110,"Makaviya Nelson",,PG,51,4,3,"Byng Elementary",Ada,OK,2024,,,,51
+41111,"Madi Hawk",,SG,70,5,10,"Lakeway Christian Academy","Jefferson City",TN,2024,,,madiaudreyhw,70
+41112,"Jania Akins",,SG,69,5,9,Norcross,Atlanta,GA,2024,,,,69
+41113,"Ava Grace",,PG,63,5,3,"Westside Elementaryv",Cedartown,GA,2024,,,,63
+41114,"Chloe Poe",,SG,68,5,8,,,AL,2024,,,,68
+41092,"Amiya Redus",,PG,60,5,0,,,AL,2024,,,,60
+41115,"Saniaa Tripp",,G,68,5,8,"Newton, GA",Covington,GA,2024,,,,68
+41094,"Kenya Fairs",,PG,64,5,4,"East Magnet MS",Nashville,TN,2024,,,,64
+41095,"Tenielle Baker",,PG,63,5,3,"Browns Chapel",Smyrna,TN,2024,,,,63
+41096,"Jaloni Cambridge",,G,66,5,6,"Montverde Academy, FL",Nashville,TN,2024,,,,66
+41097,"Madison McNeal",,PG,63,5,3,"Mil Creek MS",Nollensville,TN,2024,,,,63
+41098,"Lauren Gentile",,PG,63,5,3,"HUDSON Catholic",Roseland,NJ,2024,,,,63
+41099,"Leah Harmon",,G,66,5,6,"IMG Academy, FL",Clifton,NJ,2024,,,,66
+41090,"Kiyomi McMiller",,G,67,5,7,"Life Center Academy, NJ","Silver Spring",MD,2024,,,,67
+41091,"Samira Khalil",,SG,69,5,9,Hammond,Lexington,SC,2024,,,,69
+41093,"Xamiya Walton",,G,66,5,6,"Butler College Prep, IL",Chicago,IL,2024,,,,66
+41100,"Zamareya Jones",,G,66,5,6,"North Pitt, NC",Greenville,NC,2024,,,,66
+42147,"Me'Arah O'Neal",23,F,76,6,4,"Episcopal, TX",,Country,2024,,,,76
+42204,"Ka'Shya Hawkins",,W,73,6,1,"Long Island Lutheran, NY",,Country,2024,,,,73
+43161,"Ma'Riya Vincent",,G,72,6,0,"DeSoto, TX",,Country,2024,,,,72
+43309,"Deborah Kasanda",,C,77,6,5,"Winston Salem Christian National, NC",,Country,2024,,,,77
+43313,"Grace Grzesk",,W,71,5,11,"Notre Dame Academy, WI",,Country,2024,,,,71
+43401,"Jayda Wooten",,G,64,5,4,"Blue Valley, KS",,Country,2024,,,,64
+43965,"Payton Dunbar",,G,71,5,11,"Jefferson Christian, VA",,Country,2024,,,,71
+44050,"Regan Williams",,W,74,6,2,"Link Academy, MO",,Country,2024,,,,74
+44054,"Tanah Becker",,W,73,6,1,"Hamilton Heights, TN",,Country,2024,,,,73
+44060,"Te'Yala Delfosse",,F,75,6,3,"Ewing, NJ",,Country,2024,,,,75
+44061,"Aaiyanna Dunbar",,F,74,6,2,"Blackmon, TN",,Country,2024,,,,74
+44062,"Kat Righeimer",,W,73,6,1,"Sage Hill, CA",,Country,2024,,,,73
+44063,"Seini Hicks",,W,72,6,0,"Purcell Marian, OH",,Country,2024,,,,72
+44064,"Arianna Bullock-Williams",,F,74,6,2,"Kenwood, IL",,Country,2024,,,,74
+44065,"Kylie Ray",,G,68,5,8,"Crescenta Valley, CA",,Country,2024,,,,68
+44067,"Amy Thompson",,G,70,5,10,"Stillwater Area, MN",,Country,2024,,,,70
+44069,"Kennadi Williams",,G,66,5,6,"Lincoln SW, NE",,Country,2024,,,,66
+44095,"Olivia Leuing",,G,70,5,10,"Crestwood Prep, ONT",,Country,2024,,,,70
