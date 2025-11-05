@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { db } from "./db";
 import {
   type School,
@@ -140,8 +140,7 @@ export class DbStorage implements IStorage {
   async getRankingsByType(rankType: string, year?: number): Promise<Ranking[]> {
     if (year) {
       return await db.select().from(rankings)
-        .where(eq(rankings.rankType, rankType))
-        .where(eq(rankings.year, year));
+        .where(and(eq(rankings.rankType, rankType), eq(rankings.year, year)));
     }
     return await db.select().from(rankings).where(eq(rankings.rankType, rankType));
   }
