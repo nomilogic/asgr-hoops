@@ -33,6 +33,7 @@ export const players = pgTable("players", {
   schoolClean: text("school_clean"),
   schoolType: text("school_type"),
   imageUrl: text("image_url"),
+  circuitProgram: text("circuit_program"),
 });
 
 export const circuitTeams = pgTable("circuit_teams", {

@@ -165,6 +165,20 @@ export default function Rankings() {
         {/* Rankings List */}
         <section className="py-12 px-4">
           <div className="container mx-auto max-w-7xl">
+            {/* Table Header */}
+            <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
+              <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
+                <div className="col-span-1 text-center">Rank</div>
+                <div className="col-span-3">Name</div>
+                <div className="col-span-1 text-center">HT</div>
+                <div className="col-span-1 text-center">POS</div>
+                <div className="col-span-1 text-center">Grad Year</div>
+                <div className="col-span-2">High School</div>
+                <div className="col-span-2">Circuit Program</div>
+                <div className="col-span-1 text-center">College</div>
+              </div>
+            </div>
+
             {isLoading ? (
               <div className="space-y-4">
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
@@ -176,104 +190,87 @@ export default function Rankings() {
                 {filteredPlayers.map((player, index) => (
                   <Card
                     key={player.id}
-                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 group"
+                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
                     data-testid={`card-player-${player.id}`}
                   >
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6">
-                      {/* Rank Badge */}
-                      <div className="lg:col-span-1 flex items-center justify-center lg:justify-start">
-                        <div className="relative">
-                          <Badge 
-                            className="font-bold text-2xl w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50 shadow-lg shadow-red-900/30 group-hover:shadow-red-900/50 transition-all duration-300"
-                            data-testid={`badge-rank-${player.id}`}
-                          >
-                            {player.rankNumber || '—'}
-                          </Badge>
-                        </div>
+                    <div className="grid grid-cols-12 gap-4 p-6 items-center">
+                      {/* Rank */}
+                      <div className="col-span-1 flex justify-center">
+                        <Badge 
+                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                          data-testid={`badge-rank-${player.id}`}
+                        >
+                          {player.rankNumber || '—'}
+                        </Badge>
                       </div>
 
-                      {/* Player Image */}
-                      <div className="lg:col-span-2 flex justify-center lg:justify-start">
+                      {/* Name with Image */}
+                      <div className="col-span-3 flex items-center gap-3">
                         {player.imageUrl ? (
-                          <div className="relative w-32 h-40 rounded-lg overflow-hidden border-2 border-red-900/30 group-hover:border-red-600/50 transition-colors duration-300">
-                            <img
-                              src={player.imageUrl}
-                              alt={player.name}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                              data-testid={`img-player-${player.id}`}
-                            />
-                          </div>
+                          <img
+                            src={player.imageUrl}
+                            alt={player.name}
+                            className="w-12 h-16 object-cover rounded border border-red-900/30"
+                            data-testid={`img-player-${player.id}`}
+                          />
                         ) : (
-                          <div className="w-32 h-40 rounded-lg bg-muted/50 border-2 border-muted flex items-center justify-center text-muted-foreground">
-                            No Image
+                          <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-xs text-muted-foreground">
+                            N/A
                           </div>
                         )}
+                        <span className="font-bold text-base" data-testid={`text-player-name-${player.id}`}>
+                          {player.name}
+                        </span>
                       </div>
 
-                      {/* Player Info */}
-                      <div className="lg:col-span-9">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div>
-                            <h3 className="text-2xl font-bold mb-3 group-hover:text-red-400 transition-colors duration-300" data-testid={`text-player-name-${player.id}`}>
-                              {player.name}
-                            </h3>
-                            
-                            <div className="space-y-2 text-sm">
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-24">Position:</span>
-                                <Badge variant="outline" className="border-red-700/30 bg-red-950/20 font-semibold">
-                                  {player.position || '—'}
-                                </Badge>
-                              </div>
-                              
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-24">Height:</span>
-                                <span className="text-foreground font-semibold">{player.heightFormatted || '—'}</span>
-                              </div>
-                              
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-24">Class:</span>
-                                <span className="text-foreground font-semibold">{player.gradYear}</span>
-                              </div>
-                            </div>
-                          </div>
+                      {/* Height */}
+                      <div className="col-span-1 text-center">
+                        <span className="text-sm font-semibold">{player.heightFormatted || '—'}</span>
+                      </div>
 
-                          <div className="space-y-2 text-sm">
-                            <div className="flex items-start gap-2">
-                              <span className="text-muted-foreground font-medium min-w-24">High School:</span>
-                              <span className="text-foreground font-semibold" data-testid={`text-high-school-${player.id}`}>
-                                {player.school || '—'}
-                              </span>
-                            </div>
-                            
-                            <div className="flex items-center gap-2">
-                              <span className="text-muted-foreground font-medium min-w-24">State:</span>
-                              <span className="text-foreground font-semibold" data-testid={`text-state-${player.id}`}>
-                                {player.state || '—'}
-                              </span>
-                            </div>
-                            
-                            {player.committedTo && (
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-24">Committed:</span>
-                                <div className="flex items-center gap-2">
-                                  <Badge variant="secondary" className="bg-green-950/30 text-green-400 border-green-700/30 font-semibold" data-testid={`text-committed-${player.id}`}>
-                                    {player.committedTo}
-                                  </Badge>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {player.circuitProgram && (
-                              <div className="flex items-center gap-2">
-                                <span className="text-muted-foreground font-medium min-w-24">Circuit:</span>
-                                <span className="text-foreground font-semibold">
-                                  {player.circuitProgram}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                      {/* Position */}
+                      <div className="col-span-1 text-center">
+                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                          {player.position || '—'}
+                        </Badge>
+                      </div>
+
+                      {/* Grad Year */}
+                      <div className="col-span-1 text-center">
+                        <span className="text-sm font-semibold">{player.gradYear}</span>
+                      </div>
+
+                      {/* High School */}
+                      <div className="col-span-2">
+                        <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
+                          {player.school || '—'}
+                        </span>
+                      </div>
+
+                      {/* Circuit Program */}
+                      <div className="col-span-2">
+                        <span className="text-sm">{player.circuitProgram || '—'}</span>
+                      </div>
+
+                      {/* College */}
+                      <div className="col-span-1 flex justify-center">
+                        {player.committedTo && (
+                          <img
+                            src={`/attached_assets/${player.committedTo.replace(/\s+/g, '-')}-Logo.png`}
+                            alt={player.committedTo}
+                            className="h-10 w-10 object-contain"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const parent = target.parentElement;
+                              if (parent) {
+                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedTo}</span>`;
+                              }
+                            }}
+                            data-testid={`text-committed-${player.id}`}
+                          />
+                        )}
+                        {!player.committedTo && <span className="text-xs text-muted-foreground">—</span>}
                       </div>
                     </div>
                   </Card>
