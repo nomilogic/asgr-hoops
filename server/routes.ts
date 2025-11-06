@@ -1,6 +1,10 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage, upload, uploadPlayerImage, uploadCollegeLogo } from "./storage";
+import { storage } from "./storage";
+import { uploadPlayerImage, uploadCollegeLogo } from "./supabase-storage";
+import multer from "multer";
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Player routes
