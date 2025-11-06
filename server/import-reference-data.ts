@@ -4,6 +4,7 @@ import * as path from "path";
 import * as cheerio from "cheerio";
 import { db } from "./db";
 import { players, schools, rankings, schoolRankings } from "@shared/schema";
+import { uploadImageFromLocalPath } from "./supabase-storage";
 
 interface PlayerData {
   name: string;
@@ -55,6 +56,16 @@ function parsePlayersFromHTML(htmlPath: string, year: number): PlayerData[] {
         const state = cells.length > 4 ? cells.eq(4).text().trim() : null;
         const commitment = cells.length > 5 ? cells.eq(5).text().trim() : null;
 
+        // Try to extract player image
+        let imageUrl = null;
+        const imgTag = $elem.find('img').first();
+        if (imgTag.length > 0) {
+          const imgSrc = imgTag.attr('src');
+          if (imgSrc) {
+            imageUrl = imgSrc;
+          }
+        }
+
         if (name && !isNaN(rank)) {
           playersData.push({
             name,
@@ -66,7 +77,7 @@ function parsePlayersFromHTML(htmlPath: string, year: number): PlayerData[] {
             state: state || null,
             gradYear: year,
             committedTo: commitment && commitment !== '-' ? commitment : null,
-            imageUrl: null,
+            imageUrl: imageUrl,
           });
         }
       }
@@ -108,11 +119,21 @@ function parseSchoolRankingsFromHTML(htmlPath: string, season: string): SchoolRa
             }
           }
 
+          // Try to extract school logo
+          let logoUrl = null;
+          const logoImg = $elem.find('img').first();
+          if (logoImg.length > 0) {
+            const logoSrc = logoImg.attr('src');
+            if (logoSrc) {
+              logoUrl = logoSrc;
+            }
+          }
+
           schoolsData.push({
             rank,
             schoolName,
             schoolState: state || null,
-            logoUrl: null,
+            logoUrl: logoUrl,
             wins,
             losses,
             keyWins: null,

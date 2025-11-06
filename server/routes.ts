@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage, upload, uploadPlayerImage, uploadCollegeLogo } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Player routes
@@ -180,22 +180,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // School rankings routes
   app.get("/api/school-rankings", async (_req, res) => {
     try {
-      const rankings = await storage.getAllSchoolRankings();
-      res.json(rankings);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch school rankings" });
+      const schoolRankings = await storage.getAllSchoolRankings();
+      res.json(schoolRankings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
     }
   });
 
   app.get("/api/school-rankings/season/:season", async (req, res) => {
     try {
       const season = req.params.season;
-      const rankings = await storage.getSchoolRankingsBySeason(season);
-      res.json(rankings);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch school rankings by season" });
+      const schoolRankings = await storage.getSchoolRankingsBySeason(season);
+      res.json(schoolRankings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
     }
   });
+
+  // Image Upload endpoints
+  app.post("/api/upload/player-image/:playerId", upload.single('image'), async (req, res) => {
+    try {
+      const playerId = parseInt(req.params.playerId);
+
+      if (!req.file) {
+        return res.status(400).json({ error: "No image file provided" });
+      }
+
+      const result = await uploadPlayerImage(
+        playerId,
+        req.file.buffer,
+        req.file.originalname
+      );
+
+      // Update player record with image URL
+      const player = await storage.getPlayerById(playerId);
+      if (player) {
+        await storage.createPlayer({
+          ...player,
+          imageUrl: result.url
+        });
+      }
+
+      res.json({ success: true, ...result });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.post("/api/upload/college-logo", upload.single('image'), async (req, res) => {
+    try {
+      const { collegeName } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: "No image file provided" });
+      }
+
+      if (!collegeName) {
+        return res.status(400).json({ error: "College name is required" });
+      }
+
+      const result = await uploadCollegeLogo(
+        collegeName,
+        req.file.buffer,
+        req.file.originalname
+      );
+
+      res.json({ success: true, ...result });
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
 
   const httpServer = createServer(app);
 
