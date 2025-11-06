@@ -14,7 +14,8 @@ import { Search, Filter } from "lucide-react";
 
 export default function Rankings() {
   const [, params] = useRoute("/rankings/:year");
-  const year = params?.year ? parseInt(params.year) : 2025;
+  const yearParam = params?.year ? parseInt(params.year) : 2025;
+  const year = isNaN(yearParam) ? 2025 : yearParam;
 
   const [searchQuery, setSearchQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<string>("all");
