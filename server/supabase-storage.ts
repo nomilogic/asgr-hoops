@@ -1,13 +1,19 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
-  throw new Error('SUPABASE_URL and SUPABASE_KEY must be set in environment variables');
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+  console.error('Available env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
+  console.error('SUPABASE_URL:', SUPABASE_URL);
+  console.error('SUPABASE_KEY:', SUPABASE_KEY ? 'SET' : 'NOT SET');
+  throw new Error('Missing Supabase credentials. Please set VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in Secrets.');
 }
 
 const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 const BUCKET_NAME = process.env.SUPABASE_BUCKET_NAME || 'asgr-images';
