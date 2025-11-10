@@ -46,29 +46,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // School routes
-  app.get("/api/schools", async (_req, res) => {
+  // High School routes
+  app.get("/api/high-schools", async (_req, res) => {
     try {
-      const schools = await storage.getAllSchools();
+      const schools = await storage.getAllHighSchools();
       res.json(schools);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch schools" });
+      res.status(500).json({ error: "Failed to fetch high schools" });
     }
   });
 
-  app.get("/api/schools/:id", async (req, res) => {
+  app.get("/api/high-schools/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
-        return res.status(400).json({ error: "Invalid school ID" });
+        return res.status(400).json({ error: "Invalid high school ID" });
       }
-      const school = await storage.getSchoolById(id);
+      const school = await storage.getHighSchoolById(id);
       if (!school) {
-        return res.status(404).json({ error: "School not found" });
+        return res.status(404).json({ error: "High school not found" });
       }
       res.json(school);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch school" });
+      res.status(500).json({ error: "Failed to fetch high school" });
     }
   });
 
@@ -98,106 +98,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Player circuit teams routes
-  app.get("/api/player-circuit-teams", async (_req, res) => {
+  // College routes
+  app.get("/api/colleges", async (_req, res) => {
     try {
-      const relationships = await storage.getAllPlayerCircuitTeams();
-      res.json(relationships);
+      const colleges = await storage.getAllColleges();
+      res.json(colleges);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch player circuit teams" });
+      res.status(500).json({ error: "Failed to fetch colleges" });
     }
   });
 
-  app.get("/api/player-circuit-teams/player/:playerId", async (req, res) => {
-    try {
-      const playerId = parseInt(req.params.playerId);
-      if (isNaN(playerId)) {
-        return res.status(400).json({ error: "Invalid player ID" });
-      }
-      const relationships = await storage.getPlayerCircuitTeamsByPlayerId(playerId);
-      res.json(relationships);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch player circuit teams" });
-    }
-  });
-
-  // Events routes
-  app.get("/api/events", async (_req, res) => {
-    try {
-      const events = await storage.getAllEvents();
-      res.json(events);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch events" });
-    }
-  });
-
-  app.get("/api/events/:id", async (req, res) => {
+  app.get("/api/colleges/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
-        return res.status(400).json({ error: "Invalid event ID" });
+        return res.status(400).json({ error: "Invalid college ID" });
       }
-      const event = await storage.getEventById(id);
-      if (!event) {
-        return res.status(404).json({ error: "Event not found" });
+      const college = await storage.getCollegeById(id);
+      if (!college) {
+        return res.status(404).json({ error: "College not found" });
       }
-      res.json(event);
+      res.json(college);
     } catch (error) {
-      res.status(500).json({ error: "Failed to fetch event" });
-    }
-  });
-
-  // Rankings routes
-  app.get("/api/rankings", async (_req, res) => {
-    try {
-      const rankings = await storage.getAllRankings();
-      res.json(rankings);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch rankings" });
-    }
-  });
-
-  app.get("/api/rankings/player/:playerId", async (req, res) => {
-    try {
-      const playerId = parseInt(req.params.playerId);
-      if (isNaN(playerId)) {
-        return res.status(400).json({ error: "Invalid player ID" });
-      }
-      const rankings = await storage.getRankingsByPlayerId(playerId);
-      res.json(rankings);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch player rankings" });
-    }
-  });
-
-  app.get("/api/rankings/type/:type", async (req, res) => {
-    try {
-      const type = req.params.type;
-      const year = req.query.year ? parseInt(req.query.year as string) : undefined;
-      const rankings = await storage.getRankingsByType(type, year);
-      res.json(rankings);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch rankings by type" });
-    }
-  });
-
-  // School rankings routes
-  app.get("/api/school-rankings", async (_req, res) => {
-    try {
-      const schoolRankings = await storage.getAllSchoolRankings();
-      res.json(schoolRankings);
-    } catch (error: any) {
-      res.status(500).json({ error: error.message });
-    }
-  });
-
-  app.get("/api/school-rankings/season/:season", async (req, res) => {
-    try {
-      const season = req.params.season;
-      const schoolRankings = await storage.getSchoolRankingsBySeason(season);
-      res.json(schoolRankings);
-    } catch (error: any) {
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: "Failed to fetch college" });
     }
   });
 
@@ -216,14 +139,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         req.file.originalname
       );
 
-      // Update player record with image URL
-      const player = await storage.getPlayerById(playerId);
-      if (player) {
-        await storage.createPlayer({
-          ...player,
-          imageUrl: result.url
-        });
-      }
+      // Image URL update would happen separately via API if needed
 
       res.json({ success: true, ...result });
     } catch (error: any) {

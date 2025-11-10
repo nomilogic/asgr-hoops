@@ -7,69 +7,74 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { CircuitTeam, PlayerCircuitTeam } from "@shared/schema";
+import type { CircuitTeam } from "@shared/schema";
 import { useState, useMemo } from "react";
 import { Search, Filter, Trophy } from "lucide-react";
 
-interface CircuitTeamWithStats extends CircuitTeam {
-  totalWins: number;
-  totalLosses: number;
-  playerCount: number;
+interface CircuitTeamWithRanking {
+  id: number;
+  team: string;
+  circuit: string | null;
+  rank: number;
+  record: string;
+  keyWins: string;
+  placement: string;
 }
 
 export default function CircuitRankings() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [stateFilter, setStateFilter] = useState<string>("all");
+  const [circuitFilter, setCircuitFilter] = useState<string>("all");
+  const [season] = useState<string>("2024 Circuit Season");
 
-  const { data: teams, isLoading: teamsLoading } = useQuery<CircuitTeam[]>({
+  const { data: teams, isLoading } = useQuery<CircuitTeam[]>({
     queryKey: ["/api/circuit-teams"],
   });
 
-  const { data: teamRelations, isLoading: relationsLoading } = useQuery<PlayerCircuitTeam[]>({
-    queryKey: ["/api/player-circuit-teams"],
-  });
-
-  const isLoading = teamsLoading || relationsLoading;
-
-  const teamsWithStats = useMemo(() => {
-    if (!teams || !teamRelations) return [];
+  const teamsWithRankings = useMemo(() => {
+    if (!teams) return [];
     
-    return teams.map(team => {
-      const teamRecords = teamRelations.filter(r => r.circuitTeamId === team.id);
-      const totalWins = teamRecords.reduce((sum, r) => sum + (r.wins || 0), 0);
-      const totalLosses = teamRecords.reduce((sum, r) => sum + (r.losses || 0), 0);
-      
-      return {
-        ...team,
-        totalWins,
-        totalLosses,
-        playerCount: teamRecords.length,
-      };
-    }).sort((a, b) => {
-      const winPctA = a.totalWins + a.totalLosses > 0 ? a.totalWins / (a.totalWins + a.totalLosses) : 0;
-      const winPctB = b.totalWins + b.totalLosses > 0 ? b.totalWins / (b.totalWins + b.totalLosses) : 0;
-      return winPctB - winPctA || b.totalWins - a.totalWins;
-    });
-  }, [teams, teamRelations]);
+    return teams
+      .map((team) => {
+        const rank = (team.ranks as Record<string, number>)?.[season];
+        const record = (team.records as Record<string, string>)?.[season];
+        const keyWins = (team.keyWins as Record<string, string>)?.[season];
+        const placement = (team.placements as Record<string, string>)?.[season];
+        
+        if (!rank) return null;
+        
+        return {
+          id: team.id,
+          team: team.team,
+          circuit: team.circuit,
+          rank,
+          record: record || "—",
+          keyWins: keyWins || "—",
+          placement: placement || "—",
+        };
+      })
+      .filter((team): team is CircuitTeamWithRanking => team !== null)
+      .sort((a, b) => a.rank - b.rank);
+  }, [teams, season]);
 
   const filteredTeams = useMemo(() => {
-    if (!teamsWithStats) return [];
+    if (!teamsWithRankings) return [];
     
-    return teamsWithStats.filter((team) => {
+    return teamsWithRankings.filter((team) => {
       const matchesSearch = searchQuery === "" || 
-        team.teamName.toLowerCase().includes(searchQuery.toLowerCase());
+        team.team.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        team.keyWins.toLowerCase().includes(searchQuery.toLowerCase());
       
-      const matchesState = stateFilter === "all" || team.state === stateFilter;
+      const matchesCircuit = circuitFilter === "all" || team.circuit === circuitFilter;
       
-      return matchesSearch && matchesState;
+      return matchesSearch && matchesCircuit;
     });
-  }, [teamsWithStats, searchQuery, stateFilter]);
+  }, [teamsWithRankings, searchQuery, circuitFilter]);
 
-  const states = useMemo(() => {
-    if (!teams) return [];
-    const uniqueStates = new Set(teams.map(t => t.state).filter(Boolean));
-    return Array.from(uniqueStates).sort();
-  }, [teams]);
+  const circuits = useMemo(() => {
+    if (!teamsWithRankings) return [];
+    const uniqueCircuits = new Set(teamsWithRankings.map(t => t.circuit).filter(Boolean));
+    return Array.from(uniqueCircuits).sort();
+  }, [teamsWithRankings]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -104,30 +109,30 @@ export default function CircuitRankings() {
                   />
                 </div>
                 
-                <Select value={stateFilter} onValueChange={setStateFilter}>
-                  <SelectTrigger className="bg-background/50" data-testid="select-state-filter">
-                    <SelectValue placeholder="All States" />
+                <Select value={circuitFilter} onValueChange={setCircuitFilter}>
+                  <SelectTrigger className="bg-background/50" data-testid="select-circuit-filter">
+                    <SelectValue placeholder="All Circuits" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All States</SelectItem>
-                    {states.map((state) => (
-                      <SelectItem key={state} value={state || ""}>{state}</SelectItem>
+                    <SelectItem value="all">All Circuits</SelectItem>
+                    {circuits.map((circuit) => (
+                      <SelectItem key={circuit} value={circuit || ""}>{circuit}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               
-              {(searchQuery || stateFilter !== "all") && (
+              {(searchQuery || circuitFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
-                    Showing {filteredTeams.length} of {teamsWithStats?.length || 0} teams
+                    Showing {filteredTeams.length} of {teamsWithRankings?.length || 0} teams
                   </p>
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={() => {
                       setSearchQuery("");
-                      setStateFilter("all");
+                      setCircuitFilter("all");
                     }}
                     data-testid="button-clear-filters"
                   >
@@ -144,10 +149,11 @@ export default function CircuitRankings() {
             <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
-                <div className="col-span-5">Team Name</div>
-                <div className="col-span-2 text-center">State</div>
+                <div className="col-span-3">Team Name</div>
+                <div className="col-span-2 text-center">Circuit</div>
                 <div className="col-span-2 text-center">Record</div>
-                <div className="col-span-2 text-center">Win %</div>
+                <div className="col-span-2 text-center">Placement</div>
+                <div className="col-span-2">Key Wins</div>
               </div>
             </div>
 
@@ -159,71 +165,57 @@ export default function CircuitRankings() {
               </div>
             ) : filteredTeams && filteredTeams.length > 0 ? (
               <div className="space-y-4">
-                {filteredTeams.map((team, index) => {
-                  const winPct = team.totalWins + team.totalLosses > 0 
-                    ? (team.totalWins / (team.totalWins + team.totalLosses) * 100).toFixed(1)
-                    : '0.0';
-                  
-                  return (
-                    <Card
-                      key={team.id}
-                      className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-300"
-                      data-testid={`card-team-${team.id}`}
-                    >
-                      <div className="grid grid-cols-12 gap-4 p-6 items-center">
-                        <div className="col-span-1 flex justify-center">
-                          <Badge 
-                            className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
-                            data-testid={`badge-rank-${team.id}`}
-                          >
-                            {index + 1}
-                          </Badge>
-                        </div>
-
-                        <div className="col-span-5 flex items-center gap-3">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-950/50 to-red-900/30 border border-red-700/30 flex items-center justify-center">
-                            <Trophy className="h-6 w-6 text-red-400" />
-                          </div>
-                          <div>
-                            <span className="font-bold text-lg block" data-testid={`text-team-name-${team.id}`}>
-                              {team.teamName}
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                              {team.playerCount} players
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="col-span-2 text-center">
-                          <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                            {team.state || '—'}
-                          </Badge>
-                        </div>
-
-                        <div className="col-span-2 text-center">
-                          <span className="text-sm font-bold" data-testid={`text-record-${team.id}`}>
-                            {team.totalWins}-{team.totalLosses}
-                          </span>
-                        </div>
-
-                        <div className="col-span-2 text-center">
-                          <Badge 
-                            className={`font-semibold ${
-                              parseFloat(winPct) >= 70 
-                                ? 'bg-green-900/30 border-green-700/30 text-green-400' 
-                                : parseFloat(winPct) >= 50
-                                ? 'bg-yellow-900/30 border-yellow-700/30 text-yellow-400'
-                                : 'bg-red-900/30 border-red-700/30 text-red-400'
-                            }`}
-                            data-testid={`text-win-pct-${team.id}`}
-                          >
-                            {winPct}%
-                          </Badge>
-                        </div>
+                {filteredTeams.map((team) => (
+                  <Card
+                    key={team.id}
+                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-300"
+                    data-testid={`card-team-${team.id}`}
+                  >
+                    <div className="grid grid-cols-12 gap-4 p-6 items-center">
+                      <div className="col-span-1 flex justify-center">
+                        <Badge 
+                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                          data-testid={`badge-rank-${team.id}`}
+                        >
+                          {team.rank}
+                        </Badge>
                       </div>
-                    </Card>
-                  );
-                })}
+
+                      <div className="col-span-3 flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-950/50 to-red-900/30 border border-red-700/30 flex items-center justify-center">
+                          <Trophy className="h-6 w-6 text-red-400" />
+                        </div>
+                        <span className="font-bold text-lg" data-testid={`text-team-name-${team.id}`}>
+                          {team.team}
+                        </span>
+                      </div>
+
+                      <div className="col-span-2 text-center">
+                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                          {team.circuit || '—'}
+                        </Badge>
+                      </div>
+
+                      <div className="col-span-2 text-center">
+                        <span className="text-sm font-bold" data-testid={`text-record-${team.id}`}>
+                          {team.record}
+                        </span>
+                      </div>
+
+                      <div className="col-span-2 text-center">
+                        <Badge className="font-semibold bg-blue-900/30 border-blue-700/30 text-blue-400" data-testid={`text-placement-${team.id}`}>
+                          {team.placement}
+                        </Badge>
+                      </div>
+
+                      <div className="col-span-2">
+                        <span className="text-sm text-muted-foreground" data-testid={`text-key-wins-${team.id}`}>
+                          {team.keyWins}
+                        </span>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
               </div>
             ) : (
               <div className="text-center py-20">

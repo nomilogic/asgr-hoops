@@ -39,7 +39,7 @@ export default function Rankings() {
       .filter((player) => {
         const matchesSearch = searchQuery === "" || 
           player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          player.school?.toLowerCase().includes(searchQuery.toLowerCase());
+          player.highSchool?.toLowerCase().includes(searchQuery.toLowerCase());
 
         const matchesPosition = positionFilter === "all" || player.position === positionFilter;
         const matchesState = stateFilter === "all" || player.state === stateFilter;
@@ -47,8 +47,8 @@ export default function Rankings() {
         return matchesSearch && matchesPosition && matchesState;
       })
       .sort((a, b) => {
-        const rankA = a.rankNumber || 999999;
-        const rankB = b.rankNumber || 999999;
+        const rankA = a.rank || 999999;
+        const rankB = b.rank || 999999;
         return rankA - rankB;
       });
   }, [players, searchQuery, positionFilter, stateFilter]);
@@ -94,6 +94,7 @@ export default function Rankings() {
                         ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
                         : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
                     }`}
+                    data-testid={`link-year-${y}`}
                   >
                     {y}
                   </a>
@@ -110,11 +111,12 @@ export default function Rankings() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 bg-background/50"
+                    data-testid="input-search"
                   />
                 </div>
 
                 <Select value={stateFilter} onValueChange={setStateFilter}>
-                  <SelectTrigger className="bg-background/50">
+                  <SelectTrigger className="bg-background/50" data-testid="select-state-filter">
                     <SelectValue placeholder="All States" />
                   </SelectTrigger>
                   <SelectContent>
@@ -126,7 +128,7 @@ export default function Rankings() {
                 </Select>
 
                 <Select value={positionFilter} onValueChange={setPositionFilter}>
-                  <SelectTrigger className="bg-background/50">
+                  <SelectTrigger className="bg-background/50" data-testid="select-position-filter">
                     <SelectValue placeholder="All Positions" />
                   </SelectTrigger>
                   <SelectContent>
@@ -151,6 +153,7 @@ export default function Rankings() {
                       setPositionFilter("all");
                       setStateFilter("all");
                     }}
+                    data-testid="button-clear-filters"
                   >
                     Clear Filters
                   </Button>
@@ -195,14 +198,14 @@ export default function Rankings() {
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
                           data-testid={`badge-rank-${player.id}`}
                         >
-                          {player.rankNumber || '—'}
+                          {player.rank || '—'}
                         </Badge>
                       </div>
 
                       <div className="col-span-3 flex items-center gap-3">
-                        {player.imageUrl ? (
+                        {player.imagePath ? (
                           <img
-                            src={player.imageUrl}
+                            src={player.imagePath}
                             alt={player.name}
                             className="w-12 h-16 object-cover rounded border border-red-900/30"
                             data-testid={`img-player-${player.id}`}
@@ -218,7 +221,7 @@ export default function Rankings() {
                       </div>
 
                       <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.heightFormatted || '—'}</span>
+                        <span className="text-sm font-semibold">{player.height || '—'}</span>
                       </div>
 
                       <div className="col-span-1 text-center">
@@ -228,12 +231,12 @@ export default function Rankings() {
                       </div>
 
                       <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.gradYear}</span>
+                        <span className="text-sm font-semibold">{player.gradeYear}</span>
                       </div>
 
                       <div className="col-span-2">
                         <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
-                          {player.school || '—'}
+                          {player.highSchool || '—'}
                         </span>
                       </div>
 
@@ -242,23 +245,23 @@ export default function Rankings() {
                       </div>
 
                       <div className="col-span-1 flex justify-center">
-                        {player.committedTo && (
+                        {player.committedCollege && (
                           <img
-                            src={`/attached_assets/${player.committedTo.replace(/\s+/g, '-')}-Logo.png`}
-                            alt={player.committedTo}
+                            src={`/attached_assets/${player.committedCollege.replace(/\s+/g, '-')}-Logo.png`}
+                            alt={player.committedCollege}
                             className="h-10 w-10 object-contain"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               target.style.display = 'none';
                               const parent = target.parentElement;
                               if (parent) {
-                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedTo}</span>`;
+                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedCollege}</span>`;
                               }
                             }}
                             data-testid={`text-committed-${player.id}`}
                           />
                         )}
-                        {!player.committedTo && <span className="text-xs text-muted-foreground">—</span>}
+                        {!player.committedCollege && <span className="text-xs text-muted-foreground">—</span>}
                       </div>
                     </div>
                   </Card>
@@ -282,6 +285,7 @@ export default function Rankings() {
                       setPositionFilter("all");
                       setStateFilter("all");
                     }}
+                    data-testid="button-clear-all-filters"
                   >
                     Clear All Filters
                   </Button>

@@ -1,78 +1,41 @@
-import { eq, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { db } from "./db";
 import {
-  type School,
-  type InsertSchool,
   type Player,
   type InsertPlayer,
+  type HighSchool,
+  type InsertHighSchool,
   type CircuitTeam,
   type InsertCircuitTeam,
-  type PlayerCircuitTeam,
-  type InsertPlayerCircuitTeam,
-  type Event,
-  type InsertEvent,
-  type Ranking,
-  type InsertRanking,
-  type SchoolRanking,
-  type InsertSchoolRanking,
-  schools,
+  type College,
+  type InsertCollege,
   players,
+  highSchools,
   circuitTeams,
-  playerCircuitTeams,
-  events,
-  rankings,
-  schoolRankings,
+  colleges,
 } from "@shared/schema";
 
 export interface IStorage {
-  getAllSchools(): Promise<School[]>;
-  getSchoolById(id: number): Promise<School | undefined>;
-  createSchool(school: InsertSchool): Promise<School>;
-  
   getAllPlayers(): Promise<Player[]>;
   getPlayerById(id: number): Promise<Player | undefined>;
   getPlayersByGradYear(gradYear: number): Promise<Player[]>;
   createPlayer(player: InsertPlayer): Promise<Player>;
   bulkCreatePlayers(players: InsertPlayer[]): Promise<void>;
   
+  getAllHighSchools(): Promise<HighSchool[]>;
+  getHighSchoolById(id: number): Promise<HighSchool | undefined>;
+  createHighSchool(school: InsertHighSchool): Promise<HighSchool>;
+  
   getAllCircuitTeams(): Promise<CircuitTeam[]>;
   getCircuitTeamById(id: number): Promise<CircuitTeam | undefined>;
   createCircuitTeam(team: InsertCircuitTeam): Promise<CircuitTeam>;
   
-  getAllPlayerCircuitTeams(): Promise<PlayerCircuitTeam[]>;
-  getPlayerCircuitTeamsByPlayerId(playerId: number): Promise<PlayerCircuitTeam[]>;
-  createPlayerCircuitTeam(pct: InsertPlayerCircuitTeam): Promise<PlayerCircuitTeam>;
-  
-  getAllEvents(): Promise<Event[]>;
-  getEventById(id: number): Promise<Event | undefined>;
-  createEvent(event: InsertEvent): Promise<Event>;
-  
-  getAllRankings(): Promise<Ranking[]>;
-  getRankingsByPlayerId(playerId: number): Promise<Ranking[]>;
-  getRankingsByType(rankType: string, year?: number): Promise<Ranking[]>;
-  createRanking(ranking: InsertRanking): Promise<Ranking>;
-  
-  getAllSchoolRankings(): Promise<SchoolRanking[]>;
-  getSchoolRankingsBySeason(season: string): Promise<SchoolRanking[]>;
-  createSchoolRanking(ranking: InsertSchoolRanking): Promise<SchoolRanking>;
-  bulkCreateSchoolRankings(rankings: InsertSchoolRanking[]): Promise<void>;
+  getAllColleges(): Promise<College[]>;
+  getCollegeById(id: number): Promise<College | undefined>;
+  createCollege(college: InsertCollege): Promise<College>;
 }
 
 export class DbStorage implements IStorage {
-  async getAllSchools(): Promise<School[]> {
-    return await db.select().from(schools);
-  }
-
-  async getSchoolById(id: number): Promise<School | undefined> {
-    const result = await db.select().from(schools).where(eq(schools.id, id));
-    return result[0];
-  }
-
-  async createSchool(school: InsertSchool): Promise<School> {
-    const result = await db.insert(schools).values(school).returning();
-    return result[0];
-  }
-
   async getAllPlayers(): Promise<Player[]> {
     return await db.select().from(players);
   }
@@ -83,7 +46,7 @@ export class DbStorage implements IStorage {
   }
 
   async getPlayersByGradYear(gradYear: number): Promise<Player[]> {
-    return await db.select().from(players).where(eq(players.gradYear, gradYear));
+    return await db.select().from(players).where(eq(players.gradeYear, gradYear));
   }
 
   async createPlayer(player: InsertPlayer): Promise<Player> {
@@ -94,6 +57,20 @@ export class DbStorage implements IStorage {
   async bulkCreatePlayers(playersData: InsertPlayer[]): Promise<void> {
     if (playersData.length === 0) return;
     await db.insert(players).values(playersData);
+  }
+
+  async getAllHighSchools(): Promise<HighSchool[]> {
+    return await db.select().from(highSchools);
+  }
+
+  async getHighSchoolById(id: number): Promise<HighSchool | undefined> {
+    const result = await db.select().from(highSchools).where(eq(highSchools.id, id));
+    return result[0];
+  }
+
+  async createHighSchool(school: InsertHighSchool): Promise<HighSchool> {
+    const result = await db.insert(highSchools).values(school).returning();
+    return result[0];
   }
 
   async getAllCircuitTeams(): Promise<CircuitTeam[]> {
@@ -110,70 +87,18 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
-  async getAllPlayerCircuitTeams(): Promise<PlayerCircuitTeam[]> {
-    return await db.select().from(playerCircuitTeams);
+  async getAllColleges(): Promise<College[]> {
+    return await db.select().from(colleges);
   }
 
-  async getPlayerCircuitTeamsByPlayerId(playerId: number): Promise<PlayerCircuitTeam[]> {
-    return await db.select().from(playerCircuitTeams).where(eq(playerCircuitTeams.playerId, playerId));
-  }
-
-  async createPlayerCircuitTeam(pct: InsertPlayerCircuitTeam): Promise<PlayerCircuitTeam> {
-    const result = await db.insert(playerCircuitTeams).values(pct).returning();
+  async getCollegeById(id: number): Promise<College | undefined> {
+    const result = await db.select().from(colleges).where(eq(colleges.id, id));
     return result[0];
   }
 
-  async getAllEvents(): Promise<Event[]> {
-    return await db.select().from(events);
-  }
-
-  async getEventById(id: number): Promise<Event | undefined> {
-    const result = await db.select().from(events).where(eq(events.id, id));
+  async createCollege(college: InsertCollege): Promise<College> {
+    const result = await db.insert(colleges).values(college).returning();
     return result[0];
-  }
-
-  async createEvent(event: InsertEvent): Promise<Event> {
-    const result = await db.insert(events).values(event).returning();
-    return result[0];
-  }
-
-  async getAllRankings(): Promise<Ranking[]> {
-    return await db.select().from(rankings);
-  }
-
-  async getRankingsByPlayerId(playerId: number): Promise<Ranking[]> {
-    return await db.select().from(rankings).where(eq(rankings.playerId, playerId));
-  }
-
-  async getRankingsByType(rankType: string, year?: number): Promise<Ranking[]> {
-    if (year) {
-      return await db.select().from(rankings)
-        .where(and(eq(rankings.rankType, rankType), eq(rankings.year, year)));
-    }
-    return await db.select().from(rankings).where(eq(rankings.rankType, rankType));
-  }
-
-  async createRanking(ranking: InsertRanking): Promise<Ranking> {
-    const result = await db.insert(rankings).values(ranking).returning();
-    return result[0];
-  }
-
-  async getAllSchoolRankings(): Promise<SchoolRanking[]> {
-    return await db.select().from(schoolRankings);
-  }
-
-  async getSchoolRankingsBySeason(season: string): Promise<SchoolRanking[]> {
-    return await db.select().from(schoolRankings).where(eq(schoolRankings.season, season));
-  }
-
-  async createSchoolRanking(ranking: InsertSchoolRanking): Promise<SchoolRanking> {
-    const result = await db.insert(schoolRankings).values(ranking).returning();
-    return result[0];
-  }
-
-  async bulkCreateSchoolRankings(rankings: InsertSchoolRanking[]): Promise<void> {
-    if (rankings.length === 0) return;
-    await db.insert(schoolRankings).values(rankings);
   }
 }
 

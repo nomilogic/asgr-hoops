@@ -7,47 +7,74 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { SchoolRanking } from "@shared/schema";
+import type { HighSchool } from "@shared/schema";
 import { useState, useMemo } from "react";
 import { Search, Filter, Trophy } from "lucide-react";
+
+interface SchoolWithRanking {
+  id: number;
+  school: string;
+  logoPath: string | null;
+  rank: number;
+  record: string;
+  keyWins: string;
+  state: string;
+}
 
 export default function HighSchoolRankings() {
   const [searchQuery, setSearchQuery] = useState("");
   const [stateFilter, setStateFilter] = useState<string>("all");
-  const [season, setSeason] = useState<string>("2023-24");
+  const [season, setSeason] = useState<string>("2024-25");
 
-  const { data: rankings, isLoading } = useQuery<SchoolRanking[]>({
-    queryKey: ["/api/school-rankings/season", season],
-    queryFn: async () => {
-      const response = await fetch(`/api/school-rankings/season/${season}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch school rankings");
-      }
-      return response.json();
-    },
+  const { data: highSchools, isLoading } = useQuery<HighSchool[]>({
+    queryKey: ["/api/high-schools"],
   });
 
-  const filteredRankings = useMemo(() => {
-    if (!rankings) return [];
+  const schoolsWithRankings = useMemo(() => {
+    if (!highSchools) return [];
     
-    return rankings
-      .filter((ranking) => {
-        const matchesSearch = searchQuery === "" || 
-          ranking.schoolName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ranking.keyWins?.toLowerCase().includes(searchQuery.toLowerCase());
+    return highSchools
+      .map((school) => {
+        const rank = (school.ranks as Record<string, number>)?.[season];
+        const record = (school.records as Record<string, string>)?.[season];
+        const keyWins = (school.keyWins as Record<string, string>)?.[season];
+        const state = school.school.match(/\(([^)]+)\)$/)?.[1] || "";
         
-        const matchesState = stateFilter === "all" || ranking.schoolState === stateFilter;
+        if (!rank) return null;
         
-        return matchesSearch && matchesState;
+        return {
+          id: school.id,
+          school: school.school,
+          logoPath: school.logoPath,
+          rank,
+          record: record || "—",
+          keyWins: keyWins || "—",
+          state,
+        };
       })
+      .filter((school): school is SchoolWithRanking => school !== null)
       .sort((a, b) => a.rank - b.rank);
-  }, [rankings, searchQuery, stateFilter]);
+  }, [highSchools, season]);
+
+  const filteredRankings = useMemo(() => {
+    if (!schoolsWithRankings) return [];
+    
+    return schoolsWithRankings.filter((ranking) => {
+      const matchesSearch = searchQuery === "" || 
+        ranking.school.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        ranking.keyWins.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesState = stateFilter === "all" || ranking.state === stateFilter;
+      
+      return matchesSearch && matchesState;
+    });
+  }, [schoolsWithRankings, searchQuery, stateFilter]);
 
   const states = useMemo(() => {
-    if (!rankings) return [];
-    const uniqueStates = new Set(rankings.map(r => r.schoolState).filter(Boolean));
+    if (!schoolsWithRankings) return [];
+    const uniqueStates = new Set(schoolsWithRankings.map(r => r.state).filter(Boolean));
     return Array.from(uniqueStates).sort();
-  }, [rankings]);
+  }, [schoolsWithRankings]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -112,7 +139,7 @@ export default function HighSchoolRankings() {
               {(searchQuery || stateFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
-                    Showing {filteredRankings.length} of {rankings?.length || 0} schools
+                    Showing {filteredRankings.length} of {schoolsWithRankings?.length || 0} schools
                   </p>
                   <Button
                     variant="ghost"
@@ -168,10 +195,10 @@ export default function HighSchoolRankings() {
                       </div>
 
                       <div className="col-span-4 flex items-center gap-3">
-                        {ranking.logoUrl ? (
+                        {ranking.logoPath ? (
                           <img
-                            src={ranking.logoUrl}
-                            alt={ranking.schoolName}
+                            src={ranking.logoPath}
+                            alt={ranking.school}
                             className="w-16 h-16 object-contain rounded"
                             data-testid={`img-school-logo-${ranking.id}`}
                             onError={(e) => {
@@ -185,27 +212,25 @@ export default function HighSchoolRankings() {
                           </div>
                         )}
                         <span className="font-bold text-lg" data-testid={`text-school-name-${ranking.id}`}>
-                          {ranking.schoolName}
+                          {ranking.school}
                         </span>
                       </div>
 
                       <div className="col-span-2 text-center">
                         <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                          {ranking.schoolState || '—'}
+                          {ranking.state || '—'}
                         </Badge>
                       </div>
 
                       <div className="col-span-1 text-center">
                         <span className="text-sm font-bold" data-testid={`text-record-${ranking.id}`}>
-                          {ranking.wins !== null && ranking.losses !== null 
-                            ? `${ranking.wins}-${ranking.losses}` 
-                            : '—'}
+                          {ranking.record}
                         </span>
                       </div>
 
                       <div className="col-span-4">
                         <span className="text-sm text-muted-foreground" data-testid={`text-key-wins-${ranking.id}`}>
-                          {ranking.keyWins || '—'}
+                          {ranking.keyWins}
                         </span>
                       </div>
                     </div>
