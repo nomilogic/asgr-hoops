@@ -1,0 +1,1945 @@
+[
+  {
+    "id": 1,
+    "school": "Etiwanda (CA)",
+    "logo_path": "hs_logos/etiwanda-ca-b0ccdc23-3b52-45c6-94bc-bb01b0bfd938.jpg",
+    "ranks": {
+      "2023-24": 1,
+      "2024-25": 4
+    },
+    "records": {
+      "2023-24": "32-3",
+      "2024-25": "28-5"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open State Champion",
+      "2024-25": "CIF Open State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:15.003275+00",
+    "updated_at": "2025-11-07 23:49:15.003275+00"
+  },
+  {
+    "id": 2,
+    "school": "Archbishop Mitty (CA)",
+    "logo_path": "hs_logos/archbishop-mitty-ca-87832ede-e81d-481b-a954-ee4c045182f3.png",
+    "ranks": {
+      "2023-24": 2,
+      "2024-25": 6
+    },
+    "records": {
+      "2023-24": "30-1",
+      "2024-25": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "Nike TOC Champions, CIF Open State Runner-Up",
+      "2024-25": "CIF Open State Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:15.616222+00",
+    "updated_at": "2025-11-07 23:49:15.616222+00"
+  },
+  {
+    "id": 3,
+    "school": "Montverde Academy (FL)",
+    "logo_path": "hs_logos/montverde-academy-fl-826b868d-389e-423c-b8e9-7b058b0eb09c.jpg",
+    "ranks": {
+      "2023-24": 3,
+      "2024-25": 2
+    },
+    "records": {
+      "2023-24": "24-4",
+      "2024-25": "26-2"
+    },
+    "key_wins": {
+      "2023-24": "Chipotle National Champion",
+      "2024-25": "Chipotle Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:16.198916+00",
+    "updated_at": "2025-11-07 23:49:16.198916+00"
+  },
+  {
+    "id": 4,
+    "school": "Long Island Lutheran (NY)",
+    "logo_path": "hs_logos/long-island-lutheran-ny-4e806390-4359-44f6-8fef-13c78d77a182.png",
+    "ranks": {
+      "2023-24": 4,
+      "2024-25": 15
+    },
+    "records": {
+      "2023-24": "22-2",
+      "2024-25": "15-5"
+    },
+    "key_wins": {
+      "2023-24": "Nike TOC Runner-Up, Chipotle Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:16.779866+00",
+    "updated_at": "2025-11-07 23:49:16.779866+00"
+  },
+  {
+    "id": 5,
+    "school": "Duncanville (TX)",
+    "logo_path": "hs_logos/duncanville-tx-620e8f2c-0f49-4c68-b14f-77d6ee5e9ac6.png",
+    "ranks": {
+      "2023-24": 5,
+      "2024-25": 24
+    },
+    "records": {
+      "2023-24": "35-4",
+      "2024-25": "29-7"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Champion",
+      "2024-25": "Texas UIL 6A Regional Finals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:17.35113+00",
+    "updated_at": "2025-11-07 23:49:17.35113+00"
+  },
+  {
+    "id": 6,
+    "school": "Crestwood Prep (ONT)",
+    "logo_path": "hs_logos/crestwood-prep-ont-c8f60328-21be-4cc4-b90a-f8968b0f025d.jpg",
+    "ranks": {
+      "2023-24": 6
+    },
+    "records": {
+      "2023-24": "38-1"
+    },
+    "key_wins": {
+      "2023-24": "OSBA Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:17.912501+00",
+    "updated_at": "2025-11-07 23:49:17.912501+00"
+  },
+  {
+    "id": 7,
+    "school": "IMG Academy (FL)",
+    "logo_path": "hs_logos/img-academy-fl-04102a7b-1bd2-4dcf-a1d8-e3364681ead2.jpg",
+    "ranks": {
+      "2023-24": 7,
+      "2024-25": 1
+    },
+    "records": {
+      "2023-24": "25-4",
+      "2024-25": "19-4"
+    },
+    "key_wins": {
+      "2023-24": "Chipotle National Runner-Up",
+      "2024-25": "Chipotle National Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:18.465534+00",
+    "updated_at": "2025-11-07 23:49:18.465534+00"
+  },
+  {
+    "id": 8,
+    "school": "Bishop McNamara (MD)",
+    "logo_path": "hs_logos/bishop-mcnamara-md-28064c0a-d1c1-4293-a60c-d5c45857fcd3.png",
+    "ranks": {
+      "2023-24": 8,
+      "2024-25": 3
+    },
+    "records": {
+      "2023-24": "28-5",
+      "2024-25": "30-2"
+    },
+    "key_wins": {
+      "2023-24": "WCAC Runner-Up",
+      "2024-25": "WCAC Champions, The Throne Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:19.035596+00",
+    "updated_at": "2025-11-07 23:49:19.035596+00"
+  },
+  {
+    "id": 9,
+    "school": "Hebron Christian Academy (GA)",
+    "logo_path": "hs_logos/hebron-christian-academy-ga-cf853d90-e54f-4730-992b-d9ffaa600e7a.png",
+    "ranks": {
+      "2023-24": 9,
+      "2024-25": 20
+    },
+    "records": {
+      "2023-24": "32-2",
+      "2024-25": "29-2"
+    },
+    "key_wins": {
+      "2023-24": "3A Georgia State Champion, Throne National Champion",
+      "2024-25": "GHSA Class Private State Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:19.600351+00",
+    "updated_at": "2025-11-07 23:49:19.600351+00"
+  },
+  {
+    "id": 10,
+    "school": "Sierra Canyon (CA)",
+    "logo_path": "hs_logos/sierra-canyon-ca-9e9ba073-ec34-4708-ab68-fc4ca896665f.png",
+    "ranks": {
+      "2023-24": 10,
+      "2024-25": 10
+    },
+    "records": {
+      "2023-24": "31-3",
+      "2024-25": "28-3"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open Regional Finals",
+      "2024-25": "CIF Open State Regional Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:20.132769+00",
+    "updated_at": "2025-11-07 23:49:20.132769+00"
+  },
+  {
+    "id": 11,
+    "school": "Grayson (GA)",
+    "logo_path": "hs_logos/grayson-ga-d2f800fe-7f36-4b3c-9e1f-bbf0525180b6.jpg",
+    "ranks": {
+      "2023-24": 11
+    },
+    "records": {
+      "2023-24": "32-1"
+    },
+    "key_wins": {
+      "2023-24": "7A Georgia State Champion, Chipotle Nationals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:20.671233+00",
+    "updated_at": "2025-11-07 23:49:20.671233+00"
+  },
+  {
+    "id": 12,
+    "school": "Morris Catholic (NJ)",
+    "logo_path": "hs_logos/morris-catholic-nj-7a6de3ac-260e-40c1-b331-af98b28f6229.jpg",
+    "ranks": {
+      "2023-24": 12,
+      "2024-25": 12
+    },
+    "records": {
+      "2023-24": "29-1",
+      "2024-25": "29-1"
+    },
+    "key_wins": {
+      "2023-24": "Non Public B New Jersey State Champion",
+      "2024-25": "NJSIAA North Jersey Non-Public A State Champions, The Throne Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:21.24282+00",
+    "updated_at": "2025-11-07 23:49:21.24282+00"
+  },
+  {
+    "id": 13,
+    "school": "Johnston (IA)",
+    "logo_path": "hs_logos/johnston-ia-861ce33e-6e13-40b0-a637-bdce6e1c49aa.png",
+    "ranks": {
+      "2023-24": 13,
+      "2024-25": 11
+    },
+    "records": {
+      "2023-24": "29-0",
+      "2024-25": "26-0"
+    },
+    "key_wins": {
+      "2023-24": "5A Iowa State Champion",
+      "2024-25": "IGHSAU Class 5A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:21.830213+00",
+    "updated_at": "2025-11-07 23:49:21.830213+00"
+  },
+  {
+    "id": 14,
+    "school": "Grace Christian (NC)",
+    "logo_path": "hs_logos/grace-christian-nc-46c7bc7c-2125-4c23-8e80-12f5944a43aa.jpg",
+    "ranks": {
+      "2023-24": 14,
+      "2024-25": 64
+    },
+    "records": {
+      "2023-24": "30-1",
+      "2024-25": "22-4"
+    },
+    "key_wins": {
+      "2023-24": "3A NCISAA State Champion, Chipolte Nationals",
+      "2024-25": "NCISAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:22.381695+00",
+    "updated_at": "2025-11-07 23:49:22.381695+00"
+  },
+  {
+    "id": 15,
+    "school": "St. John's (DC)",
+    "logo_path": "hs_logos/st-johns-dc-b0b960cd-85a5-44e5-92a0-f0e635f45898.jpg",
+    "ranks": {
+      "2023-24": 15
+    },
+    "records": {
+      "2023-24": "26-5"
+    },
+    "key_wins": {
+      "2023-24": "WCAC Champion, DCSAA Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:22.962641+00",
+    "updated_at": "2025-11-07 23:49:22.962641+00"
+  },
+  {
+    "id": 16,
+    "school": "Westtown School (PA)",
+    "logo_path": "hs_logos/westtown-school-pa-802daa21-b79b-4676-b0fd-c99370bd7c20.jpg",
+    "ranks": {
+      "2023-24": 16,
+      "2024-25": 5
+    },
+    "records": {
+      "2023-24": "25-2",
+      "2024-25": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "PAISAA State Champion",
+      "2024-25": "Chipotle National Semifinal"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:23.516082+00",
+    "updated_at": "2025-11-07 23:49:23.516082+00"
+  },
+  {
+    "id": 17,
+    "school": "Sidwell Friends (DC)",
+    "logo_path": "hs_logos/sidwell-friends-dc-884f8721-0f62-4431-b693-c860b8f2bef5.png",
+    "ranks": {
+      "2023-24": 17,
+      "2024-25": 9
+    },
+    "records": {
+      "2023-24": "25-7",
+      "2024-25": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "DCSAA Runner-Up, Chipotle Nationals",
+      "2024-25": "The Throne Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:24.054814+00",
+    "updated_at": "2025-11-07 23:49:24.054814+00"
+  },
+  {
+    "id": 18,
+    "school": "Camden (SC)",
+    "logo_path": "hs_logos/camden-sc-1f1e5027-4887-4c9b-97fe-2870aa34cdb5.jpg",
+    "ranks": {
+      "2023-24": 18
+    },
+    "records": {
+      "2023-24": "28-2"
+    },
+    "key_wins": {
+      "2023-24": "3A South Carolina State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:24.600844+00",
+    "updated_at": "2025-11-07 23:49:24.600844+00"
+  },
+  {
+    "id": 126,
+    "school": "Mater Dei, CA",
+    "logo_path": null,
+    "ranks": {},
+    "records": {},
+    "key_wins": {},
+    "source_urls": null,
+    "created_at": "2025-11-07 23:52:12.955939+00",
+    "updated_at": "2025-11-07 23:52:12.955939+00"
+  },
+  {
+    "id": 127,
+    "school": "Salpointe Catholic, AZ",
+    "logo_path": null,
+    "ranks": {},
+    "records": {},
+    "key_wins": {},
+    "source_urls": null,
+    "created_at": "2025-11-07 23:52:20.932993+00",
+    "updated_at": "2025-11-07 23:52:20.932993+00"
+  },
+  {
+    "id": 19,
+    "school": "Purcell Marian (OH)",
+    "logo_path": "hs_logos/purcell-marian-oh-fd1c3ba6-07e9-4cc8-b806-34878d56a210.png",
+    "ranks": {
+      "2023-24": 19,
+      "2024-25": 25
+    },
+    "records": {
+      "2023-24": "28-1",
+      "2024-25": "23-6"
+    },
+    "key_wins": {
+      "2023-24": "Divison II OHSAA State Champion",
+      "2024-25": "OHSAA DIII Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:25.154744+00",
+    "updated_at": "2025-11-07 23:49:25.154744+00"
+  },
+  {
+    "id": 20,
+    "school": "Lake Highland Prep (FL)",
+    "logo_path": "hs_logos/lake-highland-prep-fl-799f2d86-0c7d-4bef-8641-0f895ad0ec27.png",
+    "ranks": {
+      "2023-24": 20
+    },
+    "records": {
+      "2023-24": "25-5"
+    },
+    "key_wins": {
+      "2023-24": "4A FHSAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:25.701825+00",
+    "updated_at": "2025-11-07 23:49:25.701825+00"
+  },
+  {
+    "id": 21,
+    "school": "South Grand Prairie (TX)",
+    "logo_path": "hs_logos/south-grand-prairie-tx-ea2543c0-4228-4d9b-b2d4-a2600d3d2a34.png",
+    "ranks": {
+      "2023-24": 21
+    },
+    "records": {
+      "2023-24": "33-4"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Runner-Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:26.235508+00",
+    "updated_at": "2025-11-07 23:49:26.235508+00"
+  },
+  {
+    "id": 22,
+    "school": "Minnetonka (MN)",
+    "logo_path": "hs_logos/minnetonka-mn-ecd92c81-b0a6-400d-94a8-48c7b61bfe15.jpg",
+    "ranks": {
+      "2023-24": 22
+    },
+    "records": {
+      "2023-24": "29-2"
+    },
+    "key_wins": {
+      "2023-24": "4A MSHAL State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:26.813421+00",
+    "updated_at": "2025-11-07 23:49:26.813421+00"
+  },
+  {
+    "id": 23,
+    "school": "Summer Creek (TX)",
+    "logo_path": "hs_logos/summer-creek-tx-02a802f0-611b-469b-be99-37b6f406e715.jpg",
+    "ranks": {
+      "2023-24": 23,
+      "2024-25": 19
+    },
+    "records": {
+      "2023-24": "35-4",
+      "2024-25": "30-11"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Semifinals",
+      "2024-25": "Texas UIL 6A D1 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:27.358571+00",
+    "updated_at": "2025-11-07 23:49:27.358571+00"
+  },
+  {
+    "id": 24,
+    "school": "Incarnate Word Academy (MO)",
+    "logo_path": "hs_logos/incarnate-word-academy-mo-23cd3b9c-29c2-4bf9-aa7e-08df6a0526a4.jpg",
+    "ranks": {
+      "2023-24": 24,
+      "2024-25": 46
+    },
+    "records": {
+      "2023-24": "31-0",
+      "2024-25": "27-2"
+    },
+    "key_wins": {
+      "2023-24": "6A MSHSA State Champion",
+      "2024-25": "MSHSAA 6A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:27.912718+00",
+    "updated_at": "2025-11-07 23:49:27.912718+00"
+  },
+  {
+    "id": 25,
+    "school": "DeSoto (TX)",
+    "logo_path": "hs_logos/desoto-tx-fe16ef2e-65bc-451a-928b-bc72af174125.png",
+    "ranks": {
+      "2023-24": 25
+    },
+    "records": {
+      "2023-24": "27-6"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Elite 8"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:28.506134+00",
+    "updated_at": "2025-11-07 23:49:28.506134+00"
+  },
+  {
+    "id": 26,
+    "school": "Bradley Central (TN)",
+    "logo_path": "hs_logos/bradley-central-tn-3b466aa7-1001-473b-8b5d-4290f516d2f8.jpg",
+    "ranks": {
+      "2023-24": 26,
+      "2024-25": 21
+    },
+    "records": {
+      "2023-24": "34-1",
+      "2024-25": "35-1"
+    },
+    "key_wins": {
+      "2023-24": "4A TSSAA State Champion",
+      "2024-25": "TSSAA Class 4A State Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:29.045695+00",
+    "updated_at": "2025-11-07 23:49:29.045695+00"
+  },
+  {
+    "id": 27,
+    "school": "Frisco Liberty (TX)",
+    "logo_path": "hs_logos/frisco-liberty-tx-03dbb65d-7e2a-4eb1-9e6b-d1d483b58cc6.png",
+    "ranks": {
+      "2023-24": 27
+    },
+    "records": {
+      "2023-24": "34-7"
+    },
+    "key_wins": {
+      "2023-24": "5A UIL Texas State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:29.572365+00",
+    "updated_at": "2025-11-07 23:49:29.572365+00"
+  },
+  {
+    "id": 28,
+    "school": "Loyola Academy (IL)",
+    "logo_path": "hs_logos/loyola-academy-il-fb82860b-b77b-4b33-95ae-d73262b6ff05.jpg",
+    "ranks": {
+      "2023-24": 28,
+      "2024-25": 80
+    },
+    "records": {
+      "2023-24": "38-0",
+      "2024-25": "34-4"
+    },
+    "key_wins": {
+      "2023-24": "4A Illinois State Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:30.090322+00",
+    "updated_at": "2025-11-07 23:49:30.090322+00"
+  },
+  {
+    "id": 29,
+    "school": "Lawrence Central (IN)",
+    "logo_path": "hs_logos/lawrence-central-in-ff86fe14-cf9c-4ab0-b09a-cd055a49e8a6.jpg",
+    "ranks": {
+      "2023-24": 29,
+      "2024-25": 41
+    },
+    "records": {
+      "2023-24": "30-1",
+      "2024-25": "22-2"
+    },
+    "key_wins": {
+      "2023-24": "4A Indiana State Champion",
+      "2024-25": "IHSAA Sectional Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:30.616388+00",
+    "updated_at": "2025-11-07 23:49:30.616388+00"
+  },
+  {
+    "id": 30,
+    "school": "Mansfield Timberview (TX)",
+    "logo_path": "hs_logos/mansfield-timberview-tx-51cdab54-1983-4b42-907b-b6f74b85e977.png",
+    "ranks": {
+      "2023-24": 30
+    },
+    "records": {
+      "2023-24": "40-2"
+    },
+    "key_wins": {
+      "2023-24": "5A UIL Texas State Runner-Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:31.182244+00",
+    "updated_at": "2025-11-07 23:49:31.182244+00"
+  },
+  {
+    "id": 31,
+    "school": "West Bloomfield (MI)",
+    "logo_path": "hs_logos/west-bloomfield-mi-ac9f8ba6-5336-46b1-870b-bb203bef9de0.png",
+    "ranks": {
+      "2023-24": 31
+    },
+    "records": {
+      "2023-24": "27-1"
+    },
+    "key_wins": {
+      "2023-24": "Divison 1 Michigan State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:31.733784+00",
+    "updated_at": "2025-11-07 23:49:31.733784+00"
+  },
+  {
+    "id": 32,
+    "school": "Putnam City West (OK)",
+    "logo_path": "hs_logos/putnam-city-west-ok-0054bc13-377a-4a95-b99f-edf0b9c80c1c.jpg",
+    "ranks": {
+      "2023-24": 32
+    },
+    "records": {
+      "2023-24": "27-1"
+    },
+    "key_wins": {
+      "2023-24": "6A OSSAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:32.281797+00",
+    "updated_at": "2025-11-07 23:49:32.281797+00"
+  },
+  {
+    "id": 33,
+    "school": "Central Pointe Christian (FL)",
+    "logo_path": "hs_logos/central-pointe-christian-fl-49198bc4-b56a-4922-91c2-e376f2168f0d.jpg",
+    "ranks": {
+      "2023-24": 33
+    },
+    "records": {
+      "2023-24": "27-3"
+    },
+    "key_wins": {
+      "2023-24": "NISAA Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:32.84349+00",
+    "updated_at": "2025-11-07 23:49:32.84349+00"
+  },
+  {
+    "id": 34,
+    "school": "Rutgers Prep (NJ)",
+    "logo_path": "hs_logos/rutgers-prep-nj-cacbf382-d2ce-481e-8f8a-cca8d9377051.png",
+    "ranks": {
+      "2023-24": 34
+    },
+    "records": {
+      "2023-24": "24-5"
+    },
+    "key_wins": {
+      "2023-24": "Non Public B New Jesery State Runner-Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:33.380493+00",
+    "updated_at": "2025-11-07 23:49:33.380493+00"
+  },
+  {
+    "id": 35,
+    "school": "Hazel Green (AL)",
+    "logo_path": "hs_logos/hazel-green-al-f3a91b35-be7f-4f3b-abe1-a7d34082552f.jpg",
+    "ranks": {
+      "2023-24": 35
+    },
+    "records": {
+      "2023-24": "30-4"
+    },
+    "key_wins": {
+      "2023-24": "6A AHSAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:33.935227+00",
+    "updated_at": "2025-11-07 23:49:33.935227+00"
+  },
+  {
+    "id": 36,
+    "school": "Hopkins (MN)",
+    "logo_path": "hs_logos/hopkins-mn-ee94f1cf-afec-4dda-8bb8-2db2b42f3994.jpg",
+    "ranks": {
+      "2023-24": 36
+    },
+    "records": {
+      "2023-24": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "4A MSHAL State Runner-Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:34.509401+00",
+    "updated_at": "2025-11-07 23:49:34.509401+00"
+  },
+  {
+    "id": 37,
+    "school": "Ontario Christian (CA)",
+    "logo_path": "hs_logos/ontario-christian-ca-345255d8-1dcc-4aea-95b4-571648438a9d.png",
+    "ranks": {
+      "2023-24": 37,
+      "2024-25": 8
+    },
+    "records": {
+      "2023-24": "28-5",
+      "2024-25": "30-2"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open Regional Semifinals",
+      "2024-25": "CIF Open State Regional Finals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:35.017327+00",
+    "updated_at": "2025-11-07 23:49:35.017327+00"
+  },
+  {
+    "id": 38,
+    "school": "Clark (TX)",
+    "logo_path": "hs_logos/clark-tx-7bed9cd9-4a2f-4065-82fb-40858039ba1b.png",
+    "ranks": {
+      "2023-24": 38
+    },
+    "records": {
+      "2023-24": "33-3"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Elite 8"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:35.558696+00",
+    "updated_at": "2025-11-07 23:49:35.558696+00"
+  },
+  {
+    "id": 39,
+    "school": "DME Academy (FL)",
+    "logo_path": "hs_logos/dme-academy-fl-c62ac67d-4d36-4e85-a089-3b7da2fa238e.jpg",
+    "ranks": {
+      "2023-24": 39,
+      "2024-25": 33
+    },
+    "records": {
+      "2023-24": "20-7",
+      "2024-25": "27-9"
+    },
+    "key_wins": {
+      "2023-24": "Montverde Academy"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:36.084665+00",
+    "updated_at": "2025-11-07 23:49:36.084665+00"
+  },
+  {
+    "id": 40,
+    "school": "Bethany (OK)",
+    "logo_path": "hs_logos/bethany-ok-742fa425-ae06-4f12-906c-f3b053b120aa.jpg",
+    "ranks": {
+      "2023-24": 40
+    },
+    "records": {
+      "2023-24": "29-4"
+    },
+    "key_wins": {
+      "2023-24": "4A OSSAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:36.604674+00",
+    "updated_at": "2025-11-07 23:49:36.604674+00"
+  },
+  {
+    "id": 41,
+    "school": "Lone Peak (UT)",
+    "logo_path": "hs_logos/lone-peak-ut-d90931cb-7720-4426-bdc9-dab96027d6f1.png",
+    "ranks": {
+      "2023-24": 41
+    },
+    "records": {
+      "2023-24": "19-6"
+    },
+    "key_wins": {
+      "2023-24": "6A Utah State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:37.149466+00",
+    "updated_at": "2025-11-07 23:49:37.149466+00"
+  },
+  {
+    "id": 42,
+    "school": "Xavier College Prep (AZ)",
+    "logo_path": "hs_logos/xavier-college-prep-az-2e728afe-2890-4b34-8b68-8e9323bfedc6.png",
+    "ranks": {
+      "2023-24": 42
+    },
+    "records": {
+      "2023-24": "26-4"
+    },
+    "key_wins": {
+      "2023-24": "Arizona Open State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:37.703923+00",
+    "updated_at": "2025-11-07 23:49:37.703923+00"
+  },
+  {
+    "id": 43,
+    "school": "Brennan (TX)",
+    "logo_path": "hs_logos/brennan-tx-9be4fe90-3ce2-4555-973e-b9da2d3071ba.png",
+    "ranks": {
+      "2023-24": 43
+    },
+    "records": {
+      "2023-24": "32-4"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:38.2247+00",
+    "updated_at": "2025-11-07 23:49:38.2247+00"
+  },
+  {
+    "id": 44,
+    "school": "Mater Dei (CA)",
+    "logo_path": "hs_logos/mater-dei-ca-67484adf-6939-4703-bc3e-51a1378a3e7d.png",
+    "ranks": {
+      "2023-24": 44,
+      "2024-25": 13
+    },
+    "records": {
+      "2023-24": "25-8",
+      "2024-25": "29-5"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open Regional Semifinals",
+      "2024-25": "CIF Open State Regional Semifinals, The Throne Eite 8"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:38.782766+00",
+    "updated_at": "2025-11-07 23:49:38.782766+00"
+  },
+  {
+    "id": 45,
+    "school": "Wesleyan (GA)",
+    "logo_path": "hs_logos/wesleyan-ga-adc991d6-3c7d-4798-8624-d1285a13bcef.jpg",
+    "ranks": {
+      "2023-24": 45
+    },
+    "records": {
+      "2023-24": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "3A GHSA State Runner-Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:39.301008+00",
+    "updated_at": "2025-11-07 23:49:39.301008+00"
+  },
+  {
+    "id": 46,
+    "school": "Sage Hill (CA)",
+    "logo_path": "hs_logos/sage-hill-ca-5a54fc4d-7d50-40e9-8683-bbbb81df00c6.jpg",
+    "ranks": {
+      "2023-24": 46
+    },
+    "records": {
+      "2023-24": "25-5"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open Round 1 (Top 12)"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:39.819845+00",
+    "updated_at": "2025-11-07 23:49:39.819845+00"
+  },
+  {
+    "id": 47,
+    "school": "McDonogh (MD)",
+    "logo_path": "hs_logos/mcdonogh-md-f613797f-0f32-47cd-bcf0-e710c77fecb5.png",
+    "ranks": {
+      "2023-24": 47
+    },
+    "records": {
+      "2023-24": "25-4"
+    },
+    "key_wins": {
+      "2023-24": "2A MPSSAA Regional Finals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:40.369687+00",
+    "updated_at": "2025-11-07 23:49:40.369687+00"
+  },
+  {
+    "id": 48,
+    "school": "Pickerington Central (OH)",
+    "logo_path": "hs_logos/pickerington-central-oh-d7032faa-bb38-4e43-ac3b-40ee374e7c19.jpg",
+    "ranks": {
+      "2023-24": 48,
+      "2024-25": 66
+    },
+    "records": {
+      "2023-24": "25-4",
+      "2024-25": "25-3"
+    },
+    "key_wins": {
+      "2023-24": "Division I OHSAA State Semifinals",
+      "2024-25": "OHSAA D1 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:40.903111+00",
+    "updated_at": "2025-11-07 23:49:40.903111+00"
+  },
+  {
+    "id": 49,
+    "school": "Winston Salem Christian Nat'l (NC)",
+    "logo_path": "hs_logos/winston-salem-christian-natl-nc-ddb971d4-b1b0-4b0b-b8bd-3660e71a245c.jpg",
+    "ranks": {
+      "2023-24": 49,
+      "2024-25": 14
+    },
+    "records": {
+      "2023-24": "31-7",
+      "2024-25": "30-4"
+    },
+    "key_wins": {
+      "2023-24": "Westtown",
+      "2024-25": "IE Prep National Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:41.45358+00",
+    "updated_at": "2025-11-07 23:49:41.45358+00"
+  },
+  {
+    "id": 50,
+    "school": "Bishop Ireton (VA)",
+    "logo_path": "hs_logos/bishop-ireton-va-7f79dc88-aab2-4c2c-af8e-d91bc9e53de1.jpg",
+    "ranks": {
+      "2023-24": 50,
+      "2024-25": 7
+    },
+    "records": {
+      "2023-24": "24-10",
+      "2024-25": "31-6"
+    },
+    "key_wins": {
+      "2023-24": "D1 VISAA State Champions",
+      "2024-25": "VISAA D1 State Champion, The Throne National Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:41.992489+00",
+    "updated_at": "2025-11-07 23:49:41.992489+00"
+  },
+  {
+    "id": 51,
+    "school": "Faith Family Academy (TX)",
+    "logo_path": "hs_logos/faith-family-academy-tx-65b8965b-36a2-4093-bd97-2f25363efb55.jpg",
+    "ranks": {
+      "2024-25": 16
+    },
+    "records": {
+      "2024-25": "15-7"
+    },
+    "key_wins": {
+      "2024-25": "Chipotle National Semifinal"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:42.646293+00",
+    "updated_at": "2025-11-07 23:49:42.646293+00"
+  },
+  {
+    "id": 52,
+    "school": "Fort Worth Boswell (TX)",
+    "logo_path": "hs_logos/fort-worth-boswell-tx-593c0283-288c-40b8-9c7c-a0d0f92a47c9.jpg",
+    "ranks": {
+      "2024-25": 17
+    },
+    "records": {
+      "2024-25": "39-2"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 6A Division 2 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:43.191238+00",
+    "updated_at": "2025-11-07 23:49:43.191238+00"
+  },
+  {
+    "id": 53,
+    "school": "Holy Innocents Episcopal (GA)",
+    "logo_path": "hs_logos/holy-innocents-episcopal-ga-5a634ad4-27ce-4cff-ac4d-d7dcb9f948a3.jpg",
+    "ranks": {
+      "2024-25": 18
+    },
+    "records": {
+      "2024-25": "25-5"
+    },
+    "key_wins": {
+      "2024-25": "GHSA Class Private State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:43.721976+00",
+    "updated_at": "2025-11-07 23:49:43.721976+00"
+  },
+  {
+    "id": 54,
+    "school": "Cypress Springs (TX)",
+    "logo_path": "hs_logos/cypress-springs-tx-61bb21c7-ae31-4941-adbe-bffad1a0a8b6.png",
+    "ranks": {
+      "2024-25": 22
+    },
+    "records": {
+      "2024-25": "30-4"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 6A Region 2 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:44.443887+00",
+    "updated_at": "2025-11-07 23:49:44.443887+00"
+  },
+  {
+    "id": 55,
+    "school": "Monterey (TX)",
+    "logo_path": "hs_logos/monterey-tx-0879eecc-3ab2-43a2-b18b-6520fda38bbc.jpg",
+    "ranks": {
+      "2024-25": 23
+    },
+    "records": {
+      "2024-25": "36-5"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 5A Division 2 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:45.092177+00",
+    "updated_at": "2025-11-07 23:49:45.092177+00"
+  },
+  {
+    "id": 56,
+    "school": "Bullis School (MD)",
+    "logo_path": "hs_logos/bullis-school-md-7181905b-392c-4f44-851f-0be7676b81ec.png",
+    "ranks": {
+      "2024-25": 26
+    },
+    "records": {
+      "2024-25": "24-8"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:45.757975+00",
+    "updated_at": "2025-11-07 23:49:45.757975+00"
+  },
+  {
+    "id": 57,
+    "school": "River Ridge (GA)",
+    "logo_path": "hs_logos/river-ridge-ga-88919e5d-d2fc-431f-b56b-2032b1132eee.webp",
+    "ranks": {
+      "2024-25": 27
+    },
+    "records": {
+      "2024-25": "31-1"
+    },
+    "key_wins": {
+      "2024-25": "GHSA 5A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:46.556225+00",
+    "updated_at": "2025-11-07 23:49:46.556225+00"
+  },
+  {
+    "id": 58,
+    "school": "Langston Hughes (GA)",
+    "logo_path": "hs_logos/langston-hughes-ga-9f29c96f-b7bd-4792-a8e9-8cba21b7051f.png",
+    "ranks": {
+      "2024-25": 28
+    },
+    "records": {
+      "2024-25": "29-3"
+    },
+    "key_wins": {
+      "2024-25": "GHSA 5A State Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:47.211311+00",
+    "updated_at": "2025-11-07 23:49:47.211311+00"
+  },
+  {
+    "id": 59,
+    "school": "Puntnam City North (OK)",
+    "logo_path": "hs_logos/puntnam-city-north-ok-c5c30404-36a6-4c9b-a60e-f3b01411c52e.jpg",
+    "ranks": {
+      "2024-25": 29
+    },
+    "records": {
+      "2024-25": "29-1"
+    },
+    "key_wins": {
+      "2024-25": "OSSAA 6A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:47.766464+00",
+    "updated_at": "2025-11-07 23:49:47.766464+00"
+  },
+  {
+    "id": 60,
+    "school": "PHH Prep Nat'l (AZ)",
+    "logo_path": "hs_logos/phh-prep-natl-az-7d26d81a-e17b-4f30-a49d-aa117dffc8fa.jpg",
+    "ranks": {
+      "2024-25": 30
+    },
+    "records": {
+      "2024-25": "17-7"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:48.311045+00",
+    "updated_at": "2025-11-07 23:49:48.311045+00"
+  },
+  {
+    "id": 61,
+    "school": "Grandview Prep (FL)",
+    "logo_path": "hs_logos/grandview-prep-fl-d76fafa2-4392-43d5-9341-1c0e19aa7b57.jpg",
+    "ranks": {
+      "2024-25": 31
+    },
+    "records": {
+      "2024-25": "26-4"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:48.847074+00",
+    "updated_at": "2025-11-07 23:49:48.847074+00"
+  },
+  {
+    "id": 62,
+    "school": "Cardinal Mooney (FL)",
+    "logo_path": "hs_logos/cardinal-mooney-fl-392b65ef-1a0c-47fc-a040-e5bd17070bc8.jpg",
+    "ranks": {
+      "2024-25": 32
+    },
+    "records": {
+      "2024-25": "24-9"
+    },
+    "key_wins": {
+      "2024-25": "FHSAA 3A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:49.385843+00",
+    "updated_at": "2025-11-07 23:49:49.385843+00"
+  },
+  {
+    "id": 63,
+    "school": "Grandview (CO)",
+    "logo_path": "hs_logos/grandview-co-8d2b529d-5245-4a38-885e-fc6d7eb27a40.png",
+    "ranks": {
+      "2024-25": 34
+    },
+    "records": {
+      "2024-25": "25-3"
+    },
+    "key_wins": {
+      "2024-25": "CHSAA 6A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:49.929624+00",
+    "updated_at": "2025-11-07 23:49:49.929624+00"
+  },
+  {
+    "id": 128,
+    "school": "Palm Bay, FL",
+    "logo_path": null,
+    "ranks": {},
+    "records": {},
+    "key_wins": {},
+    "source_urls": null,
+    "created_at": "2025-11-07 23:52:24.886955+00",
+    "updated_at": "2025-11-07 23:52:24.886955+00"
+  },
+  {
+    "id": 64,
+    "school": "Central Pointe Christian Nat'l (FL)",
+    "logo_path": "hs_logos/central-pointe-christian-natl-fl-db14e788-a492-448a-8701-da8fbdecdb2d.jpg",
+    "ranks": {
+      "2024-25": 35
+    },
+    "records": {
+      "2024-25": "22-7"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:50.466845+00",
+    "updated_at": "2025-11-07 23:49:50.466845+00"
+  },
+  {
+    "id": 65,
+    "school": "Dallas Lincoln (TX)",
+    "logo_path": "hs_logos/dallas-lincoln-tx-4ad9d4cb-49fb-4b15-af2a-fedfb0424551.jpg",
+    "ranks": {
+      "2024-25": 36
+    },
+    "records": {
+      "2024-25": "39-2"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 4A D2 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:50.996178+00",
+    "updated_at": "2025-11-07 23:49:50.996178+00"
+  },
+  {
+    "id": 66,
+    "school": "Legion Prep Acadmey (TX)",
+    "logo_path": "hs_logos/legion-prep-acadmey-tx-80aa4275-1b4d-473c-b50e-366248aa4b01.jpg",
+    "ranks": {
+      "2024-25": 37
+    },
+    "records": {
+      "2024-25": "19-10"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:51.544033+00",
+    "updated_at": "2025-11-07 23:49:51.544033+00"
+  },
+  {
+    "id": 67,
+    "school": "Cedar Hill (TX)",
+    "logo_path": "hs_logos/cedar-hill-tx-154a91ce-2928-4564-84e3-f90c98fc5e7b.png",
+    "ranks": {
+      "2024-25": 38
+    },
+    "records": {
+      "2024-25": "29-9"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 6A D1 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:52.05732+00",
+    "updated_at": "2025-11-07 23:49:52.05732+00"
+  },
+  {
+    "id": 68,
+    "school": "Lake Norman (NC)",
+    "logo_path": "hs_logos/lake-norman-nc-222d8655-8cc8-48cc-98bc-0b462c4280b1.jpg",
+    "ranks": {
+      "2024-25": 39
+    },
+    "records": {
+      "2024-25": "30-1"
+    },
+    "key_wins": {
+      "2024-25": "NCHSAA 4A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:52.57784+00",
+    "updated_at": "2025-11-07 23:49:52.57784+00"
+  },
+  {
+    "id": 69,
+    "school": "Fort Bend Hightower (TX)",
+    "logo_path": "hs_logos/fort-bend-hightower-tx-e0449473-c387-4e91-a4b8-8483dd9814d9.jpg",
+    "ranks": {
+      "2024-25": 40
+    },
+    "records": {
+      "2024-25": "34-6"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 6A D2 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:53.117233+00",
+    "updated_at": "2025-11-07 23:49:53.117233+00"
+  },
+  {
+    "id": 70,
+    "school": "Denton Ryan (TX)",
+    "logo_path": "hs_logos/denton-ryan-tx-6c508fdb-8af6-403e-b0ef-9dd24912c700.jpg",
+    "ranks": {
+      "2024-25": 42
+    },
+    "records": {
+      "2024-25": "32-7"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 5A D1 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:53.63353+00",
+    "updated_at": "2025-11-07 23:49:53.63353+00"
+  },
+  {
+    "id": 71,
+    "school": "San Antonio Wagner (TX)",
+    "logo_path": "hs_logos/san-antonio-wagner-tx-f3330038-594f-41d6-b50c-08ea74eb94f8.jpg",
+    "ranks": {
+      "2024-25": 43
+    },
+    "records": {
+      "2024-25": "34-3"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 5A D1 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:54.160993+00",
+    "updated_at": "2025-11-07 23:49:54.160993+00"
+  },
+  {
+    "id": 72,
+    "school": "Grind Prep (OK)",
+    "logo_path": "hs_logos/grind-prep-ok-3c3b40c4-8026-4029-bc77-50767fc095dc.png",
+    "ranks": {
+      "2024-25": 44
+    },
+    "records": {
+      "2024-25": "19-11"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:54.740177+00",
+    "updated_at": "2025-11-07 23:49:54.740177+00"
+  },
+  {
+    "id": 73,
+    "school": "Liberty Hill (TX)",
+    "logo_path": "hs_logos/liberty-hill-tx-3c6aa1ab-b77d-45bb-90ba-13b1f210d158.jpg",
+    "ranks": {
+      "2024-25": 45
+    },
+    "records": {
+      "2024-25": "36-5"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 5A D2 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:55.272155+00",
+    "updated_at": "2025-11-07 23:49:55.272155+00"
+  },
+  {
+    "id": 74,
+    "school": "Winton Woods (OH)",
+    "logo_path": "hs_logos/winton-woods-oh-795ec5e2-20d6-4181-8d3e-7d1ec78ba11b.png",
+    "ranks": {
+      "2024-25": 47
+    },
+    "records": {
+      "2024-25": "27-0"
+    },
+    "key_wins": {
+      "2024-25": "OHSAA Dll State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:55.796638+00",
+    "updated_at": "2025-11-07 23:49:55.796638+00"
+  },
+  {
+    "id": 75,
+    "school": "Elizabeth Seton (MD)",
+    "logo_path": "hs_logos/elizabeth-seton-md-449346bf-0743-431a-8659-f617cd443008.png",
+    "ranks": {
+      "2024-25": 48
+    },
+    "records": {
+      "2024-25": "20-10"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:56.319069+00",
+    "updated_at": "2025-11-07 23:49:56.319069+00"
+  },
+  {
+    "id": 76,
+    "school": "Hamilton Southeastern (IN)",
+    "logo_path": "hs_logos/hamilton-southeastern-in-3afd590b-21e6-46f5-93f5-247370add59f.png",
+    "ranks": {
+      "2024-25": 49
+    },
+    "records": {
+      "2024-25": "27-1"
+    },
+    "key_wins": {
+      "2024-25": "IHSAA 4A State Semifinal"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:56.870979+00",
+    "updated_at": "2025-11-07 23:49:56.870979+00"
+  },
+  {
+    "id": 77,
+    "school": "Decatur (TX)",
+    "logo_path": "hs_logos/decatur-tx-bf1b7dcf-ead7-4d6c-bc43-c75a70d1270d.jpg",
+    "ranks": {
+      "2024-25": 50
+    },
+    "records": {
+      "2024-25": "36-2"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 4A D1 State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:57.416965+00",
+    "updated_at": "2025-11-07 23:49:57.416965+00"
+  },
+  {
+    "id": 78,
+    "school": "Christ the King (NY)",
+    "logo_path": "hs_logos/christ-the-king-ny-de24c8cd-8e4e-4fb5-8b1c-30372b914da8.jpg",
+    "ranks": {
+      "2024-25": 51
+    },
+    "records": {
+      "2024-25": "25-6"
+    },
+    "key_wins": {
+      "2024-25": "CHSAA City Champions, CHSAA Brooklyn/Queens Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:57.941682+00",
+    "updated_at": "2025-11-07 23:49:57.941682+00"
+  },
+  {
+    "id": 79,
+    "school": "Cuero (TX)",
+    "logo_path": "hs_logos/cuero-tx-ea9e59eb-0879-4fad-8892-27d02b569e75.png",
+    "ranks": {
+      "2024-25": 52
+    },
+    "records": {
+      "2024-25": "33-7"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 4A D2 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:58.461713+00",
+    "updated_at": "2025-11-07 23:49:58.461713+00"
+  },
+  {
+    "id": 80,
+    "school": "Tualatin (OR)",
+    "logo_path": "hs_logos/tualatin-or-7c97d8cd-6699-472f-a38e-aea0eda5cea1.png",
+    "ranks": {
+      "2024-25": 53
+    },
+    "records": {
+      "2024-25": "26-2"
+    },
+    "key_wins": {
+      "2024-25": "OSAA 6A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:58.991047+00",
+    "updated_at": "2025-11-07 23:49:58.991047+00"
+  },
+  {
+    "id": 81,
+    "school": "Waco La Vega (TX)",
+    "logo_path": "hs_logos/waco-la-vega-tx-71b48c3b-8acf-41ad-9ddf-a482a0a1fc57.png",
+    "ranks": {
+      "2024-25": 54
+    },
+    "records": {
+      "2024-25": "33-7"
+    },
+    "key_wins": {
+      "2024-25": "Texas UIL 4A D1 Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:59.534205+00",
+    "updated_at": "2025-11-07 23:49:59.534205+00"
+  },
+  {
+    "id": 82,
+    "school": "S3 Academy (VA)",
+    "logo_path": "hs_logos/s3-academy-va-c0e6ce98-6693-4755-b1cb-55825f91b594.png",
+    "ranks": {
+      "2024-25": 55
+    },
+    "records": {
+      "2024-25": "22-5"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:00.065759+00",
+    "updated_at": "2025-11-07 23:50:00.065759+00"
+  },
+  {
+    "id": 83,
+    "school": "Example Academy Nat'l (IL)",
+    "logo_path": "hs_logos/example-academy-natl-il-b5fa4643-8216-4a4b-af29-c7e962d12cbe.jpg",
+    "ranks": {
+      "2024-25": 56
+    },
+    "records": {
+      "2024-25": "17-9"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:00.640566+00",
+    "updated_at": "2025-11-07 23:50:00.640566+00"
+  },
+  {
+    "id": 84,
+    "school": "Kenwood Academy (IL)",
+    "logo_path": "hs_logos/kenwood-academy-il-b0ba44f3-843a-4cf2-9fac-3cd1857d0a51.png",
+    "ranks": {
+      "2024-25": 57
+    },
+    "records": {
+      "2024-25": "35-3"
+    },
+    "key_wins": {
+      "2024-25": "IHSA 4A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:01.157419+00",
+    "updated_at": "2025-11-07 23:50:01.157419+00"
+  },
+  {
+    "id": 85,
+    "school": "Clackmas (OR)",
+    "logo_path": "hs_logos/clackmas-or-7da9fd80-ab41-48ab-8a03-d4b159b481c5.png",
+    "ranks": {
+      "2024-25": 58
+    },
+    "records": {
+      "2024-25": "27-3"
+    },
+    "key_wins": {
+      "2024-25": "OSAA 6A State Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:01.89487+00",
+    "updated_at": "2025-11-07 23:50:01.89487+00"
+  },
+  {
+    "id": 86,
+    "school": "Whitney Young (IL)",
+    "logo_path": "hs_logos/whitney-young-il-0c93423f-557f-4c59-b366-b182f25d42d6.png",
+    "ranks": {
+      "2024-25": 59
+    },
+    "records": {
+      "2024-25": "25-9"
+    },
+    "key_wins": {
+      "2024-25": "IHSA City Title Champions"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:02.448166+00",
+    "updated_at": "2025-11-07 23:50:02.448166+00"
+  },
+  {
+    "id": 87,
+    "school": "St. John's College (DC)",
+    "logo_path": "hs_logos/st-johns-college-dc-12fc89e7-b6b6-4c9a-8eba-d62a01324f02.png",
+    "ranks": {
+      "2024-25": 60
+    },
+    "records": {
+      "2024-25": "26-6"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:02.97803+00",
+    "updated_at": "2025-11-07 23:50:02.97803+00"
+  },
+  {
+    "id": 88,
+    "school": "Sacred Heart (KY)",
+    "logo_path": "hs_logos/sacred-heart-ky-912e951d-60e5-4a50-93fb-fd334bc915ff.jpg",
+    "ranks": {
+      "2024-25": 61
+    },
+    "records": {
+      "2024-25": "36-3"
+    },
+    "key_wins": {
+      "2024-25": "KHSAA State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:03.497363+00",
+    "updated_at": "2025-11-07 23:50:03.497363+00"
+  },
+  {
+    "id": 129,
+    "school": "Bishop Ireton, VA",
+    "logo_path": null,
+    "ranks": {},
+    "records": {},
+    "key_wins": {},
+    "source_urls": null,
+    "created_at": "2025-11-07 23:52:28.750647+00",
+    "updated_at": "2025-11-07 23:52:28.750647+00"
+  },
+  {
+    "id": 89,
+    "school": "Palm Bay (FL)",
+    "logo_path": "hs_logos/palm-bay-fl-c03878f4-55b4-4849-9134-1e7a4a044b72.png",
+    "ranks": {
+      "2024-25": 62
+    },
+    "records": {
+      "2024-25": "25-7"
+    },
+    "key_wins": {
+      "2024-25": "FHSAA 4A State Champion, The Throne Elite 8"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:04.149785+00",
+    "updated_at": "2025-11-07 23:50:04.149785+00"
+  },
+  {
+    "id": 90,
+    "school": "Princess Anne (VA)",
+    "logo_path": "hs_logos/princess-anne-va-91065485-a03d-4947-a80a-c0cc126636d3.jpg",
+    "ranks": {
+      "2024-25": 63
+    },
+    "records": {
+      "2024-25": "28-0"
+    },
+    "key_wins": {
+      "2024-25": "VHSL 5A State Champion, The Throne Elite 8"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:04.725243+00",
+    "updated_at": "2025-11-07 23:50:04.725243+00"
+  },
+  {
+    "id": 91,
+    "school": "Miami Country Day (FL)",
+    "logo_path": "hs_logos/miami-country-day-fl-b1fa3807-5b7e-4a35-ad4b-c251980ae513.png",
+    "ranks": {
+      "2024-25": 65
+    },
+    "records": {
+      "2024-25": "20-11"
+    },
+    "key_wins": {
+      "2024-25": "FHSAA 2A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:05.826652+00",
+    "updated_at": "2025-11-07 23:50:05.826652+00"
+  },
+  {
+    "id": 92,
+    "school": "Paul VI (NJ)",
+    "logo_path": "hs_logos/paul-vi-nj-c5e18cd3-bd70-4c32-a1ea-2c0f7e4b737e.jpg",
+    "ranks": {
+      "2024-25": 67
+    },
+    "records": {
+      "2024-25": "27-1"
+    },
+    "key_wins": {
+      "2024-25": "South Jersey Non Public A Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:06.387362+00",
+    "updated_at": "2025-11-07 23:50:06.387362+00"
+  },
+  {
+    "id": 93,
+    "school": "Western Reserve Academy (OH)",
+    "logo_path": "hs_logos/western-reserve-academy-oh-efcc2e2a-8ccd-48c5-b4d3-5e449b8d142f.jpg",
+    "ranks": {
+      "2024-25": 68
+    },
+    "records": {
+      "2024-25": "19-11"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:06.929978+00",
+    "updated_at": "2025-11-07 23:50:06.929978+00"
+  },
+  {
+    "id": 94,
+    "school": "Centennial (NV)",
+    "logo_path": "hs_logos/centennial-nv-727a0b4f-80c3-4fd3-aeb3-ca619f1989df.jpg",
+    "ranks": {
+      "2024-25": 69
+    },
+    "records": {
+      "2024-25": "23-2"
+    },
+    "key_wins": {
+      "2024-25": "NIAA 5A State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:07.448981+00",
+    "updated_at": "2025-11-07 23:50:07.448981+00"
+  },
+  {
+    "id": 95,
+    "school": "Blair Academy (NJ)",
+    "logo_path": "hs_logos/blair-academy-nj-80c637ef-4b17-4c42-b677-6fed3ff22a1b.jpg",
+    "ranks": {
+      "2024-25": 70
+    },
+    "records": {
+      "2024-25": "21-4"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:08.002407+00",
+    "updated_at": "2025-11-07 23:50:08.002407+00"
+  },
+  {
+    "id": 96,
+    "school": "NC GBB Nat'l (NC)",
+    "logo_path": "hs_logos/nc-gbb-natl-nc-c0d2950c-7961-4e42-8a35-337f61f95ade.png",
+    "ranks": {
+      "2024-25": 71
+    },
+    "records": {
+      "2024-25": "14-9"
+    },
+    "key_wins": {},
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:08.540818+00",
+    "updated_at": "2025-11-07 23:50:08.540818+00"
+  }
+]

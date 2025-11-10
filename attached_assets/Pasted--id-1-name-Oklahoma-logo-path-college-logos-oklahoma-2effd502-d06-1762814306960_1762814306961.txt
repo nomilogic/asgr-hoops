@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1,
+    "name": "Oklahoma",
+    "logo_path": "college_logos/oklahoma-2effd502-d061-46bd-b37e-ab6956655bf8.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Oklahoma-Logo.jpg",
+    "created_at": "2025-11-07 23:51:15.582326+00",
+    "updated_at": "2025-11-07 23:51:15.582326+00"
+  },
+  {
+    "id": 2,
+    "name": "USC",
+    "logo_path": "college_logos/usc-94d60724-2ed2-4966-b2cd-9a0ff08ff974.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/usc.svg",
+    "created_at": "2025-11-07 23:51:19.497575+00",
+    "updated_at": "2025-11-07 23:51:19.497575+00"
+  },
+  {
+    "id": 3,
+    "name": "UCLA",
+    "logo_path": "college_logos/ucla-78480cfd-cd67-4997-9b41-de0904382044.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/uclalogo2.png",
+    "created_at": "2025-11-07 23:51:23.315415+00",
+    "updated_at": "2025-11-07 23:51:23.315415+00"
+  },
+  {
+    "id": 4,
+    "name": "Stanford",
+    "logo_path": "college_logos/stanford-18219f9f-aa69-4b53-a152-282aa238748b.webp",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Stanford-Logo.webp",
+    "created_at": "2025-11-07 23:51:27.172438+00",
+    "updated_at": "2025-11-07 23:51:27.172438+00"
+  },
+  {
+    "id": 5,
+    "name": "Cincinnati",
+    "logo_path": "college_logos/cincinnati-ac067a7e-a8f1-4262-8bcd-3de179b32dd3.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/Cincylogo.jpg",
+    "created_at": "2025-11-07 23:51:30.999106+00",
+    "updated_at": "2025-11-07 23:51:30.999106+00"
+  },
+  {
+    "id": 6,
+    "name": "LSU",
+    "logo_path": "college_logos/lsu-a9858125-342f-49df-a088-702943464d63.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/LSUlogo2.png",
+    "created_at": "2025-11-07 23:51:34.907848+00",
+    "updated_at": "2025-11-07 23:51:34.907848+00"
+  },
+  {
+    "id": 7,
+    "name": "South Carolina",
+    "logo_path": "college_logos/south-carolina-3b5515e2-ac80-4da6-a6d9-9f39bc2a7edd.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/south-carolina.png",
+    "created_at": "2025-11-07 23:51:39.037112+00",
+    "updated_at": "2025-11-07 23:51:39.037112+00"
+  },
+  {
+    "id": 8,
+    "name": "Texas",
+    "logo_path": "college_logos/texas-185f4e49-0078-4778-a24e-b9ca008cddb0.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/texas.png",
+    "created_at": "2025-11-07 23:51:42.902336+00",
+    "updated_at": "2025-11-07 23:51:42.902336+00"
+  },
+  {
+    "id": 9,
+    "name": "Mississippi State",
+    "logo_path": "college_logos/mississippi-state-eeffff26-b757-4973-999d-3a8f9804fc39.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Mississippi-State-Logo.jpg",
+    "created_at": "2025-11-07 23:51:53.061422+00",
+    "updated_at": "2025-11-07 23:51:53.061422+00"
+  },
+  {
+    "id": 10,
+    "name": "Washington",
+    "logo_path": "college_logos/washington-fe59e497-fa7b-43df-b4fe-702914d9464c.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/washington-u.png",
+    "created_at": "2025-11-07 23:51:56.84629+00",
+    "updated_at": "2025-11-07 23:51:56.84629+00"
+  },
+  {
+    "id": 11,
+    "name": "Kansas",
+    "logo_path": "college_logos/kansas-300cde81-95d8-402a-ba8e-e4761c853ca2.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/Kansaslogo.jpg",
+    "created_at": "2025-11-07 23:52:06.391023+00",
+    "updated_at": "2025-11-07 23:52:06.391023+00"
+  },
+  {
+    "id": 12,
+    "name": "Iowa",
+    "logo_path": "college_logos/iowa-38097ade-f903-4d30-aa08-cbb8d8cded7e.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Iowa-Logo.png",
+    "created_at": "2025-11-07 23:52:14.191421+00",
+    "updated_at": "2025-11-07 23:52:14.191421+00"
+  },
+  {
+    "id": 13,
+    "name": "UConn",
+    "logo_path": "college_logos/uconn-30e736dd-015b-44d5-af4a-d80ff33463d0.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/ucon-huskies.png",
+    "created_at": "2025-11-07 23:52:18.476312+00",
+    "updated_at": "2025-11-07 23:52:18.476312+00"
+  },
+  {
+    "id": 14,
+    "name": "North Carolina",
+    "logo_path": "college_logos/north-carolina-e665c670-7656-4c90-ad43-271cbac68cb0.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/unc.png",
+    "created_at": "2025-11-07 23:52:22.359448+00",
+    "updated_at": "2025-11-07 23:52:22.359448+00"
+  },
+  {
+    "id": 15,
+    "name": "Tennessee",
+    "logo_path": "college_logos/tennessee-673e98d8-36e9-4a91-8bfa-bdb1fc2fd7be.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Tennessee-Logo.png",
+    "created_at": "2025-11-07 23:52:26.34366+00",
+    "updated_at": "2025-11-07 23:52:26.34366+00"
+  },
+  {
+    "id": 16,
+    "name": "Illinois",
+    "logo_path": "college_logos/illinois-9725b47c-002b-49ce-a7d9-3cd6babf1156.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Illinois-Logo.png",
+    "created_at": "2025-11-07 23:52:33.008452+00",
+    "updated_at": "2025-11-07 23:52:33.008452+00"
+  },
+  {
+    "id": 17,
+    "name": "Georgia",
+    "logo_path": "college_logos/georgia-c6543285-32c8-489d-992d-786758680bd6.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Georgia-Logo.png",
+    "created_at": "2025-11-07 23:52:49.595+00",
+    "updated_at": "2025-11-07 23:52:49.595+00"
+  },
+  {
+    "id": 18,
+    "name": "Duke",
+    "logo_path": "college_logos/duke-50e11de2-ee66-484a-b003-73829dff208d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Duke-logo.png",
+    "created_at": "2025-11-07 23:52:56.38562+00",
+    "updated_at": "2025-11-07 23:52:56.38562+00"
+  },
+  {
+    "id": 19,
+    "name": "Harvard",
+    "logo_path": "college_logos/harvard-cf87570d-77ed-4b23-9dbf-e7e65a9b0964.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/HarvardLogo.png",
+    "created_at": "2025-11-07 23:53:06.372266+00",
+    "updated_at": "2025-11-07 23:53:06.372266+00"
+  },
+  {
+    "id": 20,
+    "name": "Notre Dame",
+    "logo_path": "college_logos/notre-dame-7e4078a8-8426-485f-bfb7-a82ef68e8311.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Notre_Dame.png",
+    "created_at": "2025-11-07 23:53:13.854246+00",
+    "updated_at": "2025-11-07 23:53:13.854246+00"
+  },
+  {
+    "id": 21,
+    "name": "NC State",
+    "logo_path": "college_logos/nc-state-67a67468-87e8-46ff-acf6-8eecff5d8777.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/nc.png",
+    "created_at": "2025-11-07 23:53:21.416898+00",
+    "updated_at": "2025-11-07 23:53:21.416898+00"
+  },
+  {
+    "id": 22,
+    "name": "Clemson",
+    "logo_path": "college_logos/clemson-bb0160d6-34d8-4806-9218-d9b13535de9b.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Clemson-Logo-PNG.png",
+    "created_at": "2025-11-07 23:53:24.973308+00",
+    "updated_at": "2025-11-07 23:53:24.973308+00"
+  },
+  {
+    "id": 23,
+    "name": "Florida",
+    "logo_path": "college_logos/florida-06a21387-8d00-428b-96fd-890bcdd19eb3.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Florida-Logo.png",
+    "created_at": "2025-11-07 23:53:29.790196+00",
+    "updated_at": "2025-11-07 23:53:29.790196+00"
+  },
+  {
+    "id": 24,
+    "name": "Kansas State",
+    "logo_path": "college_logos/kansas-state-193593f0-070a-473f-bded-cd621c390094.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/KansasStateLogo.jpg",
+    "created_at": "2025-11-07 23:53:33.407521+00",
+    "updated_at": "2025-11-07 23:53:33.407521+00"
+  },
+  {
+    "id": 25,
+    "name": "Michigan",
+    "logo_path": "college_logos/michigan-53d2a806-443c-4442-a92b-d1555dd65d7b.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Michigan-Logo-PNG-1.png",
+    "created_at": "2025-11-07 23:53:40.386877+00",
+    "updated_at": "2025-11-07 23:53:40.386877+00"
+  },
+  {
+    "id": 26,
+    "name": "Alabama",
+    "logo_path": "college_logos/alabama-2f09dc55-aed3-40cb-9fcd-cae967f29d26.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/alabama-athletics.png",
+    "created_at": "2025-11-07 23:53:50.114921+00",
+    "updated_at": "2025-11-07 23:53:50.114921+00"
+  },
+  {
+    "id": 27,
+    "name": "Indiana",
+    "logo_path": "college_logos/indiana-041eb778-f474-41e4-bf44-e9dd18966b11.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Indiana-Logo.jpg",
+    "created_at": "2025-11-07 23:53:53.740948+00",
+    "updated_at": "2025-11-07 23:53:53.740948+00"
+  },
+  {
+    "id": 28,
+    "name": "Ohio State",
+    "logo_path": "college_logos/ohio-state-bff485ab-af12-4f5b-9976-6cffa29ff455.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/ohio-state.png",
+    "created_at": "2025-11-07 23:53:57.682142+00",
+    "updated_at": "2025-11-07 23:53:57.682142+00"
+  },
+  {
+    "id": 29,
+    "name": "Kentucky",
+    "logo_path": "college_logos/kentucky-ea89d442-1752-4c92-b1d8-6db27c9e58cc.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Kentucky.png",
+    "created_at": "2025-11-07 23:54:01.495945+00",
+    "updated_at": "2025-11-07 23:54:01.495945+00"
+  },
+  {
+    "id": 30,
+    "name": "Purdue",
+    "logo_path": "college_logos/purdue-4b04329c-eb03-48b3-82f3-3a8ae40a103b.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Purdue-Logo.png",
+    "created_at": "2025-11-07 23:54:05.523081+00",
+    "updated_at": "2025-11-07 23:54:05.523081+00"
+  },
+  {
+    "id": 31,
+    "name": "Colorado",
+    "logo_path": "college_logos/colorado-da2362c6-6110-497f-bdb4-54c0bc549a8e.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Colorado-logo.png",
+    "created_at": "2025-11-07 23:54:10.146788+00",
+    "updated_at": "2025-11-07 23:54:10.146788+00"
+  },
+  {
+    "id": 32,
+    "name": "Oregon",
+    "logo_path": "college_logos/oregon-bca48c69-1928-409c-9574-0fb8d7ce0946.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Oregon-Logo.png",
+    "created_at": "2025-11-07 23:54:17.037309+00",
+    "updated_at": "2025-11-07 23:54:17.037309+00"
+  },
+  {
+    "id": 33,
+    "name": "MIAMI FL",
+    "logo_path": "college_logos/miami-fl-91c8fa93-e378-4474-9197-9765e044b135.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Miami-FL-Logo.jpg",
+    "created_at": "2025-11-07 23:54:20.953751+00",
+    "updated_at": "2025-11-07 23:54:20.953751+00"
+  },
+  {
+    "id": 34,
+    "name": "Utah",
+    "logo_path": "college_logos/utah-b91684b0-dca5-48e5-83ec-a0d662556d7d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Utah.png",
+    "created_at": "2025-11-07 23:54:27.998395+00",
+    "updated_at": "2025-11-07 23:54:27.998395+00"
+  },
+  {
+    "id": 35,
+    "name": "Oklahoma State",
+    "logo_path": "college_logos/oklahoma-state-dfa91b4e-a9ce-4106-b4d6-28abe95a89be.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/OKStateLogo.png",
+    "created_at": "2025-11-07 23:54:37.782208+00",
+    "updated_at": "2025-11-07 23:54:37.782208+00"
+  },
+  {
+    "id": 36,
+    "name": "East Carolina",
+    "logo_path": "college_logos/east-carolina-c9cfc9e7-7511-4d6a-9458-5e95fe4c056e.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/EastCarolinalogo.png",
+    "created_at": "2025-11-07 23:54:41.863277+00",
+    "updated_at": "2025-11-07 23:54:41.863277+00"
+  },
+  {
+    "id": 37,
+    "name": "MISSISSIPPI",
+    "logo_path": "college_logos/mississippi-dfbce117-719d-4444-b368-ff08e7f1abc1.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Ole-Miss-logo.png",
+    "created_at": "2025-11-07 23:54:49.225504+00",
+    "updated_at": "2025-11-07 23:54:49.225504+00"
+  },
+  {
+    "id": 38,
+    "name": "Boston College",
+    "logo_path": "college_logos/boston-college-d3926e2c-9c54-47d2-8a22-44bc054b4f78.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Boston-College-Logo.png",
+    "created_at": "2025-11-07 23:54:53.266142+00",
+    "updated_at": "2025-11-07 23:54:53.266142+00"
+  },
+  {
+    "id": 39,
+    "name": "California",
+    "logo_path": "college_logos/california-a466fef6-c683-4f97-999d-a90e7788ff92.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Cal-Logo.png",
+    "created_at": "2025-11-07 23:55:08.315983+00",
+    "updated_at": "2025-11-07 23:55:08.315983+00"
+  },
+  {
+    "id": 40,
+    "name": "Vanderbilt",
+    "logo_path": "college_logos/vanderbilt-4540275e-831f-4778-81dc-8632962ace83.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Vanderbilt-Logo-PNG.png",
+    "created_at": "2025-11-07 23:55:12.261497+00",
+    "updated_at": "2025-11-07 23:55:12.261497+00"
+  },
+  {
+    "id": 41,
+    "name": "Iowa State",
+    "logo_path": "college_logos/iowa-state-802ae0f0-5b34-4858-a7d4-bfe7689bc550.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Iowa-State-Logo.png",
+    "created_at": "2025-11-07 23:55:19.564585+00",
+    "updated_at": "2025-11-07 23:55:19.564585+00"
+  },
+  {
+    "id": 42,
+    "name": "Baylor",
+    "logo_path": "college_logos/baylor-6505eb00-d28d-4f63-9b1a-62abce209f2d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Baylor-Logo.png",
+    "created_at": "2025-11-07 23:55:32.948695+00",
+    "updated_at": "2025-11-07 23:55:32.948695+00"
+  },
+  {
+    "id": 43,
+    "name": "Louisville",
+    "logo_path": "college_logos/louisville-fa35f428-bc2b-4462-a6c2-47fdbf954fb3.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Louisville-Logo.png",
+    "created_at": "2025-11-07 23:55:40.393612+00",
+    "updated_at": "2025-11-07 23:55:40.393612+00"
+  },
+  {
+    "id": 44,
+    "name": "Virginia Tech",
+    "logo_path": "college_logos/virginia-tech-8e7ee39e-1ba1-4109-b779-705f1d5db56b.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/VA-Tech-Logo.svg",
+    "created_at": "2025-11-07 23:55:50.113854+00",
+    "updated_at": "2025-11-07 23:55:50.113854+00"
+  },
+  {
+    "id": 45,
+    "name": "Maryland",
+    "logo_path": "college_logos/maryland-293b7325-20fb-4697-9e69-7e2795acfdf0.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Maryland-logo.png",
+    "created_at": "2025-11-07 23:55:56.940325+00",
+    "updated_at": "2025-11-07 23:55:56.940325+00"
+  },
+  {
+    "id": 46,
+    "name": "Michigan State",
+    "logo_path": "college_logos/michigan-state-192e2872-cc74-4158-aa37-1d1128ed4c5f.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/michiganstatelogo.png",
+    "created_at": "2025-11-07 23:56:22.042208+00",
+    "updated_at": "2025-11-07 23:56:22.042208+00"
+  },
+  {
+    "id": 47,
+    "name": "Minnesota",
+    "logo_path": "college_logos/minnesota-bb9a133b-ba9b-4ca0-a853-513da9bdbc0d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Minnesota-Logo.png",
+    "created_at": "2025-11-07 23:56:28.886473+00",
+    "updated_at": "2025-11-07 23:56:28.886473+00"
+  },
+  {
+    "id": 48,
+    "name": "West Virginia",
+    "logo_path": "college_logos/west-virginia-a7de0eb1-4ca8-484d-bdce-f4c8250776ec.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/West-Virginia-Logo.png",
+    "created_at": "2025-11-07 23:56:44.721643+00",
+    "updated_at": "2025-11-07 23:56:44.721643+00"
+  },
+  {
+    "id": 49,
+    "name": "Georgia Tech",
+    "logo_path": "college_logos/georgia-tech-19c166cd-2769-404b-a293-beb08e362e62.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Georgia-Tech-logo.png",
+    "created_at": "2025-11-07 23:56:48.535849+00",
+    "updated_at": "2025-11-07 23:56:48.535849+00"
+  },
+  {
+    "id": 50,
+    "name": "SMU",
+    "logo_path": "college_logos/smu-39a21195-edeb-4895-825a-b60c8ed9c79b.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/SMULogo-1.png",
+    "created_at": "2025-11-07 23:56:54.987903+00",
+    "updated_at": "2025-11-07 23:56:54.987903+00"
+  },
+  {
+    "id": 51,
+    "name": "Pittsburgh",
+    "logo_path": "college_logos/pittsburgh-8ef96db1-5fca-4b7d-83f6-c3e3c6fdbb06.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/PittLogo.png",
+    "created_at": "2025-11-07 23:57:04.199625+00",
+    "updated_at": "2025-11-07 23:57:04.199625+00"
+  },
+  {
+    "id": 52,
+    "name": "Columbia",
+    "logo_path": "college_logos/columbia-e21fa130-2434-4814-aeed-a3c99093b622.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/ColumbiaLogo.jpg",
+    "created_at": "2025-11-07 23:57:08.025609+00",
+    "updated_at": "2025-11-07 23:57:08.025609+00"
+  },
+  {
+    "id": 53,
+    "name": "Providence",
+    "logo_path": "college_logos/providence-aea99439-0f78-4f38-8cbb-909730026514.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/07/ProvidenceLogo.jpg",
+    "created_at": "2025-11-07 23:57:12.363866+00",
+    "updated_at": "2025-11-07 23:57:12.363866+00"
+  },
+  {
+    "id": 54,
+    "name": "UCF",
+    "logo_path": "college_logos/ucf-9c1c2374-fd0d-4be1-ac95-deb8f3851ae3.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/04/UCFlogo.png",
+    "created_at": "2025-11-07 23:57:19.259391+00",
+    "updated_at": "2025-11-07 23:57:19.259391+00"
+  },
+  {
+    "id": 55,
+    "name": "Florida State",
+    "logo_path": "college_logos/florida-state-b227724b-ad08-4560-b83f-489403654bf4.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/07/FSUlogo.jpg",
+    "created_at": "2025-11-07 23:57:28.745775+00",
+    "updated_at": "2025-11-07 23:57:28.745775+00"
+  },
+  {
+    "id": 56,
+    "name": "Creighton",
+    "logo_path": "college_logos/creighton-12ba40fb-b67d-49cb-b836-a9bf48e55b73.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/CreightonLogo.png",
+    "created_at": "2025-11-07 23:57:32.577331+00",
+    "updated_at": "2025-11-07 23:57:32.577331+00"
+  },
+  {
+    "id": 57,
+    "name": "TCU",
+    "logo_path": "college_logos/tcu-15b8df91-9229-4cd6-b144-f2a9e9e92049.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/TCULogo2.jpg",
+    "created_at": "2025-11-07 23:57:36.392808+00",
+    "updated_at": "2025-11-07 23:57:36.392808+00"
+  },
+  {
+    "id": 58,
+    "name": "Syracuse",
+    "logo_path": "college_logos/syracuse-cafb9f67-10e9-4849-8979-61f6458f98dc.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Syracuse-Logo.png",
+    "created_at": "2025-11-07 23:57:46.322953+00",
+    "updated_at": "2025-11-07 23:57:46.322953+00"
+  },
+  {
+    "id": 59,
+    "name": "Marquette",
+    "logo_path": "college_logos/marquette-9835f482-9145-4992-86e5-4cf1bd68ea5a.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Marquette-Logo.png",
+    "created_at": "2025-11-07 23:57:51.330745+00",
+    "updated_at": "2025-11-07 23:57:51.330745+00"
+  },
+  {
+    "id": 60,
+    "name": "Nebraska",
+    "logo_path": "college_logos/nebraska-dee59609-762a-4c71-a5b7-10f9599b5613.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/nebraska.svg",
+    "created_at": "2025-11-07 23:57:55.076567+00",
+    "updated_at": "2025-11-07 23:57:55.076567+00"
+  },
+  {
+    "id": 61,
+    "name": "Penn State",
+    "logo_path": "college_logos/penn-state-8ceeb701-b8a2-4663-a592-b4a24f8e2083.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Penn-State-Logo.png",
+    "created_at": "2025-11-07 23:58:14.058549+00",
+    "updated_at": "2025-11-07 23:58:14.058549+00"
+  },
+  {
+    "id": 62,
+    "name": "Virginia",
+    "logo_path": "college_logos/virginia-419f13f6-49ed-469d-857a-b751b4ac96b3.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/Virginia-Logo.jpg",
+    "created_at": "2025-11-07 23:58:27.029253+00",
+    "updated_at": "2025-11-07 23:58:27.029253+00"
+  },
+  {
+    "id": 63,
+    "name": "Villanova",
+    "logo_path": "college_logos/villanova-6fa9c97f-7a16-4796-9bd3-c30741f0dab4.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/VillanovaLogo.png",
+    "created_at": "2025-11-07 23:58:30.630361+00",
+    "updated_at": "2025-11-07 23:58:30.630361+00"
+  },
+  {
+    "id": 64,
+    "name": "Rice",
+    "logo_path": "college_logos/rice-f365e29c-82fc-4f40-9d85-48ec93945e94.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/RiceLogo.png",
+    "created_at": "2025-11-07 23:58:37.465289+00",
+    "updated_at": "2025-11-07 23:58:37.465289+00"
+  },
+  {
+    "id": 65,
+    "name": "UAB",
+    "logo_path": "college_logos/uab-bb286067-df2b-4e4b-9d03-0b741c656ec5.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/UABLogo.png",
+    "created_at": "2025-11-07 23:58:50.352384+00",
+    "updated_at": "2025-11-07 23:58:50.352384+00"
+  },
+  {
+    "id": 66,
+    "name": "UCSB",
+    "logo_path": "college_logos/ucsb-ce8de943-708d-4bd2-a3f5-8ffa02f61ed4.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/ucsblogo.png",
+    "created_at": "2025-11-07 23:58:53.984886+00",
+    "updated_at": "2025-11-07 23:58:53.984886+00"
+  },
+  {
+    "id": 67,
+    "name": "New Orleans",
+    "logo_path": "college_logos/new-orleans-f9049178-acad-40b2-a5c1-ad158a2f38b5.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/NewOlogo.jpg",
+    "created_at": "2025-11-07 23:59:00.882569+00",
+    "updated_at": "2025-11-07 23:59:00.882569+00"
+  },
+  {
+    "id": 68,
+    "name": "Stony Brook",
+    "logo_path": "college_logos/stony-brook-8654ac46-5ed9-4a9d-b6a9-8be0e0351180.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/StonyBrookLogo.png",
+    "created_at": "2025-11-07 23:59:05.181454+00",
+    "updated_at": "2025-11-07 23:59:05.181454+00"
+  },
+  {
+    "id": 69,
+    "name": "BYU",
+    "logo_path": "college_logos/byu-5bcceb3a-6701-40c6-9b40-5feb7b8c9858.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/BYU-Logo.png",
+    "created_at": "2025-11-07 23:59:09.557072+00",
+    "updated_at": "2025-11-07 23:59:09.557072+00"
+  },
+  {
+    "id": 70,
+    "name": "Towson",
+    "logo_path": "college_logos/towson-2f200faa-ee63-416f-be8a-df3f2b8f5ff9.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2025/04/towsonLogo.png",
+    "created_at": "2025-11-07 23:59:13.255913+00",
+    "updated_at": "2025-11-07 23:59:13.255913+00"
+  },
+  {
+    "id": 71,
+    "name": "Boston University",
+    "logo_path": "college_logos/boston-university-d2b4d43a-0d8f-47f8-92de-775de8e8a353.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/Bostonlogo2.jpg",
+    "created_at": "2025-11-07 23:59:17.029654+00",
+    "updated_at": "2025-11-07 23:59:17.029654+00"
+  },
+  {
+    "id": 72,
+    "name": "Boise State",
+    "logo_path": "college_logos/boise-state-c00169a3-fb73-4090-ac2e-c6d0137345b4.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/BosieStateLogo.png",
+    "created_at": "2025-11-07 23:59:20.57225+00",
+    "updated_at": "2025-11-07 23:59:20.57225+00"
+  },
+  {
+    "id": 73,
+    "name": "Washington State",
+    "logo_path": "college_logos/washington-state-f0b86774-661f-4fc0-863d-c217ea254fb4.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/07/WashingtonStatelogo.png",
+    "created_at": "2025-11-07 23:59:24.43867+00",
+    "updated_at": "2025-11-07 23:59:24.43867+00"
+  },
+  {
+    "id": 74,
+    "name": "UT San Antonio",
+    "logo_path": "college_logos/ut-san-antonio-f3cbe37d-0729-42f5-8599-4703bd4f8138.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/utsalogo.jpg",
+    "created_at": "2025-11-07 23:59:39.142294+00",
+    "updated_at": "2025-11-07 23:59:39.142294+00"
+  },
+  {
+    "id": 75,
+    "name": "San Diego",
+    "logo_path": "college_logos/san-diego-6c8fb916-ae23-4c4d-91ac-b4c9dfe08a2d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/SanDiegoLogo.png",
+    "created_at": "2025-11-07 23:59:45.706839+00",
+    "updated_at": "2025-11-07 23:59:45.706839+00"
+  },
+  {
+    "id": 76,
+    "name": "St. John",
+    "logo_path": "college_logos/st-john-d8d91654-7ce2-4955-a045-111e1be8512c.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/StJohnsLogo.png",
+    "created_at": "2025-11-08 00:00:02.548508+00",
+    "updated_at": "2025-11-08 00:00:02.548508+00"
+  },
+  {
+    "id": 77,
+    "name": "Wake Forest",
+    "logo_path": "college_logos/wake-forest-bdf4ad87-37ab-4e04-8088-79190f0256a8.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/WFLogo-1.jpg",
+    "created_at": "2025-11-08 00:00:07.368411+00",
+    "updated_at": "2025-11-08 00:00:07.368411+00"
+  },
+  {
+    "id": 78,
+    "name": "George Washington",
+    "logo_path": "college_logos/george-washington-0e705938-0853-4243-b8b8-244ddfad7b97.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/08/GW2Logo.jpg",
+    "created_at": "2025-11-08 00:00:11.166791+00",
+    "updated_at": "2025-11-08 00:00:11.166791+00"
+  },
+  {
+    "id": 79,
+    "name": "UTEP",
+    "logo_path": "college_logos/utep-04ef3600-2213-497b-aa09-927d5f4c9b8d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/uteplogo.png",
+    "created_at": "2025-11-08 00:00:18.485586+00",
+    "updated_at": "2025-11-08 00:00:18.485586+00"
+  },
+  {
+    "id": 80,
+    "name": "Northwestern",
+    "logo_path": "college_logos/northwestern-ef5e3145-86f8-46cf-ba72-6d2489cf6466.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Northwestern-Logo.png",
+    "created_at": "2025-11-08 00:00:26.000499+00",
+    "updated_at": "2025-11-08 00:00:26.000499+00"
+  },
+  {
+    "id": 81,
+    "name": "MOUNT ST MARYS",
+    "logo_path": "college_logos/mount-st-marys-306c74b2-415f-4713-ab16-521a995ed21d.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/mtsaintmaryslogo.png",
+    "created_at": "2025-11-08 00:00:29.598895+00",
+    "updated_at": "2025-11-08 00:00:29.598895+00"
+  },
+  {
+    "id": 82,
+    "name": "New Mexico",
+    "logo_path": "college_logos/new-mexico-7b56146f-f0be-41c7-95bb-42ae9fbdf915.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/NewMexicoLogo.png",
+    "created_at": "2025-11-08 00:00:36.606875+00",
+    "updated_at": "2025-11-08 00:00:36.606875+00"
+  },
+  {
+    "id": 83,
+    "name": "Texas A & M",
+    "logo_path": "college_logos/texas-a-and-m-e817367d-f1eb-4558-9c63-9865d6019bd5.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/02/Texas-AM-Logo.png",
+    "created_at": "2025-11-08 00:00:40.579894+00",
+    "updated_at": "2025-11-08 00:00:40.579894+00"
+  },
+  {
+    "id": 84,
+    "name": "Loyola Chicago",
+    "logo_path": "college_logos/loyola-chicago-0848c1c3-e593-43bd-9363-593b2992b123.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/LoyolaLogo.png",
+    "created_at": "2025-11-08 00:01:03.533673+00",
+    "updated_at": "2025-11-08 00:01:03.533673+00"
+  },
+  {
+    "id": 85,
+    "name": "Kennesaw State",
+    "logo_path": "college_logos/kennesaw-state-65540add-cacd-472c-80b9-1269cf2f42f7.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/Kennstatelogo-e1725920351214.png",
+    "created_at": "2025-11-08 00:01:10.365516+00",
+    "updated_at": "2025-11-08 00:01:10.365516+00"
+  },
+  {
+    "id": 86,
+    "name": "Florida Gulf Coast",
+    "logo_path": "college_logos/florida-gulf-coast-6cd5d858-a023-43a8-94cf-265951ac93d3.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/FGCULogo.png",
+    "created_at": "2025-11-08 00:01:15.255989+00",
+    "updated_at": "2025-11-08 00:01:15.255989+00"
+  },
+  {
+    "id": 87,
+    "name": "UNLV",
+    "logo_path": "college_logos/unlv-2b9cfd1c-3d34-4902-8da9-41b9522704ff.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/UNLV-Logo.png",
+    "created_at": "2025-11-08 00:01:18.892254+00",
+    "updated_at": "2025-11-08 00:01:18.892254+00"
+  },
+  {
+    "id": 88,
+    "name": "Arkansas",
+    "logo_path": "college_logos/arkansas-00d34ad8-506e-4224-8bb4-5c5e57b268f2.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/03/arkansas-Logo.png",
+    "created_at": "2025-11-08 00:01:25.424219+00",
+    "updated_at": "2025-11-08 00:01:25.424219+00"
+  },
+  {
+    "id": 89,
+    "name": "Army",
+    "logo_path": "college_logos/army-db2bcc6e-0ff0-47e7-8c75-4670a54f063e.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/ArmyLogo.png",
+    "created_at": "2025-11-08 00:01:29.234966+00",
+    "updated_at": "2025-11-08 00:01:29.234966+00"
+  },
+  {
+    "id": 90,
+    "name": "Tulane",
+    "logo_path": "college_logos/tulane-942a7488-cc24-4dfa-918b-676a606ac1bb.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/TulaneLogo.png",
+    "created_at": "2025-11-08 00:01:32.807623+00",
+    "updated_at": "2025-11-08 00:01:32.807623+00"
+  },
+  {
+    "id": 91,
+    "name": "Seton Hall",
+    "logo_path": "college_logos/seton-hall-8991cf10-44e8-43e7-a0df-753730529fa8.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/SetonHallLogo.png",
+    "created_at": "2025-11-08 00:01:36.776894+00",
+    "updated_at": "2025-11-08 00:01:36.776894+00"
+  },
+  {
+    "id": 92,
+    "name": "La Tech",
+    "logo_path": "college_logos/la-tech-6d0a3f46-7ed7-4504-bed7-a02c179acde8.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/LaTechLogo.png",
+    "created_at": "2025-11-08 00:01:44.11419+00",
+    "updated_at": "2025-11-08 00:01:44.11419+00"
+  },
+  {
+    "id": 93,
+    "name": "Cornell",
+    "logo_path": "college_logos/cornell-2d7f9b21-b347-4d35-9d26-b2139e7feba1.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/CornellLogo.png",
+    "created_at": "2025-11-08 00:01:47.975404+00",
+    "updated_at": "2025-11-08 00:01:47.975404+00"
+  },
+  {
+    "id": 94,
+    "name": "Houston",
+    "logo_path": "college_logos/houston-ed0bc129-2d66-4d00-b9c6-5bdf2750c8e3.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/09/HoustonLogo.png",
+    "created_at": "2025-11-08 00:01:54.702136+00",
+    "updated_at": "2025-11-08 00:01:54.702136+00"
+  },
+  {
+    "id": 95,
+    "name": "Southern Utah",
+    "logo_path": "college_logos/southern-utah-2d7ad8f1-ee85-44dc-a19f-7aed01ae44c7.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/suu2logo.png",
+    "created_at": "2025-11-08 00:02:03.167996+00",
+    "updated_at": "2025-11-08 00:02:03.167996+00"
+  },
+  {
+    "id": 96,
+    "name": "Jacksonville",
+    "logo_path": "college_logos/jacksonville-273ca6ce-7f9b-4194-a561-c92091632f2b.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/11/JULogo.png",
+    "created_at": "2025-11-08 00:02:06.830919+00",
+    "updated_at": "2025-11-08 00:02:06.830919+00"
+  },
+  {
+    "id": 97,
+    "name": "Stephen F Austin",
+    "logo_path": "college_logos/stephen-f-austin-93e28734-305c-463c-ad50-b6b8b926d644.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2025/04/SFALogo.png",
+    "created_at": "2025-11-08 00:02:17.840471+00",
+    "updated_at": "2025-11-08 00:02:17.840471+00"
+  },
+  {
+    "id": 98,
+    "name": "Evansville",
+    "logo_path": "college_logos/evansville-6b97c3c7-a366-4457-8e0d-50f6a52b8918.jpg",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/10/Evansvillelogo.jpg",
+    "created_at": "2025-11-08 00:02:21.86377+00",
+    "updated_at": "2025-11-08 00:02:21.86377+00"
+  },
+  {
+    "id": 99,
+    "name": "St Thomas",
+    "logo_path": "college_logos/st-thomas-9b1549c9-32b6-4333-bd07-b34fad7840d6.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/05/StThoamsLogo.png",
+    "created_at": "2025-11-08 00:02:25.620633+00",
+    "updated_at": "2025-11-08 00:02:25.620633+00"
+  },
+  {
+    "id": 100,
+    "name": "Wayne State",
+    "logo_path": "college_logos/wayne-state-db37e331-8139-4fd0-a4cc-bd7d6fdc7ed9.png",
+    "logo_url": "https://0xc.821.myftpupload.com/wp-content/uploads/2024/11/WayneStateLogo.png",
+    "created_at": "2025-11-08 00:02:29.650892+00",
+    "updated_at": "2025-11-08 00:02:29.650892+00"
+  }
+]
