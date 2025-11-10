@@ -1,0 +1,10 @@
+#content .post-wrapper .entry-content {
+    border-bottom: 0px solid #e5e5e5;
+}
+.entry-content .featured {
+    text-align: center;
+}
+footer.footer-meta {
+    width: 100%;
+    float: left;
+}

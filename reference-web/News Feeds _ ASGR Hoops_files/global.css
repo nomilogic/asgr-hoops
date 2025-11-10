@@ -1,0 +1,654 @@
+#site-nav .mean-container .mean-nav ul li a {
+    display: block;
+    float: left;
+    width: 90%;
+    padding: 1em 5% !important;
+    margin: 0;
+    text-align: left;
+    color: #fff;
+    border-top: 1px solid rgba(255,255,255,.5) !important;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#site-nav .mean-container .mean-nav ul li a.mean-expand {
+    margin-top: 1px;
+    width: 26px;
+    height: 32px;
+    padding: 10px!important;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    font-weight: 700;
+    background: rgba(255,255,255,.1);
+    border: 0!important;
+    border-left: 1px solid rgba(255,255,255,.4)!important;
+    border-bottom: 1px solid rgba(255,255,255,.2)!important;
+}
+#site-nav a {
+    font-size: initial !important;
+}
+#site-nav .mean-container .mean-nav ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+}
+nav.navigation.posts-navigation{
+    visibility: visible;
+}
+nav.navigation.posts-navigation .nav-links {
+    width: 100%;
+    text-align: center;
+}
+nav.navigation.posts-navigation .nav-links>div{
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+.decimal-pagination {
+    clear: both;
+    text-align: center;
+    font-size: 20px;
+}
+
+a.counting {
+    display: inline-block;
+    padding: 4px 15px;
+    margin: 0px 5px;
+    background: #f89f17;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 16px;
+    box-shadow: 8px 8px 17px -8px rgba(0,0,0,.2);
+}
+
+a.active.counting {
+    background: #0d121d;
+}
+body .hidden{
+    display:none !important;
+}
+.gform_wrapper label.gfield_label {
+    font-weight: bold;
+}
+label {
+    font-weight: normal;
+}
+.gfield_description.validation_message {
+    width: 100%;
+    float: left;
+}
+.instruction.validation_message {
+    display: none;
+}
+
+.single-product .product-detail .product-heading {
+	margin: 0 0 20px 0;
+	padding: 0 !important;
+}
+.single-product .product-detail .product-heading h6 {
+	font-weight: bold;
+	font-size: 27px !important;
+}
+
+.single-product.woocommerce .product-detail form.cart {
+	background: #f3f3f3;
+	padding: 20px;
+}
+.single-product.woocommerce .product-detail form.cart input, .single-product.woocommerce .product-detail form.cart select {
+	background: #FFF;
+	border: 0 none;
+	padding: 7px;
+	height: auto;
+	width: 100%;
+	box-shadow: 0 0;
+	border-radius: 0 0;
+}
+.single-product.woocommerce .product-detail form.cart td.wccpf_label, .single-product.woocommerce .product-detail form.cart td.wccpf_label label {
+    width: 180px;
+}
+
+.single-product .quantity-select {
+	float: left;
+	width: 100%;
+	margin: 0 !important;
+}
+
+.single-product .quantity-select label {
+	width: 180px;
+	float: left;
+	display: inline-block;
+	margin: 0;
+	color: #333 !important;
+}
+
+.single-product .quantity-select input {
+	width: 70.3% !important;
+	margin: 0 !important;
+}
+.single-product form.cart .single_add_to_cart_button {
+	float: right !important;
+}
+.single-product.woocommerce .product-detail form.cart select {
+	height: 50px;
+}
+
+.woocommerce-shipping-fields a#size-chart-btn {
+    top: 0;
+    left: 0;
+    margin: 0px 0 10px 0 !important;
+    float: left;
+}
+
+.page-template-page-suwanee .photo-gallery .team .team_name p {
+    float: left;
+    width: 67%;
+    text-align: left;
+    margin: 0;
+}
+
+.page-template-page-suwanee .photo-gallery .team .team_name a.buy-btn {
+    background: #f89f17;
+    color: #fff;
+    padding: 7px 14px;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: normal;
+    float: right;
+}
+
+.page-template-coaches-registered h2.page-heading {
+    color: #cd671b;
+    font-family: "Open Sans",sans-serif;
+    margin-bottom: 40px;
+    margin-top: 0;
+    text-align: center;
+    position: relative;
+}
+
+.page-template-coaches-registered h2.page-heading:before {
+    content: "";
+    width: 60px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background: #cd671a;
+    height: 3px;
+    position: absolute;
+    bottom: -20px;
+}
+
+
+.page-template-coaches-registered .user-register-form {
+    background: #f3f3f3;
+    padding: 20px 20px;
+    margin: 0 0 20px 0;
+}
+
+.page-template-coaches-registered .user-register-form span.filter {
+    padding: 7px 20px;
+    margin: -20px -20px 20px -20px;
+    font-size: 17px;
+    display: block;
+    background: #0c121e;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.page-template-coaches-registered .user-register-form select {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 20px !important;
+    background: #fff;
+    height: 44px;
+    border-radius: 4px;
+}
+
+.page-template-coaches-registered .user-register-form input[name="filter"] {
+    width: 100%;
+    background: #f89f17;
+    color: #fff;
+    border: 0;
+    text-transform: uppercase;
+    height: 44px;
+    border-radius: 4px;
+}
+
+.page-template-coaches-registered .team-content {
+    margin-top: 30px;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading {
+    background: #f89f17;
+    margin: 0;
+    text-align: center;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading div.col-md-1 {
+    width: 11%;
+    word-break: break-all;
+    white-space: normal;
+    padding: 7px 7px;
+    color: #fff;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading div.col-md-2 {
+    width: 11.7%;
+    word-break: break-all;
+    white-space: normal;
+    padding: 7px 7px;
+    color: #fff;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading div.col-md-2 a.sortby {
+    color: #fff;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading > div[class*="col-md"]:first-child {
+    width: 51px;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading div.col-md-5 {
+    width: 50.3%;
+    border-right: 0 none !important;
+    border-bottom: 0 none !important;
+    display: block !important;
+}
+
+.page-template-coaches-registered .team-content .row.table-heading div.col-md-5 div[class*=col-md] {
+    padding: 7px 7px;
+    color: #fff;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content {
+    margin: 0;
+    border-left: 1px solid #ccc;
+    display: flex;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div[class*="col-md"] {
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    word-break: break-all;
+    white-space: normal;
+    vertical-align: middle;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    min-height: 70px;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content > div.col-md-1:first-child {
+    width: 51px;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-1 {
+    word-break: break-all;
+    white-space: normal;
+    padding: 7px 7px;
+    width: 11%;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div[class*="col-md"] label {
+    display: block;
+    width: 100%;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-2 {
+    width: 11.7%;
+    word-break: break-all;
+    white-space: normal;
+    padding: 7px 7px;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-5 {
+    width: 50.3%;
+    border-right: 0 none !important;
+    border-bottom: 0 none !important;
+    display: block !important;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-5 div[class*=col-md] {
+    padding: 13px 0;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-5 .row {
+    background: #f3f3f3;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.col-md-5 .row:nth-child(odd) {
+    background: #fff;
+}
+
+.widget .collapsing {
+    overflow: visible !important;
+    height: auto !important;
+}
+
+.widget span.categories + div {
+    padding: 0 0 0 22px;
+}
+
+.widget span.collapsing.categories {
+    display: block;
+    background: #f1f1f1;
+    padding: 6px 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.widget span.collapsing.categories:after {
+    content: "+";
+    position: absolute;
+    right: 10px;
+    font-size: 21px;
+    top: 0;
+    color: #000;
+}
+
+.widget span.collapsing.categories.collapse:after {
+    content: "-";
+    position: absolute;
+    right: 10px;
+    font-size: 21px;
+    top: 15px;
+    height: 2px;
+    width: 10px;
+    background: #000;
+    content: "";
+}
+
+#content .widget span.collapsing.categories span.sym {
+    display: none;
+}
+
+#content .widget span.collapsing.categories a {
+    color: #333 !important;
+    font-weight: 500;
+}
+
+#content .widget .categories ul li.categories.item {
+    border-top: 1px solid #ccc;
+    margin: 0 !important;
+}
+
+#content .widget .categories ul li.categories.item a {
+    display: block;
+    padding: 7px 0;
+    text-decoration: none !important;
+    color: #757575 !important;
+}
+
+#content .widget .categories ul li.categories.item:first-child {
+    border-top: 0 none;
+}
+
+#content .widget .categories ul {
+    margin: 6px 0 0 0;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap {
+    z-index: 99999999 !important;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .fancybox-skin {
+    box-shadow: 0 0;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .snp-fb.snp-theme-html {
+    height: 570px;
+    margin: 0 !important;
+}
+
+.fancybox-overlay.fancybox-overlay-fixed.snp-pop-16454-overlay {
+    z-index: 999999 !important;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .snp-fb.snp-theme-html .snp-content-inner {
+    padding: 20px 10px 20px 25px;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .gform_wrapper .gform_body ul li input {
+    border: 1px solid #ccc;
+    height: 32px;
+    padding: 10px 15px;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .gform_wrapper input.button {
+    padding: 8px 20px;
+    font-size: 18px;
+}
+
+.fancybox-wrap.snp-wrap.snp-pop-16454-wrap .gform_wrapper .gform_body ul li h2 {
+    padding-bottom: 7px;
+}
+
+#content ul li a.product_click {
+    color: #fff !important;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.price_header {
+    display: flex !important;
+    border-bottom: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
+    font-weight: bold;
+}
+.page-template-coaches-registered .team-content .table-content .row.content div.price_header span {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.price_total span {
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
+
+.page-template-coaches-registered .team-content .table-content .row.content div.price_new span {
+    display: block;
+    width: 100%;
+}
+.inner-sidebar ul {
+    margin:0 !important;
+    border: 1px solid #c4c4c4;
+}
+.inner-sidebar ul li {
+    background: #f3f3f3;   
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid #c4c4c4;
+    cursor: pointer;
+    text-align: center;
+}
+.inner-sidebar ul li:last-child{
+    border-bottom: 0;
+}
+.inner-sidebar ul li:nth-child(even) {
+    background: #fff;
+}
+.inner-sidebar ul li.current{
+    padding: 15px !important;
+}
+.inner-sidebar {
+    background: #000;
+}
+#content .sidebar-left .inner-sidebar ul li a {
+    font-weight: 600;
+    color: #f69f3c !important;
+    padding: 15px !important;
+    display: block;
+    margin-left: 0;
+}
+.inner-sidebar ul li.current {
+    background: #333333;
+    color: #fff !important;
+    border: none !important;
+}
+.inner-sidebar ul li.event,
+.inner-sidebar ul li.event:hover {
+    background: #ddd;
+}
+.inner-sidebar ul li:hover {
+    background: #f69f3c;
+}
+.inner-sidebar ul li:nth-child(2){
+    background: #f69f3c;   
+}
+#content .inner-sidebar ul li:hover a,
+#content .sidebar-left .inner-sidebar ul li:nth-child(2) a {
+    color: #fff !important;
+}
+.page-title h2{
+    color: #f69f3c;
+    margin-top: 0;
+    font-size: 30px;
+}
+.main-content h3{
+    font-size: 18px;
+}
+.top-banner img{
+    max-width: 100%;
+    width: 100%;
+/*    height: 300px !important;
+*/    object-fit: cover
+}
+.carousel {
+    z-index: 9 !important;
+}
+#site-header {
+    z-index: 9 !important;
+}
+.event-home-section .content-event-child .btn-red{
+    display: block; 
+}
+.event-home-section .content-event-child.orange .btn-red{
+    display: block; 
+    background: #F89417;
+}
+.eventSidebar .title {background:#d1783c !important;}
+.eventSidebar .register {background:#ff393e !important;}
+#content .sidebar-left .eventSidebar ul li.title a, #content .sidebar-left .eventSidebar ul li.register a {color:#fff !important;}
+#product-slide .slick-slide a img {
+	width: 300px;
+	height: 300px;
+	max-height: 300px;
+	max-width: 300px;
+}
+@media screen and (max-width: 1199px){
+    .navbar-collapse ul#menu-primary {
+        display: none !important;
+    }
+    .leftnav.rightNav {
+        display: none !important;
+    }
+    .mean-container .mean-bar{
+        background: transparent !important;
+        min-height: 75px;
+    }
+    a.meanmenu-reveal{
+        padding: 30px 12px !important;
+        cursor: pointer;
+    }
+    .mean-container .mean-nav{
+        margin-top: 75px; 
+    }
+    .mean-container a.meanmenu-reveal span{
+        background: #f89f17 !important;
+    }
+    .nav-contain.mean-container {
+        width: 83.33%;
+    }
+    .mean-nav #site-nav .nav-primary{
+            background: #0d121d !important;
+    }
+    #site-nav .mean-container .mean-nav ul li a{
+        line-height: 1.5 !important;
+        color: #000;
+        border-top: 1px solid #ff9e00 !important;
+     }
+    .mean-nav .nav-primary{
+        background: #fff !important;
+        border: 1px solid #f69e3c;
+     }
+     #site-nav .mean-nav a:hover, #site-nav .mean-nav a:focus{
+        color: #000 !important;
+        background: #ff9e00 !important;
+    }
+    #site-nav .mean-nav .dropdown-menu {
+        background: #fff;
+        position: static;
+    }
+    #site-nav ul li ul.dropdown-menu li a{
+        border-bottom: 0.1rem solid #f69e3c;
+    }
+@media screen and (max-width: 991px){
+    .main-content{
+        padding-top: 20px;
+    }
+    .pageElement {
+        max-width: 220px;
+        width: 100%;
+        margin: auto;
+    }
+}
+@media ( max-width: 767px ){
+    body #site-nav .col-md-2.leftnav:nth-child(1) {
+        left: 0 !important;
+        width: 15% !important;
+        display: inline-block;
+        float: left;
+    }
+    .nav-contain.mean-container {
+        width: 83.33% !important;
+    }
+	.navwrapper {
+	    position: relative;
+	}
+/*	#site-nav .nav-contain.mean-container {
+	    position: absolute;
+	    top: 0;
+	    width: 100%;
+	    padding: 0px;
+	}
+*/	#site-nav .mean-container .mean-bar {
+	    background: transparent;
+	    width: 100%;
+	}
+	#site-nav.fixed {
+	  position: relative;
+	}
+	#site-nav .mean-container .mean-nav ul.dropdown-menu {
+	  position: relative;
+	}
+    .page-template-page-suwanee .session-box .content .team .team_name #event-wrapper .colm a.btn-red,
+    .page-template-page-suwanee .session-box .content .team .team_name #event-wrapper .colm a.btn-black {
+        float: none;
+    }
+    .fancybox-wrap.snp-wrap.snp-pop-16454-wrap .snp-fb.snp-theme-html .snp-content-inner {
+        padding: 20px 15px 20px 15px;
+    }
+    .fancybox-wrap.snp-wrap.snp-pop-16454-wrap .gform_wrapper .gform_body ul li h2 {
+        padding-bottom: 7px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 640px){
+    .page-template-page-suwanee .photo-gallery .team .team_name p {
+        float: left;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+    .page-template-page-suwanee .photo-gallery .team .team_name a.buy-btn {
+        float: none;
+        margin: 10px 0 0 0;
+        display: inline-block;
+    }
+}

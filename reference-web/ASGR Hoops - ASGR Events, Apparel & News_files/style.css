@@ -1,0 +1,1354 @@
+/*
+
+Theme Name: ASGR Basketball
+
+Theme URI: http://underscores.me/
+
+Author: Underscores.me
+
+Author URI: http://underscores.me/
+
+Description: This is a Wordpress eCommerce template created just for ASGR Basketball by OSC Web Design
+
+Version: 1.0.0
+
+License: GNU General Public License v2 or later
+
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Text Domain: asgr-style-of-sport
+
+Tags:
+
+
+
+This theme, like WordPress, is licensed under the GPL.
+
+Use it to make something cool, have fun, and share what you've learned with others.
+
+
+
+ASGR style of sport is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+
+
+Normalizing styles have been helped along thanks to the fine work of
+
+Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+
+*/
+
+
+
+/*--------------------------------------------------------------
+
+>>> TABLE OF CONTENTS:
+
+----------------------------------------------------------------
+
+# Normalize
+
+# Typography
+
+# Elements
+
+# Forms
+
+# Navigation
+
+	## Links
+
+	## Menus
+
+# Accessibility
+
+# Alignments
+
+# Clearings
+
+# Widgets
+
+# Content
+
+    ## Posts and pages
+
+	## Asides
+
+	## Comments
+
+# Infinite scroll
+
+# Media
+
+	## Captions
+
+	## Galleries
+
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+
+# Normalize
+
+--------------------------------------------------------------*/
+
+.event-home-section div.event-content h4 {font-size:17px;}
+#site-footer .instagram {
+    background-color: #f00 !important;
+}
+.fa-money{
+
+color: #cd671b;
+
+    margin-right: 5px;
+
+    width: 15px;
+
+}
+
+.container {
+    width: 1170px\0/;
+}
+.col-md-3 {
+    width: 25%\0/;
+}
+#content .news-wrapper .news-list {
+
+	display:inline-block;
+	width:100%;
+}
+#site-header .caption-button {border:none;}
+#site-header {background:#000;}
+#site-nav a {
+    color: #000;
+    font-size: 17px;
+    font-weight: 500;
+    padding: 14px 12px;
+    text-decoration: none;
+}
+#site-nav li {padding:0px;}
+#site-nav a.cart-icon {
+    padding: 0;
+}
+#site-nav .nav-text {padding:12px 0;}
+#site-nav .nav-primary {min-width:680px;}
+
+.entry-content ul li, .entry-content ol li {
+	margin-left:30px;
+	list-style-type:circle;
+	display:list-item;
+	font-size:15px;
+	line-height:23px;
+}
+p {font-size:15px; line-height:23px;}
+
+.pricePackage {
+	width:100%;
+	border:1px solid #f89f17;
+	text-align:center;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+	font-size:20px;
+	padding:10px;
+	background: rgba(248,159,23,.2);
+}
+.pricePackage .price { font-size:30px; color: #f89f17; font-weight:bold;}
+.pricePackage ul {margin:7px 0 !important;}
+.pricePackage ul li {
+	display:inline !important;
+	list-style-type:none;
+}
+.pricePackage ul li i {
+	font-size:30px;
+	color: #f89f17;
+}
+.woocommerce-cart .product-cart .wc-proceed-to-checkout a.checkout-button {width:100%;}
+.woocommerce-cart table.cart td.actions .coupon .input-text {width:53% !important;}
+.woocommerce-cart td.product-thumbnail .button.alt {margin:10px 0 0 0; width:55px;}
+
+/* Temporary Hide Sidebars on design your own product */
+
+#wpc-design-btn-box {display:none;}
+
+.woocommerce ul.order_details li {display:inherit; margin:0 9px 9px;}
+.wpd-design-composition .wpc-col-1-1 {display:none;}
+#event-wrapper .colm .btn-red, #product-wrapper .colm .btn-red, .similar-product .colm .btn-red {width:33%;}
+#event-wrapper .colm .btn-black, #product-wrapper .colm .btn-black, .similar-product .colm .btn-black, input.passSubmit {
+    width: 32.2%;
+    height: 31px;
+    line-height: 31px;
+    color: #fff;
+    background: #000;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+#event-wrapper .colm .hotel, #product-wrapper .colm .hotel, .similar-product .colm .hotel, input.passSubmit {
+	background: #f89f17;
+}
+/**** WP CSS ****/
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/*** EASTBAY LOGO *****/
+.menu-item-11895 {background: url(/wp-content/uploads/2016/10/eastbay.png) no-repeat; text-indent:-9999em; width:157px;background-position:25px; height:46px;}
+.menu-item-9411 {display: none !important;}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+.capsTitle {text-align: center;text-transform: uppercase;}
+
+.photo-gallery ul li {width:22%;float:left;height:195px;margin-bottom:55px !important; text-align: center;}
+.photo-gallery ul li p {font-size: 16px;font-weight: bold;padding-top: 5px;}
+.photo-gallery ul li img {height: 100%;}
+#content .parent-year-container ul.nav-tabs li.active {background: #cd671b;}
+#content .parent-year-container ul.nav-tabs li.active a {color:#fff !important;}
+
+@media (max-width: 480px) {
+#event-wrapper aside.colm .btn-red, #event-wrapper aside.colm .btn-black{
+width:100%
+}}
+
+.msie8 .fa-calendar-minus-o:before {
+    background-image: url("images/calender-icon.jpg");
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    content: "0";
+    display: block;
+    height: 16px;
+    left: -3px;
+    margin-right: 9px !important;
+    position: relative;
+    text-indent: -99999px;
+    width: 16px !important;
+}
+
+#gc_message_bar {
+	background: transparent linear-gradient(to bottom, #F89F17 0%, #F89F17 100%) repeat scroll 0% 0%;
+	height: 44px;
+	z-index: 99999;
+}
+#gc_message_bar #gc_message_bar_message {
+	margin: 2px 10px;
+}
+
+.single_add_to_cart_button , .yith-wcwl-add-to-wishlist{display:none}
+
+.woocommerce-error li {
+    color: #d93c0d !important;
+}
+.woocommerce-result-count, .woocommerce-ordering {
+    display: none;
+}
+#cliparts-tools.AccordionPanelTab {
+ display: none;
+}
+#img-cliparts-accordion.Accordion.minimal {
+ display: none;
+}
+#clipart-bg-color-container::after {
+ color: #4f71b9
+;
+ content: "Choose Your Color";
+ font-size: 16px;
+ left: 8px;
+ position: relative;
+ text-transform: uppercase;
+ top: 2px;
+ width: 100%;
+}
+.wpc-container #wpc-buttons-bar {
+ display: none;
+}
+
+#size-chart-btn,#tutorial-btn{    padding: 10px 0;
+    color: #fff;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: #f89f17;
+    text-align: center;
+    padding: 10px 25px;
+}
+
+#order_comments_field{margin-bottom:20px}
+#additional_field_76_field{margin-top:10px}
+#tutorial_chart img{width:auto;}
+
+#tutorial_chart{
+	width: 100%;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	vertical-align: middle;
+	align-items: center;
+	height: 100%;
+	text-align: center;
+}
+
+#tutorial_chart img{
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.tutorial .close {
+    right: 50%;
+    top: 50%;
+    margin-top: -263px;
+    margin-right: -384px;
+}
+
+#order_comments_field label {
+    font-size: 0px;
+}
+
+#order_comments_field label:after {
+    content: 'Please enter official team name';
+    font-size: 16px;
+}
+
+#product-slide ul.slick-slider li.remove-this{display:none!important}
+.slick-track h3{font-size:16px}
+.woocommerce div.product{
+    clear: both;
+}
+/*** JESSE ADDED 7-27-18 ****/
+.eventSidebar .title {background:#d1783c !important;}
+.eventSidebar .register {background:#ff393e !important;}
+.eventSidebar .title a, .eventSidebar .register a {color:#fff !important;}
+#product-slide .slick-slide a img {
+	width: 300px;
+	height: 300px;
+	max-height: 300px;
+	max-width: 300px;
+}
+#product-slide {margin-top: -20px;background:#f7f7f7 none repeat scroll 0 0;}
+#product-slide .text-center.heading-apparel {color: #000; font-weight:bold; }
+#product-slide ul.slick-slider li .cart-btn {display: none !important;}
+#site-header, #product-slide {border-bottom: 10px solid #f99f17;}
+.sidebar-left .contact-data h2 {font-size: 20px;}
+.sidebar-left .contact-data h3 {font-size: 18px;}
+.sidebar-left .contact-data h4 {font-size: 16px;}
+.sidebar-left .contact-data p {font-size: 15px;}
+#event-wrapper aside.colm {flex-basis:33.3333%}
+#product-slide .slick-slider li:hover img {opacity: 1 !important;}
+#product-slide ul.slick-slider li:hover {background: transparent !important;}
+#product-slide ul.slick-slider li:hover::after {border-top: none !important;border-right: none !important; border-left: none !important;z-index: -9999;}
+h2.eventHeader, h2.apparelHeader {color: #cd671b;
+    font-weight: 600 !important;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+}
+h2.apparelHeader {padding-top: 30px;}
+.main-footer #menu-primary-1 span.caret {display: none;}
+
+.woocommerce div.product .conditioal-fields {
+    max-width: 32%;
+    float: left;
+    clear: none;
+}
+
+#order_comments_field {
+    clear: both;
+    max-width: 100%;
+    width: 100%;
+}
+
+.woocommerce-shipping-fields #size-chart-btn{
+    top: 40px;
+    position: relative;
+    left: 90px;
+}
+
+p.stock.out-of-stock {display:none;}
+#cliparts-panel .AccordionPanelContent {
+  display: block !important;
+  height: auto !important;
+}
+
+
+.form-popup .popup-content .wccpf-validation-message {
+  display: none;
+}
+.form-popup .popup-content .col-md-7 .cart table {
+  margin: 13px 0;
+  width: 100%;
+}
+.form-popup .popup-content .col-md-7 .product-heading h6 {
+  margin: 14px 0 23px;
+  padding: 0 20px 15px 19px;
+  position: relative;
+  font-size: 26px;
+}
+.form-popup .popup-content .col-md-7 .product-heading h6 h6 {
+  border: medium none;
+  margin: 0;
+  padding: 0;
+}
+.form-popup .popup-content .col-md-7 .product-heading > h6::before {
+  border-left: 4px solid #f89f17;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: auto;
+  top: 0;
+}
+.form-popup .popup-content .col-md-7 span.package-note {
+    font-size: 16px;
+}
+
+.form-popup .popup-content .col-md-7 .cart table td label, .form-popup .popup-content .col-md-7 .cart .quantity-select label{
+  font-size: 16px;
+}
+
+
+.form-popup .popup-content .col-md-7 .cart button.single_add_to_cart_button{
+    width: 140px;
+    font-size: 16px;
+}
+
+
+/***** RECRUITING APP PAGE *****/
+.page-template-packages #content .row ul li.name h3 {margin:0px;color:#000;}
+.page-template-packages #content .row ul li.price {
+	color: #f89f17;
+	font-weight:bold;
+	font-size:20px;
+}
+.page-template-packages ol li {text-align:left;}
+.form-popup .popup-content .col-md-7 .cart table td input, .form-popup .popup-content .col-md-7 .cart table td textarea {
+	border: 1px solid #333;
+	background: #f0f0f0;
+}
+
+.form-popup .popup-content .col-md-7 .product-heading h6 {
+	padding-bottom: 5px;
+	font-size:17px;
+}
+.single-product.woocommerce .product-detail form.cart input, .single-product.woocommerce .product-detail form.cart select {border:1px solid #000 !important;}
+#product-wrapper .product-detail .quantity-select {display:none;}
+
+@media only screen and (min-width : 1025px) {
+    #menu-item-9411 .dropdown-menu{    
+        
+        width: 600px;
+        margin-left: -300px!important;
+        left: 50%;
+    }
+
+    #menu-item-9411 .dropdown-menu > li{
+        width: 33%;
+    }
+}
+
+
+#gform_wrapper_2 ul {
+    padding: 0px;
+    width: 100%;
+}
+#gform_wrapper_2 li {
+    clear: none !important;
+    width: 100% !important;
+    margin-bottom:2%;
+}
+#gform_wrapper_2 .ginput_container span {
+    width: calc(50% - 2%) !important;
+    display: inline-block;
+    margin-right: 2%;
+    float:left;
+}
+#gform_wrapper_2 .ginput_container span:nth-child(even) {
+    margin-right: 0;
+    float:right;
+}
+
+#gform_wrapper_2 input, #gform_wrapper_2 select, #gform_wrapper_2 textarea {
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow:none;
+    -webkit-appearance:none;
+    appearance:none;
+    height:35px;
+    background-color:#fff;
+    border-radius:none;
+    text-indent: 10px;
+}
+
+#gform_wrapper_2 #field_2_5 span{
+    margin-bottom: 15px;
+}
+#gform_wrapper_2 .gfield_description.validation_message {
+    color: #ff0000;
+}
+#gform_wrapper_2 .validation_error{
+    display:none;
+}
+#gform_wrapper_3 .gfield_label {font-size:16px;}
+body .hidden{
+    display:none !important;
+}
+#size-chart-btn{
+	display: none;
+}
+
+
+.athletes {
+    background: #efefef;
+    padding: 20px 0 0px 0;
+    margin: 20px 0 0 0;
+    border-bottom: 1px solid #d8d8d8;
+}
+.athletes .row .name {font-weight: bold;}
+.athletes h2.heading {
+    margin: -20px 0px 0 0px;
+    background: #333;
+    color: #fff;
+    font-weight: 300;
+    font-size: 26px;
+    padding: 12px 20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+.athletes h4 {text-transform: uppercase;font-size: 30px;font-weight: bold;}
+
+.athletes .row {
+    margin: 0;
+    background: #f1f1f1;
+}
+.athletes .row.th {
+    background: #f89f17;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.athletes .row.th div[class*="col-md"] {
+    color: #fff;
+    padding: 10px 10px;
+    text-align: center;
+    border-left: 1px solid #f5f5f5;
+	min-height: 70px;
+}
+
+.athletes .row.th div[class*="col-md"]:first-child {
+    border: none;
+}
+
+.athletes .row.no-result {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 20px;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    border-top: 1px solid #d8d8d8;
+}
+
+.athletes .row.td {
+    border-right: 1px solid #d8d8d8;
+}
+.athletes .row.td:nth-child(even) {
+    background: #ffffff;
+}
+.athletes .row.td div[class*="col-md"] {
+    padding: 15px 20px;
+    text-align: center;
+    border-left: 1px solid #d8d8d8;
+    border-top: 1px solid #d8d8d8;
+    font-size: 18px;
+    
+}
+
+.athletes .col-md-2, .athletes .col-md-1, .athletes .col-md-4 {min-height: 56px;}
+
+.backlink {margin:0px !important;}
+.post .featured {
+    margin: 0 -15px;
+    display: block;
+}
+
+.post .featured .left {
+    float: left;
+    width: 50%;
+    padding: 15px 15px;
+}
+.post .featured .left img {
+    width: 100%;
+}
+
+
+.page-template-packages h2 {
+    color: #cd671b;
+    text-align: center;
+    margin: 0 0 20px 0;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+.page-template-packages h2 span {
+    background: #fff;
+    padding: 0 30px;
+    display: inline-block;
+    position: relative;
+    top: 16px;
+}
+
+.page-template-page-league .heading h2, .single-event .heading h2 {
+    margin: 0px !important;
+    text-align: center;
+    color: #fff !important;
+    background-color: #0d121d;
+    padding: 14px 0px !important;
+    font-size: 20px !important;
+    font-weight: normal;
+    border-bottom: 0 none;
+}
+
+.page-template-page-league .content .team-heading, .single-event .content .team-heading {
+    display: table-row;
+}
+.page-template-page-league .content .team-heading > div, .single-event .content .team-heading > div {
+    display: table-cell;
+    border: 1px solid #e6e6e6;
+    vertical-align: middle;
+    text-align: center;
+    background: #f89f17;
+    color: #fff;
+    padding: 11px 0;
+    border-top: 0;
+}
+.page-template-page-league .content, .single-event .content {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.page-template-page-league .content .team, .single-event .content .team {
+    display: table-row;
+    background: #fff;
+}
+.page-template-page-league .content .team:nth-child(even), .single-event .content .team:nth-child(even) {
+    background: #f3f3f3;
+}
+
+.page-template-page-league .content .team > div, .single-event .content .team > div {
+    display: table-cell;
+    border: 1px solid #ccc;
+    height: 60px;
+    padding: 9px 0;
+    vertical-align: middle;
+    text-align: center;
+	font-weight:bold;
+	font-size:16px;
+	text-transform:uppercase;
+}
+
+
+.page-template-packages {
+    margin: 0px;
+    padding: 0px 15px;
+    float: left;
+    width: 100%;
+}
+
+.Content-section-session {
+    margin: 0 0 0 0;
+    float: left;
+    width: 100%;
+}
+.Content-section-session .session-box {
+    margin: 0 0 50px 0;
+}
+
+.sesstion-right .session-box {
+    margin: 0 0 50px 0;
+}
+
+.page-template-packages h2 {
+    margin: 0 0 20px 0;
+    float: left;
+    width: 100%;
+}
+.sesstion-right .session-box .heading h2 {
+    font-size: 22px;
+}
+.sesstion-right .session-box .team {
+    font-size: 18px;
+}
+.sesstion-right.jsf {clear:left;}
+.blog .athletes {
+    width: 71.5%;
+    float: right;
+    margin: 0px 0 20px 0;
+    padding: 0;
+}
+.scheduleList {width:100%;}
+.scheduleList tr {height:60px;padding:9px 0;text-align:center;}
+.scheduleList td {width:50%; text-align:center;font-weight:bold;font-size:16px;}
+.scheduleList tr.header{font-size:18px;text-align:center;background:#000;text-transform:uppercase;}
+.scheduleList tr.header a {color:#fff;}
+.scheduleList tr.head {background:#fff !important;border-bottom:1px solid #ccc;}
+.scheduleList th {font-size:16px;text-align:center;font-weight:bold;color:#000;}
+.scheduleList tr:nth-child(even) {background:#f3f3f3;border-top:1px solid #ccc;}
+
+.blog .athletes .row.th div[class*="col-md"] {
+    font-size: 11px;
+    min-height: 50px;
+    font-weight: normal;
+}
+.blog .athletes .row.td div[class*="col-md"] {
+    font-size: 13px;
+    padding: 12px 0;
+    min-height: 43px;
+}
+.blog .athletes .row.td div[class*="col-md"] h4 {
+    margin: 4px 0;
+    font-size: 20px;
+}
+
+.blog #content .news-wrapper .site-main article.news-list p {
+    color: #888888;
+    font-size: 14px;
+}
+
+.yearRankings {text-align: center;font-size:18px;}
+.yearRankings .header {background: orange;color:#fff;padding:10px;}
+.yearRankings .years {background:#f3f3f3;border:1px solid #ccc;border-bottom: 0px;}
+.yearRankings .years ul {display: inline-block;}
+.yearRankings .years ul li {float: left; padding:2px 5px; border-right: 1px solid orange;}
+.yearRankings .years ul li.last {border-right:none;}
+.yearRankings .years ul li a {}
+.yearRankings .rankCat {}
+.yearRankings .rankCat ul {margin-top:0px !important;}
+.yearRankings .rankCat ul li {border:1px solid #ccc;margin: 0px !important; padding:10px;border-bottom: 0px;}
+.yearRankings .rankCat ul li.gray {background:#f3f3f3;}
+.yearRankings .rankCat ul li.last {border-bottom:1px solid #ccc;}
+.yearRankings .rankCat ul li a {}
+
+
+.page-template-page-league .skills-table .content .team {
+    border: 1px solid #ccc;
+}
+
+.page-template-page-league .skills-table .content .team > div {
+    width: 50%;
+    height: auto;
+    border: none;
+}
+
+.page-template-page-league .skills-table .content .team > div.team_name {
+    border-left: 1px solid #ccc;
+}
+.page-template-page-league .skills-table .content .team > div.team_name:first-child {
+    border-left: 0;
+}
+
+.player-fetch .athletes {
+    padding: 0;
+}
+
+.player-fetch .athletes .row.th a.sortby {
+    position: absolute;
+    right: 10px;
+    top: 35%;
+    color: #fff;
+}
+
+.player-fetch .athletes .options.border-bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.player-fetch .athletes .options.border-bottom ul.pagination {
+    float: none !important;
+}
+
+.player-fetch .athletes .options.border-bottom ul.pagination li {
+    display: inline-block !important;
+    margin: 0 10px !important;
+}
+
+#content.player-fetch .athletes .options.border-bottom ul.pagination li a {
+    background: #474747;
+    color: #fff !important;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 4px;
+    font-size: 17px;
+    margin: 0;
+}
+
+#content.player-fetch .athletes .options.border-bottom ul.pagination a.counting {
+    color: #fff !important;
+    border-radius: 0;
+    padding: 5px 10px;
+    font-size: 15px;
+}
+
+@media (max-width: 1199px){
+    .blog .athletes {
+        width: 65.8%;
+    }
+    .mobileHidden {clear: both;}
+}
+
+@media (min-width: 992px){
+    .player-fetch .athletes .row.th {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+    }
+    .player-fetch .athletes .row.th > div {
+        font-size: 16px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .player-fetch .athletes .row.th > div span {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+    .player-fetch .athletes .row.td {
+        display: flex;
+        flex-direction: row;
+    }
+    .player-fetch .athletes .row.td .name {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 991px){
+    .athletes .row.th div[class*="col-md"] {
+        min-height: inherit;
+        border-top: 1px solid #f5f5f5;
+    }
+    .blog .athletes {
+        width: 100%;
+    }
+    .photo-gallery ul li {width:50%;}
+}
+
+@media (max-width: 767px){
+    .post .featured {
+        margin: 0;
+        display: block;
+    }
+    .page-template-packages div#content {
+        padding-top: 0;
+    }
+    .Content-section-session img {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+    .sesstion-right .session-box .heading h2 {
+        font-size: 15px;
+    }
+    .page-template-page-league .content .team > div {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 640px){
+    .athletes h2.heading {
+        font-size: 18px;
+    }
+    .athletes .row.th div[class*="col-md"] {
+        font-size: 14px;
+    }
+    .athletes .row.td div[class*="col-md"] {
+        padding: 6px 20px;
+        font-size: 14px;
+    }
+    .athletes .row.td div[class*="col-md"] h4 {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+    .page-template-packages h2 {
+        margin: 0 0 10px 0;
+        border-bottom: none;
+        font-size: 23px;
+    }
+    .page-template-packages h2 span {
+        padding: 0;
+        top: 0;
+    }
+    .single-product.woocommerce .product-detail form.cart {
+        float: left;
+    }
+}
+
+@media (max-width: 480px){
+    .page-template-page-league .skills-table .content .team {
+        border-top: 0;
+        border-bottom: 0;
+    }
+    .page-template-page-league .skills-table .content .team > div {
+        width: 100%;
+        border-top: 1px solid #ccc;
+        display: block;
+    }
+    .page-template-page-league .skills-table .content{
+        border-bottom: 1px solid #ccc;
+    }
+    .photo-gallery ul li {width:100%;}
+}
+
+.protected-post-form input[type="password"] {
+    margin: 15px 0 15px 0;
+    width: 260px;
+}
+.protected-post-form input.button.passSubmit {
+    width: 110px;
+    border: none;
+    height: 39px;
+    font-size: 15px;
+}
+/*****************************
+        custom style
+****************************/
+#site-nav{
+    height: 83px;
+}
+#site-nav .nav-primary:before{
+        border-top: 83px solid #f99f17;
+    }
+#site-nav .nav-primary:after{
+     border-bottom: 83px solid #f99f17;
+}
+#site-nav .nav-primary{
+    background: #fff;
+        height: 83px;
+}
+#site-nav ul li a{
+    line-height: 3;
+}
+
+#site-nav{
+    background: #fff;
+}
+.logo-top img {
+    max-width: 95px;
+}
+.rightNav{
+    line-height: 3;
+}
+
+.rightNav a.cart-icon {
+    margin-top: 6px;
+}
+#site-nav.fixed{
+        min-height: 83px;
+}
+#site-nav .mean-container .mean-nav ul{
+    height: 100%;
+}
+#product-slide ul {
+    padding-left: 0;
+}
+.col-md-2.leftnav.rightNav {
+    position: relative;
+    height: 83px;
+}
+.col-md-2.leftnav.rightNav::before {
+    border-top: 83px solid #f99f17;
+    border-left: 48px solid transparent;
+    content: " ";
+    float: left;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 35%;
+}
+.leftnav.rightNav::after {
+    background: #f99f17;
+    height: 100%;
+    width: 600%;
+    left: 60%;
+    position: absolute;
+    content: "";
+    top: 0;
+    z-index: -1;
+}
+.leftnav.rightNav .cart-icon{
+    left: 64%;
+}
+#site-nav .nav-text{
+    color: #000 !important;
+}
+#site-nav .nav-primary:before,
+#site-nav .nav-primary:after{
+    display: none;
+}
+
+.contact-data .inner-data p {
+    margin-bottom: 0;
+}
+.contact-data .inner-data h3 {
+    margin-top: 0;
+    font-size: 19px;
+    margin-bottom: 0;
+    color: #f69f3c;
+}
+.contact-data .inner-data {
+    overflow: hidden;
+    padding-left: 10px;
+}
+.contact-data img {
+    float: left;
+}
+.contact-data {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+/** #product-slide ul.slick-slider li:hover::after {
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 70px solid #3c568f;
+    content: " ";
+    display: block;
+    height: 100px;
+    left: -1px;
+    margin-top: 0;
+    position: absolute;
+    width: 90px;
+    z-index: 9999;
+    bottom: -100px;
+} **/
+.event-home-section p {
+	font-size:14px;
+}
+/*Players Create*/
+.location_page {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.acf-button,
+.acf-form-submit input[type="submit"]{
+    border: none;
+    padding: 7px 20px;
+    font-size: 15px;
+    line-height: 31px;
+    color: #fff !important;
+    background: #f89f17;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+}
+.acf-button:hover,
+.acf-button:focus,
+.acf-form-submit input[type="submit"]:hover,
+.acf-form-submit input[type="submit"]:focus{
+    background:#c46423;
+}
+.acf-field input[type="text"], .acf-field input[type="password"], .acf-field input[type="date"], .acf-field input[type="datetime"], .acf-field input[type="datetime-local"], .acf-field input[type="email"], .acf-field input[type="month"], .acf-field input[type="number"], .acf-field input[type="search"], .acf-field input[type="tel"], .acf-field input[type="time"], .acf-field input[type="url"], .acf-field input[type="week"], .acf-field textarea, .acf-field select {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 0 !important;
+    padding: 9px !important;
+}
+.acf-fields.acf-form-fields.-top {
+    border: #EEEEEE solid 1px;
+}
+.acf-form-submit {
+    padding-top: 15px;
+}
+
+.banner_top_landing {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-size: cover;
+    min-height: 440px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.banner_top_landing h1 {
+    color: #fff;
+    text-transform: uppercase;
+}
+.acf-table>thead>tr>th {
+    font-weight: bold;
+}
+.heading_site{
+    text-align: center;
+    background-color: #101928;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.heading_site h1{
+    color: #fff;
+    font-size: 33px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+.playerList_section,
+.banner_ranking{
+    position: relative;
+    background: #f7f9f8;
+
+}
+.banner_ranking .basketBall {
+    max-width: 986px;
+    width: 100%;
+    margin: auto;
+    display: block;
+}
+.sponser {
+    text-align: center;
+}
+
+.sponser h2 {
+    font-size: 17px;
+    text-transform: uppercase;
+    color: #b2b2b2;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 10px;   
+    font-family: 'Rift';
+}
+.banner_ranking .year {
+    font-family: 'Rift';
+    font-size: 179px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: bold;
+    color: #dadcdc;
+    -webkit-text-fill-color: #f7f9f8;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #dadcdc;
+    opacity: .22;
+    line-height: 1;
+}
+
+/*table style*/
+.playerList_section .athletes {
+    padding-top: 0;
+    margin-top: 0;
+    box-shadow: 0 0 18px rgba(0,0,0,.1);
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.playerList_section .athletes .row.th {
+    background: #fff;
+}
+
+.playerList_section .athletes .row.th div[class*="col-md"] {
+    color: #fe393f;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-family: rift;
+    text-align: left;
+    min-height: inherit;
+}
+
+.playerList_section .athletes .row.td div[class*="col-md"] {
+    border: 0;
+    font-size: 14px;
+    text-align: left;
+    padding: 20px 10px !important;
+    min-height: inherit;
+    word-break: break-all;
+}
+
+.playerList_section .athletes .row.th div[class*="col-md"] {
+    border: 0;
+    padding: 5px !important;
+}
+
+.playerList_section .athletes .row.td {
+    border: 0;
+}
+
+.playerList_section .athletes .row {
+    background: #f8fafa;
+}
+
+.playerList_section .athletes .row.td:nth-child(odd) {
+    border-bottom: 1px solid #e8e8e8;
+    border-top: 1px solid #e8e8e8;
+}
+
+@media screen and (max-width: 991px){
+    .banner_ranking .year,
+    .playerList_section .athletes .row.th {
+        display: none;
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]::before {
+        width: 50%;
+        display: inline-block;
+        color: #fe393f;
+        text-transform: uppercase;
+        font-size: 17px;
+        font-family: rift;
+        text-align: left;
+        font-weight: bold;
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:first-child::before {
+        content: "Rank";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(2)::before {
+        content: "Player";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(3)::before {
+        content: "Pos.";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(4)::before {
+        content: "Height";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(5)::before {
+        content: "High School";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(6)::before {
+        content: "Travel Team";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:nth-child(7)::before {
+        content: "Travel Team";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"]:last-child::before {
+        content: "College";
+    }
+    .playerList_section .athletes .row.td div[class*="col-md"] span {
+        display: inline-block;
+        width: 49%;
+        vertical-align: top;
+    }
+    #site-nav .mean-container .mean-nav ul li a {color:#000 !important;}
+}
+@media screen and (max-width: 767px){
+    .playerList_section .athletes {
+        padding: 15px;
+        }
+    #site-nav .mean-container .mean-nav ul li a.mean-expand {left:300px !important;color:#000 !important;}
+}
+.btn-div {
+    border: none;
+    padding: 7px 20px;
+    font-size: 15px;
+    line-height: 31px;
+    color: #fff !important;
+    background: #f89f17;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+}
+.btn-div:hover {
+    background: #c46423;
+}
+.playerList_section .athletes .row.td div[class*="col-md"].playerName {padding:20px 0px !important;}

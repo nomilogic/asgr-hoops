@@ -1,0 +1,1887 @@
+:root{
+  --blackColor : #000;
+  --yellowColor : #F89F19;
+}
+.bg-cover{
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+}
+.bg-black{
+  background-color: var(--blackColor);
+}
+.bg-yellow{
+  background-color: var(--yellowColor);
+}
+.heading-yellow{
+    font-size: 84px;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-family: Bebas Neue;
+    color: #F89F19;
+    margin-top: 0;
+}
+.title-layer{
+    padding-bottom: 50px;
+}
+.title-yellow{
+    font-size: 63px;   
+    line-height: 1em;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: Heaters;
+    display: inline-block;
+    padding: 10px 50px;
+    background-image: url('/wp-content/uploads/2021/10/subscribe.svg');
+    margin: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.btn-see-all {
+    background-image: url(/wp-content/uploads/2021/10/see-all.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    padding: 17px 50px;
+    font-size: 63px;
+    line-height: 1;
+    font-family: 'Heaters';
+    color: #fff;
+    background-position: center;
+    min-width: 278px;
+    text-align: center;
+}
+.banner-top{
+    padding-top: 100px;
+    padding-bottom: 50px;
+    z-index: 1;
+    position: relative;
+
+}
+
+@media screen and (min-width: 768px){
+    .banner-top{
+         height: calc(100vh - 83px);
+     }
+     .banner-top .banner__inner{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+     }
+}
+.banner-top .banner__inner{
+    margin-bottom: -180px;
+  
+}
+.recruiting-app {
+    padding-top: 0;
+    padding-bottom: 50px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.recruiting-app::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 367px;
+    height: 426px;
+    background-image: url('/wp-content/uploads/2021/10/shatter_drop.png');
+    background-repeat: no-repeat;
+}
+.pd-top{
+  padding-top: 180px;
+}
+.recruiting__inner .btn-yellow {
+    border: 2px solid #fff;
+    min-width: 190px;
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-family: Bebas Neue;
+    border-radius: 0;
+    padding: 3px 20px;
+    line-height: 1.1;
+}
+.recruiting__inner .btn-yellow:hover{
+    background-color: #F89F19;
+    border-color: #F89F19;
+}
+.recruiting__inner {
+    text-align: center;
+}
+
+.recruiting__inner figure {
+    margin-bottom: 20px;
+}
+.recruiting__services div[class*="col-"]{
+    margin-bottom: 30px;
+
+}
+.section__title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.section__heading {
+    font-size: 84px;
+    font-family: Bebas Neue;
+}
+
+.section__yHeading {
+    font-family: Teko;
+    font-size: 45px;
+    color: #F89F19;
+    font-weight: 400;
+}
+.recruiting__bottom {
+    text-align: center;
+    color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.recruiting__bottom p {
+    color: #fff;
+    font-size: 29px;
+    font-family: Bebas Neue;
+    line-height: 1.2;
+}
+.recruiting-app .section__yHeading{
+    margin-bottom: 40px;
+}
+
+.subscribe__inner {
+    background: #212D31;
+    position: relative;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.subscribe__inner figure {
+    text-align: center;
+    background-image: url(/wp-content/uploads/2021/10/bg-subscribe.svg);
+    padding-bottom: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.subscribe__inner figure img {
+    margin-top: -40px;
+}
+
+.subs__date {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: Barlow;
+    font-size: 17px;
+    line-height: 1em;
+    font-weight: 600;
+}
+
+.subscribe__inner h2 {
+    font-size: 63px;
+    line-height: 1em;
+    font-family: 'Teko';    
+    margin: 0;
+    color: #1F90A9;
+}
+
+.company-title {
+    font-family: Barlow;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1em;
+    margin: 0;
+}
+
+
+.subscribe__register-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 0
+}
+
+.subscribe__register-list li {
+    font-family: 'Teko';
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 1em;
+}
+.list-info{
+    padding-top: 30px;
+    margin-bottom: 0;
+}
+.list-info li span {
+    display: block;
+    font-family: Barlow;
+    color: #FFFFFF;
+    opacity: .5;
+    font-weight: 600;
+}
+.list-info li+li {
+    margin-top: 20px;
+}
+.list-info li .list-title {
+    color: #1F90A9;
+    opacity: 1;
+}
+
+.subscribe__register-list li a {
+    color: #fff;
+}
+
+.subscribe__bottom {
+    padding: 23px 40px;
+    background-image: url(/wp-content/uploads/2021/10/btn_strip.png);
+}
+
+.subscribe-grid {
+    padding-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+.subscribe-grid::before {
+     content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 367px;
+    height: 426px;
+    background-image: url('/wp-content/uploads/2021/10/shatter_drop.png');
+    background-repeat: no-repeat;
+}
+
+.subscribe__inner-content{
+    padding:20px 30px 40px;
+}
+.subscribe__register-list img {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 5px;
+}
+.subscribe__list div[class*="col-"]{
+    margin-bottom: 80px;
+}
+.news__title{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.news-grid{
+    padding-top: 110px;
+    padding-bottom: 110px;
+    position: relative;
+    z-index: 0;
+}
+.stripright {
+    position: absolute;
+    right: 0;
+    top: -60px;
+    z-index: -1;
+}
+.news__inner {
+    max-width: 478px;
+    width: 100%;
+}
+.bg_dotted {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: -2;
+}
+.news__date {
+    text-transform: uppercase;
+    font-family: 'Bebas Neue';
+    color: #F89F19;
+    font-size: 27px;
+}
+.news__inner p {
+    font-size: 22px;
+    color: #000000;
+    font-family: 'Barlow';
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.read__more {
+    text-transform: uppercase;
+    font-family: 'Bebas Neue';
+    color: #F89F19;
+    font-size: 25px;
+}
+.news__grid-section div[class*="col-"] {
+    margin-bottom: 40px;
+}
+.news__grid-section {
+    padding-top: 40px;
+}
+.bg_strip-black {
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+.bg_strip-black--bottom{
+     height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+.insta-feed {
+    padding-top: 130px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.insta-feed__logo {
+    position: relative;
+}
+.logo_asgr {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+}
+.insta-gallery-button.follow i {
+    display: none;
+}
+
+.insta-gallery-button.follow {
+    background-color: transparent !important;
+    font-family: 'Bebas Neue';
+    font-size: 29px !important;
+    color: #F89F19 !important;
+    line-height: 1em;
+}
+.insta-gallery-button.follow:hover {
+    box-shadow: none;
+}
+.insta-gallery-feed .insta-gallery-list .insta-gallery-item:hover .insta-gallery-image-wrap .insta-gallery-image-mask {
+    opacity: .3 !important;
+}
+
+
+/*app page */
+.appservies__outer {
+    max-width: 880px;
+    margin: 0px auto;
+    color: #fff;
+}
+
+.appservies__list {
+    padding-top: 55px;
+    padding-bottom: 90px;
+}
+
+.appservies__outer ul{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.appservies__outer ul li {
+    width: 45%;
+    height: auto;
+    font-size: 18px;
+    line-height: 22px;
+    font-family: 'Barlow';
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.appservies__outer ul li:before {
+    content: '';
+    background-image: url(/wp-content/uploads/2021/10/arrw.png);
+    width: 12px;
+    height: 14px;
+    display: inline-block;
+    position: absolute;
+    left: -22px;
+    top: 5px;
+}
+
+.rsystem__section {
+    background-image: url(/wp-content/uploads/2021/10/shade_bg.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-bottom: 150px;
+}
+
+.app__ratingbox {
+    background-color: #2E3A4E;
+    max-width: 730px;
+    margin: -50px auto 0;
+    color: #fff;
+    padding: 20px 30px;
+    position: relative;
+    z-index: 9999;
+}
+
+.app__ratingbox .app__title h2 {
+    color: #fff;
+    font-size: 33px;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
+    margin: 15px 0 0;
+}
+
+.app__ratingcol .app__ritems h3 {
+    color: #F89F19;
+    font-size: 46px;
+    font-family: 'Bebas Neue', cursive;
+    width: 120px;
+    margin: 0;
+}
+
+.app__ratingbox .app__ratingcont p {
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Barlow';
+    line-height: 19px;
+    font-weight: bold;
+}
+
+.app__ratingcont {
+    width: calc(100% - 100px);
+    padding-left: 50px;
+    padding-top: 5px;
+}
+
+.app__ratingbox .app__ratingcol {
+    padding-top: 60px;
+    padding-left: 80px;
+    padding-right: 50px;
+}
+
+.app__ratingbox .app__ratingcol .app__ritems {
+    padding-bottom: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.rsystem__section{
+   position: relative;
+}
+
+.rsystem__section:before {
+    content: '';
+    background-image: url(/wp-content/uploads/2021/10/left_shade.png);
+    width: 108px;
+    height: 652px;
+    position: absolute;
+    left: 0;
+    top: -240px;
+    z-index: 9999;
+}
+
+.feature__heading .outline__text {
+    font-family: 'Bebas Neue';
+}
+
+.recruiting{
+    position: relative;
+}
+
+.recruiting .btm_shape img{
+  width: 100%;
+}
+
+.recruiting .btm_shape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
+.recruiting_outer {
+    position: relative;
+    z-index: 9999;
+    padding-bottom: 60px;
+}
+
+.features__whitebox .features__left {
+    padding-top: 20px;
+}
+
+.outline-text {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 140px;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #fff;
+}
+
+.recruiting {
+    background-color: #f99f17;
+    padding: 45px 0 150px;
+    background-image: url(/wp-content/uploads/2021/10/shade_bg.png);
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.recruiting__content {
+    padding-left: 50px;
+    padding-bottom: 170px;
+}
+
+.recruiting__copy h2 {
+    font-size: 37px;
+    color: var(--whiteColor);
+    line-height: 1em;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.recruiting__btn {
+    margin-top: 20px;
+}
+
+.recruiting__btn a {
+    padding: 5px 37px;
+    background-color: #071429;
+    border-radius: 9px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 41px;
+    line-height: 1em;
+    font-family: Heaters;
+}
+
+.recruiting img {
+    position: relative;
+    z-index: 1111;
+}
+
+.app__features {
+    background-color: #071429;
+    position: relative;
+    margin-top: -46px;
+    z-index: 9999;
+}
+
+.recruiting__content {
+    position: relative;
+    z-index: 1111;
+}
+
+.features__whitebox {
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 36px 56px 31px 35px;
+    position: relative;
+    z-index: 11;
+    margin-top: -190px;
+}
+
+.features__left h2 {
+    font-size: 37px;
+    color: #071429;
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+    line-height: 1.5em;
+}
+
+.features__left p {
+    color: #080F22;
+    font-size: 18px;
+    font-family: Barlow;
+    line-height: 1.2em;
+}
+
+.features__right h2 {
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+    line-height: 1.5em;
+    font-size: 37px;
+    color: #F89F19;
+}
+
+.features__right {
+    text-align: right;
+}
+
+.features__btns a {
+    padding: 8px 17px;
+    background-color: #071429;
+    color: #fff;
+    border-radius: 8px;
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-bottom: 7px;
+    font-size: 17px;
+    text-transform: uppercase;
+    min-width: 198px;
+    text-align: center;
+    font-family: Barlow;
+}
+
+.features div+p {
+    font-size: 18px;
+    font-family: Barlow;
+    color: #fff;
+    margin-top: 32px;
+}
+
+.feature__brief {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-top: 80px;
+    position: relative;
+    width: 100%;
+}
+
+.feature__content {
+    width: calc(100% - 410px);
+    margin-right: -35px;
+    background-color: #fff;
+    padding: 80px 75px 80px 55px;
+    background-image: url(/wp-content/uploads/2021/10/bg_dotted.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.feature__image {
+    width: 445px;
+    position: relative;
+    z-index: 99;
+    top: 62px;
+    right: 0;
+}
+
+.feature__heading {
+    position: absolute;
+    top: -40px;
+    left: -65px;
+}
+
+.feature__heading .outline__text {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #F89F19;
+    font-size: 92px;
+    margin: 4px 0 0 28px;
+    line-height: 1em;
+    text-transform: uppercase;
+}
+.feature__copy p {
+    color: #080F22;
+    font-size: 18px;
+    font-family: Barlow;
+    max-width: 82%;
+}
+
+.revolution {
+    padding-top: 70px;
+}
+.revolution h2{
+    padding-top: 45px;
+    color: #F89F19;
+    font-size: 33px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+
+/*app page */
+
+/*footer*/
+.footer {
+    background: #141414;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 90px;
+}
+
+.footer__menu ul li a {
+    font-family: 'Bebas Neue';
+    color: #F89F19;
+    text-transform: uppercase;
+    font-size: 25px;
+    line-height: 1.2em;
+}
+
+.footer__menu .menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.footer__menu .menu li {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.footer__copyright {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue';
+    margin-top: 20px;
+}
+.footer__logo {
+    margin-bottom: 40px;
+}
+.footer__left {
+    padding-right: 20px;
+}
+.footer__left p {
+    color: #868686;
+}
+.footer__right p {
+    color: #555555;
+}
+/*End footer*/
+.twitter-feeds{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-image: url(/wp-content/uploads/2021/10/bg_brush.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.twitter-feeds__inner h2{
+    color: #fff;
+    font-size: 29px;
+    font-family: Bebas Neue;
+    line-height: 1.1em;
+}
+.twitter-feeds__inner{
+    max-width: 830px;
+    width: 100%;
+    margin: 0 auto;
+}
+.asgr-info{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.asgr-info {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 15px;
+}
+.asgr-info  li{
+    text-transform: uppercase;
+    color: #F89F19;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 29px;
+    line-height: 1.2em;
+    font-family: Bebas Neue;
+}
+.twitter-feeds__img{
+    margin-bottom: 30px;
+}
+#site-header, #product-slide {
+    border: 0;
+}
+/*single events*/
+/*single events*/
+.single-banner-event{
+  min-height: 580px;
+}
+.event__top {
+  text-transform: uppercase;
+  color: #F89F19;
+  font-family: Teko;
+  transform: matrix(1, -0.05, 0.05, 1, 0, 0);
+}
+
+.event__top span+span::before {
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  background: #F89F19;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.event__top span {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 1em;
+}
+
+.event__top span+span {
+  padding-left: 10px;
+}
+
+.event__title {
+  font-size: 100px;
+  text-transform: uppercase;
+  font-family: 'Bebas Neue';
+  color: #fff;
+  line-height: 1em;
+  transform: matrix(1, -0.05, 0.05, 1, 0, 0);
+  margin:0;
+}
+
+.event-header .container {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.event__bottom {
+  text-transform: uppercase;
+  color: #F89F19;
+  font-family: Teko;
+  transform: matrix(1, -0.05, 0.05, 1, 0, 0)
+}
+
+.event__bottom span {
+  font-size: 45px;
+  display: inline-block;
+}
+
+.event__bottom span+span {
+  padding-left: 20px;
+}
+
+.team-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.team-list ul li {
+  color: #677077;
+  text-transform: uppercase;
+  font-size: 32px;
+  font-family: 'Teko';
+  margin-right: 10px;
+  position: relative;
+}
+
+.team-list ul li:after {
+  content: '';
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  background: #677077;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+  position: relative;
+  top: -2px;
+  left: 9px;
+}
+
+.team-list ul li:after {
+  content: '';
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  background: #677077;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+  position: relative;
+  top: -2px;
+  left: 9px;
+}
+
+.team-list ul li:last-child:after {
+  display: none;
+}
+
+.events-package .container {
+  max-width: 1000px;
+}
+
+.events-package .filter-list ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 14px;
+}
+
+.events-top-content {
+  padding-top: 20px;
+  margin-bottom: -100px;
+  position: relative;
+  z-index: 9;
+}
+
+.events-package .filter-list ul a {
+  color: #fff;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  padding: 5px 14px;
+  font-size: 23px;
+  font-family: 'Bebas Neue';
+}
+
+.events-large-content p {
+  font-size: 22px;
+  line-height: 26px;
+  color: #080F22;
+  font-family: Barlow;
+  font-weight: bold;
+}
+
+.events__default-content .event-title {
+  font-size: 34px;
+  text-transform: uppercase;
+  font-family: 'Bebas Neue';
+  color: #F89F19;
+  line-height: 41px;
+  margin: 0px;
+  letter-spacing: -0.4px;
+}
+
+.events__content-heading {
+  font-size: 22px;
+  font-family: 'Barlow';
+  font-weight: bold;
+  margin-top: 0px;
+}
+
+.events__default-inner p {
+  font-size: 18px;
+  font-family: 'Barlow';
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.events__default-inner h3 {
+  font-size: 22px;
+  font-family: 'Barlow';
+  font-weight: bold;
+  margin-top: 0px;
+  color: #080F22;
+}
+
+.events__default-inner a {
+  color: #F89F19;
+}
+.events__default-inner a:hover {
+  text-decoration: underline;
+}
+
+.events-package .filter-list ul a:hover {
+  background: #f99f17;
+  color: #fff;
+  border: 2px solid #f99f17;
+}
+
+.events-top-content .event_btmbg {
+  margin-top: -15px;
+}
+
+.events__default-inner {
+  background-image: url(/wp-content/uploads/2021/10/border.png);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  padding-bottom: 25px;
+  margin-bottom: 30px;
+  max-width: 575px;
+  width: 100%;
+  float: right;
+}
+
+.events-certified {
+  background-image: url(/wp-content/uploads/2021/10/bg_dotted.png);
+  background-position: top center;
+  background-repeat: repeat-x;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.events-certified:after {
+  content: '';
+  background-image: url(/wp-content/uploads/2021/10/bg_dotted-up-.png);
+  height: 430px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.events__default-content .row:last-child .events__default-inner {
+  background-image: none;
+}
+
+.events-certified .container {
+  max-width: 1000px;
+}
+
+.events__default-content {
+  padding-top: 165px;
+}
+
+.events-package {
+  background: #000;
+}
+
+.events-top-content .events-top__inner {
+  padding: 100px 125px 30px 92px;
+  width: 100%;
+  background-color: #fff;
+  margin-top: -3px;
+  background-image: url(/wp-content/uploads/2021/10/left-img01.png);
+  background-repeat: no-repeat;
+}
+
+.events-top-content .events-top__inner strong {
+  font-size: 22px;
+  font-family: 'Barlow';
+  margin-bottom: 0;
+  display: block;
+}
+
+.events-top__inner p {
+  font-family: 'Barlow';
+  font-size: 18px;
+}
+
+.events-top-content .events__content {
+  padding-top: 40px;
+}
+.events-top-content .events__content p {
+  font-size: 18px;
+  font-family: 'Barlow';
+  line-height: 22px;
+  color: #080F22;
+}
+
+.events-inner_bg {
+  position: relative;
+  z-index: 99;
+}
+
+.events-inner_bg:before {
+  content: '';
+  background-image: url(/wp-content/uploads/2021/10/left_shade.png);
+  width: 108px;
+  height: 652px;
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 26%;
+}
+
+.events-inner_bg:after {
+  content: '';
+  background-image: url(/wp-content/uploads/2021/10/rt_shade.png);
+  background-position: right bottom;
+  position: absolute;
+  right: 0;
+  width: 103px;
+  height: 586px;
+  bottom: 7%;
+}
+
+.event-header{
+  position: relative;
+}
+
+.event-header:before {
+  content: '';
+  width: 242px;
+  height: 443px;
+  position: absolute;
+  right: 0;
+  background-position: 100% 100%;
+  background-image: url(/wp-content/uploads/2021/10/subscribe_splash.png);
+  z-index: 99;
+}
+
+.events-package{
+  position: relative;
+}
+.events-package:before {
+  content: '';
+  background-image: url(/wp-content/uploads/2021/10/shatter_drop.png);
+  width: 367px;
+  height: 426px;
+  bottom: 20%;
+  left:0;
+  position: absolute;
+}
+
+.event-header .title-top .title-yellow {
+  font-size: 47px;
+  padding: 10px 14px;
+  background-image: url(/wp-content/uploads/2021/10/subscribe-1.svg);
+  margin: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  min-width: 250px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.page-heading .event__bottom {
+  width: calc(100% - 250px);
+  margin-right: 30px;
+}
+
+.page-heading .title-top {
+  width: 250px;
+}
+
+.event-header .page-heading .group-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 760px;
+}
+
+.event-header .team-list {
+  padding-top: 30px;
+  padding-bottom: 16px;
+  padding-left: 10px;
+}
+
+.event-header figure {
+  margin-top: -98px;
+}
+
+.event-header .page-heading {
+  padding-top: 30px;
+}
+.single_event_bg img {
+    width: 100%;
+}
+
+.bg-cover.single_event_bg {
+    position: relative;
+    min-height: 100%;
+}
+
+.single-banner-event.single_event_bg {
+    position: relative;
+    min-height: 100%;
+    margin-bottom: -95px;
+    z-index: 9;
+}
+
+.event-header figure {
+    margin-top: -98px;
+    position: relative;
+    z-index: 99;
+}
+
+.event-header .page-heading {
+    padding-top: 30px;
+    position: relative;
+    z-index: 99;
+}
+
+.single-banner-event .bnr_shape {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+/*End single events*/
+
+
+.feature__mob {
+    display: none;
+}
+
+@media screen and (max-width: 1750px){
+  .recruiting__content .outline-text {
+      font-size: 120px;
+  }
+}
+
+@media screen and (max-width: 1499px){
+  .app__features {
+      margin-top: -20px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width:1260px){
+  .recruiting_outer .outline-text {
+      font-size: 90px;
+  }
+  .feature__heading {
+    left: -40px;
+  }
+}
+
+
+@media screen and (max-width: 1199px){
+  .logo-top img {
+      position: relative;
+      z-index: 999;
+  }
+
+  .mean-container .mean-bar {
+    z-index: 99;
+  }
+}
+
+@media screen and (max-width: 991px){
+
+.navwrapper .mean-container {
+    position: relative;
+    z-index: 99;
+}
+
+.navwrapper #site-nav .leftnav {
+    width: 70%;
+    z-index: 9999;
+}
+
+ .feature__mob {
+    display: block;
+}
+
+.app__ratingbox .app__ratingcol .app__ritems {
+  padding-bottom: 20px;
+  display: block;
+}
+
+.rsystem__section {
+  padding-bottom: 40px;
+}
+
+.recruiting {
+    padding: 45px 0 0px;
+    position: relative;
+}
+
+.recruiting .btm_shape {
+    position: relative !important;
+}
+
+.feature__mob {
+    margin-top: -105px;
+    position: relative;
+    z-index: 9999;
+    text-align: center;
+}
+
+.feature__mob img{
+  width: 450px;
+}
+
+.recruiting_outer {
+    padding-bottom: 0px;
+}
+
+.recruiting_outer .banner__mob {
+  display: none;
+}
+
+.app__features {
+    margin-top: 0;
+    position: static;
+}
+
+.recruiting_outer img {
+    width: 50%;
+    margin: 0px auto;
+    display: block;
+}
+
+  .features__left h2 {
+    font-size: 35px;
+    margin: 0 0 10px;
+    line-height: 1.0em;
+  }
+
+  .appservies__outer ul li {
+    width: 100%;
+  }
+
+  .app__ratingbox .app__ratingcol {
+    padding-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .app__ratingcol .app__ritems h3 {
+    font-size: 36px;
+    width: 100%;
+}
+
+.app__ratingcont {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 5px;
+}
+
+.app__ratingcol .app__ratingcont {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 5px;
+}
+
+  .recruiting__content .outline-text {
+    font-size: 90px;
+  }
+
+  .feature__brief .feature__heading {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .feature__heading .outline__text {
+    display: inline-block;
+    width: 100%;
+}
+
+.feature__brief .feature__copy p {
+    max-width: 100%;
+}
+
+.feature__heading .outline__text {
+    margin: 4px 0 0 0px;
+}
+
+  .recruiting__content .outline-text {
+    font-size: 90px;
+    line-height: 78px;
+  }
+
+  .features__whitebox {
+    margin-top: 15px;
+  }
+
+  .features__whitebox .features__left {
+    padding-top: 0px;
+  }
+
+  .features__whitebox {
+    padding: 20px;  
+  }
+
+  .feature__brief .feature__content {
+    width: 100%;
+    padding: 60px 25px 20px;
+  }
+
+  .appservies__outer ul {
+    padding: 0px 0 0 30px;
+    list-style: none;
+  }
+
+  .rsystem__section:before {
+    display: none;
+  }
+
+  .app__ratingbox .app__title h2 {
+    font-size: 30px;
+  }
+
+  .revolution h2 {
+    font-size: 25px;
+  }
+
+  .appservies__outer .revolution {
+    padding-top: 0px;
+  }
+
+  .feature__image {
+    width: 100%;
+    position: relative;
+    z-index: 99;
+    top: 0px;
+    right: 0;
+  }
+
+  .feature__image img {
+    width: 100%;
+  }
+
+  .recruiting__copy h2 {
+    font-size: 28px;
+  }
+
+  .recruiting__content .features__left h2 {
+    font-size: 30px;
+    line-height: 33px;
+  }
+
+  .app__ratingbox {
+    padding: 10px 15px;
+}
+
+  .recruiting__content .recruiting__logo {
+      display: none;
+  }
+
+  .recruiting__content {
+    padding-left: 15px;
+    padding-bottom: 40px;
+  }
+
+  .features__right {
+    text-align: center;
+  }
+
+  .features__right .features__btns a {
+    margin: 10px auto 10px;
+  }
+
+    .single-banner-event.single_event_bg {
+        margin-bottom: -50px;
+    }
+
+    .single-banner-event .bnr_shape {
+        display: none;
+    }
+
+    .single_event_bg img {
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .page-heading .event__bottom {
+        width: 100%;
+    }
+
+    .event_topbg {
+        display: none;
+    }
+  .events-top-content .events-top__inner {
+    background-image: transparent;
+  }
+
+  .events-top-content .event_btmbg {
+    display: none;
+    }
+
+  .events-top-content{
+    position: relative;
+  }
+
+  .event-header .page-heading {
+    text-align: center;
+}
+
+  .events-top-content:before {
+    content: '';
+    background-image: url(/wp-content/uploads/2021/10/recruit_top.png);
+    height: 48px;
+    width: 100%;
+    display: block;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    }
+
+    .events-top-content:after {
+    content: '';
+    background-image: url(/wp-content/uploads/2021/10/recruit_bottm.png);
+    height: 40px;
+    width: 100%;
+    display: block;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    }
+
+  .events-package .filter-list ul {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+  .events-package .filter-list ul {
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.events__default-content .event-title {
+    padding-bottom: 8px;
+}    
+
+.single-banner-event {
+    min-height: 300px;
+}
+
+.page-heading .title-top {
+    margin: 12px auto;
+}
+
+.event-header .page-heading .group-button {
+    max-width: 100%;
+    display: block;
+}
+
+.event-header figure {
+    text-align: center;
+}
+
+.events-package .filter-list ul a {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.team-list ul {
+    text-align: center;
+}
+
+  .team-list ul li {
+    width: 100%;
+    line-height: 40px;
+  }
+
+  .events__default-inner {
+    width: 100%;
+    float: right;
+  }
+
+  .events-inner_bg:before,
+  .events-inner_bg:after {
+    display: none;
+  }
+
+  .events-top-content .events-top__inner {
+    width: 100%;
+    background-color: #fff;
+    margin-top: -3px;
+    background-image: none;
+    padding: 30px 15px;
+  }
+
+  .events__default-inner {
+    background-size: contain;
+}
+.events-certified:after{
+    display: none;
+}
+
+.events-certified {
+    padding-bottom: 40px;
+}
+
+  .team-list ul li:after{
+    display: none;
+  }    
+  .events-package .filter-list ul li {
+    width: 100%;
+    margin-bottom: 10px;
+  }    
+
+}
+@media screen and (min-width: 768px){
+  .news__title-bottom{
+    display: none;
+  }
+
+  .events__default-content .left__col {
+    padding-right: 0;
+  }
+
+}
+@media screen and (max-width: 1440px){
+  .stripright{
+    right: -200px;
+  }
+}
+@media screen and (max-width: 767px){
+
+
+  .footer__menu .menu li{
+    width: 100%;
+  }
+  .footer__left {
+    padding-right: 0;
+    width: 100%;
+  }
+  .section__yHeading{
+    font-size: 30px;
+  }
+  .footer,
+  .news-grid{
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .section__heading{
+    font-size: 58px;
+  }
+  .twitter-feeds,
+  .pd-top,
+  .insta-feed{
+    padding-top: 50px;
+  }
+  .subscribe__inner h2{
+    font-size: 42px;
+  }
+  .banner-top .banner__inner {
+    margin-bottom: 0;
+  }
+  .news__title-right,
+  .subscribe-grid::before,
+  .recruiting-app::before{
+    display: none;
+  }
+  .company-title{
+    font-size: 16px;
+  }
+  .stripright img {
+    width: 300px;
+  }
+  .stripright {
+    right: -100px;
+    top: -60px;
+  }
+  .heading-yellow{
+    font-size: 58px;
+  }
+  .news__title-bottom{
+    text-align: center;
+  }
+  .news__title-bottom .btn-see-all {
+    padding: 17px 40px;
+    font-size: 39px;
+    min-width: 150px;
+  }
+  .banner-top{
+    padding-top: 200px;
+  }
+  .subscribe__bottom{
+    padding: 23px 7px;
+  }
+  .subscribe__register-list li{
+   font-size: 20px; 
+ }
+
+
+ .event__top span {
+    font-size: 21px;
+}
+
+.event__title {
+    font-size: 44px;
+}
+.page-heading .event__bottom {
+    width: 100%;
+}
+
+.event__bottom span {
+    font-size: 21px;
+}
+
+.events-package .filter-list ul a {
+    padding: 3px 14px;
+    font-size: 20px;
+ }
+
+ .event__top span+span::before {
+    content: "";
+    height: 7px;
+    width: 7px;
+ }
+
+ .event-header .title-top .title-yellow {
+    font-size: 34px;
+    width: 100%;
+}
+
+.feature__heading .outline__text {
+    font-size: 72px;
+}
+
+}
+
+@media screen and (min-width: 480px) and (max-width:767px){
+  .feature__mob {
+      margin-top: -190px;
+  }
+}
+
+@media screen and (max-width: 540px){
+  .feature__mob img {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px){
+
+  .features__left h2 {
+    font-size: 32px;
+}
+
+  .recruiting__content .outline-text {
+    font-size: 60px;
+    line-height: 57px;
+    letter-spacing: 2px;
+  }
+    .event__top span {
+        font-size: 16px;
+    }
+
+    .events__default-content .event-title {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+.events__default-inner h3 {
+    font-size: 16px;
+}
+
+.events__default-inner p {
+    font-size: 16px;
+    line-height: 22px;
+}
+
+    .event__bottom span {
+        font-size: 18px;
+    }
+}
+/*End single events*/
+.news__grid-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+@media screen and (min-width: 768px){
+    .news__title-bottom{
+        display: none;
+    }
+
+}
+@media screen and (max-width: 1440px){
+    .stripright{
+        right: -200px;
+    }
+}
+@media screen and (max-width: 767px){
+    .footer__menu .menu li{
+        width: 100%;
+    }
+    .footer__left {
+        padding-right: 0;
+        width: 100%;
+    }
+    .section__yHeading{
+        font-size: 30px;
+    }
+    .footer,
+    .news-grid{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .section__heading{
+        font-size: 58px;
+    }
+    .twitter-feeds,
+    .pd-top,
+    .insta-feed{
+        padding-top: 50px;
+    }
+    .subscribe__inner h2{
+        font-size: 42px;
+    }
+    .banner-top .banner__inner {
+        margin-bottom: 0;
+    }
+    .news__title-right,
+    .subscribe-grid::before,
+    .recruiting-app::before{
+        display: none;
+    }
+    .company-title{
+        font-size: 16px;
+    }
+    .stripright img {
+        width: 300px;
+    }
+    .stripright {
+        right: -100px;
+        top: -60px;
+        display: none;
+    }
+    .heading-yellow{
+        font-size: 58px;
+    }
+    .news__title-bottom{
+        text-align: center;
+    }
+    .news__title-bottom .btn-see-all {
+        padding: 17px 40px;
+        font-size: 39px;
+        min-width: 150px;
+    }
+    .banner-top{
+        padding-top: 200px;
+    }
+    .subscribe__bottom{
+        padding: 23px 7px;
+    }
+    .subscribe__register-list li{
+       font-size: 20px; 
+    }
+    .news-grid{
+        background-image: url('/wp-content/uploads/2021/10/news_bg_mob.jpg');
+        background-repeat: no-repeat;
+        background-position: top right;
+    }
+}
