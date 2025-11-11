@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
         </CardTitle>
       </CardHeader>
       <Card
-        className="overflow-hidden border-red-900/30 bg-gradient-to-br from-card to-red-950/10 hover:shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:border-red-700/50 transition-all duration-500 cursor-pointer h-full flex flex-col group hover:scale-105 animate-scale-in"
+        className="overflow-hidden border-red-900/30 bg-gradient-to-br from-card to-red-950/10 hover:shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:border-red-700/50 transition-all duration-500 cursor-pointer pb-10 flex flex-col group hover:scale-105 animate-scale-in"
         data-testid={`card-product-${product.slug}`}
       >
         <div className="aspect-[4/3] overflow-hidden bg-black/50 relative">
@@ -54,9 +54,9 @@ export function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        <CardContent className="flex-1">
+        <CardContent className="flex-1 py-4">
           <p
-            className="text-sm text-gray-400 mb-4"
+            className="text-sm text-red-500 mb-4"
             data-testid={`text-description-${product.slug}`}
           >
             {product.description}

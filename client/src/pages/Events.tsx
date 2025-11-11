@@ -9,7 +9,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Trophy, Users, BarChart3 } from "lucide-react";
 import { useMemo } from "react";
-import asgrLogo from "../assets/generated/ASGR_Hoops_logo_design_8eb835b2.png";
+import asgrLogo from "../assets/generated/asgr_basketball.png";
+import basketGirl from "../assets/generated/Basketball_action_hero_image_c877a801.png";
 
 export default function Events() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -26,16 +27,16 @@ export default function Events() {
 
   const topProspects = useMemo(() => {
     const top2024 = (players2024 || [])
-      .map(p => ({ ...p, displayRank: p.ranks?.['2024'] || p.rank }))
-      .filter(p => p.displayRank !== null && p.displayRank !== undefined)
+      .map((p) => ({ ...p, displayRank: p.ranks?.["2024"] || p.rank }))
+      .filter((p) => p.displayRank !== null && p.displayRank !== undefined)
       .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
       .slice(0, 3);
 
     const top2025 = (players2025 || [])
-      .map(p => ({ ...p, displayRank: p.ranks?.['2025'] || p.rank }))
-      .filter(p => p.displayRank !== null && p.displayRank !== undefined)
+      .map((p) => ({ ...p, displayRank: p.ranks?.["2025"] || p.rank }))
+      .filter((p) => p.displayRank !== null && p.displayRank !== undefined)
       .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
-      .slice(0, 3);
+      .slice(0, 5);
 
     return [...top2024, ...top2025];
   }, [players2024, players2025]);
@@ -47,18 +48,25 @@ export default function Events() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black py-20 px-4 overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <img 
-              src={asgrLogo} 
-              alt="" 
-              className="w-full h-full object-contain object-center scale-150 blur-[2px]" 
+        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black  overflow-hidden h-50">
+          <div className="absolute  w-full">
+            <img
+              src={basketGirl}
+              alt=""
+              className="w-full   object-cover object-center  "
               aria-hidden="true"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
-          <div className="container mx-auto max-w-6xl relative z-10">
+
+          <div className="container  max-w-full relative z-10 bg-black/90 p-10 m-0">
+            <div className=" inset-0 h-80 z-10">
+              <img
+                src={asgrLogo}
+                alt=""
+                className="w-full h-full object-contain object-center  "
+                aria-hidden="true"
+              />
+            </div>
             <div className="text-center max-w-3xl mx-auto">
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
@@ -100,7 +108,7 @@ export default function Events() {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/10">
+        <section className="py-8 px-4 bg-gradient-to-b from-black to-red-950/10">
           <div className="container mx-auto max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center group animate-slide-in-left hover:scale-105 transition-all duration-300">
@@ -143,8 +151,8 @@ export default function Events() {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-gradient-to-b from-red-950/10 to-black">
-          <div className="container mx-auto max-w-6xl">
+        <section className="py-8 px-4 bg-gradient-to-b from-red-950/10 to-black">
+          <div className="container mx-auto max-w-8xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
                 Featured Top Prospects
@@ -157,9 +165,11 @@ export default function Events() {
             {isLoadingProspects ? (
               <div className="max-w-5xl mx-auto space-y-8">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2024</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {[1, 2, 3].map((i) => (
+                  <h3 className="text-2xl font-bold mb-4 text-red-400">
+                    Class of 2024
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <div key={i} className="space-y-4">
                         <Skeleton className="aspect-[3/4] w-full" />
                         <Skeleton className="h-6 w-3/4" />
@@ -171,27 +181,13 @@ export default function Events() {
                 </div>
               </div>
             ) : (
-              <div className="max-w-5xl mx-auto space-y-8">
-                {players2024 && players2024.length > 0 && (
-                  <div>
-                    <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2024</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {topProspects
-                        .filter((p) => p.gradeYear === 2024)
-                        .map((player) => (
-                          <ProspectCard
-                            key={player.id}
-                            player={player}
-                            displayRank={player.displayRank || 0}
-                          />
-                        ))}
-                    </div>
-                  </div>
-                )}
+              <div className="w-full mx-auto space-y-8">
                 {players2025 && players2025.length > 0 && (
                   <div>
-                    <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2025</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <h3 className="text-2xl font-bold mb-4 text-red-400">
+                      Class of 2025
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                       {topProspects
                         .filter((p) => p.gradeYear === 2025)
                         .map((player) => (
@@ -209,11 +205,11 @@ export default function Events() {
           </div>
         </section>
 
-        <section className="py-16 px-4">
+        <section className="py-8 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
+            <div className="text-center mb-2">
               <h2
-                className="text-3xl md:text-4xl font-bold mb-4"
+                className="text-3xl md:text-4xl font-bold mb-1"
                 data-testid="text-packages-title"
               >
                 Scouting Service Packages
@@ -237,7 +233,7 @@ export default function Events() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
                 {products?.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

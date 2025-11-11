@@ -44,7 +44,7 @@ export default function Home() {
               <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 overflow-hidden group">
                 <div className="relative h-64">
                   <img
-                    src="/attached_assets/AddisonMackPhoto-e1726688270253.jpg"
+                    src="attached_assets/generated_images/Basketball_training_facility_95f9e2c2.png"
                     alt="Deep South Classic"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -76,7 +76,7 @@ export default function Home() {
               <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 overflow-hidden group">
                 <div className="relative h-64">
                   <img
-                    src="/attached_assets/AliciaMitchellPhoto-e1717177516868.jpg"
+                    src="/attached_assets/generated_images/Basketball_court_aerial_view_920c1f35.png"
                     alt="National Showcase"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />

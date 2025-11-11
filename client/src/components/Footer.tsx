@@ -11,24 +11,40 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">About ASGR</h3>
             <p className="text-sm text-muted-foreground">
-              All-Star Girls Report provides comprehensive basketball scouting services
-              for high school players nationwide.
+              All-Star Girls Report provides comprehensive basketball scouting
+              services for high school players nationwide.
             </p>
           </div>
 
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <div className="flex flex-col gap-2">
-              <Link href="/" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-events">
+              <Link
+                href="/"
+                className="text-sm text-muted-foreground hover:text-foreground"
+                data-testid="footer-link-events"
+              >
                 Events
               </Link>
-              <Link href="/products" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-products">
+              <Link
+                href="/products"
+                className="text-sm text-muted-foreground hover:text-foreground"
+                data-testid="footer-link-products"
+              >
                 Scouting Service
               </Link>
-              <Link href="/rankings/2025" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-rankings">
+              <Link
+                href="/rankings/2025"
+                className="text-sm text-muted-foreground hover:text-foreground"
+                data-testid="footer-link-rankings"
+              >
                 Player Rankings
               </Link>
-              <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground" data-testid="footer-link-contact">
+              <Link
+                href="/contact"
+                className="text-sm text-muted-foreground hover:text-foreground"
+                data-testid="footer-link-contact"
+              >
                 Contact
               </Link>
             </div>
@@ -61,7 +77,11 @@ export function Footer() {
               <Button variant="ghost" size="icon" data-testid="button-twitter">
                 <Twitter className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" data-testid="button-instagram">
+              <Button
+                variant="ghost"
+                size="icon"
+                data-testid="button-instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </Button>
               <Button variant="ghost" size="icon" data-testid="button-email">
