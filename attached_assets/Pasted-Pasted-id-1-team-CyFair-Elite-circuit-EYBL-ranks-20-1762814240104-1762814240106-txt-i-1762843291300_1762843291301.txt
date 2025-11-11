@@ -1,0 +1,193 @@
+Pasted--id-1-team-CyFair-Elite-circuit-EYBL-ranks-20-1762814240104_1762814240106.txt
+[
+  {
+    "id": 1,
+    "team": "CyFair Elite",
+    "circuit": "EYBL",
+    "ranks": {
+      "2024 Circuit Season": 1
+    },
+    "records": {
+      "2024 Circuit Season": "22-2"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "TNF, CalStars, Exodus, BW, CP3, PR, ALSS, NJ Gemz, SCA, MEM, KYP, TOH, MC, CS, MS, TT, MWP"
+    },
+    "placements": {
+      "2024 Circuit Season": "Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:30.396087+00",
+    "updated_at": "2025-11-07 23:50:30.396087+00"
+  },
+  {
+    "id": 2,
+    "team": "WV Thunder Johnson",
+    "circuit": "GUAA",
+    "ranks": {
+      "2024 Circuit Season": 2
+    },
+    "records": {
+      "2024 Circuit Season": "19-3"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "NYH, SAF, TT, MS, GLP, TC, FBCWC, FGB, WVTR, MF"
+    },
+    "placements": {
+      "2024 Circuit Season": "Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:30.631952+00",
+    "updated_at": "2025-11-07 23:50:30.631952+00"
+  },
+  {
+    "id": 3,
+    "team": "MN Fury",
+    "circuit": "GUAA",
+    "ranks": {
+      "2024 Circuit Season": 3
+    },
+    "records": {
+      "2024 Circuit Season": "17-3"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "GTS, MBA, TXU, WCE, ST, CL, WCE, NA, ES, B1CE, FBCU"
+    },
+    "placements": {
+      "2024 Circuit Season": "Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:30.853643+00",
+    "updated_at": "2025-11-07 23:50:30.853643+00"
+  },
+  {
+    "id": 4,
+    "team": "FBC United",
+    "circuit": "GUAA",
+    "ranks": {
+      "2024 Circuit Season": 4
+    },
+    "records": {
+      "2024 Circuit Season": "16-1"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "WL, AZE, GLP, IGB, MS, WVTJ, MIFG, ECUF, BTR, ME, Comets"
+    },
+    "placements": {
+      "2024 Circuit Season": "Final 4"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:31.100697+00",
+    "updated_at": "2025-11-07 23:50:31.100697+00"
+  },
+  {
+    "id": 5,
+    "team": "Team Taurasi",
+    "circuit": "EYBL",
+    "ranks": {
+      "2024 Circuit Season": 5
+    },
+    "records": {
+      "2024 Circuit Season": "16-8"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "IGR, FS, WNP, KYP, SAS, TD, MWP, CP3, TOH, Essence, TO, PR"
+    },
+    "placements": {
+      "2024 Circuit Season": "Final 4"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:31.324408+00",
+    "updated_at": "2025-11-07 23:50:31.324408+00"
+  },
+  {
+    "id": 6,
+    "team": "Team Takeover",
+    "circuit": "EYBL",
+    "ranks": {
+      "2024 Circuit Season": 6
+    },
+    "records": {
+      "2024 Circuit Season": "21-3"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "WNP, WFE, SAS, KYP, DN, PS, IGR, FS, Essence, NT, MC, MC, TNF, KN, MWP, TD"
+    },
+    "placements": {
+      "2024 Circuit Season": "Final 4"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:31.548896+00",
+    "updated_at": "2025-11-07 23:50:31.548896+00"
+  },
+  {
+    "id": 7,
+    "team": "All Iowa Attack",
+    "circuit": "EYBL",
+    "ranks": {
+      "2024 Circuit Season": 70
+    },
+    "records": {
+      "2024 Circuit Season": "21-3"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "IGR, TT, DN, Essence, PS, KNE, KYP, SAS, MWP, TD, CF, MEM, FS, TO, NT, WNP, WFE, BW, PR"
+    },
+    "placements": {
+      "2024 Circuit Season": "Final 4"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:31.767072+00",
+    "updated_at": "2025-11-07 23:50:31.767072+00"
+  },
+  {
+    "id": 8,
+    "team": "WV Thunder Riego",
+    "circuit": "GUAA",
+    "ranks": {
+      "2024 Circuit Season": 8
+    },
+    "records": {
+      "2024 Circuit Season": "18-5"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "WCE, NWB, BB, IFN, GTS, MF, WPB, FBCDMV"
+    },
+    "placements": {
+      "2024 Circuit Season": "Final 4"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/circuit-rankings/"
+    ],
+    "created_at": "2025-11-07 23:50:31.987502+00",
+    "updated_at": "2025-11-07 23:50:31.987502+00"
+  },
+  {
+    "id": 9,
+    "team": "Philly Rise",
+    "circuit": "EYBL",
+    "ranks": {
+      "2024 Circuit Season": 9
+    },
+    "records": {
+      "2024 Circuit Season": "18-6"
+    },
+    "key_wins": {
+      "2024 Circuit Season": "MC, CS, TOH, TNF, MOP, SAS, CP3, MS, ALSS, PS, KN, NJG, EX, MEM, BW"
+    },
+    "placements": {
+ ...

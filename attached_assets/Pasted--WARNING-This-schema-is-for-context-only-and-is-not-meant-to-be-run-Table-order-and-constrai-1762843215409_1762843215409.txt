@@ -1,0 +1,72 @@
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.circuit_teams (
+  id bigint NOT NULL DEFAULT nextval('circuit_teams_id_seq'::regclass),
+  team text NOT NULL,
+  circuit text,
+  ranks jsonb NOT NULL DEFAULT '{}'::jsonb,
+  records jsonb NOT NULL DEFAULT '{}'::jsonb,
+  key_wins jsonb NOT NULL DEFAULT '{}'::jsonb,
+  placements jsonb NOT NULL DEFAULT '{}'::jsonb,
+  source_urls ARRAY,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT circuit_teams_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.colleges (
+  id bigint NOT NULL DEFAULT nextval('colleges_id_seq'::regclass),
+  name text NOT NULL,
+  logo_path text,
+  logo_url text,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT colleges_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.high_schools (
+  id bigint NOT NULL DEFAULT nextval('high_schools_id_seq'::regclass),
+  school text NOT NULL,
+  logo_path text,
+  ranks jsonb NOT NULL DEFAULT '{}'::jsonb,
+  records jsonb NOT NULL DEFAULT '{}'::jsonb,
+  key_wins jsonb NOT NULL DEFAULT '{}'::jsonb,
+  source_urls ARRAY,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT high_schools_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.players (
+  id bigint NOT NULL,
+  rank integer,
+  name text NOT NULL,
+  grade_year integer,
+  position text,
+  height text,
+  high_school text,
+  high_school_id bigint,
+  circuit_program text,
+  circuit_team_id bigint,
+  state text,
+  committed_college text,
+  committed_college_id bigint,
+  rating integer CHECK (rating IS NULL OR rating >= 0 AND rating <= 100),
+  rating_comment text,
+  image_path text,
+  college_logo_path text,
+  source_url text,
+  ranks jsonb NOT NULL DEFAULT '{}'::jsonb,
+  ratings jsonb NOT NULL DEFAULT '{}'::jsonb,
+  notes jsonb NOT NULL DEFAULT '{}'::jsonb,
+  positions jsonb NOT NULL DEFAULT '{}'::jsonb,
+  heights jsonb NOT NULL DEFAULT '{}'::jsonb,
+  high_schools jsonb NOT NULL DEFAULT '{}'::jsonb,
+  circuit_programs jsonb NOT NULL DEFAULT '{}'::jsonb,
+  committed_colleges jsonb NOT NULL DEFAULT '{}'::jsonb,
+  source_urls ARRAY,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT players_pkey PRIMARY KEY (id),
+  CONSTRAINT players1_duplicate_high_school_id_fkey FOREIGN KEY (high_school_id) REFERENCES public.high_schools(id),
+  CONSTRAINT players1_duplicate_circuit_team_id_fkey FOREIGN KEY (circuit_team_id) REFERENCES public.circuit_teams(id),
+  CONSTRAINT players1_duplicate_committed_college_id_fkey FOREIGN KEY (committed_college_id) REFERENCES public.colleges(id)
+);
