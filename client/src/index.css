@@ -11,64 +11,64 @@
   --opaque-button-border-intensity: -8; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255, 180, 180, .04);
-  --elevate-2: rgba(255, 160, 160, .06);
+  --elevate-1: rgba(255, 200, 200, .08);
+  --elevate-2: rgba(255, 180, 180, .12);
 
-  --background: 0 40% 96%;
+  --background: 0 60% 97%;
 
-  --foreground: 0 70% 12%;
+  --foreground: 0 80% 20%;
 
-  --border: 0 30% 82%;
+  --border: 0 50% 85%;
 
-  --card: 0 35% 94%;
+  --card: 0 55% 96%;
 
-  --card-foreground: 0 65% 15%;
+  --card-foreground: 0 75% 25%;
 
-  --card-border: 0 30% 85%;
+  --card-border: 0 50% 88%;
 
-  --sidebar: 0 35% 95%;
+  --sidebar: 0 55% 97%;
 
-  --sidebar-foreground: 0 65% 15%;
+  --sidebar-foreground: 0 75% 25%;
 
-  --sidebar-border: 0 30% 82%;
+  --sidebar-border: 0 50% 85%;
 
   --sidebar-primary: 0 70% 55%;
 
-  --sidebar-primary-foreground: 0 70% 12%;
+  --sidebar-primary-foreground: 0 80% 20%;
 
-  --sidebar-accent: 0 30% 90%;
+  --sidebar-accent: 0 45% 92%;
 
-  --sidebar-accent-foreground: 0 60% 18%;
+  --sidebar-accent-foreground: 0 70% 28%;
 
   --sidebar-ring: 0 70% 55%;
 
-  --popover: 0 35% 94%;
+  --popover: 0 55% 96%;
 
-  --popover-foreground: 0 65% 15%;
+  --popover-foreground: 0 75% 25%;
 
-  --popover-border: 0 30% 82%;
+  --popover-border: 0 50% 85%;
 
   --primary: 0 70% 55%;
 
-  --primary-foreground: 0 70% 12%;
+  --primary-foreground: 0 80% 20%;
 
-  --secondary: 0 25% 88%;
+  --secondary: 0 40% 90%;
 
-  --secondary-foreground: 0 60% 18%;
+  --secondary-foreground: 0 70% 28%;
 
-  --muted: 0 30% 92%;
+  --muted: 0 45% 94%;
 
-  --muted-foreground: 0 20% 38%;
+  --muted-foreground: 0 35% 45%;
 
   --accent: 0 60% 65%;
 
-  --accent-foreground: 0 65% 15%;
+  --accent-foreground: 0 75% 25%;
 
   --destructive: 0 70% 55%;
 
-  --destructive-foreground: 0 70% 12%;
+  --destructive-foreground: 0 80% 20%;
 
-  --input: 0 25% 90%;
+  --input: 0 40% 92%;
   --ring: 0 70% 55%;
   --chart-1: 0 70% 75%;
   --chart-2: 15 75% 75%;
