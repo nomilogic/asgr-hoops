@@ -5,13 +5,14 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
-import ProductDetail from "@/pages/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 import Rankings from "@/pages/Rankings";
 import PlayerDetail from "@/pages/PlayerDetail";
 import CircuitRankings from "@/pages/CircuitRankings";
 import HighSchoolRankings from "@/pages/HighSchoolRankings";
-import Cart from "@/pages/Cart";
-import Contact from "@/pages/Contact";
+import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
+import Events from "./pages/Events";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/rankings/high-school" component={HighSchoolRankings} />
       <Route path="/cart" component={Cart} />
       <Route path="/contact" component={Contact} />
+      <Route path="/events" component={Events} />
       <Route component={NotFound} />
     </Switch>
   );

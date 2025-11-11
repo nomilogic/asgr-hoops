@@ -152,7 +152,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
               <nav className="flex flex-col gap-4 mt-8">
-                <Link href="/" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-events">
+                <Link href="/events" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-events">
                   Events
                 </Link>
                 <Link href="/products" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-products">
