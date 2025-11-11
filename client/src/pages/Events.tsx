@@ -2,16 +2,42 @@ import { useQuery } from "@tanstack/react-query";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
+import { ProspectCard } from "@/components/ProspectCard";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { Product } from "@shared/schema";
+import type { Product, Player } from "@shared/schema";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Trophy, Users, BarChart3 } from "lucide-react";
+import { useMemo } from "react";
 
 export default function Events() {
   const { data: products, isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
+
+  const { data: players2024, isLoading: isLoading2024 } = useQuery<Player[]>({
+    queryKey: ["/api/players/year", 2024],
+  });
+
+  const { data: players2025, isLoading: isLoading2025 } = useQuery<Player[]>({
+    queryKey: ["/api/players/year", 2025],
+  });
+
+  const topProspects = useMemo(() => {
+    const top2024 = (players2024 || [])
+      .filter(p => p.rank !== null && p.rank !== undefined)
+      .sort((a, b) => (a.rank || 0) - (b.rank || 0))
+      .slice(0, 5);
+
+    const top2025 = (players2025 || [])
+      .filter(p => p.rank !== null && p.rank !== undefined)
+      .sort((a, b) => (a.rank || 0) - (b.rank || 0))
+      .slice(0, 5);
+
+    return [...top2024, ...top2025];
+  }, [players2024, players2025]);
+
+  const isLoadingProspects = isLoading2024 || isLoading2025;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -116,60 +142,28 @@ export default function Events() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-              <div className="group relative overflow-hidden rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 hover:scale-105">
-                <img
-                  src="/attached_assets/AddisonMackPhoto-e1726688270253.jpg"
-                  alt="Top Prospect"
-                  className="aspect-[3/4] w-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-3">
-                  <div className="text-white">
-                    <div className="text-sm font-bold">Rank #1</div>
-                    <div className="text-xs text-red-400">Class of 2025</div>
+            {isLoadingProspects ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="aspect-[3/4] w-full" />
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
                   </div>
-                </div>
+                ))}
               </div>
-              <div className="group relative overflow-hidden rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 hover:scale-105">
-                <img
-                  src="/attached_assets/AliciaMitchellPhoto-e1717177516868.jpg"
-                  alt="Top Prospect"
-                  className="aspect-[3/4] w-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-3">
-                  <div className="text-white">
-                    <div className="text-sm font-bold">Rank #2</div>
-                    <div className="text-xs text-red-400">Class of 2025</div>
-                  </div>
-                </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+                {topProspects.map((player) => (
+                  <ProspectCard
+                    key={player.id}
+                    player={player}
+                    displayRank={player.rank || 0}
+                  />
+                ))}
               </div>
-              <div className="group relative overflow-hidden rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 hover:scale-105">
-                <img
-                  src="/attached_assets/AmaniJenkinsPhoto-e1726612378162.jpg"
-                  alt="Top Prospect"
-                  className="aspect-[3/4] w-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-3">
-                  <div className="text-white">
-                    <div className="text-sm font-bold">Rank #5</div>
-                    <div className="text-xs text-red-400">Class of 2025</div>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative overflow-hidden rounded-lg border border-red-900/30 hover:border-red-600/50 transition-all duration-300 hover:scale-105">
-                <img
-                  src="/attached_assets/AveryCooperPhoto-e1726676217614.jpg"
-                  alt="Top Prospect"
-                  className="aspect-[3/4] w-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-3">
-                  <div className="text-white">
-                    <div className="text-sm font-bold">Rank #10</div>
-                    <div className="text-xs text-red-400">Class of 2025</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </section>
 
