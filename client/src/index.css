@@ -4,77 +4,77 @@
 
 /* BLACK AND RED THEME - LIGHT MODE */
 :root {
-  --button-outline: rgba(255, 0, 0, .15);
-  --badge-outline: rgba(255, 0, 0, .08);
+  --button-outline: rgba(255, 100, 100, .15);
+  --badge-outline: rgba(255, 150, 150, .12);
 
   /* Automatic computation of border around primary / danger buttons */
   --opaque-button-border-intensity: -12; /* In terms of percentages */
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255, 0, 0, .04);
-  --elevate-2: rgba(255, 0, 0, .08);
+  --elevate-1: rgba(255, 150, 150, .06);
+  --elevate-2: rgba(255, 120, 120, .1);
 
   --background: 0 0% 100%;
 
-  --foreground: 0 0% 5%;
+  --foreground: 0 0% 10%;
 
-  --border: 0 0% 85%;
+  --border: 0 0% 90%;
 
   --card: 0 0% 100%;
 
-  --card-foreground: 0 0% 5%;
+  --card-foreground: 0 0% 15%;
 
-  --card-border: 0 0% 80%;
+  --card-border: 0 0% 88%;
 
   --sidebar: 0 0% 100%;
 
-  --sidebar-foreground: 0 0% 5%;
+  --sidebar-foreground: 0 0% 15%;
 
-  --sidebar-border: 0 0% 85%;
+  --sidebar-border: 0 0% 90%;
 
-  --sidebar-primary: 0 84% 50%;
+  --sidebar-primary: 0 75% 55%;
 
   --sidebar-primary-foreground: 0 0% 100%;
 
-  --sidebar-accent: 0 0% 96%;
+  --sidebar-accent: 0 0% 98%;
 
-  --sidebar-accent-foreground: 0 0% 5%;
+  --sidebar-accent-foreground: 0 0% 20%;
 
-  --sidebar-ring: 0 84% 50%;
+  --sidebar-ring: 0 75% 55%;
 
   --popover: 0 0% 100%;
 
-  --popover-foreground: 0 0% 5%;
+  --popover-foreground: 0 0% 15%;
 
-  --popover-border: 0 0% 85%;
+  --popover-border: 0 0% 90%;
 
-  --primary: 0 84% 50%;
+  --primary: 0 75% 55%;
 
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 0 0% 96%;
+  --secondary: 0 0% 97%;
 
-  --secondary-foreground: 0 0% 10%;
+  --secondary-foreground: 0 0% 20%;
 
-  --muted: 0 0% 97%;
+  --muted: 0 0% 98%;
 
-  --muted-foreground: 0 0% 35%;
+  --muted-foreground: 0 0% 45%;
 
-  --accent: 0 80% 60%;
+  --accent: 0 70% 65%;
 
-  --accent-foreground: 0 0% 5%;
+  --accent-foreground: 0 0% 15%;
 
-  --destructive: 0 84% 50%;
+  --destructive: 0 75% 55%;
 
   --destructive-foreground: 0 0% 100%;
 
-  --input: 0 0% 90%;
-  --ring: 0 84% 50%;
-  --chart-1: 0 82% 65%;
-  --chart-2: 15 88% 60%;
-  --chart-3: 0 62% 55%;
-  --chart-4: 340 70% 60%;
-  --chart-5: 10 82% 65%;
+  --input: 0 0% 94%;
+  --ring: 0 75% 55%;
+  --chart-1: 0 75% 70%;
+  --chart-2: 15 80% 70%;
+  --chart-3: 0 65% 65%;
+  --chart-4: 340 70% 70%;
+  --chart-5: 10 75% 70%;
 
   --font-sans: Inter, Roboto, sans-serif;
   --font-serif: Georgia, serif;
