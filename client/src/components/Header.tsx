@@ -59,7 +59,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-rankings-menu">
                     Player Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="left-0">
                     <div className="w-[280px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">Top 350 Rankings</div>
@@ -93,7 +93,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-high-school-menu">
                     High School Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="left-0">
                     <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
@@ -112,7 +112,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-circuit-menu">
                     Circuit Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent>
+                  <NavigationMenuContent className="left-0">
                     <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
