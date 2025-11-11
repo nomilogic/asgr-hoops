@@ -418,11 +418,11 @@
 
   /* Light theme gradient utilities */
   :root .bg-gradient-to-b.from-black {
-    background-image: linear-gradient(to bottom, hsl(0 40% 96%), transparent);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8));
   }
 
   .dark .bg-gradient-to-b.from-black {
-    background-image: linear-gradient(to bottom, #000000, transparent);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
   }
 
   /* Red glow on hover for interactive elements */
