@@ -46,7 +46,7 @@ export function Header() {
             }`} data-testid="link-events">
               Events
             </Link>
-            
+
             <Link href="/products" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
               location === "/products" ? "bg-secondary text-secondary-foreground" : "text-foreground"
             }`} data-testid="link-products">
@@ -56,32 +56,32 @@ export function Header() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium" data-testid="button-rankings-menu">
+                  <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-rankings-menu">
                     Player Rankings
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[400px] p-4">
-                      <div className="grid gap-2">
-                        <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase">Top 350 Rankings</div>
-                        <Link href="/rankings/2024" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2024">
+                    <div className="w-[280px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
+                      <div className="grid gap-1">
+                        <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">Top 350 Rankings</div>
+                        <Link href="/rankings/2024" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2024">
                           Class 2024
                         </Link>
-                        <Link href="/rankings/2025" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2025">
+                        <Link href="/rankings/2025" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2025">
                           Class 2025
                         </Link>
-                        <Link href="/rankings/2026" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2026">
+                        <Link href="/rankings/2026" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2026">
                           Class 2026
                         </Link>
-                        <Link href="/rankings/2027" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2027">
+                        <Link href="/rankings/2027" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2027">
                           Class 2027
                         </Link>
-                        <Link href="/rankings/2028" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2028">
+                        <Link href="/rankings/2028" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2028">
                           Class 2028
                         </Link>
-                        <Link href="/rankings/2029" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2029">
+                        <Link href="/rankings/2029" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2029">
                           Class 2029
                         </Link>
-                        <Link href="/rankings/2030" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2030">
+                        <Link href="/rankings/2030" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-rankings-2030">
                           Class 2030
                         </Link>
                       </div>
@@ -90,16 +90,17 @@ export function Header() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium" data-testid="button-high-school-menu">
+                  <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-high-school-menu">
                     High School Rankings
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[300px] p-4">
-                      <div className="grid gap-2">
-                        <Link href="/rankings/high-school/2023-24" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-hs-2023-24">
+                    <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
+                      <div className="grid gap-1">
+                        <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
+                        <Link href="/rankings/high-school/2023-24" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-hs-2023-24">
                           2023-24 Season
                         </Link>
-                        <Link href="/rankings/high-school/2024-25" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-hs-2024-25">
+                        <Link href="/rankings/high-school/2024-25" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-hs-2024-25">
                           2024-25 Season
                         </Link>
                       </div>
@@ -108,13 +109,14 @@ export function Header() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium" data-testid="button-circuit-menu">
+                  <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-circuit-menu">
                     Circuit Rankings
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="w-[300px] p-4">
-                      <div className="grid gap-2">
-                        <Link href="/rankings/circuit/2024" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-circuit-2024">
+                    <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
+                      <div className="grid gap-1">
+                        <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
+                        <Link href="/rankings/circuit/2024" className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400" data-testid="link-circuit-2024">
                           2024 Circuit Season
                         </Link>
                       </div>
