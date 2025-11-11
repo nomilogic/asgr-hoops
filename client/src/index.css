@@ -416,6 +416,15 @@
     background-color: var(--elevate-2);
   }
 
+  /* Light theme gradient utilities */
+  :root .bg-gradient-to-b.from-black {
+    background-image: linear-gradient(to bottom, hsl(0 40% 96%), transparent);
+  }
+
+  .dark .bg-gradient-to-b.from-black {
+    background-image: linear-gradient(to bottom, #000000, transparent);
+  }
+
   /* Red glow on hover for interactive elements */
   .hover-elevate:hover,
   .hover-elevate-2:hover {
