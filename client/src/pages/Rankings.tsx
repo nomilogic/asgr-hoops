@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { Player } from "@shared/schema";
+import type { Player, College } from "@shared/schema";
 import { useState, useMemo } from "react";
 import { Search, Filter } from "lucide-react";
 
@@ -32,6 +32,17 @@ export default function Rankings() {
     },
   });
 
+  const { data: colleges } = useQuery<College[]>({
+    queryKey: ["/api/colleges"],
+    queryFn: async () => {
+      const response = await fetch("/api/colleges");
+      if (!response.ok) {
+        throw new Error("Failed to fetch colleges");
+      }
+      return response.json();
+    },
+  });
+
   const filteredPlayers = useMemo(() => {
     if (!players) return [];
 
@@ -47,11 +58,12 @@ export default function Rankings() {
         return matchesSearch && matchesPosition && matchesState;
       })
       .sort((a, b) => {
-        const rankA = a.rank || 999999;
-        const rankB = b.rank || 999999;
+        // Use rank from ranks JSON column if available, otherwise fall back to rank field
+        const rankA = a.ranks?.[year.toString()] || a.rank || 999999;
+        const rankB = b.ranks?.[year.toString()] || b.rank || 999999;
         return rankA - rankB;
       });
-  }, [players, searchQuery, positionFilter, stateFilter]);
+  }, [players, searchQuery, positionFilter, stateFilter, year]);
 
   const positions = useMemo(() => {
     if (!players) return [];
@@ -198,7 +210,7 @@ export default function Rankings() {
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
                           data-testid={`badge-rank-${player.id}`}
                         >
-                          {player.rank || '—'}
+                          {player.ranks?.[year.toString()] || player.rank || '—'}
                         </Badge>
                       </div>
 
@@ -245,21 +257,36 @@ export default function Rankings() {
                       </div>
 
                       <div className="col-span-1 flex flex-col items-center justify-center gap-1">
-                        {player.committedCollege ? (
-                          <>
-                            <img
-                              src={`/attached_assets/${player.committedCollege.replace(/\s+/g, '-')}-Logo.png`}
-                              alt={player.committedCollege}
-                              className="h-10 w-10 object-contain"
-                              onError={(e) => {
-                                const target = e.target as HTMLImageElement;
-                                target.style.display = 'none';
-                              }}
-                            />
-                            <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
-                              {player.committedCollege}
-                            </span>
-                          </>
+                        {player.committedCollegeId && colleges ? (
+                          (() => {
+                            const college = colleges.find(c => c.id === player.committedCollegeId);
+                            return college ? (
+                              <>
+                                {college.logoUrl && (
+                                  <img
+                                    src={college.logoUrl}
+                                    alt={college.name}
+                                    className="h-10 w-10 object-contain"
+                                    onError={(e) => {
+                                      const target = e.target as HTMLImageElement;
+                                      target.style.display = 'none';
+                                    }}
+                                  />
+                                )}
+                                <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                  {college.name}
+                                </span>
+                              </>
+                            ) : (
+                              <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                {player.committedCollege || '—'}
+                              </span>
+                            );
+                          })()
+                        ) : player.committedCollege ? (
+                          <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                            {player.committedCollege}
+                          </span>
                         ) : (
                           <span className="text-xs text-muted-foreground">—</span>
                         )}
