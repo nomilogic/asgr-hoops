@@ -196,6 +196,16 @@ export default function Products() {
                     key={product.id}
                     className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden group"
                   >
+                    {product.imageUrl && (
+                      <div className="relative h-48 overflow-hidden">
+                        <img 
+                          src={product.imageUrl} 
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      </div>
+                    )}
                     <div className="p-6 space-y-4">
                       {product.category && (
                         <Badge className="bg-red-900/30 text-red-400 border-red-700/50">

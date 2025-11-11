@@ -13,11 +13,20 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetHeader,
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { CartItem } from "@shared/schema";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const logoImage = "/attached_assets/asgr_basketball.png";
 
@@ -43,8 +52,8 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-1">
             <Link href="/" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
               location === "/" ? "bg-secondary text-secondary-foreground" : "text-foreground"
-            }`} data-testid="link-events">
-              Events
+            }`} data-testid="link-home">
+              Home
             </Link>
 
             <Link href="/products" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
@@ -126,6 +135,12 @@ export function Header() {
               </NavigationMenuList>
             </NavigationMenu>
 
+            <Link href="/events" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+              location === "/events" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+            }`} data-testid="link-events">
+              Events
+            </Link>
+
             <Link href="/contact" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
               location === "/contact" ? "bg-secondary text-secondary-foreground" : "text-foreground"
             }`} data-testid="link-contact">
@@ -151,36 +166,57 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px]">
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
               <nav className="flex flex-col gap-4 mt-8">
-                <Link href="/" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-events">
-                  Events
+                <Link href="/" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                  location === "/" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-home">
+                  Home
                 </Link>
-                <Link href="/products" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-products">
+                <Link href="/products" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                  location === "/products" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-products">
                   Scouting Service
                 </Link>
                 <div>
                   <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Player Rankings</div>
                   <div className="ml-4 flex flex-col gap-2 mt-2">
                     <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">TOP 350</div>
-                    <Link href="/rankings/2024" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2024">
+                    <Link href="/rankings/2024" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2024" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2024">
                       Class 2024
                     </Link>
-                    <Link href="/rankings/2025" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2025">
+                    <Link href="/rankings/2025" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2025" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2025">
                       Class 2025
                     </Link>
-                    <Link href="/rankings/2026" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2026">
+                    <Link href="/rankings/2026" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2026" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2026">
                       Class 2026
                     </Link>
-                    <Link href="/rankings/2027" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2027">
+                    <Link href="/rankings/2027" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2027" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2027">
                       Class 2027
                     </Link>
-                    <Link href="/rankings/2028" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2028">
+                    <Link href="/rankings/2028" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2028" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2028">
                       Class 2028
                     </Link>
-                    <Link href="/rankings/2029" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2029">
+                    <Link href="/rankings/2029" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2029" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2029">
                       Class 2029
                     </Link>
-                    <Link href="/rankings/2030" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
+                    <Link href="/rankings/2030" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/2030" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
                       Class 2030
                     </Link>
                   </div>
@@ -188,10 +224,14 @@ export function Header() {
                 <div>
                   <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">High School Rankings</div>
                   <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <Link href="/rankings/high-school/2023-24" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2023-24">
+                    <Link href="/rankings/high-school/2023-24" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/high-school/2023-24" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2023-24">
                       2023-24 Season
                     </Link>
-                    <Link href="/rankings/high-school/2024-25" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2024-25">
+                    <Link href="/rankings/high-school/2024-25" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/high-school/2024-25" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2024-25">
                       2024-25 Season
                     </Link>
                   </div>
@@ -199,12 +239,21 @@ export function Header() {
                 <div>
                   <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Circuit Rankings</div>
                   <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <Link href="/rankings/circuit/2024" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-2024">
+                    <Link href="/rankings/circuit/2024" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                      location === "/rankings/circuit/2024" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                    }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-2024">
                       2024 Circuit Season
                     </Link>
                   </div>
                 </div>
-                <Link href="/contact" className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-contact">
+                <Link href="/events" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                  location === "/events" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-events">
+                  Events
+                </Link>
+                <Link href="/contact" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                  location === "/contact" ? "bg-secondary text-secondary-foreground" : "text-foreground"
+                }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-contact">
                   Contact
                 </Link>
               </nav>
