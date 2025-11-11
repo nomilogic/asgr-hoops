@@ -9,10 +9,13 @@ import {
   type InsertCircuitTeam,
   type College,
   type InsertCollege,
+  type Product,
+  type InsertProduct,
   players,
   highSchools,
   circuitTeams,
   colleges,
+  products,
 } from "@shared/schema";
 
 const SUPABASE_STORAGE_URL = "https://uelszdsseveljfccszga.supabase.co/storage/v1/object/public/asgr/";
@@ -41,6 +44,10 @@ export interface IStorage {
   getAllColleges(): Promise<College[]>;
   getCollegeById(id: number): Promise<College | undefined>;
   createCollege(college: InsertCollege): Promise<College>;
+  
+  getAllProducts(): Promise<Product[]>;
+  getProductById(id: number): Promise<Product | undefined>;
+  createProduct(product: InsertProduct): Promise<Product>;
 }
 
 export class DbStorage implements IStorage {
@@ -141,6 +148,20 @@ export class DbStorage implements IStorage {
 
   async createCollege(college: InsertCollege): Promise<College> {
     const result = await db.insert(colleges).values(college).returning();
+    return result[0];
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    return await db.select().from(products);
+  }
+
+  async getProductById(id: number): Promise<Product | undefined> {
+    const result = await db.select().from(products).where(eq(products.id, id));
+    return result[0];
+  }
+
+  async createProduct(product: InsertProduct): Promise<Product> {
+    const result = await db.insert(products).values(product).returning();
     return result[0];
   }
 }
