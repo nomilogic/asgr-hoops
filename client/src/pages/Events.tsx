@@ -29,13 +29,13 @@ export default function Events() {
       .map(p => ({ ...p, displayRank: p.ranks?.['2024'] || p.rank }))
       .filter(p => p.displayRank !== null && p.displayRank !== undefined)
       .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
-      .slice(0, 5);
+      .slice(0, 3);
 
     const top2025 = (players2025 || [])
       .map(p => ({ ...p, displayRank: p.ranks?.['2025'] || p.rank }))
       .filter(p => p.displayRank !== null && p.displayRank !== undefined)
       .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
-      .slice(0, 5);
+      .slice(0, 3);
 
     return [...top2024, ...top2025];
   }, [players2024, players2025]);
@@ -155,8 +155,8 @@ export default function Events() {
             </div>
 
             {isLoadingProspects ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
-                {[1, 2, 3, 4].map((i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
+                {[1, 2, 3].map((i) => (
                   <div key={i} className="space-y-4">
                     <Skeleton className="aspect-[3/4] w-full" />
                     <Skeleton className="h-6 w-3/4" />
@@ -166,7 +166,7 @@ export default function Events() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
                 {topProspects.map((player) => (
                   <ProspectCard
                     key={player.id}

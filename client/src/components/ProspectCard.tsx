@@ -19,12 +19,15 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
       data-testid={`card-prospect-${player.id}`}
     >
       <div className="relative overflow-hidden rounded-t-md">
-        <Badge 
-          className="absolute top-3 left-3 z-10 bg-card text-card-foreground border-card-border"
+        <div 
+          className="absolute top-3 left-3 z-10 bg-gradient-to-br from-red-600 to-red-700 text-white font-bold rounded-lg shadow-xl border-2 border-red-500/50 w-16 h-16 flex items-center justify-center"
           data-testid={`badge-rank-${player.id}`}
         >
-          #{displayRank}
-        </Badge>
+          <div className="text-center">
+            <div className="text-xs opacity-90">#</div>
+            <div className="text-2xl leading-none">{displayRank}</div>
+          </div>
+        </div>
         
         <div className="bg-muted flex items-center justify-center aspect-[3/4] p-4">
           {player.imagePath ? (
