@@ -1,121 +1,169 @@
-
 import { useQuery } from "@tanstack/react-query";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Link } from "wouter";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, Users, FileText, Video, Calendar, TrendingUp, Award, Target } from "lucide-react";
-import { Link } from "wouter";
+import { CheckCircle2, Award, Database, TrendingUp, Users } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl?: string;
+  features?: string[];
+  category?: string;
+  slug: string;
+}
 
 export default function Products() {
+  const { data: products, isLoading } = useQuery<Product[]>({
+    queryKey: ["/api/products"],
+  });
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-20 px-4 border-b border-red-900/20">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
+        {/* Hero Section with Image */}
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/attached_assets/Pasted-Recruiting-Features-ASGR-Hoops-is-a-customized-version-recruiting-service-specifically-built-for-Al-1762852129961_1762852129961.txt')] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+
           <div className="container mx-auto max-w-6xl relative z-10">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent">
-                Recruiting & Scouting Services
+            <div className="text-center mb-8">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+                THE <span className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">ART</span> OF
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Elevate your recruiting process with comprehensive scouting reports, detailed analytics, and expert evaluations of top basketball talent across the nation.
-              </p>
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">
+                RECRUITING
+              </h2>
+              <div className="space-y-4 max-w-3xl mx-auto">
+                <h3 className="text-2xl font-semibold text-gray-200">MICHAEL T. WHITE</h3>
+                <p className="text-lg text-red-400 uppercase tracking-wide">Founder of All-Star Girls Report</p>
+                <p className="text-gray-300 leading-relaxed">
+                  ASGR Basketball and ASGR Hoops was established in 1995 is a full service Girls Basketball scouting, media and events company, hosting grassroots basketball events, scouting services and product placement.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* What We Offer Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/10">
+        {/* Recruiting Features Section */}
+        <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/20">
           <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-              What We Offer
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                Recruiting Features
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                ASGR Hoops is a customized version recruiting service specifically built for All Star Girls Report.
+              </p>
+            </div>
+
+            <div className="prose prose-invert max-w-none mb-12">
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                The unequaled, in-depth player evaluations from the All Star Girls Report are produced by long time analyst Michael T. White will evaluate over 2,500 prospects at the High School, Transfer Portal, Juco 150, International and Middle School levels each year.
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                The service that revolutionized women's basketball over the past several decade simply gets better and better. Beginning June 1, 2025 through May 31, 2026, get our ASGR database Today!
+              </p>
+            </div>
+
+            {/* Database Features */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 p-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
-                    <FileText className="h-6 w-6 text-red-500" />
+                    <Database className="h-6 w-6 text-red-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Detailed Scouting Reports</h3>
+                    <h3 className="font-semibold text-lg mb-2">Exclusive ASGR Database</h3>
                     <p className="text-sm text-muted-foreground">
-                      Comprehensive evaluations including strengths, weaknesses, athletic profile, and skill breakdowns.
+                      Access our unequaled, in-depth scouting data with comprehensive player evaluations.
                     </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
-                    <Video className="h-6 w-6 text-red-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Game Film Analysis</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Access to curated game footage and highlight reels with expert commentary and breakdowns.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
+              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 p-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
                     <TrendingUp className="h-6 w-6 text-red-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Performance Metrics</h3>
+                    <h3 className="font-semibold text-lg mb-2">Real-Time Updates</h3>
                     <p className="text-sm text-muted-foreground">
-                      Statistical analysis, efficiency ratings, and advanced analytics to measure player impact.
+                      Stay up-to-date with inside information on national evaluations, player ratings and rankings.
                     </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
+              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 p-6">
                 <div className="flex items-start gap-4">
                   <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
                     <Users className="h-6 w-6 text-red-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Player Comparisons</h3>
+                    <h3 className="font-semibold text-lg mb-2">Recruiting Trail Reports</h3>
                     <p className="text-sm text-muted-foreground">
-                      Side-by-side evaluations and college-level player comparisons for recruiting context.
+                      All the latest projections from major non and live viewing period events.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <Card className="bg-gradient-to-br from-red-950/20 to-black border-red-900/30 p-8 mb-12">
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Find all the recruiting needs with one, quick mobile stop. The ASGR database can give daily and weekly updates on current prospects that best fit your college system.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        {/* Rating System Section */}
+        <section className="py-16 px-4 bg-gradient-to-b from-red-950/20 to-black border-y border-red-900/20">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+              ASGR RECRUITING RATING SYSTEM
+            </h2>
+
+            <div className="space-y-6">
+              <Card className="bg-card/50 backdrop-blur-sm border-red-700/40 p-6">
+                <div className="flex items-start gap-4">
+                  <Badge className="bg-red-600 text-white text-xl font-bold px-4 py-2 shrink-0">98-100</Badge>
+                  <div>
+                    <h3 className="text-xl font-bold text-red-400 mb-2">WNBA All-Star</h3>
+                    <p className="text-gray-300">Future WNBA All-Star Projection</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="bg-card/50 backdrop-blur-sm border-red-700/30 p-6">
+                <div className="flex items-start gap-4">
+                  <Badge className="bg-red-700 text-white text-xl font-bold px-4 py-2 shrink-0">93-97</Badge>
+                  <div>
+                    <h3 className="text-xl font-bold text-red-400 mb-2">High Major Starters</h3>
+                    <p className="text-gray-300">
+                      Impact Player at the American, Big East, ACC, Atlantic 10, Big 12, Big Ten, Colonial, Conference USA, MAC, Missouri Valley, Mountain West, Pac 12, Sun Belt and SEC.
                     </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
+              <Card className="bg-card/50 backdrop-blur-sm border-red-700/20 p-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
-                    <Calendar className="h-6 w-6 text-red-500" />
-                  </div>
+                  <Badge className="bg-red-800 text-white text-xl font-bold px-4 py-2 shrink-0">89-92</Badge>
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">Tournament Coverage</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Real-time updates and comprehensive coverage from major events and showcases.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30">
-                    <Award className="h-6 w-6 text-red-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">Rankings Database</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Access to Top 350 national rankings, circuit rankings, and high school rankings.
+                    <h3 className="text-xl font-bold text-red-400 mb-2">Marginal High Major to Mid Major Starters</h3>
+                    <p className="text-gray-300">
+                      Impact Player at the American East, Atlantic Sun, Big South, Big Sky, Big West, Horizon, MAAC, Mid Continent, Ohio Valley, Southern, Ivy, MEAC, Northeast, Summit, Southland, Patriot, SWAC, West Coast, WAC.
                     </p>
                   </div>
                 </div>
@@ -125,230 +173,99 @@ export default function Products() {
         </section>
 
         {/* Service Packages */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-              Our Scouting Packages
-            </h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-              Choose the package that best fits your recruiting needs. All packages include access to our comprehensive database and expert analysis.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Basic Package */}
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-8 flex flex-col">
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Basic Access</h3>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold text-red-500">$99</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Perfect for individual coaches getting started</p>
-                </div>
-
-                <ul className="space-y-3 mb-8 flex-1">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Access to Top 350 Rankings</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Basic player profiles</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Monthly tournament updates</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Email support</span>
-                  </li>
-                </ul>
-
-                <Link href="/contact">
-                  <Button className="w-full bg-red-600 hover:bg-red-700">
-                    Get Started
-                  </Button>
-                </Link>
-              </Card>
-
-              {/* Pro Package */}
-              <Card className="bg-gradient-to-b from-red-950/30 to-card/50 backdrop-blur-sm border-red-700/50 hover:border-red-600/70 hover:shadow-xl hover:shadow-red-900/30 transition-all duration-300 p-8 flex flex-col relative">
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600">
-                  Most Popular
-                </Badge>
-                
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Professional</h3>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold text-red-500">$249</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Ideal for college programs and scouts</p>
-                </div>
-
-                <ul className="space-y-3 mb-8 flex-1">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Everything in Basic</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Detailed scouting reports</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Game film access</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Advanced statistics</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Player comparison tools</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Priority support</span>
-                  </li>
-                </ul>
-
-                <Link href="/contact">
-                  <Button className="w-full bg-red-600 hover:bg-red-700">
-                    Get Started
-                  </Button>
-                </Link>
-              </Card>
-
-              {/* Elite Package */}
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 p-8 flex flex-col">
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Elite Program</h3>
-                  <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-4xl font-bold text-red-500">$499</span>
-                    <span className="text-muted-foreground">/month</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Complete solution for D1 programs</p>
-                </div>
-
-                <ul className="space-y-3 mb-8 flex-1">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Everything in Professional</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Unlimited scouting reports</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Custom player evaluations</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Live event coverage</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">Dedicated account manager</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm">24/7 priority support</span>
-                  </li>
-                </ul>
-
-                <Link href="/contact">
-                  <Button className="w-full bg-red-600 hover:bg-red-700">
-                    Contact Us
-                  </Button>
-                </Link>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Choose Us Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-red-950/10 to-black">
+        <section className="py-16 px-4 bg-black">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-              Why Choose ASGR Basketball?
+              Scouting Service Packages
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex gap-4">
-                <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30 h-fit">
-                  <Target className="h-6 w-6 text-red-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Expert Evaluations</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Our team of experienced scouts and former coaches provide in-depth analysis backed by years of basketball knowledge.
-                  </p>
-                </div>
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="h-64 w-full" />
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                  </div>
+                ))}
               </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {products?.map((product) => (
+                  <Card 
+                    key={product.id}
+                    className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden group"
+                  >
+                    <div className="p-6 space-y-4">
+                      {product.category && (
+                        <Badge className="bg-red-900/30 text-red-400 border-red-700/50">
+                          {product.category}
+                        </Badge>
+                      )}
 
-              <div className="flex gap-4">
-                <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30 h-fit">
-                  <Users className="h-6 w-6 text-red-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Nationwide Coverage</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Access to talent from all 50 states, covering major tournaments, showcases, and high school competitions.
-                  </p>
-                </div>
+                      <h3 className="text-2xl font-bold group-hover:text-red-400 transition-colors">
+                        {product.name}
+                      </h3>
+
+                      <p className="text-muted-foreground line-clamp-2">
+                        {product.description}
+                      </p>
+
+                      {product.features && product.features.length > 0 && (
+                        <div className="space-y-2 py-4">
+                          <p className="font-semibold text-sm uppercase tracking-wide text-red-400">Package Includes:</p>
+                          <ul className="space-y-2">
+                            {product.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-2 text-sm">
+                                <CheckCircle2 className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+                                <span className="text-gray-300">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      <div className="pt-4 border-t border-card-border space-y-4">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-3xl font-bold text-red-400">
+                            ${product.price}
+                          </span>
+                          <span className="text-sm text-muted-foreground">per year</span>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Link href={`/products/${product.slug}`} asChild>
+                            <Button 
+                              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
+                              size="lg"
+                            >
+                              Pay By Credit Card
+                            </Button>
+                          </Link>
+                          <Button 
+                            variant="outline" 
+                            className="w-full border-red-700/50 hover:bg-red-900/20"
+                            size="lg"
+                          >
+                            Pay by Check
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
               </div>
+            )}
 
-              <div className="flex gap-4">
-                <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30 h-fit">
-                  <TrendingUp className="h-6 w-6 text-red-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Updated Weekly</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Rankings and reports are constantly updated to reflect current performance and development.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="bg-red-900/20 p-3 rounded-lg border border-red-700/30 h-fit">
-                  <Award className="h-6 w-6 text-red-500" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Trusted by Programs</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Used by college coaches and programs across all division levels to identify and recruit top talent.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 px-4 bg-gradient-to-br from-red-950/30 via-black to-red-950/30 border-t border-red-900/20">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Elevate Your Recruiting?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join hundreds of college programs who trust ASGR Basketball for their scouting and recruiting needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700">
-                  Contact Us Today
-                </Button>
-              </Link>
-              <Link href="/rankings/2025">
-                <Button size="lg" variant="outline" className="border-red-600 hover:bg-red-950">
-                  View Rankings
-                </Button>
-              </Link>
-            </div>
+            <Card className="mt-12 bg-card/30 backdrop-blur-sm border-red-900/30 p-6">
+              <p className="text-sm text-gray-400 text-center">
+                *Credit cards accepted online. If you are making payment by check, please email us at{" "}
+                <a href="mailto:info@asgrbasketball.com" className="text-red-400 hover:text-red-300 underline">
+                  info@asgrbasketball.com
+                </a>{" "}
+                for invoice and W-9 form.
+              </p>
+            </Card>
           </div>
         </section>
       </main>
