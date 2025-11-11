@@ -244,24 +244,25 @@ export default function Rankings() {
                         <span className="text-sm">{player.circuitProgram || '—'}</span>
                       </div>
 
-                      <div className="col-span-1 flex justify-center">
-                        {player.committedCollege && (
-                          <img
-                            src={`/attached_assets/${player.committedCollege.replace(/\s+/g, '-')}-Logo.png`}
-                            alt={player.committedCollege}
-                            className="h-10 w-10 object-contain"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              const parent = target.parentElement;
-                              if (parent) {
-                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedCollege}</span>`;
-                              }
-                            }}
-                            data-testid={`text-committed-${player.id}`}
-                          />
+                      <div className="col-span-1 flex flex-col items-center justify-center gap-1">
+                        {player.committedCollege ? (
+                          <>
+                            <img
+                              src={`/attached_assets/${player.committedCollege.replace(/\s+/g, '-')}-Logo.png`}
+                              alt={player.committedCollege}
+                              className="h-10 w-10 object-contain"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                              }}
+                            />
+                            <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                              {player.committedCollege}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">—</span>
                         )}
-                        {!player.committedCollege && <span className="text-xs text-muted-foreground">—</span>}
                       </div>
                     </div>
                   </Card>
