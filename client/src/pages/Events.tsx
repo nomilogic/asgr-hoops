@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Trophy, Users, BarChart3 } from "lucide-react";
 import { useMemo } from "react";
+import asgrLogo from "../assets/generated/ASGR_Hoops_logo_design_8eb835b2.png";
 
 export default function Events() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -25,13 +26,15 @@ export default function Events() {
 
   const topProspects = useMemo(() => {
     const top2024 = (players2024 || [])
-      .filter(p => p.rank !== null && p.rank !== undefined)
-      .sort((a, b) => (a.rank || 0) - (b.rank || 0))
+      .map(p => ({ ...p, displayRank: p.ranks?.['2024'] || p.rank }))
+      .filter(p => p.displayRank !== null && p.displayRank !== undefined)
+      .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
       .slice(0, 5);
 
     const top2025 = (players2025 || [])
-      .filter(p => p.rank !== null && p.rank !== undefined)
-      .sort((a, b) => (a.rank || 0) - (b.rank || 0))
+      .map(p => ({ ...p, displayRank: p.ranks?.['2025'] || p.rank }))
+      .filter(p => p.displayRank !== null && p.displayRank !== undefined)
+      .sort((a, b) => (a.displayRank || 0) - (b.displayRank || 0))
       .slice(0, 5);
 
     return [...top2024, ...top2025];
@@ -45,6 +48,15 @@ export default function Events() {
 
       <main className="flex-1">
         <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black py-20 px-4 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <img 
+              src={asgrLogo} 
+              alt="" 
+              className="w-full h-full object-contain object-center scale-150 blur-[2px]" 
+              aria-hidden="true"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-6xl relative z-10">
             <div className="text-center max-w-3xl mx-auto">
@@ -159,7 +171,7 @@ export default function Events() {
                   <ProspectCard
                     key={player.id}
                     player={player}
-                    displayRank={player.rank || 0}
+                    displayRank={player.displayRank || 0}
                   />
                 ))}
               </div>

@@ -17,6 +17,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { CartItem } from "@shared/schema";
@@ -150,6 +151,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <Link href="/cart" className="relative inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover-elevate active-elevate-2 h-9 w-9" data-testid="link-cart">
             <ShoppingCart className="h-5 w-5" />
             {cartCount > 0 && (
