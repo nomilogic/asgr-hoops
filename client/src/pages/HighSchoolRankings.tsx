@@ -167,7 +167,7 @@ export default function HighSchoolRankings() {
 
         <section className="py-0 px-4">
           <div className="container mx-auto max-w-7xl">
-            <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
+            <div className="hidden md:block bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
                 <div className="col-span-4">High School</div>
@@ -191,7 +191,60 @@ export default function HighSchoolRankings() {
                     className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-300"
                     data-testid={`card-school-${ranking.id}`}
                   >
-                    <div className="grid grid-cols-12 gap-4 p-6 items-center">
+                    {/* Mobile Layout */}
+                    <div className="block md:hidden p-6 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <Badge 
+                          className="font-bold text-2xl w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                          data-testid={`badge-rank-${ranking.id}`}
+                        >
+                          {ranking.rank}
+                        </Badge>
+                        <div className="text-right space-y-1">
+                          <p className="text-xs text-muted-foreground">W/L Record</p>
+                          <p className="font-bold text-lg" data-testid={`text-record-${ranking.id}`}>
+                            {ranking.record}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        {ranking.logoPath ? (
+                          <img
+                            src={ranking.logoPath}
+                            alt={ranking.school}
+                            className="w-14 h-14 object-contain rounded flex-shrink-0"
+                            data-testid={`img-school-logo-${ranking.id}`}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="w-14 h-14 rounded bg-muted/50 border border-muted flex items-center justify-center flex-shrink-0">
+                            <Trophy className="h-7 w-7 text-muted-foreground" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <span className="font-bold text-lg block truncate" data-testid={`text-school-name-${ranking.id}`}>
+                            {ranking.school}
+                          </span>
+                          <Badge variant="outline" className="border-red-700/30 bg-red-950/20 text-xs mt-1">
+                            {ranking.state || '—'}
+                          </Badge>
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-border/50">
+                        <p className="text-xs text-muted-foreground mb-2 font-semibold">Key Wins</p>
+                        <p className="text-sm text-muted-foreground line-clamp-3" data-testid={`text-key-wins-${ranking.id}`}>
+                          {ranking.keyWins}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden md:grid grid-cols-12 gap-4 p-6 items-center">
                       <div className="col-span-1 flex justify-center">
                         <Badge 
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"

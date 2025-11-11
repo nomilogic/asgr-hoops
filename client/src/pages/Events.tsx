@@ -93,7 +93,7 @@ export default function Events() {
                     View Packages
                   </Button>
                 </Link>
-                <Link href="/rankings/top350/2025" asChild>
+                <Link href="/rankings/2025" asChild>
                   <Button
                     size="lg"
                     variant="outline"

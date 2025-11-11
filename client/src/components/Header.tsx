@@ -69,7 +69,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-rankings-menu">
                     Player Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0">
+                  <NavigationMenuContent className="absolute -left-1/2 translate-x-1/2">
                     <div className="w-[280px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">Top 350 Rankings</div>
@@ -103,7 +103,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-high-school-menu">
                     High School Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0">
+                  <NavigationMenuContent className="absolute -left-1/2 translate-x-1/2">
                     <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
@@ -122,7 +122,7 @@ export function Header() {
                   <NavigationMenuTrigger className="text-sm font-medium hover:text-red-500 transition-colors" data-testid="button-circuit-menu">
                     Circuit Rankings
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0">
+                  <NavigationMenuContent className="absolute -left-1/2 translate-x-1/2">
                     <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">By Season</div>
@@ -167,11 +167,11 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
+            <SheetContent side="right" className="w-[300px] flex flex-col">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-8">
+              <nav className="flex flex-col gap-2 mt-6 flex-1 overflow-y-auto">
                 <Link href="/" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
                   location === "/" ? "bg-secondary text-secondary-foreground" : "text-foreground"
                 }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-home">
@@ -182,9 +182,13 @@ export function Header() {
                 }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-products">
                   Scouting Service
                 </Link>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Player Rankings</div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
+
+                <Collapsible className="space-y-2">
+                  <CollapsibleTrigger className="px-3 py-2 text-sm font-semibold text-muted-foreground flex items-center gap-2 hover:text-foreground transition-colors w-full">
+                    Player Rankings
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="ml-4 flex flex-col gap-2 space-y-0">
                     <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">TOP 350</div>
                     <Link href="/rankings/2024" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
                       location === "/rankings/2024" ? "bg-secondary text-secondary-foreground" : "text-foreground"
@@ -221,11 +225,15 @@ export function Header() {
                     }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
                       Class 2030
                     </Link>
-                  </div>
-                </div>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">High School Rankings</div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <Collapsible className="space-y-2">
+                  <CollapsibleTrigger className="px-3 py-2 text-sm font-semibold text-muted-foreground flex items-center gap-2 hover:text-foreground transition-colors w-full">
+                    High School Rankings
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="ml-4 flex flex-col gap-2 space-y-0">
                     <Link href="/rankings/high-school/2023-24" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
                       location === "/rankings/high-school/2023-24" ? "bg-secondary text-secondary-foreground" : "text-foreground"
                     }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2023-24">
@@ -236,18 +244,23 @@ export function Header() {
                     }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2024-25">
                       2024-25 Season
                     </Link>
-                  </div>
-                </div>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Circuit Rankings</div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
+                  </CollapsibleContent>
+                </Collapsible>
+
+                <Collapsible className="space-y-2">
+                  <CollapsibleTrigger className="px-3 py-2 text-sm font-semibold text-muted-foreground flex items-center gap-2 hover:text-foreground transition-colors w-full">
+                    Circuit Rankings
+                    <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="ml-4 flex flex-col gap-2 space-y-0">
                     <Link href="/rankings/circuit/2024" className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
                       location === "/rankings/circuit/2024" ? "bg-secondary text-secondary-foreground" : "text-foreground"
                     }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-2024">
                       2024 Circuit Season
                     </Link>
-                  </div>
-                </div>
+                  </CollapsibleContent>
+                </Collapsible>
+
                 <Link href="/events" className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
                   location === "/events" ? "bg-secondary text-secondary-foreground" : "text-foreground"
                 }`} onClick={() => setMobileOpen(false)} data-testid="mobile-link-events">

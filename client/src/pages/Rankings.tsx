@@ -179,7 +179,7 @@ export default function Rankings() {
 
         <section className="px-4 mt-[-2rem]">
           <div className="container mx-auto max-w-7xl">
-            <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
+            <div className="hidden md:block bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-base text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
                 <div className="col-span-3">Name</div>
@@ -210,103 +210,196 @@ export default function Rankings() {
                       onOpenChange={(open) => setOpenPlayerId(open ? player.id : null)}
                     >
                       <Card
-                        className="overflow-visible border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
+                        className="overflow-visible border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300 h-fit"
                         data-testid={`card-player-${player.id}`}
                       >
                         <CollapsibleTrigger asChild>
-                          <button className="w-full grid grid-cols-12 gap-4 p-6 items-center text-left hover-elevate active-elevate-2" data-testid={`button-toggle-player-${player.id}`} aria-label={`Toggle details for ${player.name}`}>
-                            <div className="col-span-1 flex justify-center">
-                              <Badge 
-                                className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
-                                data-testid={`badge-rank-${player.id}`}
-                              >
-                                {player.ranks?.[year.toString()] || player.rank || '—'}
-                              </Badge>
-                            </div>
-
-                            <div className="col-span-3 flex items-center gap-3">
-                              {player.imagePath ? (
-                                <img
-                                  src={player.imagePath}
-                                  alt={player.name}
-                                  className="w-12 h-16 object-cover rounded border border-red-900/30"
-                                  data-testid={`img-player-${player.id}`}
-                                />
-                              ) : (
-                                <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-lg text-muted-foreground">
-                                  N/A
+                          <button className="w-full p-6 text-left hover-elevate active-elevate-2" data-testid={`button-toggle-player-${player.id}`} aria-label={`Toggle details for ${player.name}`}>
+                            {/* Mobile Layout */}
+                            <div className="block md:hidden space-y-3">
+                              <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-center gap-3 flex-1">
+                                  <Badge 
+                                    className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50 flex-shrink-0"
+                                    data-testid={`badge-rank-${player.id}`}
+                                  >
+                                    {player.ranks?.[year.toString()] || player.rank || '—'}
+                                  </Badge>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      {player.imagePath ? (
+                                        <img
+                                          src={player.imagePath}
+                                          alt={player.name}
+                                          className="w-10 h-14 object-cover rounded border border-red-900/30 flex-shrink-0"
+                                          data-testid={`img-player-${player.id}`}
+                                        />
+                                      ) : (
+                                        <div className="w-10 h-14 rounded bg-muted/50 border border-muted flex items-center justify-center text-sm text-muted-foreground flex-shrink-0">
+                                          N/A
+                                        </div>
+                                      )}
+                                      <div className="flex-1 min-w-0">
+                                        <span className="font-bold text-base block truncate" data-testid={`text-player-name-${player.id}`}>
+                                          {player.name}
+                                        </span>
+                                        <span className="text-xs text-muted-foreground">{player.highSchool || '—'}</span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
-                              )}
-                              <div className="flex items-center gap-2">
-                                <span className="font-bold text-base" data-testid={`text-player-name-${player.id}`}>
-                                  {player.name}
-                                </span>
                                 {isOpen ? (
-                                  <ChevronUp className="h-4 w-4 text-red-500" />
+                                  <ChevronUp className="h-5 w-5 text-red-500 flex-shrink-0" />
                                 ) : (
-                                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  <ChevronDown className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                                 )}
                               </div>
-                            </div>
 
-                            <div className="col-span-1 text-center">
-                              <span className="text-base font-semibold">{player.height || '—'}</span>
-                            </div>
+                              <div className="grid grid-cols-3 gap-2 text-center">
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Height</p>
+                                  <p className="font-semibold text-sm">{player.height || '—'}</p>
+                                </div>
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Position</p>
+                                  <Badge variant="outline" className="border-red-700/30 bg-red-950/20 text-xs mx-auto block w-fit">
+                                    {player.position || '—'}
+                                  </Badge>
+                                </div>
+                                <div>
+                                  <p className="text-xs text-muted-foreground">Grade</p>
+                                  <p className="font-semibold text-sm">{player.gradeYear}</p>
+                                </div>
+                              </div>
 
-                            <div className="col-span-1 text-center">
-                              <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                                {player.position || '—'}
-                              </Badge>
-                            </div>
-
-                            <div className="col-span-1 text-center">
-                              <span className="text-base font-semibold">{player.gradeYear}</span>
-                            </div>
-
-                            <div className="col-span-2">
-                              <span className="text-base" data-testid={`text-high-school-${player.id}`}>
-                                {player.highSchool || '—'}
-                              </span>
-                            </div>
-
-                            <div className="col-span-2">
-                              <span className="text-base">{player.circuitProgram || '—'}</span>
-                            </div>
-
-                            <div className="col-span-1 flex flex-col items-center justify-center gap-1">
                               {player.committedCollegeId && colleges ? (
                                 (() => {
                                   const college = colleges.find(c => c.id === player.committedCollegeId);
                                   return college ? (
-                                    <>
+                                    <div className="flex items-center gap-2 pt-2">
                                       {college.logoUrl && (
                                         <img
                                           src={college.logoUrl}
                                           alt={college.name}
-                                          className="h-10 w-10 object-contain"
+                                          className="h-8 w-8 object-contain flex-shrink-0"
                                           onError={(e) => {
                                             const target = e.target as HTMLImageElement;
                                             target.style.display = 'none';
                                           }}
                                         />
                                       )}
-                                      <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
-                                        {college.name}
+                                      <span className="text-sm font-semibold text-green-400 truncate" data-testid={`text-committed-${player.id}`}>
+                                        Committed: {college.name}
                                       </span>
-                                    </>
+                                    </div>
                                   ) : (
-                                    <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
-                                      {player.committedCollege || '—'}
+                                    <span className="text-sm font-semibold text-green-400" data-testid={`text-committed-${player.id}`}>
+                                      Committed: {player.committedCollege || '—'}
                                     </span>
                                   );
                                 })()
                               ) : player.committedCollege ? (
-                                <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
-                                  {player.committedCollege}
+                                <span className="text-sm font-semibold text-green-400" data-testid={`text-committed-${player.id}`}>
+                                  Committed: {player.committedCollege}
                                 </span>
-                              ) : (
-                                <span className="text-lg text-muted-foreground">—</span>
-                              )}
+                              ) : null}
+                            </div>
+
+                            {/* Desktop Layout */}
+                            <div className="hidden md:grid grid-cols-12 gap-4 items-center">
+                              <div className="col-span-1 flex justify-center">
+                                <Badge 
+                                  className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                                  data-testid={`badge-rank-${player.id}`}
+                                >
+                                  {player.ranks?.[year.toString()] || player.rank || '—'}
+                                </Badge>
+                              </div>
+
+                              <div className="col-span-3 flex items-center gap-3">
+                                {player.imagePath ? (
+                                  <img
+                                    src={player.imagePath}
+                                    alt={player.name}
+                                    className="w-12 h-16 object-cover rounded border border-red-900/30"
+                                    data-testid={`img-player-${player.id}`}
+                                  />
+                                ) : (
+                                  <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-lg text-muted-foreground">
+                                    N/A
+                                  </div>
+                                )}
+                                <div className="flex items-center gap-2">
+                                  <span className="font-bold text-base" data-testid={`text-player-name-${player.id}`}>
+                                    {player.name}
+                                  </span>
+                                  {isOpen ? (
+                                    <ChevronUp className="h-4 w-4 text-red-500" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                  )}
+                                </div>
+                              </div>
+
+                              <div className="col-span-1 text-center">
+                                <span className="text-base font-semibold">{player.height || '—'}</span>
+                              </div>
+
+                              <div className="col-span-1 text-center">
+                                <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                                  {player.position || '—'}
+                                </Badge>
+                              </div>
+
+                              <div className="col-span-1 text-center">
+                                <span className="text-base font-semibold">{player.gradeYear}</span>
+                              </div>
+
+                              <div className="col-span-2">
+                                <span className="text-base" data-testid={`text-high-school-${player.id}`}>
+                                  {player.highSchool || '—'}
+                                </span>
+                              </div>
+
+                              <div className="col-span-2">
+                                <span className="text-base">{player.circuitProgram || '—'}</span>
+                              </div>
+
+                              <div className="col-span-1 flex flex-col items-center justify-center gap-1">
+                                {player.committedCollegeId && colleges ? (
+                                  (() => {
+                                    const college = colleges.find(c => c.id === player.committedCollegeId);
+                                    return college ? (
+                                      <>
+                                        {college.logoUrl && (
+                                          <img
+                                            src={college.logoUrl}
+                                            alt={college.name}
+                                            className="h-10 w-10 object-contain"
+                                            onError={(e) => {
+                                              const target = e.target as HTMLImageElement;
+                                              target.style.display = 'none';
+                                            }}
+                                          />
+                                        )}
+                                        <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                          {college.name}
+                                        </span>
+                                      </>
+                                    ) : (
+                                      <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                        {player.committedCollege || '—'}
+                                      </span>
+                                    );
+                                  })()
+                                ) : player.committedCollege ? (
+                                  <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                    {player.committedCollege}
+                                  </span>
+                                ) : (
+                                  <span className="text-lg text-muted-foreground">—</span>
+                                )}
+                              </div>
                             </div>
                           </button>
                         </CollapsibleTrigger>
