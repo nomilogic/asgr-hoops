@@ -21,6 +21,7 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/products/:slug" component={ProductDetail} />
       <Route path="/player/:id" component={PlayerDetail} />
+      <Route path="/rankings" component={Rankings} />
       <Route path="/rankings/:year" component={Rankings} />
       <Route path="/rankings/circuit/:year" component={CircuitRankings} />
       <Route path="/rankings/circuit" component={CircuitRankings} />
