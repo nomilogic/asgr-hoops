@@ -84,13 +84,38 @@ export function Header() {
                         <Link href="/rankings/2030" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-rankings-2030">
                           Class 2030
                         </Link>
-                        <div className="border-t border-border my-2"></div>
-                        <div className="px-3 py-1 text-xs font-semibold text-muted-foreground uppercase">Other Rankings</div>
-                        <Link href="/rankings/circuit" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-circuit-rankings">
-                          Circuit Rankings
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium" data-testid="button-high-school-menu">
+                    High School Rankings
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[300px] p-4">
+                      <div className="grid gap-2">
+                        <Link href="/rankings/high-school/2023-24" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-hs-2023-24">
+                          2023-24 Season
                         </Link>
-                        <Link href="/rankings/high-school" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-high-school-rankings">
-                          High School Rankings
+                        <Link href="/rankings/high-school/2024-25" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-hs-2024-25">
+                          2024-25 Season
+                        </Link>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium" data-testid="button-circuit-menu">
+                    Circuit Rankings
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="w-[300px] p-4">
+                      <div className="grid gap-2">
+                        <Link href="/rankings/circuit/2024" className="block px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" data-testid="link-circuit-2024">
+                          2024 Circuit Season
                         </Link>
                       </div>
                     </div>
@@ -156,12 +181,24 @@ export function Header() {
                     <Link href="/rankings/2030" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-rankings-2030">
                       Class 2030
                     </Link>
-                    <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70 mt-2">OTHER</div>
-                    <Link href="/rankings/circuit" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-rankings">
-                      Circuit Rankings
+                  </div>
+                </div>
+                <div>
+                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">High School Rankings</div>
+                  <div className="ml-4 flex flex-col gap-2 mt-2">
+                    <Link href="/rankings/high-school/2023-24" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2023-24">
+                      2023-24 Season
                     </Link>
-                    <Link href="/rankings/high-school" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-high-school-rankings">
-                      High School Rankings
+                    <Link href="/rankings/high-school/2024-25" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-hs-2024-25">
+                      2024-25 Season
+                    </Link>
+                  </div>
+                </div>
+                <div>
+                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">Circuit Rankings</div>
+                  <div className="ml-4 flex flex-col gap-2 mt-2">
+                    <Link href="/rankings/circuit/2024" className="px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2" onClick={() => setMobileOpen(false)} data-testid="mobile-link-circuit-2024">
+                      2024 Circuit Season
                     </Link>
                   </div>
                 </div>

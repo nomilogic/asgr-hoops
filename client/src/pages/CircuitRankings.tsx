@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useRoute } from "wouter";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -22,9 +23,12 @@ interface CircuitTeamWithRanking {
 }
 
 export default function CircuitRankings() {
+  const [, params] = useRoute("/rankings/circuit/:year");
+  const year = params?.year || "2024";
+  const season = `${year} Circuit Season`;
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [circuitFilter, setCircuitFilter] = useState<string>("all");
-  const [season] = useState<string>("2024 Circuit Season");
 
   const { data: teams, isLoading } = useQuery<CircuitTeam[]>({
     queryKey: ["/api/circuit-teams"],
