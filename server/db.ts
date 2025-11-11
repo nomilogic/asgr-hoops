@@ -1,6 +1,8 @@
 import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from "@shared/schema";
+import dotenv from "dotenv";
+dotenv.config();
 
 const DATABASE_URL = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
 

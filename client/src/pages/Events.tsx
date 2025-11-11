@@ -58,7 +58,7 @@ export default function Events() {
             />
           </div>
 
-          <div className="container  max-w-full relative z-10 bg-black/90 p-10 m-0">
+          <div className="container  max-w-full relative z-10 bg-black/90 p-5 m-0">
             <div className=" inset-0 h-80 z-10">
               <img
                 src={asgrLogo}

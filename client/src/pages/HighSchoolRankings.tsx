@@ -85,7 +85,7 @@ export default function HighSchoolRankings() {
       <Header />
       
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
@@ -117,7 +117,7 @@ export default function HighSchoolRankings() {
               </div>
             </div>
 
-            <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
+            {/* <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -161,11 +161,11 @@ export default function HighSchoolRankings() {
                   </Button>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </section>
 
-        <section className="py-12 px-4">
+        <section className="py-0 px-4">
           <div className="container mx-auto max-w-7xl">
             <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">

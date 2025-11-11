@@ -3,6 +3,8 @@ import path from "path"; // Import path module
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { createServer } from "http"; // Import createServer
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 

@@ -29,7 +29,7 @@
 
 **Spacing Primitives:** Tailwind units of 2, 4, 6, 8, 12, 16, 20, 24
 - Consistent padding: p-4, p-6, p-8
-- Section spacing: py-12, py-16, py-20
+- Section spacing: py-2, py-16, py-20
 - Card gaps: gap-6, gap-8
 - Table cell padding: px-4, py-3
 

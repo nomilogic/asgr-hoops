@@ -35,7 +35,7 @@ export default function PlayerDetail() {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 py-12 px-4">
+        <main className="flex-1 py-2 px-4">
           <div className="container mx-auto max-w-7xl">
             <Skeleton className="h-96 w-full rounded-xl mb-8" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -54,7 +54,7 @@ export default function PlayerDetail() {
     return (
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <main className="flex-1 py-12 px-4">
+        <main className="flex-1 py-2 px-4">
           <div className="container mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold mb-4" data-testid="text-not-found">Player Not Found</h1>
             <p className="text-muted-foreground mb-6">The player you're looking for doesn't exist.</p>
@@ -89,7 +89,7 @@ export default function PlayerDetail() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl relative z-10">
             <Link href={`/rankings/${player.gradeYear || 2025}`}>
@@ -228,7 +228,7 @@ export default function PlayerDetail() {
           </div>
         </section>
 
-        <section className="py-12 px-4">
+        <section className="py-2 px-4">
           <div className="container mx-auto max-w-7xl">
             <Tabs defaultValue="history" className="w-full">
               <TabsList className="grid w-full grid-cols-3 mb-8" data-testid="tabs-list">

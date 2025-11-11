@@ -9,7 +9,7 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
 
           <div className="container mx-auto max-w-6xl relative z-10">
@@ -29,7 +29,7 @@ export default function Home() {
         </section>
 
         {/* Events Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/20">
+        <section className="py-8 px-4 bg-gradient-to-b from-black to-red-950/20">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">

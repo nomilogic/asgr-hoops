@@ -84,16 +84,16 @@ export default function Rankings() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
                 Top 350 Rankings
               </h1>
-              <p className="text-xl text-gray-300 mb-2">
+              <h2 className="text-xl text-gray-300 ">
                 Class of {year}
-              </p>
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Comprehensive rankings of the nation's top high school basketball players
               </p>
@@ -115,7 +115,7 @@ export default function Rankings() {
                 ))}
               </div>
             </div>
-
+{/* 
             <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="relative">
@@ -155,8 +155,8 @@ export default function Rankings() {
               </div>
 
               {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
-                <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
-                  <p className="text-sm text-muted-foreground">
+                <div className=" flex items-center justify-between flex-wrap gap-2">
+                  <p className="text-base text-muted-foreground">
                     Showing {filteredPlayers.length} of {players?.length || 0} players
                   </p>
                   <Button
@@ -173,14 +173,14 @@ export default function Rankings() {
                   </Button>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </section>
 
-        <section className="py-12 px-4">
+        <section className="px-4 mt-[-2rem]">
           <div className="container mx-auto max-w-7xl">
             <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
-              <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
+              <div className="grid grid-cols-12 gap-4 items-center font-semibold text-base text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
                 <div className="col-span-3">Name</div>
                 <div className="col-span-1 text-center">HT</div>
@@ -233,7 +233,7 @@ export default function Rankings() {
                                   data-testid={`img-player-${player.id}`}
                                 />
                               ) : (
-                                <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-xs text-muted-foreground">
+                                <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-lg text-muted-foreground">
                                   N/A
                                 </div>
                               )}
@@ -250,7 +250,7 @@ export default function Rankings() {
                             </div>
 
                             <div className="col-span-1 text-center">
-                              <span className="text-sm font-semibold">{player.height || '—'}</span>
+                              <span className="text-base font-semibold">{player.height || '—'}</span>
                             </div>
 
                             <div className="col-span-1 text-center">
@@ -260,17 +260,17 @@ export default function Rankings() {
                             </div>
 
                             <div className="col-span-1 text-center">
-                              <span className="text-sm font-semibold">{player.gradeYear}</span>
+                              <span className="text-base font-semibold">{player.gradeYear}</span>
                             </div>
 
                             <div className="col-span-2">
-                              <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
+                              <span className="text-base" data-testid={`text-high-school-${player.id}`}>
                                 {player.highSchool || '—'}
                               </span>
                             </div>
 
                             <div className="col-span-2">
-                              <span className="text-sm">{player.circuitProgram || '—'}</span>
+                              <span className="text-base">{player.circuitProgram || '—'}</span>
                             </div>
 
                             <div className="col-span-1 flex flex-col items-center justify-center gap-1">
@@ -290,22 +290,22 @@ export default function Rankings() {
                                           }}
                                         />
                                       )}
-                                      <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                      <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
                                         {college.name}
                                       </span>
                                     </>
                                   ) : (
-                                    <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                    <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
                                       {player.committedCollege || '—'}
                                     </span>
                                   );
                                 })()
                               ) : player.committedCollege ? (
-                                <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                <span className="text-lg font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
                                   {player.committedCollege}
                                 </span>
                               ) : (
-                                <span className="text-xs text-muted-foreground">—</span>
+                                <span className="text-lg text-muted-foreground">—</span>
                               )}
                             </div>
                           </button>
@@ -328,7 +328,7 @@ export default function Rankings() {
                           
                             <div className="flex justify-end mb-4">
                               <Link href={`/player/${player.id}`}>
-                                <a className="inline-flex items-center gap-2 text-sm text-red-500 hover:text-red-400 font-semibold hover-elevate active-elevate-2 px-3 py-2 rounded-md" data-testid={`link-player-detail-${player.id}`}>
+                                <a className="inline-flex items-center gap-2 text-base text-red-500 hover:text-red-400 font-semibold hover-elevate active-elevate-2 px-3 py-2 rounded-md" data-testid={`link-player-detail-${player.id}`}>
                                   View Full Profile
                                   <ExternalLink className="h-4 w-4" />
                                 </a>
@@ -340,11 +340,11 @@ export default function Rankings() {
                                 <div className="bg-muted/30 rounded-lg p-4">
                                   <div className="flex items-center gap-2 mb-3">
                                     <TrendingUp className="h-4 w-4 text-red-500" />
-                                    <h4 className="font-semibold text-sm">Rankings History</h4>
+                                    <h4 className="font-semibold text-base">Rankings History</h4>
                                   </div>
                                   <div className="space-y-2">
                                     {ranksEntries.map(([year, rank]) => (
-                                      <div key={year} className="flex justify-between text-sm" data-testid={`expanded-rank-${player.id}-${year}`}>
+                                      <div key={year} className="flex justify-between text-base" data-testid={`expanded-rank-${player.id}-${year}`}>
                                         <span className="text-muted-foreground">Class {year}</span>
                                         <span className="font-bold text-red-500">#{rank}</span>
                                       </div>
@@ -357,11 +357,11 @@ export default function Rankings() {
                                 <div className="bg-muted/30 rounded-lg p-4">
                                   <div className="flex items-center gap-2 mb-3">
                                     <Star className="h-4 w-4 text-yellow-500" />
-                                    <h4 className="font-semibold text-sm">Ratings History</h4>
+                                    <h4 className="font-semibold text-base">Ratings History</h4>
                                   </div>
                                   <div className="space-y-2">
                                     {ratingsEntries.map(([year, rating]) => (
-                                      <div key={year} className="flex justify-between text-sm" data-testid={`expanded-rating-${player.id}-${year}`}>
+                                      <div key={year} className="flex justify-between text-base" data-testid={`expanded-rating-${player.id}-${year}`}>
                                         <span className="text-muted-foreground">Class {year}</span>
                                         <span className="font-bold text-yellow-500">{rating}</span>
                                       </div>
@@ -374,11 +374,11 @@ export default function Rankings() {
                                 <div className="bg-muted/30 rounded-lg p-4">
                                   <div className="flex items-center gap-2 mb-3">
                                     <FileText className="h-4 w-4 text-red-500" />
-                                    <h4 className="font-semibold text-sm">Scouting Notes</h4>
+                                    <h4 className="font-semibold text-base">Scouting Notes</h4>
                                   </div>
                                   <div className="space-y-3">
                                     {notesEntries.slice(0, 2).map(([year, note]) => (
-                                      <div key={year} className="text-xs" data-testid={`expanded-note-${player.id}-${year}`}>
+                                      <div key={year} className="text-lg" data-testid={`expanded-note-${player.id}-${year}`}>
                                         <div className="font-semibold text-red-500 mb-1">Class {year}</div>
                                         <p className="text-muted-foreground line-clamp-3">{note}</p>
                                       </div>
@@ -389,15 +389,15 @@ export default function Rankings() {
                             </div>
 
                             {(positionsEntries.length > 0 || heightsEntries.length > 0 || highSchoolsEntries.length > 0) && (
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
                                 {positionsEntries.length > 0 && (
                                   <div className="bg-muted/20 rounded-lg p-3">
-                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Position History</h5>
+                                    <h5 className="text-lg font-semibold  text-muted-foreground">Position History</h5>
                                     <div className="space-y-1">
                                       {positionsEntries.map(([year, position]) => (
-                                        <div key={year} className="text-xs flex justify-between">
+                                        <div key={year} className="text-lg flex justify-between">
                                           <span className="text-muted-foreground">{year}</span>
-                                          <Badge variant="outline" className="text-xs h-5">{position}</Badge>
+                                          <Badge variant="outline" className="text-lg h-5">{position}</Badge>
                                         </div>
                                       ))}
                                     </div>
@@ -406,10 +406,10 @@ export default function Rankings() {
 
                                 {heightsEntries.length > 0 && (
                                   <div className="bg-muted/20 rounded-lg p-3">
-                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Height Records</h5>
+                                    <h5 className="text-lg font-semibold text-muted-foreground">Height Records</h5>
                                     <div className="space-y-1">
                                       {heightsEntries.map(([year, height]) => (
-                                        <div key={year} className="text-xs flex justify-between">
+                                        <div key={year} className="text-lg flex justify-between">
                                           <span className="text-muted-foreground">{year}</span>
                                           <span className="font-semibold">{height}</span>
                                         </div>
@@ -420,10 +420,10 @@ export default function Rankings() {
 
                                 {highSchoolsEntries.length > 0 && (
                                   <div className="bg-muted/20 rounded-lg p-3">
-                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">School History</h5>
+                                    <h5 className="text-lg font-semibold  text-muted-foreground">School History</h5>
                                     <div className="space-y-1">
                                       {highSchoolsEntries.map(([year, school]) => (
-                                        <div key={year} className="text-xs">
+                                        <div key={year} className="text-lg">
                                           <span className="text-muted-foreground">{year}:</span> {school}
                                         </div>
                                       ))}
@@ -434,13 +434,13 @@ export default function Rankings() {
                             )}
 
                             {(circuitProgramsEntries.length > 0 || committedCollegesEntries.length > 0) && (
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
                                 {circuitProgramsEntries.length > 0 && (
                                   <div className="bg-muted/20 rounded-lg p-3">
-                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Circuit Programs</h5>
+                                    <h5 className="text-lg font-semibold  text-muted-foreground">Circuit Programs</h5>
                                     <div className="space-y-1">
                                       {circuitProgramsEntries.map(([year, program]) => (
-                                        <div key={year} className="text-xs">
+                                        <div key={year} className="text-lg">
                                           <span className="text-muted-foreground">{year}:</span> {program}
                                         </div>
                                       ))}
@@ -450,10 +450,10 @@ export default function Rankings() {
 
                                 {committedCollegesEntries.length > 0 && (
                                   <div className="bg-muted/20 rounded-lg p-3">
-                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Commitment History</h5>
+                                    <h5 className="text-lg font-semibold  text-muted-foreground">Commitment History</h5>
                                     <div className="space-y-1">
                                       {committedCollegesEntries.map(([year, college]) => (
-                                        <div key={year} className="text-xs">
+                                        <div key={year} className="text-lg">
                                           <span className="text-muted-foreground">{year}:</span> <span className="text-green-400">{college}</span>
                                         </div>
                                       ))}
@@ -477,7 +477,7 @@ export default function Rankings() {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
                   <Filter className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">No players found</h3>
+                <h3 className="text-xl font-semibold ">No players found</h3>
                 <p className="text-muted-foreground mb-6">
                   {searchQuery || positionFilter !== "all" || stateFilter !== "all"
                     ? "Try adjusting your filters"

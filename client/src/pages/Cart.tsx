@@ -88,7 +88,7 @@ export default function Cart() {
             </div>
           ) : !cartWithProducts || cartWithProducts.length === 0 ? (
             <Card>
-              <CardContent className="py-12 text-center">
+              <CardContent className="py-2 text-center">
                 <ShoppingBag className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
                 <h2 className="text-xl font-semibold mb-2" data-testid="text-empty-cart">
                   Your cart is empty

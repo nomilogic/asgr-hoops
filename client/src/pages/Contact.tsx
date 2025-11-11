@@ -13,7 +13,7 @@ export default function Contact() {
       <Header />
       
       <main className="flex-1">
-        <section className="bg-muted/30 py-12 px-4">
+        <section className="bg-muted/30 py-2 px-4">
           <div className="container mx-auto max-w-4xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4" data-testid="text-page-title">
               Contact Us
@@ -24,7 +24,7 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="py-12 px-4">
+        <section className="py-2 px-4">
           <div className="container mx-auto max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <Card>

@@ -30,7 +30,7 @@ export default function Products() {
 
       <main className="flex-1">
         {/* Hero Section with Image */}
-        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20 overflow-hidden">
           <div className="absolute inset-0 bg-[url('/attached_assets/Pasted-Recruiting-Features-ASGR-Hoops-is-a-customized-version-recruiting-service-specifically-built-for-Al-1762852129961_1762852129961.txt')] opacity-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
 
@@ -65,7 +65,7 @@ export default function Products() {
         </section>
 
         {/* Recruiting Features Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/20">
+        <section className="py-8 px-4 bg-gradient-to-b from-black to-red-950/20">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
@@ -157,7 +157,7 @@ export default function Products() {
         </section>
 
         {/* Rating System Section */}
-        <section className="py-16 px-4 bg-gradient-to-b from-red-950/20 to-black border-y border-red-900/20">
+        <section className="py-8 px-4 bg-gradient-to-b from-red-950/20 to-black border-y border-red-900/20">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
               ASGR RECRUITING RATING SYSTEM
@@ -221,7 +221,7 @@ export default function Products() {
         </section>
 
         {/* Service Packages */}
-        <section className="py-16 px-4 bg-black">
+        <section className="py-8 px-4 bg-black">
           <div className="container mx-auto max-w-6xl">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
               Scouting Service Packages
