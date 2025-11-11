@@ -105,3 +105,25 @@ export type CircuitTeam = typeof circuitTeams.$inferSelect;
 
 export type InsertCollege = z.infer<typeof insertCollegeSchema>;
 export type College = typeof colleges.$inferSelect;
+
+export const products = pgTable("products", {
+  id: bigint("id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description").notNull(),
+  price: integer("price").notNull(),
+  category: text("category"),
+  features: text("features").array().notNull().default([]),
+  imageUrl: text("image_url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const insertProductSchema = createInsertSchema(products).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertProduct = z.infer<typeof insertProductSchema>;
+export type Product = typeof products.$inferSelect;
