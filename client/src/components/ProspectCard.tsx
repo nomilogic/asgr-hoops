@@ -24,12 +24,11 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
           data-testid={`badge-rank-${player.id}`}
         >
           <div className="text-center">
-            <div className="text-xs opacity-90">#</div>
-            <div className="text-2xl leading-none">{displayRank}</div>
+            <div className="text-3xl leading-none">{displayRank}</div>
           </div>
         </div>
         
-        <div className="bg-muted flex items-center justify-center aspect-[3/4] p-4">
+        <div className="bg-muted flex items-center justify-center aspect-[3/4]">
           {player.imagePath ? (
             <img
               src={player.imagePath}

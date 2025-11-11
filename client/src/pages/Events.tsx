@@ -155,25 +155,55 @@ export default function Events() {
             </div>
 
             {isLoadingProspects ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="space-y-4">
-                    <Skeleton className="aspect-[3/4] w-full" />
-                    <Skeleton className="h-6 w-3/4" />
-                    <Skeleton className="h-4 w-full" />
-                    <Skeleton className="h-4 w-full" />
+              <div className="max-w-5xl mx-auto space-y-8">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2024</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="space-y-4">
+                        <Skeleton className="aspect-[3/4] w-full" />
+                        <Skeleton className="h-6 w-3/4" />
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 max-w-5xl mx-auto">
-                {topProspects.map((player) => (
-                  <ProspectCard
-                    key={player.id}
-                    player={player}
-                    displayRank={player.displayRank || 0}
-                  />
-                ))}
+              <div className="max-w-5xl mx-auto space-y-8">
+                {players2024 && players2024.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2024</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {topProspects
+                        .filter((p) => p.gradeYear === 2024)
+                        .map((player) => (
+                          <ProspectCard
+                            key={player.id}
+                            player={player}
+                            displayRank={player.displayRank || 0}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                )}
+                {players2025 && players2025.length > 0 && (
+                  <div>
+                    <h3 className="text-2xl font-bold mb-4 text-red-400">Class of 2025</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {topProspects
+                        .filter((p) => p.gradeYear === 2025)
+                        .map((player) => (
+                          <ProspectCard
+                            key={player.id}
+                            player={player}
+                            displayRank={player.displayRank || 0}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
