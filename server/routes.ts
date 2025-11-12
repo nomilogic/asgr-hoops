@@ -83,7 +83,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Player routes
-  app.get("/api/players", authenticateToken, async (_req, res) => {
+  app.get("/api/players", async (_req, res) => {
     try {
       const players = await storage.getAllPlayers();
       res.json(players);
@@ -92,7 +92,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/players/year/:year", authenticateToken, async (req, res) => {
+  app.get("/api/players/year/:year", async (req, res) => {
     try {
       const year = parseInt(req.params.year);
       if (isNaN(year)) {
@@ -122,7 +122,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // High School routes
-  app.get("/api/high-schools", authenticateToken, async (_req, res) => {
+  app.get("/api/high-schools", async (_req, res) => {
     try {
       const schools = await storage.getAllHighSchools();
       res.json(schools);
@@ -148,7 +148,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Circuit team routes
-  app.get("/api/circuit-teams", authenticateToken, async (_req, res) => {
+  app.get("/api/circuit-teams", async (_req, res) => {
     try {
       const teams = await storage.getAllCircuitTeams();
       res.json(teams);
@@ -571,26 +571,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Public stats endpoint for dashboard
+  app.get("/api/stats", async (req, res) => {
+    try {
+      const stats = await storage.getPublicStats();
+      res.json(stats);
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+      res.status(500).json({ error: "Failed to fetch stats" });
+    }
+  });
+
   // Admin - Dashboard Stats
   app.get("/api/admin/stats", requireAdmin, async (req, res) => {
     try {
-      const [players, highSchools, circuitTeams, colleges, products, users] = await Promise.all([
-        storage.getAllPlayers(),
-        storage.getAllHighSchools(),
-        storage.getAllCircuitTeams(),
-        storage.getAllColleges(),
-        storage.getAllProducts(),
-        storage.getAllUsers(),
-      ]);
-
-      res.json({
-        playersCount: players.length,
-        highSchoolsCount: highSchools.length,
-        circuitTeamsCount: circuitTeams.length,
-        collegesCount: colleges.length,
-        productsCount: products.length,
-        usersCount: users.length,
-      });
+      const stats = await storage.getPublicStats();
+      res.json(stats);
     } catch (error) {
       console.error("Error fetching stats:", error);
       res.status(500).json({ error: "Failed to fetch stats" });
