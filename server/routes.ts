@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { uploadPlayerImage, uploadCollegeLogo } from "./supabase-storage";
 import { authenticateToken, requireAdmin, hashPassword, comparePassword, signToken } from "./auth";
-import { signupSchema, loginSchema, insertPlayerSchema, insertHighSchoolSchema, insertCircuitTeamSchema, insertCollegeSchema, insertProductSchema } from "@shared/schema";
+import { signupSchema, loginSchema, insertPlayerSchema, insertHighSchoolSchema, insertCircuitTeamSchema, insertCollegeSchema, insertProductSchema, insertUserSchema } from "@shared/schema";
 import multer from "multer";
 import { z } from "zod";
 
@@ -594,6 +594,124 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching stats:", error);
       res.status(500).json({ error: "Failed to fetch stats" });
+    }
+  });
+
+  // Admin - Upload Player Image
+  app.post("/api/admin/players/:id/image", requireAdmin, upload.single('image'), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid player ID" });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ error: "No image file provided" });
+      }
+
+      const result = await uploadPlayerImage(
+        id,
+        req.file.buffer,
+        req.file.originalname
+      );
+
+      // Update player with new image path
+      await storage.updatePlayer(id, { imagePath: result.path });
+
+      res.json({ success: true, ...result });
+    } catch (error: any) {
+      console.error("Error uploading player image:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Admin - Upload College Logo
+  app.post("/api/admin/colleges/:id/logo", requireAdmin, upload.single('image'), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid college ID" });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ error: "No image file provided" });
+      }
+
+      const college = await storage.getCollegeById(id);
+      if (!college) {
+        return res.status(404).json({ error: "College not found" });
+      }
+
+      const result = await uploadCollegeLogo(
+        college.name,
+        req.file.buffer,
+        req.file.originalname
+      );
+
+      // Update college with new logo path
+      await storage.updateCollege(id, { logoPath: result.path });
+
+      res.json({ success: true, ...result });
+    } catch (error: any) {
+      console.error("Error uploading college logo:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Admin - Upload High School Logo
+  app.post("/api/admin/high-schools/:id/logo", requireAdmin, upload.single('image'), async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ error: "Invalid high school ID" });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({ error: "No image file provided" });
+      }
+
+      const school = await storage.getHighSchoolById(id);
+      if (!school) {
+        return res.status(404).json({ error: "High school not found" });
+      }
+
+      const fileExt = req.file.originalname.split('.').pop();
+      const sanitizedName = school.school.toLowerCase().replace(/[^a-z0-9]/g, '-');
+      const filePath = `high-schools/${sanitizedName}.${fileExt}`;
+
+      const { createClient } = await import('@supabase/supabase-js');
+      const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
+      const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
+      
+      if (!SUPABASE_URL || !SUPABASE_KEY) {
+        throw new Error('Missing Supabase credentials');
+      }
+
+      const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+      const BUCKET_NAME = process.env.SUPABASE_BUCKET_NAME || 'asgr-images';
+
+      const { error } = await supabase.storage
+        .from(BUCKET_NAME)
+        .upload(filePath, req.file.buffer, {
+          contentType: `image/${fileExt}`,
+          upsert: true
+        });
+
+      if (error) {
+        throw new Error(`Failed to upload high school logo: ${error.message}`);
+      }
+
+      const { data: urlData } = supabase.storage
+        .from(BUCKET_NAME)
+        .getPublicUrl(filePath);
+
+      // Update high school with new logo path
+      await storage.updateHighSchool(id, { logoPath: filePath });
+
+      res.json({ success: true, url: urlData.publicUrl, path: filePath });
+    } catch (error: any) {
+      console.error("Error uploading high school logo:", error);
+      res.status(500).json({ error: error.message });
     }
   });
 
