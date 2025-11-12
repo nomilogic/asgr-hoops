@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useRoute } from "wouter";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -8,8 +9,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { HighSchool } from "@shared/schema";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, Filter, Trophy } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface SchoolWithRanking {
   id: number;
@@ -22,9 +25,29 @@ interface SchoolWithRanking {
 }
 
 export default function HighSchoolRankings() {
+  const { toast } = useToast();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "Please log in to view high school rankings.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
+
+  const [, params] = useRoute("/rankings/high-school/:season");
+  const seasonParam = params?.season || "2024-25";
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [stateFilter, setStateFilter] = useState<string>("all");
-  const [season, setSeason] = useState<string>("2024-25");
+  const [season, setSeason] = useState<string>(seasonParam);
 
   const { data: highSchools, isLoading } = useQuery<HighSchool[]>({
     queryKey: ["/api/high-schools"],
@@ -97,15 +120,18 @@ export default function HighSchoolRankings() {
 
               <div className="flex items-center justify-center gap-2 flex-wrap mb-6">
                 {["2024-25", "2023-24"].map((s) => (
-                  <Button
+                  <a
                     key={s}
-                    onClick={() => setSeason(s)}
-                    variant={s === season ? "default" : "outline"}
-                    className={s === season ? "bg-red-600 hover:bg-red-700" : ""}
+                    href={`/rankings/high-school/${s}`}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                      s === season
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
+                        : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                    }`}
                     data-testid={`button-season-${s}`}
                   >
                     {s} Season
-                  </Button>
+                  </a>
                 ))}
               </div>
             </div>

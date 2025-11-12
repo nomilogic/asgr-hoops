@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useRoute } from "wouter";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -8,8 +9,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { CircuitTeam } from "@shared/schema";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, Filter, Trophy } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 interface CircuitTeamWithRanking {
   id: number;
@@ -22,9 +25,29 @@ interface CircuitTeamWithRanking {
 }
 
 export default function CircuitRankings() {
+  const { toast } = useToast();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "Please log in to view circuit rankings.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
+
+  const [, params] = useRoute("/rankings/circuit/:year");
+  const year = params?.year || "2024";
+  const season = `${year} Circuit Season`;
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [circuitFilter, setCircuitFilter] = useState<string>("all");
-  const [season] = useState<string>("2024 Circuit Season");
 
   const { data: teams, isLoading } = useQuery<CircuitTeam[]>({
     queryKey: ["/api/circuit-teams"],

@@ -9,13 +9,33 @@ import {
   type InsertCircuitTeam,
   type College,
   type InsertCollege,
+  type Product,
+  type InsertProduct,
+  type User,
+  type UserWithPassword,
+  type InsertUser,
   players,
   highSchools,
   circuitTeams,
   colleges,
+  products,
+  users,
 } from "@shared/schema";
 
+const SUPABASE_STORAGE_URL = "https://uelszdsseveljfccszga.supabase.co/storage/v1/object/public/asgr/";
+
+function addStoragePrefix(path: string | null): string | null {
+  if (!path) return null;
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  return SUPABASE_STORAGE_URL + path;
+}
+
 export interface IStorage {
+  getUser(id: string): Promise<User | undefined>;
+  getUserWithPassword(id: string): Promise<UserWithPassword | undefined>;
+  getUserByEmail(email: string): Promise<UserWithPassword | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+
   getAllPlayers(): Promise<Player[]>;
   getPlayerById(id: number): Promise<Player | undefined>;
   getPlayersByGradYear(gradYear: number): Promise<Player[]>;
@@ -33,20 +53,78 @@ export interface IStorage {
   getAllColleges(): Promise<College[]>;
   getCollegeById(id: number): Promise<College | undefined>;
   createCollege(college: InsertCollege): Promise<College>;
+  
+  getAllProducts(): Promise<Product[]>;
+  getProductById(id: number): Promise<Product | undefined>;
+  createProduct(product: InsertProduct): Promise<Product>;
 }
 
 export class DbStorage implements IStorage {
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select({
+      id: users.id,
+      email: users.email,
+      firstName: users.firstName,
+      lastName: users.lastName,
+      profileImageUrl: users.profileImageUrl,
+      createdAt: users.createdAt,
+      updatedAt: users.updatedAt,
+    }).from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserWithPassword(id: string): Promise<UserWithPassword | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserByEmail(email: string): Promise<UserWithPassword | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async createUser(userData: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .returning({
+        id: users.id,
+        email: users.email,
+        firstName: users.firstName,
+        lastName: users.lastName,
+        profileImageUrl: users.profileImageUrl,
+        createdAt: users.createdAt,
+        updatedAt: users.updatedAt,
+      });
+    return user;
+  }
+
   async getAllPlayers(): Promise<Player[]> {
-    return await db.select().from(players);
+    const result = await db.select().from(players);
+    return result.map(player => ({
+      ...player,
+      photoUrl: addStoragePrefix(player.photoUrl),
+      imagePath: addStoragePrefix(player.imagePath)
+    }));
   }
 
   async getPlayerById(id: number): Promise<Player | undefined> {
     const result = await db.select().from(players).where(eq(players.id, id));
-    return result[0];
+    if (!result[0]) return undefined;
+    return {
+      ...result[0],
+      photoUrl: addStoragePrefix(result[0].photoUrl),
+      imagePath: addStoragePrefix(result[0].imagePath)
+    };
   }
 
   async getPlayersByGradYear(gradYear: number): Promise<Player[]> {
-    return await db.select().from(players).where(eq(players.gradeYear, gradYear));
+    const result = await db.select().from(players).where(eq(players.gradeYear, gradYear));
+    return result.map(player => ({
+      ...player,
+      photoUrl: addStoragePrefix(player.photoUrl),
+      imagePath: addStoragePrefix(player.imagePath)
+    }));
   }
 
   async createPlayer(player: InsertPlayer): Promise<Player> {
@@ -60,12 +138,22 @@ export class DbStorage implements IStorage {
   }
 
   async getAllHighSchools(): Promise<HighSchool[]> {
-    return await db.select().from(highSchools);
+    const result = await db.select().from(highSchools);
+    return result.map(school => ({
+      ...school,
+      logoPath: addStoragePrefix(school.logoPath),
+      logoUrl: addStoragePrefix(school.logoUrl)
+    }));
   }
 
   async getHighSchoolById(id: number): Promise<HighSchool | undefined> {
     const result = await db.select().from(highSchools).where(eq(highSchools.id, id));
-    return result[0];
+    if (!result[0]) return undefined;
+    return {
+      ...result[0],
+      logoPath: addStoragePrefix(result[0].logoPath),
+      logoUrl: addStoragePrefix(result[0].logoUrl)
+    };
   }
 
   async createHighSchool(school: InsertHighSchool): Promise<HighSchool> {
@@ -88,16 +176,40 @@ export class DbStorage implements IStorage {
   }
 
   async getAllColleges(): Promise<College[]> {
-    return await db.select().from(colleges);
+    const result = await db.select().from(colleges);
+    return result.map(college => ({
+      ...college,
+      logoPath: addStoragePrefix(college.logoPath),
+      logoUrl: addStoragePrefix(college.logoUrl)
+    }));
   }
 
   async getCollegeById(id: number): Promise<College | undefined> {
     const result = await db.select().from(colleges).where(eq(colleges.id, id));
-    return result[0];
+    if (!result[0]) return undefined;
+    return {
+      ...result[0],
+      logoPath: addStoragePrefix(result[0].logoPath),
+      logoUrl: addStoragePrefix(result[0].logoUrl)
+    };
   }
 
   async createCollege(college: InsertCollege): Promise<College> {
     const result = await db.insert(colleges).values(college).returning();
+    return result[0];
+  }
+
+  async getAllProducts(): Promise<Product[]> {
+    return await db.select().from(products);
+  }
+
+  async getProductById(id: number): Promise<Product | undefined> {
+    const result = await db.select().from(products).where(eq(products.id, id));
+    return result[0];
+  }
+
+  async createProduct(product: InsertProduct): Promise<Product> {
+    const result = await db.insert(products).values(product).returning();
     return result[0];
   }
 }

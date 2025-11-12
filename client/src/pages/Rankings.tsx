@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useRoute } from "wouter";
+import { useRoute, Link } from "wouter";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -8,11 +8,30 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { Player } from "@shared/schema";
-import { useState, useMemo } from "react";
-import { Search, Filter } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import type { Player, College } from "@shared/schema";
+import { useState, useMemo, useEffect } from "react";
+import { Search, Filter, ChevronDown, ChevronUp, TrendingUp, Star, FileText, ExternalLink } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Rankings() {
+  const { toast } = useToast();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "Please log in to view rankings.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
   const [, params] = useRoute("/rankings/:year");
   const yearParam = params?.year ? parseInt(params.year) : 2025;
   const year = isNaN(yearParam) ? 2025 : yearParam;
@@ -20,6 +39,7 @@ export default function Rankings() {
   const [searchQuery, setSearchQuery] = useState("");
   const [positionFilter, setPositionFilter] = useState<string>("all");
   const [stateFilter, setStateFilter] = useState<string>("all");
+  const [openPlayerId, setOpenPlayerId] = useState<number | null>(null);
 
   const { data: players, isLoading } = useQuery<Player[]>({
     queryKey: ["/api/players/year", year],
@@ -27,6 +47,17 @@ export default function Rankings() {
       const response = await fetch(`/api/players/year/${year}`);
       if (!response.ok) {
         throw new Error("Failed to fetch players");
+      }
+      return response.json();
+    },
+  });
+
+  const { data: colleges } = useQuery<College[]>({
+    queryKey: ["/api/colleges"],
+    queryFn: async () => {
+      const response = await fetch("/api/colleges");
+      if (!response.ok) {
+        throw new Error("Failed to fetch colleges");
       }
       return response.json();
     },
@@ -47,11 +78,12 @@ export default function Rankings() {
         return matchesSearch && matchesPosition && matchesState;
       })
       .sort((a, b) => {
-        const rankA = a.rank || 999999;
-        const rankB = b.rank || 999999;
+        // Use rank from ranks JSON column if available, otherwise fall back to rank field
+        const rankA = a.ranks?.[year.toString()] || a.rank || 999999;
+        const rankB = b.ranks?.[year.toString()] || b.rank || 999999;
         return rankA - rankB;
       });
-  }, [players, searchQuery, positionFilter, stateFilter]);
+  }, [players, searchQuery, positionFilter, stateFilter, year]);
 
   const positions = useMemo(() => {
     if (!players) return [];
@@ -186,86 +218,277 @@ export default function Rankings() {
               </div>
             ) : filteredPlayers && filteredPlayers.length > 0 ? (
               <div className="space-y-4">
-                {filteredPlayers.map((player) => (
-                  <Card
-                    key={player.id}
-                    className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
-                    data-testid={`card-player-${player.id}`}
-                  >
-                    <div className="grid grid-cols-12 gap-4 p-6 items-center">
-                      <div className="col-span-1 flex justify-center">
-                        <Badge 
-                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
-                          data-testid={`badge-rank-${player.id}`}
-                        >
-                          {player.rank || '—'}
-                        </Badge>
-                      </div>
+                {filteredPlayers.map((player) => {
+                  const isOpen = openPlayerId === player.id;
 
-                      <div className="col-span-3 flex items-center gap-3">
-                        {player.imagePath ? (
-                          <img
-                            src={player.imagePath}
-                            alt={player.name}
-                            className="w-12 h-16 object-cover rounded border border-red-900/30"
-                            data-testid={`img-player-${player.id}`}
-                          />
-                        ) : (
-                          <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-xs text-muted-foreground">
-                            N/A
+                  return (
+                    <Collapsible
+                      key={player.id}
+                      open={isOpen}
+                      onOpenChange={(open) => setOpenPlayerId(open ? player.id : null)}
+                    >
+                      <Card
+                        className="overflow-visible border-card-border bg-card/50 backdrop-blur-sm hover:bg-card/80 hover:border-red-700/40 hover:shadow-lg hover:shadow-red-900/20 transition-all duration-300"
+                        data-testid={`card-player-${player.id}`}
+                      >
+                        <CollapsibleTrigger asChild>
+                          <button className="w-full grid grid-cols-12 gap-4 p-6 items-center text-left hover-elevate active-elevate-2" data-testid={`button-toggle-player-${player.id}`} aria-label={`Toggle details for ${player.name}`}>
+                            <div className="col-span-1 flex justify-center">
+                              <Badge 
+                                className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                                data-testid={`badge-rank-${player.id}`}
+                              >
+                                {player.ranks?.[year.toString()] || player.rank || '—'}
+                              </Badge>
+                            </div>
+
+                            <div className="col-span-3 flex items-center gap-3">
+                              {player.imagePath ? (
+                                <img
+                                  src={player.imagePath}
+                                  alt={player.name}
+                                  className="w-12 h-16 object-cover rounded border border-red-900/30"
+                                  data-testid={`img-player-${player.id}`}
+                                />
+                              ) : (
+                                <div className="w-12 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center text-xs text-muted-foreground">
+                                  N/A
+                                </div>
+                              )}
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-base" data-testid={`text-player-name-${player.id}`}>
+                                  {player.name}
+                                </span>
+                                {isOpen ? (
+                                  <ChevronUp className="h-4 w-4 text-red-500" />
+                                ) : (
+                                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="col-span-1 text-center">
+                              <span className="text-sm font-semibold">{player.height || '—'}</span>
+                            </div>
+
+                            <div className="col-span-1 text-center">
+                              <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
+                                {player.position || '—'}
+                              </Badge>
+                            </div>
+
+                            <div className="col-span-1 text-center">
+                              <span className="text-sm font-semibold">{player.gradeYear}</span>
+                            </div>
+
+                            <div className="col-span-2">
+                              <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
+                                {player.highSchool || '—'}
+                              </span>
+                            </div>
+
+                            <div className="col-span-2">
+                              <span className="text-sm">{player.circuitProgram || '—'}</span>
+                            </div>
+
+                            <div className="col-span-1 flex flex-col items-center justify-center gap-1">
+                              {player.committedCollegeId && colleges ? (
+                                (() => {
+                                  const college = colleges.find(c => c.id === player.committedCollegeId);
+                                  return college ? (
+                                    <>
+                                      {college.logoUrl && (
+                                        <img
+                                          src={college.logoUrl}
+                                          alt={college.name}
+                                          className="h-10 w-10 object-contain"
+                                          onError={(e) => {
+                                            const target = e.target as HTMLImageElement;
+                                            target.style.display = 'none';
+                                          }}
+                                        />
+                                      )}
+                                      <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                        {college.name}
+                                      </span>
+                                    </>
+                                  ) : (
+                                    <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                      {player.committedCollege || '—'}
+                                    </span>
+                                  );
+                                })()
+                              ) : player.committedCollege ? (
+                                <span className="text-xs font-semibold text-green-400 text-center" data-testid={`text-committed-${player.id}`}>
+                                  {player.committedCollege}
+                                </span>
+                              ) : (
+                                <span className="text-xs text-muted-foreground">—</span>
+                              )}
+                            </div>
+                          </button>
+                        </CollapsibleTrigger>
+
+                        <CollapsibleContent>
+                          <div className="px-6 pb-6 pt-2 border-t border-border/50">
+                            {(() => {
+                              const ranksEntries = Object.entries(player.ranks || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const ratingsEntries = Object.entries(player.ratings || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const notesEntries = Object.entries(player.notes || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const positionsEntries = Object.entries(player.positions || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const heightsEntries = Object.entries(player.heights || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const highSchoolsEntries = Object.entries(player.highSchools || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const circuitProgramsEntries = Object.entries(player.circuitPrograms || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+                              const committedCollegesEntries = Object.entries(player.committedColleges || {}).sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+
+                              return (
+                                <>
+                          
+                            <div className="flex justify-end mb-4">
+                              <Link href={`/player/${player.id}`}>
+                                <a className="inline-flex items-center gap-2 text-sm text-red-500 hover:text-red-400 font-semibold hover-elevate active-elevate-2 px-3 py-2 rounded-md" data-testid={`link-player-detail-${player.id}`}>
+                                  View Full Profile
+                                  <ExternalLink className="h-4 w-4" />
+                                </a>
+                              </Link>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                              {ranksEntries.length > 0 && (
+                                <div className="bg-muted/30 rounded-lg p-4">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <TrendingUp className="h-4 w-4 text-red-500" />
+                                    <h4 className="font-semibold text-sm">Rankings History</h4>
+                                  </div>
+                                  <div className="space-y-2">
+                                    {ranksEntries.map(([year, rank]) => (
+                                      <div key={year} className="flex justify-between text-sm" data-testid={`expanded-rank-${player.id}-${year}`}>
+                                        <span className="text-muted-foreground">Class {year}</span>
+                                        <span className="font-bold text-red-500">#{rank}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {ratingsEntries.length > 0 && (
+                                <div className="bg-muted/30 rounded-lg p-4">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <Star className="h-4 w-4 text-yellow-500" />
+                                    <h4 className="font-semibold text-sm">Ratings History</h4>
+                                  </div>
+                                  <div className="space-y-2">
+                                    {ratingsEntries.map(([year, rating]) => (
+                                      <div key={year} className="flex justify-between text-sm" data-testid={`expanded-rating-${player.id}-${year}`}>
+                                        <span className="text-muted-foreground">Class {year}</span>
+                                        <span className="font-bold text-yellow-500">{rating}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {notesEntries.length > 0 && (
+                                <div className="bg-muted/30 rounded-lg p-4">
+                                  <div className="flex items-center gap-2 mb-3">
+                                    <FileText className="h-4 w-4 text-red-500" />
+                                    <h4 className="font-semibold text-sm">Scouting Notes</h4>
+                                  </div>
+                                  <div className="space-y-3">
+                                    {notesEntries.slice(0, 2).map(([year, note]) => (
+                                      <div key={year} className="text-xs" data-testid={`expanded-note-${player.id}-${year}`}>
+                                        <div className="font-semibold text-red-500 mb-1">Class {year}</div>
+                                        <p className="text-muted-foreground line-clamp-3">{note}</p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
+                            {(positionsEntries.length > 0 || heightsEntries.length > 0 || highSchoolsEntries.length > 0) && (
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                                {positionsEntries.length > 0 && (
+                                  <div className="bg-muted/20 rounded-lg p-3">
+                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Position History</h5>
+                                    <div className="space-y-1">
+                                      {positionsEntries.map(([year, position]) => (
+                                        <div key={year} className="text-xs flex justify-between">
+                                          <span className="text-muted-foreground">{year}</span>
+                                          <Badge variant="outline" className="text-xs h-5">{position}</Badge>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {heightsEntries.length > 0 && (
+                                  <div className="bg-muted/20 rounded-lg p-3">
+                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Height Records</h5>
+                                    <div className="space-y-1">
+                                      {heightsEntries.map(([year, height]) => (
+                                        <div key={year} className="text-xs flex justify-between">
+                                          <span className="text-muted-foreground">{year}</span>
+                                          <span className="font-semibold">{height}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {highSchoolsEntries.length > 0 && (
+                                  <div className="bg-muted/20 rounded-lg p-3">
+                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">School History</h5>
+                                    <div className="space-y-1">
+                                      {highSchoolsEntries.map(([year, school]) => (
+                                        <div key={year} className="text-xs">
+                                          <span className="text-muted-foreground">{year}:</span> {school}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {(circuitProgramsEntries.length > 0 || committedCollegesEntries.length > 0) && (
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                {circuitProgramsEntries.length > 0 && (
+                                  <div className="bg-muted/20 rounded-lg p-3">
+                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Circuit Programs</h5>
+                                    <div className="space-y-1">
+                                      {circuitProgramsEntries.map(([year, program]) => (
+                                        <div key={year} className="text-xs">
+                                          <span className="text-muted-foreground">{year}:</span> {program}
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {committedCollegesEntries.length > 0 && (
+                                  <div className="bg-muted/20 rounded-lg p-3">
+                                    <h5 className="text-xs font-semibold mb-2 text-muted-foreground">Commitment History</h5>
+                                    <div className="space-y-1">
+                                      {committedCollegesEntries.map(([year, college]) => (
+                                        <div key={year} className="text-xs">
+                                          <span className="text-muted-foreground">{year}:</span> <span className="text-green-400">{college}</span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                                </>
+                              );
+                            })()}
                           </div>
-                        )}
-                        <span className="font-bold text-base" data-testid={`text-player-name-${player.id}`}>
-                          {player.name}
-                        </span>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.height || '—'}</span>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                          {player.position || '—'}
-                        </Badge>
-                      </div>
-
-                      <div className="col-span-1 text-center">
-                        <span className="text-sm font-semibold">{player.gradeYear}</span>
-                      </div>
-
-                      <div className="col-span-2">
-                        <span className="text-sm" data-testid={`text-high-school-${player.id}`}>
-                          {player.highSchool || '—'}
-                        </span>
-                      </div>
-
-                      <div className="col-span-2">
-                        <span className="text-sm">{player.circuitProgram || '—'}</span>
-                      </div>
-
-                      <div className="col-span-1 flex justify-center">
-                        {player.committedCollege && (
-                          <img
-                            src={`/attached_assets/${player.committedCollege.replace(/\s+/g, '-')}-Logo.png`}
-                            alt={player.committedCollege}
-                            className="h-10 w-10 object-contain"
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                              const parent = target.parentElement;
-                              if (parent) {
-                                parent.innerHTML = `<span class="text-xs font-semibold text-green-400">${player.committedCollege}</span>`;
-                              }
-                            }}
-                            data-testid={`text-committed-${player.id}`}
-                          />
-                        )}
-                        {!player.committedCollege && <span className="text-xs text-muted-foreground">—</span>}
-                      </div>
-                    </div>
-                  </Card>
-                ))}
+                        </CollapsibleContent>
+                      </Card>
+                    </Collapsible>
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-20">

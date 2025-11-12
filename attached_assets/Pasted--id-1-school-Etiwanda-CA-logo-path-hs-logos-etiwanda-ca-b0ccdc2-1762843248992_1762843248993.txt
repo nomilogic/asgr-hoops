@@ -1,0 +1,175 @@
+[
+  {
+    "id": 1,
+    "school": "Etiwanda (CA)",
+    "logo_path": "hs_logos/etiwanda-ca-b0ccdc23-3b52-45c6-94bc-bb01b0bfd938.jpg",
+    "ranks": {
+      "2023-24": 1,
+      "2024-25": 4
+    },
+    "records": {
+      "2023-24": "32-3",
+      "2024-25": "28-5"
+    },
+    "key_wins": {
+      "2023-24": "CIF Open State Champion",
+      "2024-25": "CIF Open State Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:15.003275+00",
+    "updated_at": "2025-11-07 23:49:15.003275+00"
+  },
+  {
+    "id": 2,
+    "school": "Archbishop Mitty (CA)",
+    "logo_path": "hs_logos/archbishop-mitty-ca-87832ede-e81d-481b-a954-ee4c045182f3.png",
+    "ranks": {
+      "2023-24": 2,
+      "2024-25": 6
+    },
+    "records": {
+      "2023-24": "30-1",
+      "2024-25": "27-4"
+    },
+    "key_wins": {
+      "2023-24": "Nike TOC Champions, CIF Open State Runner-Up",
+      "2024-25": "CIF Open State Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:15.616222+00",
+    "updated_at": "2025-11-07 23:49:15.616222+00"
+  },
+  {
+    "id": 3,
+    "school": "Montverde Academy (FL)",
+    "logo_path": "hs_logos/montverde-academy-fl-826b868d-389e-423c-b8e9-7b058b0eb09c.jpg",
+    "ranks": {
+      "2023-24": 3,
+      "2024-25": 2
+    },
+    "records": {
+      "2023-24": "24-4",
+      "2024-25": "26-2"
+    },
+    "key_wins": {
+      "2023-24": "Chipotle National Champion",
+      "2024-25": "Chipotle Runner Up"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:16.198916+00",
+    "updated_at": "2025-11-07 23:49:16.198916+00"
+  },
+  {
+    "id": 4,
+    "school": "Long Island Lutheran (NY)",
+    "logo_path": "hs_logos/long-island-lutheran-ny-4e806390-4359-44f6-8fef-13c78d77a182.png",
+    "ranks": {
+      "2023-24": 4,
+      "2024-25": 15
+    },
+    "records": {
+      "2023-24": "22-2",
+      "2024-25": "15-5"
+    },
+    "key_wins": {
+      "2023-24": "Nike TOC Runner-Up, Chipotle Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:16.779866+00",
+    "updated_at": "2025-11-07 23:49:16.779866+00"
+  },
+  {
+    "id": 5,
+    "school": "Duncanville (TX)",
+    "logo_path": "hs_logos/duncanville-tx-620e8f2c-0f49-4c68-b14f-77d6ee5e9ac6.png",
+    "ranks": {
+      "2023-24": 5,
+      "2024-25": 24
+    },
+    "records": {
+      "2023-24": "35-4",
+      "2024-25": "29-7"
+    },
+    "key_wins": {
+      "2023-24": "6A UIL Texas State Champion",
+      "2024-25": "Texas UIL 6A Regional Finals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:17.35113+00",
+    "updated_at": "2025-11-07 23:49:17.35113+00"
+  },
+  {
+    "id": 6,
+    "school": "Crestwood Prep (ONT)",
+    "logo_path": "hs_logos/crestwood-prep-ont-c8f60328-21be-4cc4-b90a-f8968b0f025d.jpg",
+    "ranks": {
+      "2023-24": 6
+    },
+    "records": {
+      "2023-24": "38-1"
+    },
+    "key_wins": {
+      "2023-24": "OSBA Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/"
+    ],
+    "created_at": "2025-11-07 23:49:17.912501+00",
+    "updated_at": "2025-11-07 23:49:17.912501+00"
+  },
+  {
+    "id": 7,
+    "school": "IMG Academy (FL)",
+    "logo_path": "hs_logos/img-academy-fl-04102a7b-1bd2-4dcf-a1d8-e3364681ead2.jpg",
+    "ranks": {
+      "2023-24": 7,
+      "2024-25": 1
+    },
+    "records": {
+      "2023-24": "25-4",
+      "2024-25": "19-4"
+    },
+    "key_wins": {
+      "2023-24": "Chipotle National Runner-Up",
+      "2024-25": "Chipotle National Champion"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload.com/hs-rankings-2/",
+      "https://0xc.821.myftpupload.com/2024-25-high-school-rankings/"
+    ],
+    "created_at": "2025-11-07 23:49:18.465534+00",
+    "updated_at": "2025-11-07 23:49:18.465534+00"
+  },
+  {
+    "id": 8,
+    "school": "Bishop McNamara (MD)",
+    "logo_path": "hs_logos/bishop-mcnamara-md-28064c0a-d1c1-4293-a60c-d5c45857fcd3.png",
+    "ranks": {
+      "2023-24": 8,
+      "2024-25": 3
+    },
+    "records": {
+      "2023-24": "28-5",
+      "2024-25": "30-2"
+    },
+    "key_wins": {
+      "2023-24": "WCAC Runner-Up",
+      "2024-25": "WCAC Champions, The Throne Semifinals"
+    },
+    "source_urls": [
+      "https://0xc.821.myftpupload...
