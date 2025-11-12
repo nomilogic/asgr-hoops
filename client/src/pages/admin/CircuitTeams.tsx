@@ -1,24 +1,28 @@
+
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertCircuitTeamSchema, type CircuitTeam } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Trash2, Search, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function AdminCircuitTeams() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editTeam, setEditTeam] = useState<CircuitTeam | null>(null);
   const [deleteTeamId, setDeleteTeamId] = useState<number | null>(null);
+  const [expandedTeamId, setExpandedTeamId] = useState<number | null>(null);
   const { toast } = useToast();
 
   const { data: teams, isLoading } = useQuery<CircuitTeam[]>({
@@ -114,50 +118,65 @@ export default function AdminCircuitTeams() {
         />
       </div>
 
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Team Name</TableHead>
-              <TableHead>Circuit</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
-                <TableRow key={i}>
-                  <TableCell><Skeleton className="h-4 w-48" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-24" /></TableCell>
-                  <TableCell><Skeleton className="h-8 w-20 ml-auto" /></TableCell>
-                </TableRow>
-              ))
-            ) : filteredTeams && filteredTeams.length > 0 ? (
-              filteredTeams.map((team) => (
-                <TableRow key={team.id} data-testid={`row-circuitteam-${team.id}`}>
-                  <TableCell className="font-medium">{team.team}</TableCell>
-                  <TableCell>{team.circuit || "-"}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button variant="outline" size="sm" onClick={() => setEditTeam(team)} data-testid={`button-edit-circuitteam-${team.id}`}>
-                        <Pencil className="h-3 w-3" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => setDeleteTeamId(team.id)} data-testid={`button-delete-circuitteam-${team.id}`}>
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
+      <div className="space-y-4">
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="p-6">
+                <Skeleton className="h-16 w-full" />
+              </CardContent>
+            </Card>
+          ))
+        ) : filteredTeams && filteredTeams.length > 0 ? (
+          filteredTeams.map((team) => (
+            <Collapsible
+              key={team.id}
+              open={expandedTeamId === team.id}
+              onOpenChange={(open) => setExpandedTeamId(open ? team.id : null)}
+            >
+              <Card data-testid={`card-circuitteam-${team.id}`}>
+                <CollapsibleTrigger asChild>
+                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <CardTitle>{team.team}</CardTitle>
+                          {team.circuit && (
+                            <p className="text-sm text-muted-foreground mt-1">{team.circuit}</p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {expandedTeamId === team.id ? (
+                          <ChevronUp className="h-5 w-5" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5" />
+                        )}
+                      </div>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={3} className="text-center text-muted-foreground">
-                  No circuit teams found
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                  </CardHeader>
+                </CollapsibleTrigger>
+
+                <CollapsibleContent>
+                  <CardContent className="border-t pt-6">
+                    <ExpandedTeamEdit
+                      team={team}
+                      onUpdate={(data) => updateMutation.mutate({ id: team.id, data })}
+                      isPending={updateMutation.isPending}
+                      onDelete={() => setDeleteTeamId(team.id)}
+                    />
+                  </CardContent>
+                </CollapsibleContent>
+              </Card>
+            </Collapsible>
+          ))
+        ) : (
+          <Card>
+            <CardContent className="p-12 text-center text-muted-foreground">
+              No circuit teams found
+            </CardContent>
+          </Card>
+        )}
       </div>
 
       {editTeam && (
@@ -191,6 +210,103 @@ export default function AdminCircuitTeams() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    </div>
+  );
+}
+
+function ExpandedTeamEdit({ team, onUpdate, isPending, onDelete }: {
+  team: CircuitTeam;
+  onUpdate: (data: Partial<CircuitTeam>) => void;
+  isPending: boolean;
+  onDelete: () => void;
+}) {
+  const [localTeam, setLocalTeam] = useState(team);
+  const seasons = ["2024 Circuit Season", "2025 Circuit Season", "2026 Circuit Season"];
+
+  const handleSeasonDataUpdate = (field: keyof CircuitTeam, season: string, value: string) => {
+    const currentData = (localTeam[field] as Record<string, any>) || {};
+    const updatedData = { ...currentData, [season]: value };
+    setLocalTeam({ ...localTeam, [field]: updatedData });
+  };
+
+  const handleSave = () => {
+    onUpdate(localTeam);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-end gap-2">
+        <Button variant="outline" onClick={onDelete}>
+          <Trash2 className="h-4 w-4 mr-2" />
+          Delete
+        </Button>
+        <Button onClick={handleSave} disabled={isPending}>
+          {isPending ? "Saving..." : "Save Changes"}
+        </Button>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="text-sm font-medium">Team Name</label>
+          <Input
+            value={localTeam.team}
+            onChange={(e) => setLocalTeam({ ...localTeam, team: e.target.value })}
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium">Circuit</label>
+          <Input
+            value={localTeam.circuit || ""}
+            onChange={(e) => setLocalTeam({ ...localTeam, circuit: e.target.value })}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {seasons.map((season) => (
+          <Card key={season}>
+            <CardHeader>
+              <CardTitle className="text-lg">{season}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="text-sm font-medium">Rank</label>
+                <Input
+                  type="number"
+                  placeholder="Ranking"
+                  value={(localTeam.ranks as Record<string, number>)?.[season] || ""}
+                  onChange={(e) => handleSeasonDataUpdate('ranks', season, e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Record</label>
+                <Input
+                  placeholder="e.g., 25-3"
+                  value={(localTeam.records as Record<string, string>)?.[season] || ""}
+                  onChange={(e) => handleSeasonDataUpdate('records', season, e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Key Wins</label>
+                <Textarea
+                  placeholder="Notable victories and achievements..."
+                  value={(localTeam.keyWins as Record<string, string>)?.[season] || ""}
+                  onChange={(e) => handleSeasonDataUpdate('keyWins', season, e.target.value)}
+                  rows={2}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Placements</label>
+                <Input
+                  placeholder="Tournament placements"
+                  value={(localTeam.placements as Record<string, string>)?.[season] || ""}
+                  onChange={(e) => handleSeasonDataUpdate('placements', season, e.target.value)}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
