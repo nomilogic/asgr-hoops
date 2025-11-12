@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertPlayerSchema, type Player } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const playerFormSchema = insertPlayerSchema.extend({
   gradeYear: z.coerce.number().nullable(),
@@ -26,6 +27,8 @@ export default function AdminPlayers() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editPlayer, setEditPlayer] = useState<Player | null>(null);
   const [deletePlayerId, setDeletePlayerId] = useState<number | null>(null);
+  const [uploadingImage, setUploadingImage] = useState<number | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const { toast } = useToast();
 
   const { data: players, isLoading } = useQuery<Player[]>({
@@ -70,17 +73,49 @@ export default function AdminPlayers() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      return await apiRequest(`/api/admin/players/${id}`, { method: "DELETE" });
+      const response = await fetch(`/api/admin/players/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!response.ok) throw new Error("Failed to delete player");
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/players"] });
-      setDeletePlayerId(null);
       toast({ title: "Player deleted successfully" });
     },
     onError: () => {
       toast({ title: "Failed to delete player", variant: "destructive" });
     },
   });
+
+  const uploadImageMutation = useMutation({
+    mutationFn: async ({ id, file }: { id: number; file: File }) => {
+      const formData = new FormData();
+      formData.append('image', file);
+      const response = await fetch(`/api/admin/players/${id}/image`, {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+      if (!response.ok) throw new Error("Failed to upload image");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/players"] });
+      toast({ title: "Image uploaded successfully" });
+      setUploadingImage(null);
+      setImageFile(null);
+    },
+    onError: () => {
+      toast({ title: "Failed to upload image", variant: "destructive" });
+    },
+  });
+
+  const handleImageUpload = (playerId: number) => {
+    if (imageFile) {
+      uploadImageMutation.mutate({ id: playerId, file: imageFile });
+    }
+  };
 
   const filteredPlayers = players?.filter((player) =>
     player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -126,6 +161,7 @@ export default function AdminPlayers() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Image</TableHead>
               <TableHead>Rank</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Year</TableHead>
@@ -139,6 +175,7 @@ export default function AdminPlayers() {
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={i}>
+                  <TableCell><Skeleton className="h-8 w-8 rounded-full" /></TableCell>
                   <TableCell><Skeleton className="h-4 w-8" /></TableCell>
                   <TableCell><Skeleton className="h-4 w-32" /></TableCell>
                   <TableCell><Skeleton className="h-4 w-16" /></TableCell>
@@ -151,6 +188,14 @@ export default function AdminPlayers() {
             ) : filteredPlayers && filteredPlayers.length > 0 ? (
               filteredPlayers.map((player) => (
                 <TableRow key={player.id} data-testid={`row-player-${player.id}`}>
+                  <TableCell>
+                    <Avatar>
+                      <AvatarImage src={player.imagePath || undefined} />
+                      <AvatarFallback>
+                        <ImageIcon className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                  </TableCell>
                   <TableCell>{player.rank || "-"}</TableCell>
                   <TableCell className="font-medium">{player.name}</TableCell>
                   <TableCell>{player.gradeYear || "-"}</TableCell>
@@ -159,6 +204,35 @@ export default function AdminPlayers() {
                   <TableCell>{player.committedCollege || "-"}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      <Dialog open={uploadingImage === player.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
+                        <DialogTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setUploadingImage(player.id)}
+                          >
+                            <Upload className="h-4 w-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Upload Player Image</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                            />
+                            <Button
+                              onClick={() => handleImageUpload(player.id)}
+                              disabled={!imageFile || uploadImageMutation.isPending}
+                            >
+                              {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                       <Button variant="outline" size="sm" onClick={() => setEditPlayer(player)} data-testid={`button-edit-player-${player.id}`}>
                         <Pencil className="h-3 w-3" />
                       </Button>
@@ -171,7 +245,7 @@ export default function AdminPlayers() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-muted-foreground">
+                <TableCell colSpan={8} className="text-center text-muted-foreground">
                   No players found
                 </TableCell>
               </TableRow>
