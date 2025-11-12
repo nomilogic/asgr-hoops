@@ -9,11 +9,14 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertHighSchoolSchema, type HighSchool } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function AdminHighSchools() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +25,7 @@ export default function AdminHighSchools() {
   const [deleteSchoolId, setDeleteSchoolId] = useState<number | null>(null);
   const [uploadingImage, setUploadingImage] = useState<number | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [expandedSchoolId, setExpandedSchoolId] = useState<number | null>(null);
   const { toast } = useToast();
 
   const { data: schools, isLoading } = useQuery<HighSchool[]>({
@@ -145,88 +149,94 @@ export default function AdminHighSchools() {
         />
       </div>
 
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Logo</TableHead>
-              <TableHead>School Name</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
-                <TableRow key={i}>
-                  <TableCell><Skeleton className="h-8 w-8 rounded-full" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-48" /></TableCell>
-                  <TableCell><Skeleton className="h-8 w-20 ml-auto" /></TableCell>
-                </TableRow>
-              ))
-            ) : filteredSchools && filteredSchools.length > 0 ? (
-              filteredSchools.map((school) => (
-                <TableRow key={school.id} data-testid={`row-highschool-${school.id}`}>
-                  <TableCell>
-                    <Avatar>
-                      <AvatarImage src={school.logoPath || undefined} />
-                      <AvatarFallback>
-                        <ImageIcon className="h-4 w-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                  </TableCell>
-                  <TableCell className="font-medium">{school.school}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Dialog open={uploadingImage === school.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
-                        <DialogTrigger asChild>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setUploadingImage(school.id)}
-                            title="Upload Logo"
-                          >
-                            <Upload className="h-4 w-4" />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Upload School Logo</DialogTitle>
-                          </DialogHeader>
-                          <div className="space-y-4">
-                            <Input
-                              type="file"
-                              accept="image/*"
-                              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                            />
-                            <Button
-                              onClick={() => handleImageUpload(school.id)}
-                              disabled={!imageFile || uploadImageMutation.isPending}
-                            >
-                              {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
-                            </Button>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                      <Button variant="outline" size="sm" onClick={() => setEditSchool(school)} data-testid={`button-edit-highschool-${school.id}`}>
-                        <Pencil className="h-3 w-3" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => setDeleteSchoolId(school.id)} data-testid={`button-delete-highschool-${school.id}`}>
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
+      <div className="space-y-4">
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="p-6">
+                <Skeleton className="h-16 w-full" />
+              </CardContent>
+            </Card>
+          ))
+        ) : filteredSchools && filteredSchools.length > 0 ? (
+          filteredSchools.map((school) => (
+            <Collapsible
+              key={school.id}
+              open={expandedSchoolId === school.id}
+              onOpenChange={(open) => setExpandedSchoolId(open ? school.id : null)}
+            >
+              <Card data-testid={`card-highschool-${school.id}`}>
+                <CollapsibleTrigger asChild>
+                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <Avatar className="h-12 w-12">
+                          <AvatarImage src={school.logoPath || undefined} />
+                          <AvatarFallback>
+                            <ImageIcon className="h-5 w-5" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <CardTitle>{school.school}</CardTitle>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {expandedSchoolId === school.id ? (
+                          <ChevronUp className="h-5 w-5" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5" />
+                        )}
+                      </div>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={3} className="text-center text-muted-foreground">
-                  No high schools found
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                  </CardHeader>
+                </CollapsibleTrigger>
+
+                <CollapsibleContent>
+                  <CardContent className="border-t pt-6">
+                    <ExpandedSchoolEdit
+                      school={school}
+                      onUpdate={(data) => updateMutation.mutate({ id: school.id, data })}
+                      isPending={updateMutation.isPending}
+                      onDelete={() => setDeleteSchoolId(school.id)}
+                      onUploadImage={() => setUploadingImage(school.id)}
+                    />
+                  </CardContent>
+                </CollapsibleContent>
+              </Card>
+            </Collapsible>
+          ))
+        ) : (
+          <Card>
+            <CardContent className="p-12 text-center text-muted-foreground">
+              No high schools found
+            </CardContent>
+          </Card>
+        )}
       </div>
+
+      {uploadingImage && (
+        <Dialog open={uploadingImage !== null} onOpenChange={() => setUploadingImage(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Upload School Logo</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+              />
+              <Button
+                onClick={() => uploadingImage && handleImageUpload(uploadingImage)}
+                disabled={!imageFile || uploadImageMutation.isPending}
+                className="w-full"
+              >
+                {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
 
       {editSchool && (
         <Dialog open={!!editSchool} onOpenChange={() => setEditSchool(null)}>
@@ -259,6 +269,126 @@ export default function AdminHighSchools() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    </div>
+  );
+}
+
+function ExpandedSchoolEdit({ school, onUpdate, isPending, onDelete, onUploadImage }: {
+  school: HighSchool;
+  onUpdate: (data: Partial<HighSchool>) => void;
+  isPending: boolean;
+  onDelete: () => void;
+  onUploadImage: () => void;
+}) {
+  const [localSchool, setLocalSchool] = useState(school);
+  const seasons = ["2023-24", "2024-25", "2025-26", "2026-27", "2027-28"];
+
+  const handleSeasonDataUpdate = (field: keyof HighSchool, season: string, value: string) => {
+    const currentData = (localSchool[field] as Record<string, any>) || {};
+    const updatedData = { ...currentData, [season]: value };
+    setLocalSchool({ ...localSchool, [field]: updatedData });
+  };
+
+  const handleSave = () => {
+    onUpdate(localSchool);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-end gap-2">
+        <Button variant="outline" onClick={onUploadImage}>
+          <Upload className="h-4 w-4 mr-2" />
+          Upload Logo
+        </Button>
+        <Button variant="outline" onClick={onDelete}>
+          <Trash2 className="h-4 w-4 mr-2" />
+          Delete
+        </Button>
+        <Button onClick={handleSave} disabled={isPending}>
+          {isPending ? "Saving..." : "Save Changes"}
+        </Button>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="text-sm font-medium">School Name</label>
+          <Input
+            value={localSchool.school}
+            onChange={(e) => setLocalSchool({ ...localSchool, school: e.target.value })}
+          />
+        </div>
+        <div>
+          <label className="text-sm font-medium">Logo Path</label>
+          <Input
+            value={localSchool.logoPath || ""}
+            onChange={(e) => setLocalSchool({ ...localSchool, logoPath: e.target.value })}
+          />
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Rankings by Season</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {seasons.map((season) => (
+                <div key={season}>
+                  <label className="text-sm font-medium">{season}</label>
+                  <Input
+                    type="number"
+                    placeholder="Rank"
+                    value={(localSchool.ranks as Record<string, number>)?.[season] || ""}
+                    onChange={(e) => handleSeasonDataUpdate('ranks', season, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Records by Season</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {seasons.map((season) => (
+                <div key={season}>
+                  <label className="text-sm font-medium">{season}</label>
+                  <Input
+                    placeholder="e.g., 25-3"
+                    value={(localSchool.records as Record<string, string>)?.[season] || ""}
+                    onChange={(e) => handleSeasonDataUpdate('records', season, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Key Wins by Season</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {seasons.map((season) => (
+                <div key={season}>
+                  <label className="text-sm font-medium">{season}</label>
+                  <Textarea
+                    placeholder="Key wins and achievements..."
+                    value={(localSchool.keyWins as Record<string, string>)?.[season] || ""}
+                    onChange={(e) => handleSeasonDataUpdate('keyWins', season, e.target.value)}
+                    rows={2}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

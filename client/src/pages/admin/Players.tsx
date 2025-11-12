@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,12 +11,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertPlayerSchema, type Player } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon, ChevronDown, ChevronUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Textarea } from "@/components/ui/textarea";
 
 const playerFormSchema = insertPlayerSchema.extend({
   gradeYear: z.coerce.number().nullable(),
@@ -30,6 +34,7 @@ export default function AdminPlayers() {
   const [deletePlayerId, setDeletePlayerId] = useState<number | null>(null);
   const [uploadingImage, setUploadingImage] = useState<number | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [expandedPlayerId, setExpandedPlayerId] = useState<number | null>(null);
   const { toast } = useToast();
 
   const { data: players, isLoading } = useQuery<Player[]>({
@@ -65,6 +70,7 @@ export default function AdminPlayers() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/players"] });
       setEditPlayer(null);
+      setExpandedPlayerId(null);
       toast({ title: "Player updated successfully" });
     },
     onError: () => {
@@ -145,7 +151,7 @@ export default function AdminPlayers() {
               Add Player
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Create New Player</DialogTitle>
             </DialogHeader>
@@ -187,139 +193,99 @@ export default function AdminPlayers() {
         </div>
       </div>
 
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Image</TableHead>
-              <TableHead>Rank</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Year</TableHead>
-              <TableHead>Position</TableHead>
-              <TableHead>Height</TableHead>
-              <TableHead>High School</TableHead>
-              <TableHead>Circuit</TableHead>
-              <TableHead>Committed</TableHead>
-              <TableHead>Rating</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {isLoading ? (
-              Array.from({ length: 5 }).map((_, i) => (
-                <TableRow key={i}>
-                  <TableCell><Skeleton className="h-8 w-8 rounded-full" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-8" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-32" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-16" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-12" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-32" /></TableCell>
-                  <TableCell><Skeleton className="h-4 w-24" /></TableCell>
-                  <TableCell><Skeleton className="h-8 w-20 ml-auto" /></TableCell>
-                </TableRow>
-              ))
-            ) : filteredPlayers && filteredPlayers.length > 0 ? (
-              filteredPlayers.map((player) => (
-                <TableRow key={player.id} data-testid={`row-player-${player.id}`} className="hover:bg-muted/50">
-                  <TableCell>
-                    <Avatar className="h-12 w-12">
-                      <AvatarImage src={player.imagePath || undefined} />
-                      <AvatarFallback>
-                        <ImageIcon className="h-4 w-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant={player.rank ? "default" : "outline"}>
-                      {player.ranks?.[selectedYear] || player.rank || "-"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell className="font-medium">{player.name}</TableCell>
-                  <TableCell>
-                    <Badge variant="secondary">{player.gradeYear || "-"}</Badge>
-                  </TableCell>
-                  <TableCell>{player.position || "-"}</TableCell>
-                  <TableCell className="text-sm">{player.height || "-"}</TableCell>
-                  <TableCell className="max-w-[150px] truncate">{player.highSchool || "-"}</TableCell>
-                  <TableCell className="max-w-[120px] truncate text-xs">{player.circuitProgram || "-"}</TableCell>
-                  <TableCell>
-                    {player.committedCollege ? (
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                        {player.committedCollege}
-                      </Badge>
-                    ) : "-"}
-                  </TableCell>
-                  <TableCell>
-                    {player.rating ? (
-                      <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
-                        {player.rating}★
-                      </Badge>
-                    ) : "-"}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Dialog open={uploadingImage === player.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
-                        <DialogTrigger asChild>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => setUploadingImage(player.id)}
-                            title="Upload Image"
-                          >
-                            <Upload className="h-4 w-4" />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Upload Player Image</DialogTitle>
-                          </DialogHeader>
-                          <div className="space-y-4">
-                            <Input
-                              type="file"
-                              accept="image/*"
-                              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                            />
-                            <Button
-                              onClick={() => handleImageUpload(player.id)}
-                              disabled={!imageFile || uploadImageMutation.isPending}
-                            >
-                              {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
-                            </Button>
+      <div className="space-y-4">
+        {isLoading ? (
+          Array.from({ length: 5 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent className="p-6">
+                <Skeleton className="h-20 w-full" />
+              </CardContent>
+            </Card>
+          ))
+        ) : filteredPlayers && filteredPlayers.length > 0 ? (
+          filteredPlayers.map((player) => (
+            <Collapsible
+              key={player.id}
+              open={expandedPlayerId === player.id}
+              onOpenChange={(open) => setExpandedPlayerId(open ? player.id : null)}
+            >
+              <Card data-testid={`card-player-${player.id}`}>
+                <CollapsibleTrigger asChild>
+                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <Avatar className="h-16 w-16">
+                          <AvatarImage src={player.imagePath || undefined} />
+                          <AvatarFallback>
+                            <ImageIcon className="h-6 w-6" />
+                          </AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <CardTitle className="text-xl">{player.name}</CardTitle>
+                          <div className="flex gap-2 mt-1 flex-wrap">
+                            <Badge variant="secondary">{player.gradeYear || "N/A"}</Badge>
+                            <Badge variant={player.rank ? "default" : "outline"}>
+                              Rank: {player.ranks?.[selectedYear] || player.rank || "-"}
+                            </Badge>
+                            {player.position && <Badge variant="outline">{player.position}</Badge>}
+                            {player.height && <Badge variant="outline">{player.height}</Badge>}
                           </div>
-                        </DialogContent>
-                      </Dialog>
-                      <Button variant="outline" size="sm" onClick={() => setEditPlayer(player)} data-testid={`button-edit-player-${player.id}`}>
-                        <Pencil className="h-3 w-3" />
-                      </Button>
-                      <Button variant="outline" size="sm" onClick={() => setDeletePlayerId(player.id)} data-testid={`button-delete-player-${player.id}`}>
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {expandedPlayerId === player.id ? (
+                          <ChevronUp className="h-5 w-5" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5" />
+                        )}
+                      </div>
                     </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={8} className="text-center text-muted-foreground">
-                  No players found
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                  </CardHeader>
+                </CollapsibleTrigger>
+
+                <CollapsibleContent>
+                  <CardContent className="border-t pt-6">
+                    <ExpandedPlayerEdit
+                      player={player}
+                      onUpdate={(data) => updateMutation.mutate({ id: player.id, data })}
+                      isPending={updateMutation.isPending}
+                      onDelete={() => setDeletePlayerId(player.id)}
+                      onUploadImage={() => setUploadingImage(player.id)}
+                    />
+                  </CardContent>
+                </CollapsibleContent>
+              </Card>
+            </Collapsible>
+          ))
+        ) : (
+          <Card>
+            <CardContent className="p-12 text-center text-muted-foreground">
+              No players found
+            </CardContent>
+          </Card>
+        )}
       </div>
 
-      {editPlayer && (
-        <Dialog open={!!editPlayer} onOpenChange={() => setEditPlayer(null)}>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      {uploadingImage && (
+        <Dialog open={uploadingImage !== null} onOpenChange={() => setUploadingImage(null)}>
+          <DialogContent>
             <DialogHeader>
-              <DialogTitle>Edit Player</DialogTitle>
+              <DialogTitle>Upload Player Image</DialogTitle>
             </DialogHeader>
-            <PlayerForm
-              defaultValues={editPlayer}
-              onSubmit={(data) => updateMutation.mutate({ id: editPlayer.id, data })}
-              isPending={updateMutation.isPending}
-            />
+            <div className="space-y-4">
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+              />
+              <Button
+                onClick={() => handleImageUpload(uploadingImage)}
+                disabled={!imageFile || uploadImageMutation.isPending}
+                className="w-full"
+              >
+                {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
+              </Button>
+            </div>
           </DialogContent>
         </Dialog>
       )}
@@ -340,6 +306,299 @@ export default function AdminPlayers() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    </div>
+  );
+}
+
+function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadImage }: {
+  player: Player;
+  onUpdate: (data: Partial<Player>) => void;
+  isPending: boolean;
+  onDelete: () => void;
+  onUploadImage: () => void;
+}) {
+  const [localPlayer, setLocalPlayer] = useState(player);
+  const years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
+
+  const handleYearDataUpdate = (field: keyof Player, year: string, value: string) => {
+    const currentData = (localPlayer[field] as Record<string, any>) || {};
+    const updatedData = { ...currentData, [year]: value };
+    setLocalPlayer({ ...localPlayer, [field]: updatedData });
+  };
+
+  const handleSave = () => {
+    onUpdate(localPlayer);
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex justify-end gap-2">
+        <Button variant="outline" onClick={onUploadImage}>
+          <Upload className="h-4 w-4 mr-2" />
+          Upload Image
+        </Button>
+        <Button variant="outline" onClick={onDelete}>
+          <Trash2 className="h-4 w-4 mr-2" />
+          Delete
+        </Button>
+        <Button onClick={handleSave} disabled={isPending}>
+          {isPending ? "Saving..." : "Save Changes"}
+        </Button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Name</label>
+            <Input
+              value={localPlayer.name}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, name: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Grade Year</label>
+            <Input
+              type="number"
+              value={localPlayer.gradeYear || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, gradeYear: parseInt(e.target.value) || null })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Current Rank</label>
+            <Input
+              type="number"
+              value={localPlayer.rank || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, rank: parseInt(e.target.value) || null })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Current Rating</label>
+            <Input
+              type="number"
+              value={localPlayer.rating || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, rating: parseInt(e.target.value) || null })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Position</label>
+            <Input
+              value={localPlayer.position || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, position: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Height</label>
+            <Input
+              value={localPlayer.height || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, height: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">High School</label>
+            <Input
+              value={localPlayer.highSchool || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, highSchool: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Circuit Program</label>
+            <Input
+              value={localPlayer.circuitProgram || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, circuitProgram: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">State</label>
+            <Input
+              value={localPlayer.state || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, state: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Committed College</label>
+            <Input
+              value={localPlayer.committedCollege || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, committedCollege: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Rating Comment</label>
+            <Textarea
+              value={localPlayer.ratingComment || ""}
+              onChange={(e) => setLocalPlayer({ ...localPlayer, ratingComment: e.target.value })}
+              rows={3}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Rankings by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    type="number"
+                    placeholder="Rank"
+                    value={(localPlayer.ranks as Record<string, number>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('ranks', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Ratings by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    type="number"
+                    placeholder="Rating"
+                    value={(localPlayer.ratings as Record<string, number>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('ratings', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Positions by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    placeholder="Position"
+                    value={(localPlayer.positions as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('positions', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Heights by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    placeholder="Height"
+                    value={(localPlayer.heights as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('heights', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">High Schools by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    placeholder="High School"
+                    value={(localPlayer.highSchools as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('highSchools', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Circuit Programs by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    placeholder="Circuit Program"
+                    value={(localPlayer.circuitPrograms as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('circuitPrograms', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">College Commitments by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Input
+                    placeholder="College"
+                    value={(localPlayer.committedColleges as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('committedColleges', year, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Scouting Notes by Year</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {years.map((year) => (
+                <div key={year}>
+                  <label className="text-sm font-medium">Class {year}</label>
+                  <Textarea
+                    placeholder="Scouting notes..."
+                    value={(localPlayer.notes as Record<string, string>)?.[year] || ""}
+                    onChange={(e) => handleYearDataUpdate('notes', year, e.target.value)}
+                    rows={3}
+                  />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
@@ -395,28 +654,6 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
           />
           <FormField
             control={form.control}
-            name="rank"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Rank</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    {...field}
-                    value={field.value ?? ""}
-                    onChange={(e) => field.onChange(e.target.value)}
-                    data-testid="input-player-rank"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <FormField
-            control={form.control}
             name="gradeYear"
             render={({ field }) => (
               <FormItem>
@@ -428,6 +665,28 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
                     value={field.value ?? ""}
                     onChange={(e) => field.onChange(e.target.value)}
                     data-testid="input-player-year"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
+          <FormField
+            control={form.control}
+            name="rank"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Rank</FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    {...field}
+                    value={field.value ?? ""}
+                    onChange={(e) => field.onChange(e.target.value)}
+                    data-testid="input-player-rank"
                   />
                 </FormControl>
                 <FormMessage />
@@ -447,9 +706,6 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
               </FormItem>
             )}
           />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="height"
@@ -458,6 +714,22 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
                 <FormLabel>Height</FormLabel>
                 <FormControl>
                   <Input {...field} value={field.value ?? ""} placeholder="e.g., 5'10" data-testid="input-player-height" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <FormField
+            control={form.control}
+            name="highSchool"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>High School</FormLabel>
+                <FormControl>
+                  <Input {...field} value={field.value ?? ""} data-testid="input-player-highschool" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -477,20 +749,6 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
             )}
           />
         </div>
-
-        <FormField
-          control={form.control}
-          name="highSchool"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>High School</FormLabel>
-              <FormControl>
-                <Input {...field} value={field.value ?? ""} data-testid="input-player-highschool" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         <FormField
           control={form.control}
