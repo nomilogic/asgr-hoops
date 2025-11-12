@@ -35,28 +35,41 @@ export interface IStorage {
   getUserWithPassword(id: string): Promise<UserWithPassword | undefined>;
   getUserByEmail(email: string): Promise<UserWithPassword | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  getAllUsers(): Promise<User[]>;
+  updateUser(id: string, user: Partial<InsertUser>): Promise<User | undefined>;
+  deleteUser(id: string): Promise<void>;
 
   getAllPlayers(): Promise<Player[]>;
   getPlayerById(id: number): Promise<Player | undefined>;
   getPlayersByGradYear(gradYear: number): Promise<Player[]>;
   createPlayer(player: InsertPlayer): Promise<Player>;
   bulkCreatePlayers(players: InsertPlayer[]): Promise<void>;
+  updatePlayer(id: number, player: Partial<InsertPlayer>): Promise<Player | undefined>;
+  deletePlayer(id: number): Promise<void>;
   
   getAllHighSchools(): Promise<HighSchool[]>;
   getHighSchoolById(id: number): Promise<HighSchool | undefined>;
   createHighSchool(school: InsertHighSchool): Promise<HighSchool>;
+  updateHighSchool(id: number, school: Partial<InsertHighSchool>): Promise<HighSchool | undefined>;
+  deleteHighSchool(id: number): Promise<void>;
   
   getAllCircuitTeams(): Promise<CircuitTeam[]>;
   getCircuitTeamById(id: number): Promise<CircuitTeam | undefined>;
   createCircuitTeam(team: InsertCircuitTeam): Promise<CircuitTeam>;
+  updateCircuitTeam(id: number, team: Partial<InsertCircuitTeam>): Promise<CircuitTeam | undefined>;
+  deleteCircuitTeam(id: number): Promise<void>;
   
   getAllColleges(): Promise<College[]>;
   getCollegeById(id: number): Promise<College | undefined>;
   createCollege(college: InsertCollege): Promise<College>;
+  updateCollege(id: number, college: Partial<InsertCollege>): Promise<College | undefined>;
+  deleteCollege(id: number): Promise<void>;
   
   getAllProducts(): Promise<Product[]>;
   getProductById(id: number): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
+  updateProduct(id: number, product: Partial<InsertProduct>): Promise<Product | undefined>;
+  deleteProduct(id: number): Promise<void>;
 }
 
 export class DbStorage implements IStorage {
@@ -67,6 +80,7 @@ export class DbStorage implements IStorage {
       firstName: users.firstName,
       lastName: users.lastName,
       profileImageUrl: users.profileImageUrl,
+      role: users.role,
       createdAt: users.createdAt,
       updatedAt: users.updatedAt,
     }).from(users).where(eq(users.id, id));
@@ -93,18 +107,55 @@ export class DbStorage implements IStorage {
         firstName: users.firstName,
         lastName: users.lastName,
         profileImageUrl: users.profileImageUrl,
+        role: users.role,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt,
       });
     return user;
   }
 
+  async getAllUsers(): Promise<User[]> {
+    const result = await db.select({
+      id: users.id,
+      email: users.email,
+      firstName: users.firstName,
+      lastName: users.lastName,
+      profileImageUrl: users.profileImageUrl,
+      role: users.role,
+      createdAt: users.createdAt,
+      updatedAt: users.updatedAt,
+    }).from(users);
+    return result;
+  }
+
+  async updateUser(id: string, userData: Partial<InsertUser>): Promise<User | undefined> {
+    const [user] = await db
+      .update(users)
+      .set(userData)
+      .where(eq(users.id, id))
+      .returning({
+        id: users.id,
+        email: users.email,
+        firstName: users.firstName,
+        lastName: users.lastName,
+        profileImageUrl: users.profileImageUrl,
+        role: users.role,
+        createdAt: users.createdAt,
+        updatedAt: users.updatedAt,
+      });
+    return user;
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    await db.delete(users).where(eq(users.id, id));
+  }
+
   async getAllPlayers(): Promise<Player[]> {
     const result = await db.select().from(players);
     return result.map(player => ({
       ...player,
-      photoUrl: addStoragePrefix(player.photoUrl),
-      imagePath: addStoragePrefix(player.imagePath)
+      imagePath: addStoragePrefix(player.imagePath),
+      collegeLogoPath: addStoragePrefix(player.collegeLogoPath)
     }));
   }
 
@@ -113,8 +164,8 @@ export class DbStorage implements IStorage {
     if (!result[0]) return undefined;
     return {
       ...result[0],
-      photoUrl: addStoragePrefix(result[0].photoUrl),
-      imagePath: addStoragePrefix(result[0].imagePath)
+      imagePath: addStoragePrefix(result[0].imagePath),
+      collegeLogoPath: addStoragePrefix(result[0].collegeLogoPath)
     };
   }
 
@@ -122,8 +173,8 @@ export class DbStorage implements IStorage {
     const result = await db.select().from(players).where(eq(players.gradeYear, gradYear));
     return result.map(player => ({
       ...player,
-      photoUrl: addStoragePrefix(player.photoUrl),
-      imagePath: addStoragePrefix(player.imagePath)
+      imagePath: addStoragePrefix(player.imagePath),
+      collegeLogoPath: addStoragePrefix(player.collegeLogoPath)
     }));
   }
 
@@ -137,12 +188,29 @@ export class DbStorage implements IStorage {
     await db.insert(players).values(playersData);
   }
 
+  async updatePlayer(id: number, playerData: Partial<InsertPlayer>): Promise<Player | undefined> {
+    const [player] = await db
+      .update(players)
+      .set(playerData)
+      .where(eq(players.id, id))
+      .returning();
+    if (!player) return undefined;
+    return {
+      ...player,
+      imagePath: addStoragePrefix(player.imagePath),
+      collegeLogoPath: addStoragePrefix(player.collegeLogoPath)
+    };
+  }
+
+  async deletePlayer(id: number): Promise<void> {
+    await db.delete(players).where(eq(players.id, id));
+  }
+
   async getAllHighSchools(): Promise<HighSchool[]> {
     const result = await db.select().from(highSchools);
     return result.map(school => ({
       ...school,
-      logoPath: addStoragePrefix(school.logoPath),
-      logoUrl: addStoragePrefix(school.logoUrl)
+      logoPath: addStoragePrefix(school.logoPath)
     }));
   }
 
@@ -151,14 +219,30 @@ export class DbStorage implements IStorage {
     if (!result[0]) return undefined;
     return {
       ...result[0],
-      logoPath: addStoragePrefix(result[0].logoPath),
-      logoUrl: addStoragePrefix(result[0].logoUrl)
+      logoPath: addStoragePrefix(result[0].logoPath)
     };
   }
 
   async createHighSchool(school: InsertHighSchool): Promise<HighSchool> {
     const result = await db.insert(highSchools).values(school).returning();
     return result[0];
+  }
+
+  async updateHighSchool(id: number, schoolData: Partial<InsertHighSchool>): Promise<HighSchool | undefined> {
+    const [school] = await db
+      .update(highSchools)
+      .set(schoolData)
+      .where(eq(highSchools.id, id))
+      .returning();
+    if (!school) return undefined;
+    return {
+      ...school,
+      logoPath: addStoragePrefix(school.logoPath)
+    };
+  }
+
+  async deleteHighSchool(id: number): Promise<void> {
+    await db.delete(highSchools).where(eq(highSchools.id, id));
   }
 
   async getAllCircuitTeams(): Promise<CircuitTeam[]> {
@@ -173,6 +257,19 @@ export class DbStorage implements IStorage {
   async createCircuitTeam(team: InsertCircuitTeam): Promise<CircuitTeam> {
     const result = await db.insert(circuitTeams).values(team).returning();
     return result[0];
+  }
+
+  async updateCircuitTeam(id: number, teamData: Partial<InsertCircuitTeam>): Promise<CircuitTeam | undefined> {
+    const [team] = await db
+      .update(circuitTeams)
+      .set(teamData)
+      .where(eq(circuitTeams.id, id))
+      .returning();
+    return team;
+  }
+
+  async deleteCircuitTeam(id: number): Promise<void> {
+    await db.delete(circuitTeams).where(eq(circuitTeams.id, id));
   }
 
   async getAllColleges(): Promise<College[]> {
@@ -199,6 +296,24 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
+  async updateCollege(id: number, collegeData: Partial<InsertCollege>): Promise<College | undefined> {
+    const [college] = await db
+      .update(colleges)
+      .set(collegeData)
+      .where(eq(colleges.id, id))
+      .returning();
+    if (!college) return undefined;
+    return {
+      ...college,
+      logoPath: addStoragePrefix(college.logoPath),
+      logoUrl: addStoragePrefix(college.logoUrl)
+    };
+  }
+
+  async deleteCollege(id: number): Promise<void> {
+    await db.delete(colleges).where(eq(colleges.id, id));
+  }
+
   async getAllProducts(): Promise<Product[]> {
     return await db.select().from(products);
   }
@@ -211,6 +326,19 @@ export class DbStorage implements IStorage {
   async createProduct(product: InsertProduct): Promise<Product> {
     const result = await db.insert(products).values(product).returning();
     return result[0];
+  }
+
+  async updateProduct(id: number, productData: Partial<InsertProduct>): Promise<Product | undefined> {
+    const [product] = await db
+      .update(products)
+      .set(productData)
+      .where(eq(products.id, id))
+      .returning();
+    return product;
+  }
+
+  async deleteProduct(id: number): Promise<void> {
+    await db.delete(products).where(eq(products.id, id));
   }
 }
 
