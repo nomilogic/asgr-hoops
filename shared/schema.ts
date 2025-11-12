@@ -22,7 +22,7 @@ export const players = pgTable("players", {
   imagePath: text("image_path"),
   collegeLogoPath: text("college_logo_path"),
   sourceUrl: text("source_url"),
-  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}),
+  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}), // Dynamic lists: key can be year, custom list name, etc.
   ratings: jsonb("ratings").$type<Record<string, number>>().notNull().default({}),
   notes: jsonb("notes").$type<Record<string, string>>().notNull().default({}),
   positions: jsonb("positions").$type<Record<string, string>>().notNull().default({}),
@@ -39,7 +39,7 @@ export const highSchools = pgTable("high_schools", {
   id: bigint("id", { mode: "number" }).primaryKey(),
   school: text("school").notNull(),
   logoPath: text("logo_path"),
-  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}),
+  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}), // Dynamic lists by season or custom name
   records: jsonb("records").$type<Record<string, string>>().notNull().default({}),
   keyWins: jsonb("key_wins").$type<Record<string, string>>().notNull().default({}),
   sourceUrls: text("source_urls").array(),
@@ -51,7 +51,7 @@ export const circuitTeams = pgTable("circuit_teams", {
   id: bigint("id", { mode: "number" }).primaryKey(),
   team: text("team").notNull(),
   circuit: text("circuit"),
-  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}),
+  ranks: jsonb("ranks").$type<Record<string, number>>().notNull().default({}), // Dynamic lists by season or custom name
   records: jsonb("records").$type<Record<string, string>>().notNull().default({}),
   keyWins: jsonb("key_wins").$type<Record<string, string>>().notNull().default({}),
   placements: jsonb("placements").$type<Record<string, string>>().notNull().default({}),
@@ -65,6 +65,9 @@ export const colleges = pgTable("colleges", {
   name: text("name").notNull(),
   logoPath: text("logo_path"),
   logoUrl: text("logo_url"),
+  commitments: jsonb("commitments").$type<Record<string, string>>().notNull().default({}), // Dynamic lists by class year or custom name
+  recruits: jsonb("recruits").$type<Record<string, string>>().notNull().default({}),
+  sourceUrls: text("source_urls").array(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
