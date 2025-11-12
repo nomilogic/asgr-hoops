@@ -83,7 +83,7 @@ export default function HighSchoolRankings() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
+
       <main className="flex-1">
         <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-8 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
@@ -91,7 +91,10 @@ export default function HighSchoolRankings() {
             <div className="text-center mb-8">
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Trophy className="h-12 w-12 text-red-500" />
-                <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
+                <h1
+                  className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent"
+                  data-testid="text-page-title"
+                >
                   High School Rankings
                 </h1>
               </div>
@@ -106,8 +109,8 @@ export default function HighSchoolRankings() {
                     href={`/rankings/high-school/${s}`}
                     className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
                       s === season
-                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
-                        : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                        ? "bg-red-600 text-white shadow-lg shadow-red-900/50"
+                        : "bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30"
                     }`}
                     data-testid={`button-season-${s}`}
                   >
@@ -165,7 +168,7 @@ export default function HighSchoolRankings() {
           </div>
         </section>
 
-        <section className="py-0 px-4">
+        <section className="p-4">
           <div className="container mx-auto max-w-7xl">
             <div className="hidden md:block bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
@@ -194,15 +197,20 @@ export default function HighSchoolRankings() {
                     {/* Mobile Layout */}
                     <div className="block md:hidden p-6 space-y-4">
                       <div className="flex items-center justify-between">
-                        <Badge 
+                        <Badge
                           className="font-bold text-2xl w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
                           data-testid={`badge-rank-${ranking.id}`}
                         >
                           {ranking.rank}
                         </Badge>
                         <div className="text-right space-y-1">
-                          <p className="text-xs text-muted-foreground">W/L Record</p>
-                          <p className="font-bold text-lg" data-testid={`text-record-${ranking.id}`}>
+                          <p className="text-xs text-muted-foreground">
+                            W/L Record
+                          </p>
+                          <p
+                            className="font-bold text-lg"
+                            data-testid={`text-record-${ranking.id}`}
+                          >
                             {ranking.record}
                           </p>
                         </div>
@@ -217,7 +225,7 @@ export default function HighSchoolRankings() {
                             data-testid={`img-school-logo-${ranking.id}`}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
+                              target.style.display = "none";
                             }}
                           />
                         ) : (
@@ -226,18 +234,29 @@ export default function HighSchoolRankings() {
                           </div>
                         )}
                         <div className="flex-1 min-w-0">
-                          <span className="font-bold text-lg block truncate" data-testid={`text-school-name-${ranking.id}`}>
+                          <span
+                            className="font-bold text-lg block truncate"
+                            data-testid={`text-school-name-${ranking.id}`}
+                          >
                             {ranking.school}
                           </span>
-                          <Badge variant="outline" className="border-red-700/30 bg-red-950/20 text-xs mt-1">
-                            {ranking.state || '—'}
+                          <Badge
+                            variant="outline"
+                            className="border-red-700/30 bg-red-950/20 text-xs mt-1"
+                          >
+                            {ranking.state || "—"}
                           </Badge>
                         </div>
                       </div>
 
                       <div className="pt-2 border-t border-border/50">
-                        <p className="text-xs text-muted-foreground mb-2 font-semibold">Key Wins</p>
-                        <p className="text-sm text-muted-foreground line-clamp-3" data-testid={`text-key-wins-${ranking.id}`}>
+                        <p className="text-xs text-muted-foreground mb-2 font-semibold">
+                          Key Wins
+                        </p>
+                        <p
+                          className="text-sm text-muted-foreground line-clamp-3"
+                          data-testid={`text-key-wins-${ranking.id}`}
+                        >
                           {ranking.keyWins}
                         </p>
                       </div>
@@ -246,7 +265,7 @@ export default function HighSchoolRankings() {
                     {/* Desktop Layout */}
                     <div className="hidden md:grid grid-cols-12 gap-4 p-6 items-center">
                       <div className="col-span-1 flex justify-center">
-                        <Badge 
+                        <Badge
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
                           data-testid={`badge-rank-${ranking.id}`}
                         >
@@ -263,7 +282,7 @@ export default function HighSchoolRankings() {
                             data-testid={`img-school-logo-${ranking.id}`}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
+                              target.style.display = "none";
                             }}
                           />
                         ) : (
@@ -271,25 +290,37 @@ export default function HighSchoolRankings() {
                             <Trophy className="h-8 w-8 text-muted-foreground" />
                           </div>
                         )}
-                        <span className="font-bold text-lg" data-testid={`text-school-name-${ranking.id}`}>
+                        <span
+                          className="font-bold text-lg"
+                          data-testid={`text-school-name-${ranking.id}`}
+                        >
                           {ranking.school}
                         </span>
                       </div>
 
                       <div className="col-span-2 text-center">
-                        <Badge variant="outline" className="border-red-700/30 bg-red-950/20">
-                          {ranking.state || '—'}
+                        <Badge
+                          variant="outline"
+                          className="border-red-700/30 bg-red-950/20"
+                        >
+                          {ranking.state || "—"}
                         </Badge>
                       </div>
 
                       <div className="col-span-1 text-center">
-                        <span className="text-sm font-bold" data-testid={`text-record-${ranking.id}`}>
+                        <span
+                          className="text-sm font-bold"
+                          data-testid={`text-record-${ranking.id}`}
+                        >
                           {ranking.record}
                         </span>
                       </div>
 
                       <div className="col-span-4">
-                        <span className="text-sm text-muted-foreground" data-testid={`text-key-wins-${ranking.id}`}>
+                        <span
+                          className="text-sm text-muted-foreground"
+                          data-testid={`text-key-wins-${ranking.id}`}
+                        >
                           {ranking.keyWins}
                         </span>
                       </div>

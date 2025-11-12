@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { CircuitTeam } from "@shared/schema";
 import { useState, useMemo } from "react";
-import { Search, Filter, Trophy } from "lucide-react";
+import { Search, Filter, Trophy, ChevronDown } from "lucide-react";
 
 interface CircuitTeamWithRanking {
   id: number;
@@ -80,6 +80,23 @@ export default function CircuitRankings() {
     return Array.from(uniqueCircuits).sort();
   }, [teamsWithRankings]);
 
+  // Extract available years from teams data
+  const availableYears = useMemo(() => {
+    if (!teams) return [];
+    const years = new Set<string>();
+    teams.forEach((team) => {
+      if (team.ranks) {
+        Object.keys(team.ranks).forEach((key) => {
+          const yearMatch = key.match(/^(\d{4})/);
+          if (yearMatch) {
+            years.add(yearMatch[1]);
+          }
+        });
+      }
+    });
+    return Array.from(years).sort().reverse();
+  }, [teams]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -95,12 +112,34 @@ export default function CircuitRankings() {
                   Circuit Rankings
                 </h1>
               </div>
+              <h2 className="text-xl text-white-300">
+                {year} Season
+              </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
                 Top circuit teams ranked by performance and win percentage
               </p>
+
+              {availableYears.length > 2 && (
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  {availableYears.map((y) => (
+                    <a
+                      key={y}
+                      href={`/rankings/circuit/${y}`}
+                      className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+                        y === year
+                          ? 'bg-red-600 text-white shadow-lg shadow-red-900/50'
+                          : 'bg-card/50 text-muted-foreground hover:bg-red-950/50 hover:text-red-400 border border-red-900/30'
+                      }`}
+                      data-testid={`link-year-${y}`}
+                    >
+                      {y}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
+            {/* <div className="bg-card/50 backdrop-blur-sm border border-card-border rounded-lg p-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -144,13 +183,13 @@ export default function CircuitRankings() {
                   </Button>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </section>
 
-        <section className="py-2 px-4">
+        <section className="p-4">
           <div className="container mx-auto max-w-7xl">
-            <div className="bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
+            <div className="hidden md:block bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-sm text-muted-foreground">
                 <div className="col-span-1 text-center">Rank</div>
                 <div className="col-span-3">Team Name</div>
@@ -175,7 +214,56 @@ export default function CircuitRankings() {
                     className="overflow-hidden border-card-border bg-card/50 backdrop-blur-sm hover-elevate active-elevate-2 transition-all duration-300"
                     data-testid={`card-team-${team.id}`}
                   >
-                    <div className="grid grid-cols-12 gap-4 p-6 items-center">
+                    {/* Mobile Layout */}
+                    <div className="block md:hidden p-6 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <Badge 
+                          className="font-bold text-2xl w-16 h-16 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                          data-testid={`badge-rank-${team.id}`}
+                        >
+                          {team.rank}
+                        </Badge>
+                        <div className="text-right space-y-1">
+                          <p className="text-xs text-muted-foreground">Record</p>
+                          <p className="font-bold text-lg" data-testid={`text-record-${team.id}`}>
+                            {team.record}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-950/50 to-red-900/30 border border-red-700/30 flex items-center justify-center flex-shrink-0">
+                          <Trophy className="h-7 w-7 text-red-400" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-bold text-lg block truncate" data-testid={`text-team-name-${team.id}`}>
+                            {team.team}
+                          </span>
+                          <Badge variant="outline" className="border-red-700/30 bg-red-950/20 text-xs mt-1">
+                            {team.circuit || '—'}
+                          </Badge>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 text-center">
+                        <div>
+                          <p className="text-xs text-muted-foreground">Placement</p>
+                          <Badge className="font-semibold bg-blue-900/30 border-blue-700/30 text-blue-400 mx-auto block w-fit" data-testid={`text-placement-${team.id}`}>
+                            {team.placement}
+                          </Badge>
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-border/50">
+                        <p className="text-xs text-muted-foreground mb-2 font-semibold">Key Wins</p>
+                        <p className="text-sm text-muted-foreground line-clamp-3" data-testid={`text-key-wins-${team.id}`}>
+                          {team.keyWins}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Desktop Layout */}
+                    <div className="hidden md:grid grid-cols-12 gap-4 p-6 items-center">
                       <div className="col-span-1 flex justify-center">
                         <Badge 
                           className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"

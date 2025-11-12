@@ -177,7 +177,7 @@ export default function Rankings() {
           </div>
         </section>
 
-        <section className="px-4 mt-[-2rem]">
+        <section className="p-4">
           <div className="container mx-auto max-w-7xl">
             <div className="hidden md:block bg-card/70 border border-card-border rounded-lg p-6 mb-4 sticky top-16 z-10 backdrop-blur-sm">
               <div className="grid grid-cols-12 gap-4 items-center font-semibold text-base text-muted-foreground">
@@ -262,7 +262,7 @@ export default function Rankings() {
                                 </div>
                                 <div>
                                   <p className="text-xs text-muted-foreground">Position</p>
-                                  <Badge variant="outline" className="border-red-700/30 bg-red-950/20 text-xs mx-auto block w-fit">
+                                  <Badge variant="outline" className="border-red-700/30 dark:bg-red-950/20 bg-red-100 text-xs mx-auto block w-fit dark:text-red-400 text-red-700">
                                     {player.position || '—'}
                                   </Badge>
                                 </div>

@@ -18,9 +18,8 @@ import {
 } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import type { CartItem } from "@shared/schema";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,9 +28,45 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
+// Type definitions
+interface Player {
+  id: number;
+  name: string;
+  ranks?: Record<string, number>;
+}
+
+interface HighSchool {
+  id: number;
+  name: string;
+  ranks?: Record<string, number>;
+}
+
+interface CircuitTeam {
+  id: number;
+  name: string;
+  ranks?: Record<string, number>;
+}
+
+interface CartItem {
+  id: number;
+  quantity: number;
+}
+
+type NavItem = {
+  label: string;
+  href: string;
+  testid: string;
+} | {
+  label: string;
+  dropdown: Array<{ label: string; href: string; testid: string }>;
+  dropdownTitle: string;
+  dropdownWidth: string;
+  testid: string;
+};
+
 const logoImage = "/attached_assets/asgr_basketball.png";
 
-const navConfig = [
+const staticNavConfig = [
   {
     label: "Home",
     href: "/",
@@ -43,40 +78,6 @@ const navConfig = [
     testid: "link-products",
   },
   {
-    label: "Player Rankings",
-    dropdown: [
-      { label: "Class 2024", href: "/rankings/2024", testid: "link-rankings-2024" },
-      { label: "Class 2025", href: "/rankings/2025", testid: "link-rankings-2025" },
-      { label: "Class 2026", href: "/rankings/2026", testid: "link-rankings-2026" },
-      { label: "Class 2027", href: "/rankings/2027", testid: "link-rankings-2027" },
-      { label: "Class 2028", href: "/rankings/2028", testid: "link-rankings-2028" },
-      { label: "Class 2029", href: "/rankings/2029", testid: "link-rankings-2029" },
-      { label: "Class 2030", href: "/rankings/2030", testid: "link-rankings-2030" },
-    ],
-    testid: "button-rankings-menu",
-    dropdownTitle: "Top 350 Rankings",
-    dropdownWidth: "w--[500px]",
-  },
-  {
-    label: "High School Rankings",
-    dropdown: [
-      { label: "2023-24 Season", href: "/rankings/high-school/2023-24", testid: "link-hs-2023-24" },
-      { label: "2024-25 Season", href: "/rankings/high-school/2024-25", testid: "link-hs-2024-25" },
-    ],
-    testid: "button-high-school-menu",
-    dropdownTitle: "By Season",
-    dropdownWidth: "w-full",
-  },
-  {
-    label: "Circuit Rankings",
-    dropdown: [
-      { label: "2024 Circuit Season", href: "/rankings/circuit/2024", testid: "link-circuit-2024" },
-    ],
-    testid: "button-circuit-menu",
-    dropdownTitle: "By Season",
-    dropdownWidth: "w-full",
-  },
-  {
     label: "Events",
     href: "/events",
     testid: "link-events",
@@ -86,7 +87,7 @@ const navConfig = [
     href: "/contact",
     testid: "link-contact",
   },
-];
+] as const;
 
 export function Header() {
   const [location] = useLocation();
@@ -96,7 +97,125 @@ export function Header() {
     queryKey: ["/api/cart"],
   });
 
+  const { data: players } = useQuery<Player[]>({
+    queryKey: ["/api/players"],
+  });
+
+  const { data: highSchools } = useQuery<HighSchool[]>({
+    queryKey: ["/api/high-schools"],
+  });
+
+  const { data: circuitTeams } = useQuery<CircuitTeam[]>({
+    queryKey: ["/api/circuit-teams"],
+  });
+
   const cartCount = cart?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+
+  // Extract available years for Player Rankings
+  const playerYears = useMemo(() => {
+    if (!players) return [];
+    const years = new Set<string>();
+    players.forEach((player) => {
+      if (player.ranks) {
+        Object.keys(player.ranks).forEach((key) => {
+          const year = parseInt(key);
+          if (!isNaN(year)) {
+            years.add(year.toString());
+          }
+        });
+      }
+    });
+    return Array.from(years).sort().map((year) => ({
+      label: `Class ${year}`,
+      href: `/rankings/${year}`,
+      testid: `link-rankings-${year}`,
+    }));
+  }, [players]);
+
+  // Extract available seasons for High School Rankings
+  const hsSeasons = useMemo(() => {
+    if (!highSchools) return [];
+    const seasons = new Set<string>();
+    highSchools.forEach((school) => {
+      if (school.ranks) {
+        Object.keys(school.ranks).forEach((season) => {
+          seasons.add(season);
+        });
+      }
+    });
+    return Array.from(seasons).sort().reverse().map((season) => ({
+      label: season,
+      href: `/rankings/high-school/${season}`,
+      testid: `link-hs-${season.replace(/\s+/g, "-").toLowerCase()}`,
+    }));
+  }, [highSchools]);
+
+  // Extract available seasons for Circuit Rankings
+  const circuitSeasons = useMemo(() => {
+    if (!circuitTeams) return [];
+    const seasons = new Set<string>();
+    circuitTeams.forEach((team) => {
+      if (team.ranks) {
+        Object.keys(team.ranks).forEach((season) => {
+          seasons.add(season);
+        });
+      }
+    });
+    return Array.from(seasons).sort().reverse().map((season) => {
+      const year = season.match(/\d{4}/)?.[0] || "";
+      return {
+        label: season,
+        href: `/rankings/circuit/${year}`,
+        testid: `link-circuit-${year}`,
+      };
+    });
+  }, [circuitTeams]);
+
+  // Build dynamic navigation config
+  const navConfig = useMemo(() => {
+    const dynamicNav = [...staticNavConfig];
+    
+    // Insert dynamic dropdowns before Events and Contact
+    const insertIndex = dynamicNav.findIndex(item => item.label === "Events");
+    
+    const dynamicItems: NavItem[] = [];
+    
+    if (playerYears.length > 0) {
+      dynamicItems.push({
+        label: "Player Rankings",
+        dropdown: playerYears,
+        testid: "button-rankings-menu",
+        dropdownTitle: "Top 350 Rankings",
+        dropdownWidth: "w-[280px]",
+      });
+    }
+
+    if (hsSeasons.length > 0) {
+      dynamicItems.push({
+        label: "High School Rankings",
+        dropdown: hsSeasons,
+        testid: "button-high-school-menu",
+        dropdownTitle: "By Season",
+        dropdownWidth: "w-[260px]",
+      });
+    }
+
+    if (circuitSeasons.length > 0) {
+      dynamicItems.push({
+        label: "Circuit Rankings",
+        dropdown: circuitSeasons,
+        testid: "button-circuit-menu",
+        dropdownTitle: "By Season",
+        dropdownWidth: "w-[260px]",
+      });
+    }
+
+    return [
+      ...dynamicNav.slice(0, insertIndex),
+      ...dynamicItems,
+      ...dynamicNav.slice(insertIndex),
+    ] as NavItem[];
+  }, [playerYears, hsSeasons, circuitSeasons]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-red-900/30 bg-background/98 backdrop-blur supports-[backdrop-filter]:bg-background/95 shadow-lg shadow-red-900/10 transition-all duration-300">
@@ -118,41 +237,33 @@ export function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
-            {navConfig.map((item) =>
-              item.dropdown ? (
-                <NavigationMenu key={item.label}>
-                  <NavigationMenuList>
-                    <NavigationMenuItem className="relative w-full">
-                      <NavigationMenuTrigger
-                        className="text-sm font-medium hover:text-red-500 transition-colors duration-300 "
-                        data-testid={item.testid}
-                      >
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent
-                        className={` absolute left-0 ${item.dropdownWidth}`}
-                      >
-                        <div className="p-3 bg-card border border-card-border rounded-lg shadow-xl">
-                          <div className="grid gap-1">
-                            <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">
-                              {item.dropdownTitle}
-                            </div>
-                            {item.dropdown.map((sub) => (
-                              <Link
-                                key={sub.label}
-                                href={sub.href}
-                                className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400"
-                                data-testid={sub.testid}
-                              >
-                                {sub.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  </NavigationMenuList>
-                </NavigationMenu>
+            {navConfig.map((item) => {
+              const isDropdown = 'dropdown' in item;
+              return isDropdown ? (
+                <DropdownMenu key={item.label}>
+                  <DropdownMenuTrigger asChild>
+                    <button className="px-3 py-2 text-sm font-medium rounded-md hover:text-red-500 transition-colors duration-300 flex items-center gap-1 hover-elevate active-elevate-2">
+                      {item.label}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-56">
+                    <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">
+                      {item.dropdownTitle}
+                    </div>
+                    {item.dropdown.map((sub) => (
+                      <DropdownMenuItem key={sub.label} asChild>
+                        <Link
+                          href={sub.href}
+                          className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400 cursor-pointer"
+                          data-testid={sub.testid}
+                        >
+                          {sub.label}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <Link
                   key={item.label}
@@ -166,8 +277,8 @@ export function Header() {
                 >
                   {item.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
         </div>
 
@@ -199,203 +310,54 @@ export function Header() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
+            <SheetContent side="right" className="w-[300px] flex flex-col">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-4 mt-8">
-                <Link
-                  href="/"
-                  className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                    location === "/"
-                      ? "bg-secondary text-secondary-foreground"
-                      : "text-foreground"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                  data-testid="mobile-link-home"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/products"
-                  className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                    location === "/products"
-                      ? "bg-secondary text-secondary-foreground"
-                      : "text-foreground"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                  data-testid="mobile-link-products"
-                >
-                  Scouting Service
-                </Link>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">
-                    Player Rankings
-                  </div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">
-                      TOP 350
-                    </div>
+              <nav className="flex flex-col gap-2 mt-6 flex-1 overflow-y-auto">
+                {navConfig.map((item) => {
+                  const isDropdown = 'dropdown' in item;
+                  return isDropdown ? (
+                    <Collapsible key={item.label} className="space-y-2">
+                      <CollapsibleTrigger className="px-3 py-2 text-sm font-semibold text-muted-foreground flex items-center gap-2 hover:text-foreground transition-colors w-full">
+                        {item.label}
+                        <ChevronDown className="h-4 w-4 transition-transform duration-200" />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="ml-4 flex flex-col gap-2 space-y-0">
+                        <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">{item.dropdownTitle}</div>
+                        {item.dropdown.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
+                              location === sub.href
+                                ? "bg-secondary text-secondary-foreground"
+                                : "text-foreground"
+                            }`}
+                            onClick={() => setMobileOpen(false)}
+                            data-testid={sub.testid}
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </CollapsibleContent>
+                    </Collapsible>
+                  ) : (
                     <Link
-                      href="/rankings/2024"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2024"
+                      key={item.label}
+                      href={item.href}
+                      className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                        location === item.href
                           ? "bg-secondary text-secondary-foreground"
                           : "text-foreground"
                       }`}
                       onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2024"
+                      data-testid={item.testid}
                     >
-                      Class 2024
+                      {item.label}
                     </Link>
-                    <Link
-                      href="/rankings/2025"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2025"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2025"
-                    >
-                      Class 2025
-                    </Link>
-                    <Link
-                      href="/rankings/2026"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2026"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2026"
-                    >
-                      Class 2026
-                    </Link>
-                    <Link
-                      href="/rankings/2027"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2027"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2027"
-                    >
-                      Class 2027
-                    </Link>
-                    <Link
-                      href="/rankings/2028"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2028"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2028"
-                    >
-                      Class 2028
-                    </Link>
-                    <Link
-                      href="/rankings/2029"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2029"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2029"
-                    >
-                      Class 2029
-                    </Link>
-                    <Link
-                      href="/rankings/2030"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/2030"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-rankings-2030"
-                    >
-                      Class 2030
-                    </Link>
-                  </div>
-                </div>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">
-                    High School Rankings
-                  </div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <Link
-                      href="/rankings/high-school/2023-24"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/high-school/2023-24"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-hs-2023-24"
-                    >
-                      2023-24 Season
-                    </Link>
-                    <Link
-                      href="/rankings/high-school/2024-25"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/high-school/2024-25"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-hs-2024-25"
-                    >
-                      2024-25 Season
-                    </Link>
-                  </div>
-                </div>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">
-                    Circuit Rankings
-                  </div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <Link
-                      href="/rankings/circuit/2024"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/circuit/2024"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-circuit-2024"
-                    >
-                      2024 Circuit Season
-                    </Link>
-                  </div>
-                </div>
-                <Link
-                  href="/events"
-                  className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                    location === "/events"
-                      ? "bg-secondary text-secondary-foreground"
-                      : "text-foreground"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                  data-testid="mobile-link-events"
-                >
-                  Events
-                </Link>
-                <Link
-                  href="/contact"
-                  className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                    location === "/contact"
-                      ? "bg-secondary text-secondary-foreground"
-                      : "text-foreground"
-                  }`}
-                  onClick={() => setMobileOpen(false)}
-                  data-testid="mobile-link-contact"
-                >
-                  Contact
-                </Link>
+                  );
+                })}
               </nav>
             </SheetContent>
           </Sheet>
