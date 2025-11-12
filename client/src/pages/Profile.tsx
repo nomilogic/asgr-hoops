@@ -1,4 +1,4 @@
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth, logout } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -36,7 +36,7 @@ export default function Profile() {
           </CardHeader>
           <CardContent>
             <Button asChild data-testid="button-login">
-              <a href="/api/login">Log In</a>
+              <a href="/login">Log In</a>
             </Button>
           </CardContent>
         </Card>
@@ -79,11 +79,9 @@ export default function Profile() {
           </div>
 
           <div className="pt-4 border-t">
-            <Button variant="outline" asChild data-testid="button-logout">
-              <a href="/api/logout" className="flex items-center gap-2">
-                <LogOut className="h-4 w-4" />
-                Log Out
-              </a>
+            <Button variant="outline" onClick={logout} data-testid="button-logout">
+              <LogOut className="h-4 w-4" />
+              Log Out
             </Button>
           </div>
         </CardContent>

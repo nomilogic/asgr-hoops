@@ -12,7 +12,8 @@ import {
   type Product,
   type InsertProduct,
   type User,
-  type UpsertUser,
+  type UserWithPassword,
+  type InsertUser,
   players,
   highSchools,
   circuitTeams,
@@ -31,7 +32,9 @@ function addStoragePrefix(path: string | null): string | null {
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
-  upsertUser(user: UpsertUser): Promise<User>;
+  getUserWithPassword(id: string): Promise<UserWithPassword | undefined>;
+  getUserByEmail(email: string): Promise<UserWithPassword | undefined>;
+  createUser(user: InsertUser): Promise<User>;
 
   getAllPlayers(): Promise<Player[]>;
   getPlayerById(id: number): Promise<Player | undefined>;
@@ -58,22 +61,41 @@ export interface IStorage {
 
 export class DbStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select({
+      id: users.id,
+      email: users.email,
+      firstName: users.firstName,
+      lastName: users.lastName,
+      profileImageUrl: users.profileImageUrl,
+      createdAt: users.createdAt,
+      updatedAt: users.updatedAt,
+    }).from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async getUserWithPassword(id: string): Promise<UserWithPassword | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
     return user;
   }
 
-  async upsertUser(userData: UpsertUser): Promise<User> {
+  async getUserByEmail(email: string): Promise<UserWithPassword | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async createUser(userData: InsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
       .values(userData)
-      .onConflictDoUpdate({
-        target: users.id,
-        set: {
-          ...userData,
-          updatedAt: new Date(),
-        },
-      })
-      .returning();
+      .returning({
+        id: users.id,
+        email: users.email,
+        firstName: users.firstName,
+        lastName: users.lastName,
+        profileImageUrl: users.profileImageUrl,
+        createdAt: users.createdAt,
+        updatedAt: users.updatedAt,
+      });
     return user;
   }
 

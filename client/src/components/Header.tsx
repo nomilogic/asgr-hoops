@@ -35,7 +35,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth, logout } from "@/hooks/useAuth";
 
 export function Header() {
   const [location] = useLocation();
@@ -297,17 +297,15 @@ export function Header() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <a href="/api/logout" className="cursor-pointer" data-testid="link-logout">
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Log Out
-                      </a>
+                    <DropdownMenuItem onClick={logout} className="cursor-pointer" data-testid="link-logout">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Log Out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
                 <Button asChild variant="default" size="sm" data-testid="button-login">
-                  <a href="/api/login">Log In</a>
+                  <Link href="/login">Log In</Link>
                 </Button>
               )}
             </>
@@ -555,25 +553,26 @@ export function Header() {
                           <User className="h-4 w-4 inline mr-2" />
                           Profile
                         </Link>
-                        <a
-                          href="/api/logout"
-                          className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 text-foreground"
+                        <button
+                          onClick={logout}
+                          className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 text-foreground w-full text-left"
                           data-testid="mobile-link-logout"
                         >
                           <LogOut className="h-4 w-4 inline mr-2" />
                           Log Out
-                        </a>
+                        </button>
                       </>
                     ) : (
                       <>
                         <div className="border-t my-4"></div>
-                        <a
-                          href="/api/login"
+                        <Link
+                          href="/login"
                           className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 bg-red-600 text-white"
+                          onClick={() => setMobileOpen(false)}
                           data-testid="mobile-button-login"
                         >
                           Log In
-                        </a>
+                        </Link>
                       </>
                     )}
                   </>

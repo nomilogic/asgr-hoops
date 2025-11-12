@@ -2,27 +2,87 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { uploadPlayerImage, uploadCollegeLogo } from "./supabase-storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { authenticateToken, hashPassword, comparePassword, signToken } from "./auth";
+import { signupSchema, loginSchema } from "@shared/schema";
 import multer from "multer";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  await setupAuth(app);
-
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+  // Auth routes
+  app.post('/api/auth/signup', async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
+      const validation = signupSchema.safeParse(req.body);
+      if (!validation.success) {
+        return res.status(400).json({ error: "Invalid input", details: validation.error });
+      }
+
+      const { email, password, firstName, lastName } = validation.data;
+
+      const existingUser = await storage.getUserByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ error: "Email already in use" });
+      }
+
+      const hashedPassword = await hashPassword(password);
+      const user = await storage.createUser({
+        email,
+        password: hashedPassword,
+        firstName,
+        lastName,
+      });
+
+      const token = signToken({ userId: user.id, email: user.email });
+      res.json({ user, token });
+    } catch (error) {
+      console.error("Signup error:", error);
+      res.status(500).json({ error: "Failed to create account" });
+    }
+  });
+
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const validation = loginSchema.safeParse(req.body);
+      if (!validation.success) {
+        return res.status(400).json({ error: "Invalid input" });
+      }
+
+      const { email, password } = validation.data;
+
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+
+      const isValid = await comparePassword(password, user.password);
+      if (!isValid) {
+        return res.status(401).json({ error: "Invalid credentials" });
+      }
+
+      const token = signToken({ userId: user.id, email: user.email });
+      const { password: _, ...userWithoutPassword } = user;
+      res.json({ user: userWithoutPassword, token });
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ error: "Failed to log in" });
+    }
+  });
+
+  app.get('/api/auth/user', authenticateToken, async (req, res) => {
+    try {
+      const user = await storage.getUser(req.user!.userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
       res.json(user);
     } catch (error) {
       console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
+      res.status(500).json({ error: "Failed to fetch user" });
     }
   });
 
   // Player routes
-  app.get("/api/players", isAuthenticated, async (_req, res) => {
+  app.get("/api/players", authenticateToken, async (_req, res) => {
     try {
       const players = await storage.getAllPlayers();
       res.json(players);
@@ -31,7 +91,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/players/year/:year", isAuthenticated, async (req, res) => {
+  app.get("/api/players/year/:year", authenticateToken, async (req, res) => {
     try {
       const year = parseInt(req.params.year);
       if (isNaN(year)) {
@@ -61,7 +121,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // High School routes
-  app.get("/api/high-schools", isAuthenticated, async (_req, res) => {
+  app.get("/api/high-schools", authenticateToken, async (_req, res) => {
     try {
       const schools = await storage.getAllHighSchools();
       res.json(schools);
@@ -87,7 +147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Circuit team routes
-  app.get("/api/circuit-teams", isAuthenticated, async (_req, res) => {
+  app.get("/api/circuit-teams", authenticateToken, async (_req, res) => {
     try {
       const teams = await storage.getAllCircuitTeams();
       res.json(teams);

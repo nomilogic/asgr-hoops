@@ -14,12 +14,18 @@ import HighSchoolRankings from "@/pages/HighSchoolRankings";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import Profile from "@/pages/Profile";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Events} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/profile" component={Profile} />
       <Route path="/products" component={Products} />
       <Route path="/products/:slug" component={ProductDetail} />
       <Route path="/player/:id" component={PlayerDetail} />
