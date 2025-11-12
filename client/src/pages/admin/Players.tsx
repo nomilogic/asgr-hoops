@@ -117,11 +117,18 @@ export default function AdminPlayers() {
     }
   };
 
-  const filteredPlayers = players?.filter((player) =>
-    player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    player.highSchool?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    player.committedCollege?.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const [selectedYear, setSelectedYear] = useState<string>("2025");
+  const years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
+
+  const filteredPlayers = players?.filter((player) => {
+    const matchesSearch = player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      player.highSchool?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      player.committedCollege?.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesYear = !selectedYear || player.gradeYear?.toString() === selectedYear;
+    
+    return matchesSearch && matchesYear;
+  });
 
   return (
     <div className="p-6 space-y-6">
@@ -146,15 +153,37 @@ export default function AdminPlayers() {
         </Dialog>
       </div>
 
-      <div className="flex items-center gap-2">
-        <Search className="h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder="Search players..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="max-w-sm"
-          data-testid="input-search-players"
-        />
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-1 min-w-[300px]">
+          <Search className="h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search players..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1"
+            data-testid="input-search-players"
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-muted-foreground">Class:</span>
+          {years.map((year) => (
+            <Button
+              key={year}
+              variant={selectedYear === year ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedYear(year)}
+            >
+              {year}
+            </Button>
+          ))}
+          <Button
+            variant={!selectedYear ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSelectedYear("")}
+          >
+            All
+          </Button>
+        </div>
       </div>
 
       <div className="border rounded-lg">
@@ -166,8 +195,11 @@ export default function AdminPlayers() {
               <TableHead>Name</TableHead>
               <TableHead>Year</TableHead>
               <TableHead>Position</TableHead>
+              <TableHead>Height</TableHead>
               <TableHead>High School</TableHead>
+              <TableHead>Circuit</TableHead>
               <TableHead>Committed</TableHead>
+              <TableHead>Rating</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -187,21 +219,42 @@ export default function AdminPlayers() {
               ))
             ) : filteredPlayers && filteredPlayers.length > 0 ? (
               filteredPlayers.map((player) => (
-                <TableRow key={player.id} data-testid={`row-player-${player.id}`}>
+                <TableRow key={player.id} data-testid={`row-player-${player.id}`} className="hover:bg-muted/50">
                   <TableCell>
-                    <Avatar>
+                    <Avatar className="h-12 w-12">
                       <AvatarImage src={player.imagePath || undefined} />
                       <AvatarFallback>
                         <ImageIcon className="h-4 w-4" />
                       </AvatarFallback>
                     </Avatar>
                   </TableCell>
-                  <TableCell>{player.rank || "-"}</TableCell>
+                  <TableCell>
+                    <Badge variant={player.rank ? "default" : "outline"}>
+                      {player.ranks?.[selectedYear] || player.rank || "-"}
+                    </Badge>
+                  </TableCell>
                   <TableCell className="font-medium">{player.name}</TableCell>
-                  <TableCell>{player.gradeYear || "-"}</TableCell>
+                  <TableCell>
+                    <Badge variant="secondary">{player.gradeYear || "-"}</Badge>
+                  </TableCell>
                   <TableCell>{player.position || "-"}</TableCell>
-                  <TableCell>{player.highSchool || "-"}</TableCell>
-                  <TableCell>{player.committedCollege || "-"}</TableCell>
+                  <TableCell className="text-sm">{player.height || "-"}</TableCell>
+                  <TableCell className="max-w-[150px] truncate">{player.highSchool || "-"}</TableCell>
+                  <TableCell className="max-w-[120px] truncate text-xs">{player.circuitProgram || "-"}</TableCell>
+                  <TableCell>
+                    {player.committedCollege ? (
+                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                        {player.committedCollege}
+                      </Badge>
+                    ) : "-"}
+                  </TableCell>
+                  <TableCell>
+                    {player.rating ? (
+                      <Badge variant="outline" className="bg-yellow-50 text-yellow-700 border-yellow-200">
+                        {player.rating}★
+                      </Badge>
+                    ) : "-"}
+                  </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
                       <Dialog open={uploadingImage === player.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
