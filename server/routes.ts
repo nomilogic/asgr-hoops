@@ -2,13 +2,27 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { uploadPlayerImage, uploadCollegeLogo } from "./supabase-storage";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 import multer from "multer";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  await setupAuth(app);
+
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
   // Player routes
-  app.get("/api/players", async (_req, res) => {
+  app.get("/api/players", isAuthenticated, async (_req, res) => {
     try {
       const players = await storage.getAllPlayers();
       res.json(players);
@@ -17,7 +31,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/players/year/:year", async (req, res) => {
+  app.get("/api/players/year/:year", isAuthenticated, async (req, res) => {
     try {
       const year = parseInt(req.params.year);
       if (isNaN(year)) {
@@ -47,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // High School routes
-  app.get("/api/high-schools", async (_req, res) => {
+  app.get("/api/high-schools", isAuthenticated, async (_req, res) => {
     try {
       const schools = await storage.getAllHighSchools();
       res.json(schools);
@@ -73,7 +87,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Circuit team routes
-  app.get("/api/circuit-teams", async (_req, res) => {
+  app.get("/api/circuit-teams", isAuthenticated, async (_req, res) => {
     try {
       const teams = await storage.getAllCircuitTeams();
       res.json(teams);
