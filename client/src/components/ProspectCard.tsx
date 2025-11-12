@@ -11,15 +11,16 @@ interface ProspectCardProps {
 }
 
 export function ProspectCard({ player, displayRank }: ProspectCardProps) {
-  const rating = player.rating != null ? Math.min(Math.max(player.rating, 0), 100) : 0;
+  const rating =
+    player.rating != null ? Math.min(Math.max(player.rating, 0), 100) : 0;
 
   return (
-    <Card 
-      className="flex flex-col h-full hover-elevate" 
+    <Card
+      className="flex flex-col h-full hover-elevate"
       data-testid={`card-prospect-${player.id}`}
     >
       <div className="relative overflow-hidden rounded-t-md">
-        <div 
+        <div
           className="absolute top-3 left-3 z-10 bg-gradient-to-br from-red-600 to-red-700 text-white font-bold rounded-lg shadow-xl border-2 border-red-500/50 w-16 h-16 flex items-center justify-center"
           data-testid={`badge-rank-${player.id}`}
         >
@@ -27,7 +28,7 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
             <div className="text-3xl leading-none">{displayRank}</div>
           </div>
         </div>
-        
+
         <div className="bg-muted flex items-center justify-center aspect-[3/4]">
           {player.imagePath ? (
             <img
@@ -37,7 +38,10 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
               data-testid={`img-player-${player.id}`}
             />
           ) : (
-            <Avatar className="w-32 h-32" data-testid={`avatar-player-${player.id}`}>
+            <Avatar
+              className="w-32 h-32"
+              data-testid={`avatar-player-${player.id}`}
+            >
               <AvatarFallback className="bg-muted-foreground/20">
                 <User className="w-16 h-16 text-muted-foreground" />
               </AvatarFallback>
@@ -48,8 +52,8 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
 
       <CardContent className="flex-1 p-4 space-y-3">
         <div>
-          <h3 
-            className="font-bold text-lg mb-1" 
+          <h3
+            className="font-bold text-lg mb-1"
             data-testid={`text-name-${player.id}`}
           >
             {player.name}
@@ -67,7 +71,10 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
             )}
           </div>
           {player.gradeYear && (
-            <div className="text-sm text-muted-foreground" data-testid={`text-class-${player.id}`}>
+            <div
+              className="text-sm text-muted-foreground"
+              data-testid={`text-class-${player.id}`}
+            >
               Class: {player.gradeYear}
             </div>
           )}
@@ -76,13 +83,16 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
         {player.highSchool && (
           <div className="text-sm">
             <div className="font-semibold text-foreground">High School:</div>
-            <div className="text-muted-foreground" data-testid={`text-highschool-${player.id}`}>
+            <div
+              className="text-muted-foreground"
+              data-testid={`text-highschool-${player.id}`}
+            >
               {player.highSchool}
             </div>
           </div>
         )}
 
-        {player.circuitProgram && (
+        {/* {player.circuitProgram && (
           <div className="text-sm">
             <div className="font-semibold text-foreground">Circuit:</div>
             <div className="text-muted-foreground" data-testid={`text-circuit-${player.id}`}>
@@ -96,16 +106,16 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
           <div className="text-muted-foreground" data-testid={`text-college-${player.id}`}>
             {player.committedCollege || "Uncommitted"}
           </div>
-        </div>
+        </div> */}
 
-        {player.ratingComment && (
-          <p 
-            className="text-sm text-muted-foreground line-clamp-3" 
+        {/* {player.ratingComment && (
+          <p
+            className="text-sm text-muted-foreground line-clamp-3"
             data-testid={`text-comment-${player.id}`}
           >
             {player.ratingComment}
           </p>
-        )}
+        )} */}
       </CardContent>
 
       <CardFooter className="p-4 pt-0 flex flex-col gap-2">
@@ -115,7 +125,11 @@ export function ProspectCard({ player, displayRank }: ProspectCardProps) {
             {player.rating != null ? rating : "Not rated"}
           </span>
         </div>
-        <Progress value={rating} className="w-full" data-testid={`progress-rating-${player.id}`} />
+        <Progress
+          value={rating}
+          className="w-full"
+          data-testid={`progress-rating-${player.id}`}
+        />
       </CardFooter>
     </Card>
   );
