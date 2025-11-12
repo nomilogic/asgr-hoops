@@ -9,16 +9,19 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertHighSchoolSchema, type HighSchool } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function AdminHighSchools() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editSchool, setEditSchool] = useState<HighSchool | null>(null);
   const [deleteSchoolId, setDeleteSchoolId] = useState<number | null>(null);
+  const [uploadingImage, setUploadingImage] = useState<number | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const { toast } = useToast();
 
   const { data: schools, isLoading } = useQuery<HighSchool[]>({
@@ -75,6 +78,35 @@ export default function AdminHighSchools() {
     },
   });
 
+  const uploadImageMutation = useMutation({
+    mutationFn: async ({ id, file }: { id: number; file: File }) => {
+      const formData = new FormData();
+      formData.append('image', file);
+      const response = await fetch(`/api/admin/high-schools/${id}/logo`, {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+      if (!response.ok) throw new Error("Failed to upload logo");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/high-schools"] });
+      toast({ title: "Logo uploaded successfully" });
+      setUploadingImage(null);
+      setImageFile(null);
+    },
+    onError: () => {
+      toast({ title: "Failed to upload logo", variant: "destructive" });
+    },
+  });
+
+  const handleImageUpload = (schoolId: number) => {
+    if (imageFile) {
+      uploadImageMutation.mutate({ id: schoolId, file: imageFile });
+    }
+  };
+
   const filteredSchools = schools?.filter((school) =>
     school.school.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -117,6 +149,7 @@ export default function AdminHighSchools() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Logo</TableHead>
               <TableHead>School Name</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -125,6 +158,7 @@ export default function AdminHighSchools() {
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={i}>
+                  <TableCell><Skeleton className="h-8 w-8 rounded-full" /></TableCell>
                   <TableCell><Skeleton className="h-4 w-48" /></TableCell>
                   <TableCell><Skeleton className="h-8 w-20 ml-auto" /></TableCell>
                 </TableRow>
@@ -132,9 +166,47 @@ export default function AdminHighSchools() {
             ) : filteredSchools && filteredSchools.length > 0 ? (
               filteredSchools.map((school) => (
                 <TableRow key={school.id} data-testid={`row-highschool-${school.id}`}>
+                  <TableCell>
+                    <Avatar>
+                      <AvatarImage src={school.logoPath || undefined} />
+                      <AvatarFallback>
+                        <ImageIcon className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                  </TableCell>
                   <TableCell className="font-medium">{school.school}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      <Dialog open={uploadingImage === school.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
+                        <DialogTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setUploadingImage(school.id)}
+                            title="Upload Logo"
+                          >
+                            <Upload className="h-4 w-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Upload School Logo</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                            />
+                            <Button
+                              onClick={() => handleImageUpload(school.id)}
+                              disabled={!imageFile || uploadImageMutation.isPending}
+                            >
+                              {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                       <Button variant="outline" size="sm" onClick={() => setEditSchool(school)} data-testid={`button-edit-highschool-${school.id}`}>
                         <Pencil className="h-3 w-3" />
                       </Button>
@@ -147,7 +219,7 @@ export default function AdminHighSchools() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={2} className="text-center text-muted-foreground">
+                <TableCell colSpan={3} className="text-center text-muted-foreground">
                   No high schools found
                 </TableCell>
               </TableRow>

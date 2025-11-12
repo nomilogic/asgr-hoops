@@ -9,16 +9,19 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertCollegeSchema, type College } from "@shared/schema";
-import { Plus, Pencil, Trash2, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Search, Upload, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function AdminColleges() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editCollege, setEditCollege] = useState<College | null>(null);
   const [deleteCollegeId, setDeleteCollegeId] = useState<number | null>(null);
+  const [uploadingImage, setUploadingImage] = useState<number | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const { toast } = useToast();
 
   const { data: colleges, isLoading } = useQuery<College[]>({
@@ -75,6 +78,35 @@ export default function AdminColleges() {
     },
   });
 
+  const uploadImageMutation = useMutation({
+    mutationFn: async ({ id, file }: { id: number; file: File }) => {
+      const formData = new FormData();
+      formData.append('image', file);
+      const response = await fetch(`/api/admin/colleges/${id}/logo`, {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+      if (!response.ok) throw new Error("Failed to upload logo");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/colleges"] });
+      toast({ title: "Logo uploaded successfully" });
+      setUploadingImage(null);
+      setImageFile(null);
+    },
+    onError: () => {
+      toast({ title: "Failed to upload logo", variant: "destructive" });
+    },
+  });
+
+  const handleImageUpload = (collegeId: number) => {
+    if (imageFile) {
+      uploadImageMutation.mutate({ id: collegeId, file: imageFile });
+    }
+  };
+
   const filteredColleges = colleges?.filter((college) =>
     college.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -117,6 +149,7 @@ export default function AdminColleges() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Logo</TableHead>
               <TableHead>College Name</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -125,6 +158,7 @@ export default function AdminColleges() {
             {isLoading ? (
               Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={i}>
+                  <TableCell><Skeleton className="h-8 w-8 rounded-full" /></TableCell>
                   <TableCell><Skeleton className="h-4 w-48" /></TableCell>
                   <TableCell><Skeleton className="h-8 w-20 ml-auto" /></TableCell>
                 </TableRow>
@@ -132,9 +166,47 @@ export default function AdminColleges() {
             ) : filteredColleges && filteredColleges.length > 0 ? (
               filteredColleges.map((college) => (
                 <TableRow key={college.id} data-testid={`row-college-${college.id}`}>
+                  <TableCell>
+                    <Avatar>
+                      <AvatarImage src={college.logoPath || college.logoUrl || undefined} />
+                      <AvatarFallback>
+                        <ImageIcon className="h-4 w-4" />
+                      </AvatarFallback>
+                    </Avatar>
+                  </TableCell>
                   <TableCell className="font-medium">{college.name}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      <Dialog open={uploadingImage === college.id} onOpenChange={(open) => !open && setUploadingImage(null)}>
+                        <DialogTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setUploadingImage(college.id)}
+                            title="Upload Logo"
+                          >
+                            <Upload className="h-4 w-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>Upload College Logo</DialogTitle>
+                          </DialogHeader>
+                          <div className="space-y-4">
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                            />
+                            <Button
+                              onClick={() => handleImageUpload(college.id)}
+                              disabled={!imageFile || uploadImageMutation.isPending}
+                            >
+                              {uploadImageMutation.isPending ? "Uploading..." : "Upload"}
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
                       <Button variant="outline" size="sm" onClick={() => setEditCollege(college)} data-testid={`button-edit-college-${college.id}`}>
                         <Pencil className="h-3 w-3" />
                       </Button>
@@ -147,7 +219,7 @@ export default function AdminColleges() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={2} className="text-center text-muted-foreground">
+                <TableCell colSpan={3} className="text-center text-muted-foreground">
                   No colleges found
                 </TableCell>
               </TableRow>
