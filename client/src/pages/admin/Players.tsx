@@ -210,6 +210,7 @@ export default function AdminPlayers() {
                             size="sm"
                             variant="outline"
                             onClick={() => setUploadingImage(player.id)}
+                            title="Upload Image"
                           >
                             <Upload className="h-4 w-4" />
                           </Button>
