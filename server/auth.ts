@@ -47,6 +47,35 @@ export async function authenticateToken(
   }
 }
 
+export async function requireAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized: No token provided" });
+  }
+
+  try {
+    const payload = verifyToken(token);
+    req.user = payload;
+    
+    const { storage } = await import("./storage");
+    const user = await storage.getUser(payload.userId);
+    
+    if (!user || user.role !== "admin") {
+      return res.status(403).json({ error: "Forbidden: Admin access required" });
+    }
+    
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: "Unauthorized: Invalid token" });
+  }
+}
+
 declare global {
   namespace Express {
     interface Request {

@@ -113,7 +113,7 @@ export const products = pgTable("products", {
   description: text("description").notNull(),
   price: integer("price").notNull(),
   category: text("category"),
-  features: text("features").array().notNull().default([]),
+  features: text("features").array().notNull().default(sql`ARRAY[]::text[]`),
   imageUrl: text("image_url"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
@@ -123,6 +123,8 @@ export const insertProductSchema = createInsertSchema(products).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  features: z.array(z.string()).default([]),
 });
 
 export type InsertProduct = z.infer<typeof insertProductSchema>;
@@ -145,6 +147,7 @@ export const users = pgTable("users", {
   firstName: varchar("first_name"),
   lastName: varchar("last_name"),
   profileImageUrl: varchar("profile_image_url"),
+  role: varchar("role").notNull().default("user"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
