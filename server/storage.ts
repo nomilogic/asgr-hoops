@@ -11,11 +11,14 @@ import {
   type InsertCollege,
   type Product,
   type InsertProduct,
+  type User,
+  type UpsertUser,
   players,
   highSchools,
   circuitTeams,
   colleges,
   products,
+  users,
 } from "@shared/schema";
 
 const SUPABASE_STORAGE_URL = "https://uelszdsseveljfccszga.supabase.co/storage/v1/object/public/asgr/";
@@ -27,6 +30,9 @@ function addStoragePrefix(path: string | null): string | null {
 }
 
 export interface IStorage {
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
+
   getAllPlayers(): Promise<Player[]>;
   getPlayerById(id: number): Promise<Player | undefined>;
   getPlayersByGradYear(gradYear: number): Promise<Player[]>;
@@ -51,6 +57,26 @@ export interface IStorage {
 }
 
 export class DbStorage implements IStorage {
+  async getUser(id: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
+  }
+
   async getAllPlayers(): Promise<Player[]> {
     const result = await db.select().from(players);
     return result.map(player => ({
