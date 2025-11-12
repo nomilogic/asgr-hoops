@@ -318,12 +318,61 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
   onUploadImage: () => void;
 }) {
   const [localPlayer, setLocalPlayer] = useState(player);
-  const years = ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
+  const [lists, setLists] = useState<string[]>(() => {
+    const allLists = new Set<string>();
+    
+    // Gather all existing list names from all JSONB fields
+    [player.ranks, player.ratings, player.notes, player.positions, player.heights, 
+     player.highSchools, player.circuitPrograms, player.committedColleges].forEach(field => {
+      if (field && typeof field === 'object') {
+        Object.keys(field).forEach(key => allLists.add(key));
+      }
+    });
+    
+    // Add default years if no lists exist
+    if (allLists.size === 0) {
+      return ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
+    }
+    
+    return Array.from(allLists).sort((a, b) => {
+      const aNum = parseInt(a);
+      const bNum = parseInt(b);
+      if (!isNaN(aNum) && !isNaN(bNum)) return bNum - aNum;
+      return a.localeCompare(b);
+    });
+  });
+  const [newListName, setNewListName] = useState("");
 
   const handleYearDataUpdate = (field: keyof Player, year: string, value: string) => {
     const currentData = (localPlayer[field] as Record<string, any>) || {};
     const updatedData = { ...currentData, [year]: value };
     setLocalPlayer({ ...localPlayer, [field]: updatedData });
+  };
+
+  const handleAddList = () => {
+    if (newListName && !lists.includes(newListName)) {
+      setLists([...lists, newListName].sort((a, b) => {
+        const aNum = parseInt(a);
+        const bNum = parseInt(b);
+        if (!isNaN(aNum) && !isNaN(bNum)) return bNum - aNum;
+        return a.localeCompare(b);
+      }));
+      setNewListName("");
+    }
+  };
+
+  const handleRemoveList = (listToRemove: string) => {
+    const fields: (keyof Player)[] = ['ranks', 'ratings', 'notes', 'positions', 'heights', 'highSchools', 'circuitPrograms', 'committedColleges'];
+    const updates: Partial<Player> = {};
+    
+    fields.forEach(field => {
+      const data = { ...(localPlayer[field] as Record<string, any>) };
+      delete data[listToRemove];
+      updates[field] = data as any;
+    });
+    
+    setLocalPlayer({ ...localPlayer, ...updates });
+    setLists(lists.filter(l => l !== listToRemove));
   };
 
   const handleSave = () => {
@@ -436,11 +485,37 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold">Year-by-Year Data</h3>
-        {years.map((year) => (
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-semibold">Custom Lists & Year-by-Year Data</h3>
+          <div className="flex gap-2 items-end">
+            <div className="flex-1 min-w-[200px]">
+              <label className="text-sm font-medium">Add New List</label>
+              <Input
+                placeholder="e.g., 2031, Top Prospects, Elite 8"
+                value={newListName}
+                onChange={(e) => setNewListName(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddList()}
+              />
+            </div>
+            <Button onClick={handleAddList} variant="outline" size="sm">
+              <Plus className="h-4 w-4 mr-2" />
+              Add List
+            </Button>
+          </div>
+        </div>
+        {lists.map((year) => (
           <Card key={year}>
             <CardHeader>
-              <CardTitle className="text-lg">Class of {year}</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg">{year}</CardTitle>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleRemoveList(year)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

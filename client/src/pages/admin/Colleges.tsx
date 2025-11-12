@@ -281,12 +281,58 @@ function ExpandedCollegeEdit({ college, onUpdate, isPending, onDelete, onUploadI
   onUploadImage: () => void;
 }) {
   const [localCollege, setLocalCollege] = useState(college);
-  const years = ["2024", "2025", "2026", "2027", "2028"];
+  const [lists, setLists] = useState<string[]>(() => {
+    const allLists = new Set<string>();
+    const commitments = (college.commitments as Record<string, string>) || {};
+    const recruits = (college.recruits as Record<string, string>) || {};
+    
+    Object.keys(commitments).forEach(key => allLists.add(key));
+    Object.keys(recruits).forEach(key => allLists.add(key));
+    
+    if (allLists.size === 0) {
+      return ["2024", "2025", "2026", "2027", "2028"];
+    }
+    
+    return Array.from(allLists).sort((a, b) => {
+      const aNum = parseInt(a);
+      const bNum = parseInt(b);
+      if (!isNaN(aNum) && !isNaN(bNum)) return bNum - aNum;
+      return a.localeCompare(b);
+    });
+  });
+  const [newListName, setNewListName] = useState("");
 
   const handleYearDataUpdate = (field: keyof College, year: string, value: string) => {
     const currentData = (localCollege[field] as Record<string, any>) || {};
     const updatedData = { ...currentData, [year]: value };
     setLocalCollege({ ...localCollege, [field]: updatedData });
+  };
+
+  const handleAddList = () => {
+    if (newListName && !lists.includes(newListName)) {
+      setLists([...lists, newListName].sort((a, b) => {
+        const aNum = parseInt(a);
+        const bNum = parseInt(b);
+        if (!isNaN(aNum) && !isNaN(bNum)) return bNum - aNum;
+        return a.localeCompare(b);
+      }));
+      setNewListName("");
+    }
+  };
+
+  const handleRemoveList = (listToRemove: string) => {
+    const updatedCommitments = { ...(localCollege.commitments as Record<string, string>) };
+    const updatedRecruits = { ...(localCollege.recruits as Record<string, string>) };
+    
+    delete updatedCommitments[listToRemove];
+    delete updatedRecruits[listToRemove];
+    
+    setLocalCollege({
+      ...localCollege,
+      commitments: updatedCommitments,
+      recruits: updatedRecruits,
+    });
+    setLists(lists.filter(l => l !== listToRemove));
   };
 
   const handleSave = () => {
@@ -327,10 +373,37 @@ function ExpandedCollegeEdit({ college, onUpdate, isPending, onDelete, onUploadI
       </div>
 
       <div className="space-y-4">
-        {years.map((year) => (
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold">Custom Lists & Classes</h3>
+          <div className="flex gap-2 items-end">
+            <div className="flex-1 min-w-[200px]">
+              <label className="text-sm font-medium">Add New List</label>
+              <Input
+                placeholder="e.g., 2029, Transfer Portal, Top Recruits"
+                value={newListName}
+                onChange={(e) => setNewListName(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleAddList()}
+              />
+            </div>
+            <Button onClick={handleAddList} variant="outline" size="sm">
+              <Plus className="h-4 w-4 mr-2" />
+              Add List
+            </Button>
+          </div>
+        </div>
+        {lists.map((year) => (
           <Card key={year}>
             <CardHeader>
-              <CardTitle className="text-lg">Class of {year}</CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg">{year}</CardTitle>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleRemoveList(year)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
