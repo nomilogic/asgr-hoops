@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
+import { ShoppingCart, Menu, X, ChevronDown, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -27,16 +27,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/hooks/useAuth";
 
 export function Header() {
   const [location] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
 
   const { data: cart } = useQuery<CartItem[]>({
     queryKey: ["/api/cart"],
@@ -244,6 +248,71 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          
+          {!authLoading && (
+            <>
+              {isAuthenticated ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="rounded-full"
+                      data-testid="button-user-menu"
+                    >
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user?.profileImageUrl || undefined} alt="Profile" />
+                        <AvatarFallback>
+                          <User className="h-4 w-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <div className="flex items-center gap-2 px-2 py-2">
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user?.profileImageUrl || undefined} alt="Profile" />
+                        <AvatarFallback>
+                          <User className="h-4 w-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium">
+                          {user?.firstName || user?.lastName
+                            ? `${user.firstName || ""} ${user.lastName || ""}`.trim()
+                            : "User"}
+                        </span>
+                        {user?.email && (
+                          <span className="text-xs text-muted-foreground truncate">
+                            {user.email}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile" className="cursor-pointer" data-testid="link-profile">
+                        <User className="h-4 w-4 mr-2" />
+                        Profile
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <a href="/api/logout" className="cursor-pointer" data-testid="link-logout">
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Log Out
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button asChild variant="default" size="sm" data-testid="button-login">
+                  <a href="/api/login">Log In</a>
+                </Button>
+              )}
+            </>
+          )}
+
           <Link
             href="/cart"
             className="relative inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover-elevate active-elevate-2 h-9 w-9"
@@ -467,6 +536,48 @@ export function Header() {
                 >
                   Contact
                 </Link>
+                
+                {!authLoading && (
+                  <>
+                    {isAuthenticated ? (
+                      <>
+                        <div className="border-t my-4"></div>
+                        <Link
+                          href="/profile"
+                          className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                            location === "/profile"
+                              ? "bg-secondary text-secondary-foreground"
+                              : "text-foreground"
+                          }`}
+                          onClick={() => setMobileOpen(false)}
+                          data-testid="mobile-link-profile"
+                        >
+                          <User className="h-4 w-4 inline mr-2" />
+                          Profile
+                        </Link>
+                        <a
+                          href="/api/logout"
+                          className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 text-foreground"
+                          data-testid="mobile-link-logout"
+                        >
+                          <LogOut className="h-4 w-4 inline mr-2" />
+                          Log Out
+                        </a>
+                      </>
+                    ) : (
+                      <>
+                        <div className="border-t my-4"></div>
+                        <a
+                          href="/api/login"
+                          className="px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 bg-red-600 text-white"
+                          data-testid="mobile-button-login"
+                        >
+                          Log In
+                        </a>
+                      </>
+                    )}
+                  </>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
