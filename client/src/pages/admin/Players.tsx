@@ -435,16 +435,17 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
         </div>
       </div>
 
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Rankings by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">Year-by-Year Data</h3>
+        {years.map((year) => (
+          <Card key={year}>
+            <CardHeader>
+              <CardTitle className="text-lg">Class of {year}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Rank</label>
                   <Input
                     type="number"
                     placeholder="Rank"
@@ -452,20 +453,8 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
                     onChange={(e) => handleYearDataUpdate('ranks', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Ratings by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div>
+                  <label className="text-sm font-medium">Rating</label>
                   <Input
                     type="number"
                     placeholder="Rating"
@@ -473,120 +462,48 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
                     onChange={(e) => handleYearDataUpdate('ratings', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Positions by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div>
+                  <label className="text-sm font-medium">Position</label>
                   <Input
                     placeholder="Position"
                     value={(localPlayer.positions as Record<string, string>)?.[year] || ""}
                     onChange={(e) => handleYearDataUpdate('positions', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Heights by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div>
+                  <label className="text-sm font-medium">Height</label>
                   <Input
                     placeholder="Height"
                     value={(localPlayer.heights as Record<string, string>)?.[year] || ""}
                     onChange={(e) => handleYearDataUpdate('heights', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">High Schools by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div>
+                  <label className="text-sm font-medium">High School</label>
                   <Input
                     placeholder="High School"
                     value={(localPlayer.highSchools as Record<string, string>)?.[year] || ""}
                     onChange={(e) => handleYearDataUpdate('highSchools', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Circuit Programs by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div>
+                  <label className="text-sm font-medium">Circuit Program</label>
                   <Input
                     placeholder="Circuit Program"
                     value={(localPlayer.circuitPrograms as Record<string, string>)?.[year] || ""}
                     onChange={(e) => handleYearDataUpdate('circuitPrograms', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">College Commitments by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div className="md:col-span-2 lg:col-span-3">
+                  <label className="text-sm font-medium">College Commitment</label>
                   <Input
                     placeholder="College"
                     value={(localPlayer.committedColleges as Record<string, string>)?.[year] || ""}
                     onChange={(e) => handleYearDataUpdate('committedColleges', year, e.target.value)}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Scouting Notes by Year</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {years.map((year) => (
-                <div key={year}>
-                  <label className="text-sm font-medium">Class {year}</label>
+                <div className="md:col-span-2 lg:col-span-3">
+                  <label className="text-sm font-medium">Scouting Notes</label>
                   <Textarea
                     placeholder="Scouting notes..."
                     value={(localPlayer.notes as Record<string, string>)?.[year] || ""}
@@ -594,10 +511,10 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
                     rows={3}
                   />
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
