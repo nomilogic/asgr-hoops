@@ -7,7 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function AdminDashboard() {
   const { data: stats, isLoading, error } = useQuery({
-    queryKey: ["/api/admin/stats"],
+    queryKey: ["/api/stats"],
   });
 
   const statCards = [
