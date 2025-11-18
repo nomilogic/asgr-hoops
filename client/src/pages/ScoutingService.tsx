@@ -2,10 +2,19 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Database, TrendingUp, Users } from "lucide-react";
 import asgrLogo from "../assets/generated/asgr_basketball.png";
+import { useQuery } from "@tanstack/react-query";
+import type { Product } from "@shared/schema";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { CheckCircle2, Award, Database, TrendingUp, Users } from "lucide-react";
 
 export default function ScoutingService() {
+  const { data: products, isLoading } = useQuery<Product[]>({
+    queryKey: ["/api/products"],
+  });
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -24,7 +33,7 @@ export default function ScoutingService() {
                   data-testid="img-logo"
                 />
               </div>
-              <h1 
+              <h1
                 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in"
                 data-testid="text-hero-title"
               >
@@ -34,26 +43,26 @@ export default function ScoutingService() {
                 </span>{" "}
                 OF
               </h1>
-              <h2 
+              <h2
                 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
                 data-testid="text-hero-subtitle"
               >
                 RECRUITING
               </h2>
               <div className="space-y-4 max-w-3xl mx-auto">
-                <h3 
+                <h3
                   className="text-2xl font-semibold text-gray-200"
                   data-testid="text-founder-name"
                 >
                   MICHAEL T. WHITE
                 </h3>
-                <p 
+                <p
                   className="text-lg text-red-400 uppercase tracking-wide"
                   data-testid="text-founder-title"
                 >
                   Founder of All-Star Girls Report
                 </p>
-                <p 
+                <p
                   className="text-gray-300 leading-relaxed"
                   data-testid="text-company-history"
                 >
@@ -70,13 +79,13 @@ export default function ScoutingService() {
         <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/20">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
-              <h2 
+              <h2
                 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent"
                 data-testid="text-features-title"
               >
                 Recruiting Features
               </h2>
-              <p 
+              <p
                 className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
                 data-testid="text-features-subtitle"
               >
@@ -165,7 +174,7 @@ export default function ScoutingService() {
 
         <section className="py-16 px-4 bg-gradient-to-b from-red-950/20 to-black border-y border-red-900/20">
           <div className="container mx-auto max-w-6xl">
-            <h2 
+            <h2
               className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent"
               data-testid="text-rating-system-title"
             >
@@ -229,7 +238,7 @@ export default function ScoutingService() {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-black">
+        {/* <section className="py-16 px-4 bg-black">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
@@ -302,6 +311,128 @@ export default function ScoutingService() {
                 >
                   info@asgrbasketball.com
                 </a>
+              </p>
+            </Card>
+          </div>
+        </section> */}
+        {/* Service Packages */}
+        <section className="py-16 px-4 bg-black">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+              Scouting Service Packages
+            </h2>
+
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="space-y-4">
+                    <Skeleton className="h-64 w-full" />
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-full" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {products
+                  ?.sort((a, b) => b.price - a.price)
+                  .map((product) => (
+                    <Card
+                      key={product.id}
+                      className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden group"
+                    >
+                      {product.imageUrl && (
+                        <div className="relative h-60 overflow-hidden">
+                          <img
+                            src={product.imageUrl}
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                      )}
+
+                      <div className="p-4 border-t border-card-border space-y-4">
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-3xl font-bold text-red-400">
+                            ${product.price}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            per year
+                          </span>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Link href={`/products/${product.slug}`} asChild>
+                            <Button
+                              className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold"
+                              size="lg"
+                            >
+                              Pay By Credit Card
+                            </Button>
+                          </Link>
+                          <Button
+                            variant="outline"
+                            className="w-full border-red-700/50 hover:bg-red-900/20"
+                            size="lg"
+                          >
+                            Pay by Check
+                          </Button>
+                        </div>
+                      </div>
+
+                      <div className="p-6 space-y-4">
+                        {product.category && (
+                          <Badge className="bg-red-900/30 text-red-400 border-red-700/50">
+                            {product.category}
+                          </Badge>
+                        )}
+
+                        <h3 className="text-2xl font-bold group-hover:text-red-400 transition-colors">
+                          {product.name}
+                        </h3>
+
+                        <p className="text-muted-foreground line-clamp-2">
+                          {product.description}
+                        </p>
+
+                        {product.features && product.features.length > 0 && (
+                          <div className="space-y-2 py-4">
+                            <p className="font-semibold text-sm uppercase tracking-wide text-red-400">
+                              Package Includes:
+                            </p>
+                            <ul className="space-y-2">
+                              {product.features.map((feature, idx) => (
+                                <li
+                                  key={idx}
+                                  className="flex items-start gap-2 text-sm"
+                                >
+                                  <CheckCircle2 className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+                                  <span className="text-gray-300">
+                                    {feature}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    </Card>
+                  ))}
+              </div>
+            )}
+
+            <Card className="mt-12 bg-card/30 backdrop-blur-sm border-red-900/30 p-6">
+              <p className="text-sm text-gray-400 text-center">
+                *Credit cards accepted online. If you are making payment by
+                check, please email us at{" "}
+                <a
+                  href="mailto:info@asgrbasketball.com"
+                  className="text-red-400 hover:text-red-300 underline"
+                >
+                  info@asgrbasketball.com
+                </a>{" "}
+                for invoice and W-9 form.
               </p>
             </Card>
           </div>

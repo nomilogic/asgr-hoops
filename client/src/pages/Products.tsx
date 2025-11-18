@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Award, Database, TrendingUp, Users } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import asgrLogo from "../assets/generated/asgr_basketball.png";
+import { ProductCard } from "@/components/ProductCard";
 
 interface Product {
   id: number;
