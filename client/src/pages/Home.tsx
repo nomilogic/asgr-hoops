@@ -1,4 +1,3 @@
-
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -29,16 +28,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* National Events Section */}
+        {/* Events Section */}
         <section className="py-16 px-4 bg-gradient-to-b from-black to-red-950/20">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-                National Events
+                Upcoming Events
               </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Join us at our elite basketball tournaments and showcases
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-1 gap-8 mb-12">
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
               <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 overflow-hidden group">
                 <div className="relative h-64">
                   <img
@@ -52,52 +54,52 @@ export default function Home() {
                         Deep South Classic
                       </h3>
                       <p className="text-gray-300">
-                        July 5-6, 2025 • Raleigh, NC
+                        Elite showcase featuring top prospects
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-gray-400 mb-4">
-                        Our premier event bringing together the best talent from
-                        across the southern region. Watch future stars compete at
-                        the highest level.
+                  <p className="text-gray-400 mb-4">
+                    Our premier event bringing together the best talent from
+                    across the southern region. Watch future stars compete at
+                    the highest level.
+                  </p>
+                  <div className="flex gap-2 text-sm text-red-400">
+                    <span>📅 TBA</span>
+                    <span>•</span>
+                    <span>📍 Location TBA</span>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/40 transition-all duration-300 overflow-hidden group">
+                <div className="relative h-64">
+                  <img
+                    src="/attached_assets/generated_images/Basketball_court_aerial_view_920c1f35.png"
+                    alt="National Showcase"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end p-6">
+                    <div className="text-white">
+                      <h3 className="text-2xl font-bold mb-2">
+                        National Showcase
+                      </h3>
+                      <p className="text-gray-300">
+                        Nation's top-ranked players compete
                       </p>
                     </div>
-                    
-                    <div className="space-y-2">
-                      <div className="flex items-start gap-3">
-                        <span className="text-red-500 font-bold">Ages:</span>
-                        <span className="text-gray-300">17U - 14U</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-red-500 font-bold">Cost:</span>
-                        <span className="text-gray-300">$450</span>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <span className="text-red-500 font-bold">General:</span>
-                        <span className="text-gray-300">BallerTV Live Streaming Available</span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-4 pt-4">
-                      <a
-                        href="https://registration.asgrbasketball.com/product/deep-south-classic-2025/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors"
-                      >
-                        Register
-                      </a>
-                      <a
-                        href="/events"
-                        className="border border-red-600 hover:bg-red-600/10 text-red-400 px-6 py-2 rounded-lg transition-colors"
-                      >
-                        More Info
-                      </a>
-                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <p className="text-gray-400 mb-4">
+                    The ultimate platform for college coaches to evaluate the
+                    country's elite talent in one location.
+                  </p>
+                  <div className="flex gap-2 text-sm text-red-400">
+                    <span>📅 TBA</span>
+                    <span>•</span>
+                    <span>📍 Location TBA</span>
                   </div>
                 </div>
               </Card>
