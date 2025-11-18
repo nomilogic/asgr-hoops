@@ -233,160 +233,67 @@ export default function ScoutingService() {
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
-                Scouting Service Packages
+                Premium Scouting Service
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Invest in the most comprehensive scouting service for women's basketball
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {/* Premium Scouting Service - $1,495 */}
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden">
-                <div className="p-6 text-center space-y-4">
-                  <div className="flex justify-center mb-4">
-                    <img
-                      src={asgrLogo}
-                      alt="ASGR Premium Service"
-                      className="h-16 w-auto"
-                    />
-                  </div>
-                  
-                  <Badge className="bg-red-900/30 text-red-400 border-red-700/50 px-3 py-1">
-                    Premium Scouting Service
-                  </Badge>
-
-                  <h3 className="text-xl font-bold">
-                    2025-26 All-Star Girls Report Scouting Service
-                  </h3>
-
-                  <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-4xl font-bold text-red-400">
-                      $1,495
-                    </span>
-                  </div>
-
-                  <div className="text-left space-y-2 py-4">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Top 750 High School Class</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">National prospects in class 2026-2030</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Top College Transfer Portal Prospects</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">NCAA Certified Scouting Service</span>
-                      </li>
-                    </ul>
-                  </div>
+            <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden max-w-2xl mx-auto">
+              <div className="p-8 text-center space-y-6">
+                <div className="flex justify-center mb-4">
+                  <img
+                    src={asgrLogo}
+                    alt="ASGR Premium Service"
+                    className="h-20 w-auto"
+                  />
                 </div>
-              </Card>
+                
+                <Badge className="bg-red-900/30 text-red-400 border-red-700/50 text-lg px-4 py-2">
+                  Premium Scouting Service
+                </Badge>
 
-              {/* Brand Marketing - $1,095 */}
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden">
-                <div className="p-6 text-center space-y-4">
-                  <div className="flex justify-center mb-4">
-                    <img
-                      src={asgrLogo}
-                      alt="ASGR Brand Marketing"
-                      className="h-16 w-auto"
-                    />
-                  </div>
-                  
-                  <Badge className="bg-red-900/30 text-red-400 border-red-700/50 px-3 py-1">
-                    Brand Marketing
-                  </Badge>
+                <h3 className="text-3xl font-bold">
+                  2025-26 All-Star Girls Report Scouting Service
+                </h3>
 
-                  <h3 className="text-xl font-bold">
-                    2025-2026 Brand Player Marketing Service
-                  </h3>
-
-                  <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-4xl font-bold text-red-400">
-                      $1,095
-                    </span>
-                  </div>
-
-                  <div className="text-left space-y-2 py-4">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Skill Assessment</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Consultation on College Placement</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Social Marketing</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">24/7 Calendar Year Access</span>
-                      </li>
-                    </ul>
-                  </div>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-5xl font-bold text-red-400">
+                    $1,495
+                  </span>
+                  <span className="text-lg text-muted-foreground">
+                    per year
+                  </span>
                 </div>
-              </Card>
 
-              {/* Player Development - $695 */}
-              <Card className="bg-card/50 backdrop-blur-sm border-card-border hover:border-red-700/50 transition-all duration-300 overflow-hidden">
-                <div className="p-6 text-center space-y-4">
-                  <div className="flex justify-center mb-4">
-                    <img
-                      src={asgrLogo}
-                      alt="ASGR Player Development"
-                      className="h-16 w-auto"
-                    />
-                  </div>
-                  
-                  <Badge className="bg-red-900/30 text-red-400 border-red-700/50 px-3 py-1">
-                    Player Development
-                  </Badge>
-
-                  <h3 className="text-xl font-bold">
-                    2025-2026 Player Development Program
-                  </h3>
-
-                  <div className="flex items-baseline justify-center gap-2">
-                    <span className="text-4xl font-bold text-red-400">
-                      $695
-                    </span>
-                  </div>
-
-                  <div className="text-left space-y-2 py-4">
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">SoCal Player Development Program Packages</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Led by Kris Johnson, Player Development Specialist</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Ball-Handling, Shooting, Footwork, Passing, Conditioning</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-red-500 mt-1">✓</span>
-                        <span className="text-gray-300">Decision Making, Leadership, Communication, Awareness, Habits</span>
-                      </li>
-                    </ul>
-                  </div>
+                <div className="text-left space-y-3 py-6">
+                  <p className="font-semibold text-lg uppercase tracking-wide text-red-400 text-center">
+                    Package Includes:
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-500 mt-1">✓</span>
+                      <span className="text-gray-300">Top 750 High School Class</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-500 mt-1">✓</span>
+                      <span className="text-gray-300">National prospects in class 2026-2030</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-500 mt-1">✓</span>
+                      <span className="text-gray-300">Top College Transfer Portal Prospects</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-500 mt-1">✓</span>
+                      <span className="text-gray-300">NCAA Certified Scouting Service</span>
+                    </li>
+                  </ul>
                 </div>
-              </Card>
-            </div>
+              </div>
+            </Card>
 
-            <Card className="bg-card/30 backdrop-blur-sm border-red-900/30 p-6">
+            <Card className="mt-12 bg-card/30 backdrop-blur-sm border-red-900/30 p-6">
               <p className="text-sm text-gray-400 text-center">
                 For more information or to purchase this service, please contact us at{" "}
                 <a
