@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -56,11 +63,17 @@ export default function Login() {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-4">
           <div className="flex justify-center">
-            <img src={logoImage} alt="ASGR Basketball" className="h-16 w-auto" />
+            <img
+              src={logoImage}
+              alt="ASGR Basketball"
+              className="h-16 w-auto"
+            />
           </div>
           <div className="text-center">
             <CardTitle className="text-2xl">Welcome back</CardTitle>
-            <CardDescription>Log in to access basketball rankings</CardDescription>
+            <CardDescription>
+              Log in to access basketball rankings
+            </CardDescription>
           </div>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -101,9 +114,9 @@ export default function Login() {
             </Button>
             <div className="text-sm text-center text-muted-foreground">
               Don't have an account?{" "}
-              <Link href="/signup" className="text-red-500 hover:underline" data-testid="link-signup">
+              {/* <Link href="/signup" className="text-red-500 hover:underline" data-testid="link-signup">
                 Sign up
-              </Link>
+              </Link> */}
             </div>
           </CardFooter>
         </form>
