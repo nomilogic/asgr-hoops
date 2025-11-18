@@ -236,7 +236,7 @@ export default function ScoutingService() {
                 Scouting Service Packages
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Invest in the most comprehensive scouting service for women's basketball
+                Choose the package that fits your recruiting needs
               </p>
             </div>
 
