@@ -81,13 +81,13 @@ export function Header() {
             </Link>
 
             <Link
-              href="/products"
+              href="/scouting-service"
               className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                location === "/products"
+                location === "/scouting-service"
                   ? "bg-secondary text-secondary-foreground"
                   : "text-foreground"
               }`}
-              data-testid="link-products"
+              data-testid="link-scouting-service"
             >
               Scouting Service
             </Link>
@@ -105,7 +105,7 @@ export function Header() {
                     <div className="w-[280px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
                       <div className="grid gap-1">
                         <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">
-                          Top 350 Rankings
+                          Top 750 Rankings
                         </div>
                         <Link
                           href="/rankings/2024"
@@ -193,32 +193,20 @@ export function Header() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem className="relative">
-                  <NavigationMenuTrigger
-                    className="text-sm font-medium hover:text-red-500 transition-colors"
-                    data-testid="button-circuit-menu"
-                  >
-                    Circuit Rankings
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="absolute left-0">
-                    <div className="w-[260px] p-3 bg-card border border-card-border rounded-lg shadow-xl">
-                      <div className="grid gap-1">
-                        <div className="px-3 py-2 text-xs font-bold text-red-500 uppercase tracking-wide border-b border-border/50 mb-1">
-                          By Season
-                        </div>
-                        <Link
-                          href="/rankings/circuit/2024"
-                          className="block px-3 py-2.5 text-sm font-medium rounded-md hover-elevate active-elevate-2 transition-all duration-200 hover:bg-red-900/20 hover:text-red-400"
-                          data-testid="link-circuit-2024"
-                        >
-                          2024 Circuit Season
-                        </Link>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
+
+            <Link
+              href="/merch"
+              className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                location === "/merch"
+                  ? "bg-secondary text-secondary-foreground"
+                  : "text-foreground"
+              }`}
+              data-testid="link-merch"
+            >
+              Merch Shop
+            </Link>
 
             <Link
               href="/events"
@@ -355,14 +343,14 @@ export function Header() {
                   Home
                 </Link>
                 <Link
-                  href="/products"
+                  href="/scouting-service"
                   className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
-                    location === "/products"
+                    location === "/scouting-service"
                       ? "bg-secondary text-secondary-foreground"
                       : "text-foreground"
                   }`}
                   onClick={() => setMobileOpen(false)}
-                  data-testid="mobile-link-products"
+                  data-testid="mobile-link-scouting-service"
                 >
                   Scouting Service
                 </Link>
@@ -372,7 +360,7 @@ export function Header() {
                   </div>
                   <div className="ml-4 flex flex-col gap-2 mt-2">
                     <div className="px-3 py-1 text-xs font-semibold text-muted-foreground/70">
-                      TOP 350
+                      TOP 750
                     </div>
                     <Link
                       href="/rankings/2024"
@@ -491,25 +479,18 @@ export function Header() {
                     </Link>
                   </div>
                 </div>
-                <div>
-                  <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">
-                    Circuit Rankings
-                  </div>
-                  <div className="ml-4 flex flex-col gap-2 mt-2">
-                    <Link
-                      href="/rankings/circuit/2024"
-                      className={`px-3 py-2 text-sm rounded-md hover-elevate active-elevate-2 ${
-                        location === "/rankings/circuit/2024"
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-foreground"
-                      }`}
-                      onClick={() => setMobileOpen(false)}
-                      data-testid="mobile-link-circuit-2024"
-                    >
-                      2024 Circuit Season
-                    </Link>
-                  </div>
-                </div>
+                <Link
+                  href="/merch"
+                  className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${
+                    location === "/merch"
+                      ? "bg-secondary text-secondary-foreground"
+                      : "text-foreground"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                  data-testid="mobile-link-merch"
+                >
+                  Merch Shop
+                </Link>
                 <Link
                   href="/events"
                   className={`px-3 py-2 text-sm font-medium rounded-md hover-elevate active-elevate-2 ${

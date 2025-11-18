@@ -11,6 +11,8 @@ import Rankings from "@/pages/Rankings";
 import PlayerDetail from "@/pages/PlayerDetail";
 import CircuitRankings from "@/pages/CircuitRankings";
 import HighSchoolRankings from "@/pages/HighSchoolRankings";
+import ScoutingService from "@/pages/ScoutingService";
+import MerchShop from "@/pages/MerchShop";
 import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
@@ -26,6 +28,8 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={Profile} />
+      <Route path="/scouting-service" component={ScoutingService} />
+      <Route path="/merch" component={MerchShop} />
       <Route path="/products" component={Products} />
       <Route path="/products/:slug" component={ProductDetail} />
       <Route path="/player/:id" component={PlayerDetail} />
@@ -37,7 +41,7 @@ function Router() {
       <Route path="/rankings/high-school" component={HighSchoolRankings} />
       <Route path="/cart" component={Cart} />
       <Route path="/contact" component={Contact} />
-      <Route path="/events" component={Home} />
+      <Route path="/events" component={Events} />
       <Route component={NotFound} />
     </Switch>
   );

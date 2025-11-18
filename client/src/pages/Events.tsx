@@ -72,7 +72,7 @@ export default function Events() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
                 data-testid="text-hero-title"
               >
-                Elite Basketball Scouting Services
+                Where College Coaches & Players Connect
               </h1>
               <p
                 className="text-lg md:text-xl text-gray-300 mb-8 animate-fade-in animation-delay-200"
@@ -116,7 +116,7 @@ export default function Events() {
                   <Trophy className="h-8 w-8 text-red-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-red-400">
-                  Top 350 Rankings
+                  Top 750 Rankings
                 </h3>
                 <p className="text-sm text-gray-400">
                   Comprehensive rankings of the nation's best high school
@@ -140,11 +140,10 @@ export default function Events() {
                   <BarChart3 className="h-8 w-8 text-red-500 group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-red-400">
-                  Regional Coverage
+                  National Coverage
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Coverage of regional talent including Carolinas, DMV, Peach
-                  State, Sunshine State, Lone Star, and California
+                  Coverage of Carolinas, DMV, Peach State, Sunshine State, Lone Star, SoCal, NorCal, Mid-Atlantic, Rocky Mountains and Heartland
                 </p>
               </div>
             </div>
@@ -234,7 +233,7 @@ export default function Events() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-                {products?.map((product) => (
+                {products?.sort((a, b) => b.price - a.price).map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>

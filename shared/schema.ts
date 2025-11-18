@@ -170,3 +170,21 @@ export const loginSchema = z.object({
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = Omit<typeof users.$inferSelect, 'password'>;
 export type UserWithPassword = typeof users.$inferSelect;
+
+export const cart = pgTable("cart", {
+  id: bigint("id", { mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
+  userId: varchar("user_id").references(() => users.id),
+  productId: bigint("product_id", { mode: "number" }).references(() => products.id).notNull(),
+  quantity: integer("quantity").notNull().default(1),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const insertCartItemSchema = createInsertSchema(cart).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertCartItem = z.infer<typeof insertCartItemSchema>;
+export type CartItem = typeof cart.$inferSelect;
