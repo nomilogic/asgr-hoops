@@ -11,6 +11,8 @@ import { Trophy, Users, BarChart3 } from "lucide-react";
 import { useMemo } from "react";
 import asgrLogo from "../assets/generated/asgr_basketball.png";
 import basketGirl from "../assets/generated/Basketball_action_hero_image_c877a801.png";
+import womanBasketTitle from "../assets/generated/woman_basket_title.png";
+import landingPageHeader from "../assets/generated/Landing-page-header.jpg";
 
 export default function Home() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -48,23 +50,23 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black  overflow-hidden h-50">
-          <div className="absolute  w-full">
+        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black overflow-hidden">
+          <div className="absolute inset-0 w-full h-full">
             <img
-              src={basketGirl}
+              src={landingPageHeader}
               alt=""
-              className="w-full   object-cover object-center  "
+              className="w-full h-full object-cover object-center opacity-40"
               aria-hidden="true"
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
           </div>
 
-          <div className="container  max-w-full relative z-10 bg-black/90 p-10 m-0">
-            <div className=" inset-0 h-80 z-10">
+          <div className="container max-w-full relative z-10 py-16 px-10">
+            <div className="flex justify-center mb-8">
               <img
-                src={asgrLogo}
-                alt=""
-                className="w-full h-full object-contain object-center  "
-                aria-hidden="true"
+                src={womanBasketTitle}
+                alt="Women's Basketball Recruiting"
+                className="w-full max-w-2xl h-auto object-contain"
               />
             </div>
             <div className="text-center max-w-3xl mx-auto">
