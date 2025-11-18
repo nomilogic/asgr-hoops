@@ -11,6 +11,7 @@ import { Trophy, Users, BarChart3 } from "lucide-react";
 import { useMemo } from "react";
 import asgrLogo from "../assets/generated/asgr_basketball.png";
 import basketGirl from "../assets/generated/Basketball_action_hero_image_c877a801.png";
+import recruitingHeader from "../assets/generated/womens_basketball_recruiting.png";
 
 export default function Home() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -48,46 +49,30 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black  overflow-hidden h-50">
-          <div className="absolute  w-full">
-            <img
-              src={basketGirl}
-              alt=""
-              className="w-full   object-cover object-center  "
-              aria-hidden="true"
-            />
-          </div>
-
-          <div className="container  max-w-full relative z-10 bg-black/90 p-10 m-0">
-            <div className=" inset-0 h-80 z-10">
+        <section className="relative bg-black overflow-hidden">
+          <div className="container max-w-full relative">
+            <div className="w-full">
               <img
-                src={asgrLogo}
-                alt=""
-                className="w-full h-full object-contain object-center  "
-                aria-hidden="true"
+                src={recruitingHeader}
+                alt="Women's Basketball Recruiting"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <div className="text-center max-w-3xl mx-auto">
-              <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
-                data-testid="text-hero-title"
-              >
-                Where College Coaches & Players Connect
-              </h1>
+            <div className="text-center max-w-3xl mx-auto py-8 px-4">
               <p
-                className="text-lg md:text-xl text-gray-300 mb-8 animate-fade-in animation-delay-200"
+                className="text-lg md:text-xl text-gray-300 mb-8"
                 data-testid="text-hero-subtitle"
               >
                 Comprehensive coverage of the nation's top high school
                 basketball talent. Subscribe to get access to detailed player
                 rankings, analysis, and scouting reports.
               </p>
-              <div className="flex gap-4 justify-center flex-wrap animate-scale-in animation-delay-400">
+              <div className="flex gap-4 justify-center flex-wrap">
                 <Link href="/products" asChild>
                   <Button
                     size="lg"
                     variant="default"
-                    className="animate-pulse-glow hover:scale-105 transition-transform duration-300"
+                    className="hover:scale-105 transition-transform duration-300"
                     data-testid="button-view-packages"
                   >
                     View Packages
