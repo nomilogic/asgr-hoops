@@ -195,7 +195,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-5 md:grid-cols-5 lg:grid-cols-10 gap-0 mb-8">
+            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-0  justify-end lg:px-[10%]">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
                 (num) => (
                   <div
@@ -216,7 +216,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 px-4 bg-gradient-to-b from-muted/20 to-background">
+        <section className="py-4 px-4 bg-gradient-to-b from-muted/20 to-background">
           <div className="container mx-auto max-w-7xl">
             <div className="mb-16 text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">
