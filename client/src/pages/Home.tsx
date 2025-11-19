@@ -174,21 +174,28 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-background">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">
+        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
+          <div className="container mx-auto max-w-7xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 A Proven Path for Number 1 Ranked Talent and Rising Stars
               </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-4">
+                ASGR-ranked players have committed to the nation's top basketball programs
+              </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((num) => (
-                <div key={num} className="flex items-center justify-center">
+                <div 
+                  key={num} 
+                  className="group flex items-center justify-center p-4 rounded-lg bg-card border border-border hover-elevate transition-all duration-300"
+                  data-testid={`badge-college-${num}`}
+                >
                   <img
                     src={`/attached_assets/New Homepage _ ASGR Hoops_files/badge_${num}.jpg`}
                     alt={`College Badge ${num}`}
-                    className="w-full h-auto object-contain"
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
@@ -197,99 +204,136 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-muted/30">
-          <div className="container mx-auto max-w-6xl">
-            <div className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">
+        <section className="py-20 px-4 bg-gradient-to-b from-muted/20 to-background">
+          <div className="container mx-auto max-w-7xl">
+            <div className="mb-16 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent">
                 Recruiting Service
               </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full"></div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4">
-                  ASGR Basketball is a customized version recruiting service specifically built for All Star Girls Report.
-                </h3>
-                <div className="space-y-4 text-muted-foreground">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              <div className="space-y-6">
+                <div className="bg-card border border-border rounded-xl p-8 hover-elevate">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6 leading-tight">
+                    ASGR Basketball is a customized version recruiting service specifically built for All Star Girls Report.
+                  </h3>
+                  <div className="space-y-4 text-muted-foreground leading-relaxed">
+                    <p>
+                      The unequaled, in-depth player evaluations from the All Star Girls Report produced by longtime analyst Michael T. White will evaluate over 2,500 prospects at the High School, Transfer Portal, Juco 150, International and Middle School levels each year.
+                    </p>
+                    <p>
+                      The service that revolutionized women's basketball over the past several decades simply gets better and better. Beginning June 1, 2025 through May 31, 2026, get our ASGR database Today!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-card border border-border rounded-xl p-8 hover-elevate">
+                <h4 className="text-xl font-bold mb-4 text-red-500">Exclusive ASGR Database Features</h4>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    The unequaled, in-depth player evaluations from the All Star Girls Report produced by longtime analyst Michael T. White will evaluate over 2,500 prospects at the High School, Transfer Portal, Juco 150, International and Middle School levels each year. The service that revolutionized women's basketball over the past several decades simply gets better and better. Beginning June 1, 2025 through May 31, 2026, get our ASGR database Today! You will now be able to use our exclusive ASGR Database:
+                    Access our unequaled, in-depth scouting data. The database allows your staff to stay up-to-date with our inside information on national evaluations, player ratings and rankings, key interviews of prospects around the country.
                   </p>
                   <p>
-                    Access our unequaled, in-depth scouting data The database allows your staff to stay up-to-date with our inside information on national evaluations, player ratings and rankings, key interviews of prospects around the country. All the latest projections from the recruiting trail will be available with consistent reports on the ASGR database from major non and live viewing period events. Find all the recruiting needs with one, quick mobile stop. The ASGR database can give daily and weekly updates on current prospects that best fit your college system.
+                    All the latest projections from the recruiting trail will be available with consistent reports on the ASGR database from major non and live viewing period events. Find all the recruiting needs with one, quick mobile stop.
+                  </p>
+                  <p>
+                    The ASGR database can give daily and weekly updates on current prospects that best fit your college system.
                   </p>
                 </div>
               </div>
-              <div></div>
             </div>
           </div>
         </section>
 
-        <section className="py-16 px-4 bg-background">
-          <div className="container mx-auto max-w-6xl">
-            <div className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">
+        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
+          <div className="container mx-auto max-w-7xl">
+            <div className="mb-16 text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 ASGR Rating System
               </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-4">
+                Understanding our comprehensive player evaluation framework
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full mt-6"></div>
             </div>
             
             <div className="space-y-6">
-              <div className="border rounded-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold">98-100</h3>
-                </div>
-                <div className="md:col-span-2 space-y-4">
-                  <p className="text-muted-foreground">Future WNBA draft pick | WNBA Draft Projection</p>
-                  <img
-                    src="/attached_assets/New Homepage _ ASGR Hoops_files/WNBA_logo.jpg"
-                    alt="WNBA Logo"
-                    className="w-40 h-auto object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              <div className="border rounded-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold">93-97</h3>
-                </div>
-                <div className="md:col-span-2 space-y-4">
-                  <p className="text-muted-foreground">High Major Starter That can be an impact Player at:</p>
-                  <img
-                    src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase2.jpg"
-                    alt="High Major Colleges"
-                    className="w-full max-w-2xl h-auto object-contain"
-                    loading="lazy"
-                  />
+              <div className="bg-gradient-to-r from-red-950/20 to-red-900/10 border-2 border-red-500/30 rounded-xl p-8 hover-elevate transition-all duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div className="text-center md:text-left">
+                    <div className="inline-block bg-red-500/10 border-2 border-red-500 rounded-lg px-6 py-3">
+                      <h3 className="text-3xl md:text-4xl font-bold text-red-500">98-100</h3>
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <p className="text-lg font-semibold">Future WNBA draft pick | WNBA Draft Projection</p>
+                    <img
+                      src="/attached_assets/New Homepage _ ASGR Hoops_files/WNBA_logo.jpg"
+                      alt="WNBA Logo"
+                      className="w-48 h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="border rounded-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold">91-92</h3>
-                </div>
-                <div className="md:col-span-2 space-y-4">
-                  <p className="text-muted-foreground">Mid Major Starter That can be an impact Player at:</p>
-                  <img
-                    src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase3.jpg"
-                    alt="Mid Major Colleges"
-                    className="w-full max-w-2xl h-auto object-contain"
-                    loading="lazy"
-                  />
+              <div className="bg-card border-2 border-border rounded-xl p-8 hover-elevate transition-all duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div className="text-center md:text-left">
+                    <div className="inline-block bg-primary/10 border-2 border-primary rounded-lg px-6 py-3">
+                      <h3 className="text-3xl md:text-4xl font-bold text-primary">93-97</h3>
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <p className="text-lg font-semibold text-muted-foreground">High Major Starter That can be an impact Player at:</p>
+                    <img
+                      src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase2.jpg"
+                      alt="High Major Colleges"
+                      className="w-full max-w-3xl h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="border rounded-md p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold">90</h3>
+              <div className="bg-card border-2 border-border rounded-xl p-8 hover-elevate transition-all duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div className="text-center md:text-left">
+                    <div className="inline-block bg-primary/10 border-2 border-primary rounded-lg px-6 py-3">
+                      <h3 className="text-3xl md:text-4xl font-bold text-primary">91-92</h3>
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <p className="text-lg font-semibold text-muted-foreground">Mid Major Starter That can be an impact Player at:</p>
+                    <img
+                      src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase3.jpg"
+                      alt="Mid Major Colleges"
+                      className="w-full max-w-3xl h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
-                <div className="md:col-span-2 space-y-4">
-                  <p className="text-muted-foreground">Division 2 or 3 Starter or Role Player</p>
-                  <img
-                    src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase4.jpg"
-                    alt="Division 2 and 3 Colleges"
-                    className="w-60 h-auto object-contain"
-                    loading="lazy"
-                  />
+              </div>
+
+              <div className="bg-card border-2 border-border rounded-xl p-8 hover-elevate transition-all duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div className="text-center md:text-left">
+                    <div className="inline-block bg-primary/10 border-2 border-primary rounded-lg px-6 py-3">
+                      <h3 className="text-3xl md:text-4xl font-bold text-primary">90</h3>
+                    </div>
+                  </div>
+                  <div className="md:col-span-2 space-y-4">
+                    <p className="text-lg font-semibold text-muted-foreground">Division 2 or 3 Starter or Role Player</p>
+                    <img
+                      src="/attached_assets/New Homepage _ ASGR Hoops_files/logo_phase4.jpg"
+                      alt="Division 2 and 3 Colleges"
+                      className="w-64 h-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
