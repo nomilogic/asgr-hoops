@@ -13,7 +13,7 @@ import asgrLogo from "../assets/generated/asgr_basketball.png";
 import basketGirl from "../assets/generated/Basketball_action_hero_image_c877a801.png";
 import womanBasketTitle from "../assets/generated/woman_basket_title.png";
 import landingPageHeader from "../assets/generated/Landing-page-header.jpg";
-import basketballPlayerAction from "../assets/generated/Female_basketball_player_action_shot_b8eaff4a.png";
+import basketballPlayerEmerging from "../assets/generated/Basketball_player_emerging_from_crack_46af7f84.png";
 
 export default function Home() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -175,12 +175,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-10 pointer-events-none hidden lg:block">
+        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-visible">
+          <div className="absolute right-8 top-1/2 -translate-y-1/2 w-64 lg:w-80 xl:w-96 pointer-events-none hidden lg:block z-20">
             <img
-              src={basketballPlayerAction}
+              src={basketballPlayerEmerging}
               alt=""
-              className="w-full h-full object-cover object-center"
+              className="w-full h-auto object-contain drop-shadow-2xl"
               aria-hidden="true"
             />
           </div>
