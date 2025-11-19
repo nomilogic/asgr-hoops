@@ -13,7 +13,7 @@ import asgrLogo from "../assets/generated/asgr_basketball.png";
 import basketGirl from "../assets/generated/Basketball_action_hero_image_c877a801.png";
 import womanBasketTitle from "../assets/generated/woman_basket_title.png";
 import landingPageHeader from "../assets/generated/Landing-page-header.jpg";
-import basketballPlayerEmerging from "../assets/generated/Basketball_player_emerging_from_crack_46af7f84.png";
+import basketballPlayerEmerging from "../assets/generated/Player_emerging_from_black_cracks_transparent_5471bebc.png";
 
 export default function Home() {
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -175,17 +175,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-visible">
-          <div className="absolute right-8 top-1/2 -translate-y-1/2 w-64 lg:w-80 xl:w-96 pointer-events-none hidden lg:block z-20">
-            <img
-              src={basketballPlayerEmerging}
-              alt=""
-              className="w-full h-auto object-contain drop-shadow-2xl"
-              aria-hidden="true"
-            />
-          </div>
-          
-          <div className="container mx-auto max-w-7xl relative z-10">
+        <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative">
+          <div className="container mx-auto max-w-7xl relative">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-600 to-orange-500 bg-clip-text text-transparent leading-tight">
                 A Proven Path for Number 1 Ranked Talent and Rising Stars
@@ -195,7 +186,17 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
+            <div className="relative">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 lg:w-[500px] pointer-events-none z-30 opacity-90">
+                <img
+                  src={basketballPlayerEmerging}
+                  alt=""
+                  className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                  aria-hidden="true"
+                />
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-8 relative z-10">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((num) => (
                 <div 
                   key={num} 
@@ -210,6 +211,7 @@ export default function Home() {
                   />
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </section>
