@@ -1,8 +1,11 @@
-import { Pool } from 'pg';
-import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from "pg";
+import { drizzle } from "drizzle-orm/node-postgres";
 import * as schema from "@shared/schema";
+import dotenv from "dotenv";
+dotenv.config();
 
-const DATABASE_URL = process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
+const DATABASE_URL =
+  process.env.SUPABASE_DATABASE_URL || process.env.DATABASE_URL;
 
 if (!DATABASE_URL) {
   throw new Error(
@@ -10,11 +13,11 @@ if (!DATABASE_URL) {
   );
 }
 
-export const pool = new Pool({ 
+export const pool = new Pool({
   connectionString: DATABASE_URL,
   ssl: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 export const db = drizzle(pool, { schema });
