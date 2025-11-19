@@ -46,11 +46,11 @@ export default function Home() {
   const isLoadingProspects = isLoading2024 || isLoading2025;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen w-screen  ">
       <Header />
 
-      <main className="flex-1">
-        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black overflow-hidden">
+      <main className="flex w-full flex-col">
+        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black overflow-hidden w-full">
           <div className="absolute inset-0 w-full h-full">
             <img
               src={landingPageHeader}
@@ -65,28 +65,31 @@ export default function Home() {
             <img
               src={basketGirl}
               alt=""
-              className="w-full object-cover object-center opacity-30"
+              className="w-full object-cover object-center opacity-70"
               aria-hidden="true"
             />
           </div>
 
-          <div className="container max-w-full relative z-10 bg-black/90 p-10 m-0">
-            <div className="inset-0 h-80 z-10 mb-[-40px] ml-[-270px]">
-              <img
-                src={asgrLogo}
-                alt="ASGR Basketball Logo"
-                className="w-full h-full object-contain object-center"
-                aria-hidden="true"
-              />
+          <div className="container max-w-full relative z-10 bg-black/70 p-10 m-0 flex items-center flex-col lg:flex-row">
+            <div className="w-[50%] justify-center flex">
+              <div className="justify-center ">
+                <img
+                  src={asgrLogo}
+                  alt="ASGR Basketball Logo"
+                  className="w-60 object-contain object-center"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <div className="flex   mb-8 ">
+                <img
+                  src={womanBasketTitle}
+                  alt="Women's Basketball Recruiting"
+                  className="w-80   h-auto object-contain"
+                />
+              </div>
             </div>
-            <div className="flex justify-center mb-8">
-              <img
-                src={womanBasketTitle}
-                alt="Women's Basketball Recruiting"
-                className="w-full max-w-2xl h-auto object-contain"
-              />
-            </div>
-            <div className="text-center max-w-3xl mx-auto">
+            <div className="text-center mx-auto w-[100%] md:w-[50%]">
               <h1
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-red-500 via-red-600 to-red-700 bg-clip-text text-transparent"
                 data-testid="text-hero-title"
@@ -112,7 +115,7 @@ export default function Home() {
                     View Packages
                   </Button>
                 </Link>
-                <Link href="/rankings/top350/2025" asChild>
+                <Link href="/rankings/2025/" asChild>
                   <Button
                     size="lg"
                     variant="outline"
