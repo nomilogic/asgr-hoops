@@ -177,7 +177,7 @@ export default function Home() {
         <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-600 to-orange-500 bg-clip-text text-transparent leading-tight">
                 A Proven Path for Number 1 Ranked Talent and Rising Stars
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto mt-4">
