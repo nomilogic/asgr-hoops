@@ -279,7 +279,12 @@ export class DbStorage implements IStorage {
 
   async getAllColleges(): Promise<College[]> {
     try {
-      const result = await this.db.select().from(colleges);
+      const result = await this.db.select({
+        id: colleges.id,
+        name: colleges.name,
+        logoPath: colleges.logoPath,
+        logoUrl: colleges.logoUrl,
+      }).from(colleges);
       return result.map(college => ({
         ...college,
         logoPath: addStoragePrefix(college.logoPath),
@@ -292,7 +297,12 @@ export class DbStorage implements IStorage {
   }
 
   async getCollegeById(id: number): Promise<College | undefined> {
-    const result = await this.db.select().from(colleges).where(eq(colleges.id, id));
+    const result = await this.db.select({
+      id: colleges.id,
+      name: colleges.name,
+      logoPath: colleges.logoPath,
+      logoUrl: colleges.logoUrl,
+    }).from(colleges).where(eq(colleges.id, id));
     if (!result[0]) return undefined;
     return {
       ...result[0],
