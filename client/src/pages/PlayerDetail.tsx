@@ -9,8 +9,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import type { Player, HighSchool, CircuitTeam, College } from "@shared/schema";
 import { ArrowLeft, MapPin, School, Users, GraduationCap, Star, TrendingUp, FileText } from "lucide-react";
+import { useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 export default function PlayerDetail() {
+  const { toast } = useToast();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "Please log in to view player details.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
+
   const [, params] = useRoute("/player/:id");
   const playerId = params?.id ? parseInt(params.id) : null;
 
@@ -249,7 +269,7 @@ export default function PlayerDetail() {
                     {ranksEntries.length > 0 ? (
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {ranksEntries.map(([year, rank]) => (
-                          <div key={year} className="p-4 rounded-lg bg-muted/50 text-center" data-testid={`rank-${year}`}>
+                          <div key={year} className="p-4 rounded-lg bg-muted/50 text-center border border-red-900/30 shadow-glow" data-testid={`rank-${year}`}>
                             <div className="text-sm text-muted-foreground mb-1">Class {year}</div>
                             <div className="text-3xl font-bold text-red-500">#{rank}</div>
                           </div>
@@ -310,7 +330,7 @@ export default function PlayerDetail() {
                     <CardContent>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {ratingsEntries.map(([year, rating]) => (
-                          <div key={year} className="p-4 rounded-lg bg-muted/50 text-center" data-testid={`rating-${year}`}>
+                          <div key={year} className="p-4 rounded-lg bg-muted/50 text-center border border-yellow-900/30 shadow-glow" data-testid={`rating-${year}`}>
                             <div className="text-sm text-muted-foreground mb-1">Class {year}</div>
                             <div className="text-3xl font-bold text-yellow-500">{rating}</div>
                           </div>

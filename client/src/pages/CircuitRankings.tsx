@@ -45,7 +45,7 @@ export default function CircuitRankings() {
   const [, params] = useRoute("/rankings/circuit/:year");
   const year = params?.year || "2024";
   const season = `${year} Circuit Season`;
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const [circuitFilter, setCircuitFilter] = useState<string>("all");
 
@@ -55,16 +55,16 @@ export default function CircuitRankings() {
 
   const teamsWithRankings = useMemo(() => {
     if (!teams) return [];
-    
+
     return teams
       .map((team) => {
         const rank = (team.ranks as Record<string, number>)?.[season];
         const record = (team.records as Record<string, string>)?.[season];
         const keyWins = (team.keyWins as Record<string, string>)?.[season];
         const placement = (team.placements as Record<string, string>)?.[season];
-        
+
         if (!rank) return null;
-        
+
         return {
           id: team.id,
           team: team.team,
@@ -81,14 +81,14 @@ export default function CircuitRankings() {
 
   const filteredTeams = useMemo(() => {
     if (!teamsWithRankings) return [];
-    
+
     return teamsWithRankings.filter((team) => {
-      const matchesSearch = searchQuery === "" || 
+      const matchesSearch = searchQuery === "" ||
         team.team.toLowerCase().includes(searchQuery.toLowerCase()) ||
         team.keyWins.toLowerCase().includes(searchQuery.toLowerCase());
-      
+
       const matchesCircuit = circuitFilter === "all" || team.circuit === circuitFilter;
-      
+
       return matchesSearch && matchesCircuit;
     });
   }, [teamsWithRankings, searchQuery, circuitFilter]);
@@ -102,7 +102,7 @@ export default function CircuitRankings() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
-      
+
       <main className="flex-1">
         <section className="relative bg-gradient-to-br from-black via-red-950/30 to-black py-16 px-4 border-b border-red-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-transparent to-transparent"></div>
@@ -131,7 +131,7 @@ export default function CircuitRankings() {
                     data-testid="input-search"
                   />
                 </div>
-                
+
                 <Select value={circuitFilter} onValueChange={setCircuitFilter}>
                   <SelectTrigger className="bg-background/50" data-testid="select-circuit-filter">
                     <SelectValue placeholder="All Circuits" />
@@ -144,7 +144,7 @@ export default function CircuitRankings() {
                   </SelectContent>
                 </Select>
               </div>
-              
+
               {(searchQuery || circuitFilter !== "all") && (
                 <div className="mt-4 flex items-center justify-between flex-wrap gap-2">
                   <p className="text-sm text-muted-foreground">
@@ -175,7 +175,6 @@ export default function CircuitRankings() {
                 <div className="col-span-3">Team Name</div>
                 <div className="col-span-2 text-center">Circuit</div>
                 <div className="col-span-2 text-center">Record</div>
-                <div className="col-span-2 text-center">Placement</div>
                 <div className="col-span-2">Key Wins</div>
               </div>
             </div>
@@ -196,8 +195,8 @@ export default function CircuitRankings() {
                   >
                     <div className="grid grid-cols-12 gap-4 p-6 items-center">
                       <div className="col-span-1 flex justify-center">
-                        <Badge 
-                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50"
+                        <Badge
+                          className="font-bold text-xl w-12 h-12 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-700 border-red-500/50 shadow-red-glow"
                           data-testid={`badge-rank-${team.id}`}
                         >
                           {team.rank}
@@ -205,7 +204,7 @@ export default function CircuitRankings() {
                       </div>
 
                       <div className="col-span-3 flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-950/50 to-red-900/30 border border-red-700/30 flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-950/50 to-red-900/30 border border-red-700/30 flex items-center justify-center shadow-red-glow">
                           <Trophy className="h-6 w-6 text-red-400" />
                         </div>
                         <span className="font-bold text-lg" data-testid={`text-team-name-${team.id}`}>

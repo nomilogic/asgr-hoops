@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -16,14 +15,30 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminCircuitTeams() {
+  const { toast } = useToast();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editTeam, setEditTeam] = useState<CircuitTeam | null>(null);
   const [deleteTeamId, setDeleteTeamId] = useState<number | null>(null);
   const [expandedTeamId, setExpandedTeamId] = useState<number | null>(null);
-  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+      toast({
+        title: "Unauthorized",
+        description: "You must be an admin to access this page.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, user, toast]);
 
   const { data: teams, isLoading } = useQuery<CircuitTeam[]>({
     queryKey: ["/api/circuit-teams"],
@@ -83,6 +98,14 @@ export default function AdminCircuitTeams() {
     team.team.toLowerCase().includes(searchQuery.toLowerCase()) ||
     team.circuit?.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (authLoading) {
+    return null; // Or a loading spinner
+  }
+
+  if (!isAuthenticated || user?.role !== 'admin') {
+    return null; // Or redirect, or show unauthorized message
+  }
 
   return (
     <div className="p-6 space-y-6">

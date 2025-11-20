@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -17,8 +16,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminColleges() {
+  const { toast } = useToast();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editCollege, setEditCollege] = useState<College | null>(null);
@@ -26,7 +28,20 @@ export default function AdminColleges() {
   const [uploadingImage, setUploadingImage] = useState<number | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [expandedCollegeId, setExpandedCollegeId] = useState<number | null>(null);
-  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+      toast({
+        title: "Unauthorized",
+        description: "You must be an admin to access this page.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, user, toast]);
 
   const { data: colleges, isLoading } = useQuery<College[]>({
     queryKey: ["/api/colleges"],
@@ -115,6 +130,15 @@ export default function AdminColleges() {
     college.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  if (authLoading) {
+    return null; // Or a loading spinner
+  }
+
+  // Render null if not authenticated or not an admin, handled by useEffect already, but good for explicit check
+  if (!isAuthenticated || user?.role !== 'admin') {
+    return null;
+  }
+
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center gap-4">
@@ -165,7 +189,8 @@ export default function AdminColleges() {
               open={expandedCollegeId === college.id}
               onOpenChange={(open) => setExpandedCollegeId(open ? college.id : null)}
             >
-              <Card data-testid={`card-college-${college.id}`}>
+              <Card className="relative" data-testid={`card-college-${college.id}`}>
+                <div className="absolute -inset-1 rounded-lg bg-gradient-to-br from-pink-500 to-purple-600 opacity-75 blur group-hover:opacity-100 transition duration-500 group-hover:duration-300 -z-10"></div>
                 <CollapsibleTrigger asChild>
                   <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
                     <div className="flex items-center justify-between">
@@ -285,14 +310,14 @@ function ExpandedCollegeEdit({ college, onUpdate, isPending, onDelete, onUploadI
     const allLists = new Set<string>();
     const commitments = (college.commitments as Record<string, string>) || {};
     const recruits = (college.recruits as Record<string, string>) || {};
-    
+
     Object.keys(commitments).forEach(key => allLists.add(key));
     Object.keys(recruits).forEach(key => allLists.add(key));
-    
+
     if (allLists.size === 0) {
       return ["2024", "2025", "2026", "2027", "2028"];
     }
-    
+
     return Array.from(allLists).sort((a, b) => {
       const aNum = parseInt(a);
       const bNum = parseInt(b);
@@ -323,10 +348,10 @@ function ExpandedCollegeEdit({ college, onUpdate, isPending, onDelete, onUploadI
   const handleRemoveList = (listToRemove: string) => {
     const updatedCommitments = { ...(localCollege.commitments as Record<string, string>) };
     const updatedRecruits = { ...(localCollege.recruits as Record<string, string>) };
-    
+
     delete updatedCommitments[listToRemove];
     delete updatedRecruits[listToRemove];
-    
+
     setLocalCollege({
       ...localCollege,
       commitments: updatedCommitments,

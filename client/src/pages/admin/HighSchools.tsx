@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminHighSchools() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +28,21 @@ export default function AdminHighSchools() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [expandedSchoolId, setExpandedSchoolId] = useState<number | null>(null);
   const { toast } = useToast();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
+
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+      toast({
+        title: "Unauthorized",
+        description: "You must be an admin to access this page.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, user, toast]);
 
   const { data: schools, isLoading } = useQuery<HighSchool[]>({
     queryKey: ["/api/high-schools"],
@@ -165,9 +181,10 @@ export default function AdminHighSchools() {
               open={expandedSchoolId === school.id}
               onOpenChange={(open) => setExpandedSchoolId(open ? school.id : null)}
             >
-              <Card data-testid={`card-highschool-${school.id}`}>
+              <Card data-testid={`card-highschool-${school.id}`} className="relative group overflow-hidden">
+                <div className="absolute inset-0 rounded-lg transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(173,216,230,0.7)]"></div>
                 <CollapsibleTrigger asChild>
-                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+                  <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors relative z-10">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <Avatar className="h-12 w-12">
@@ -192,7 +209,7 @@ export default function AdminHighSchools() {
                 </CollapsibleTrigger>
 
                 <CollapsibleContent>
-                  <CardContent className="border-t pt-6">
+                  <CardContent className="border-t pt-6 relative z-10">
                     <ExpandedSchoolEdit
                       school={school}
                       onUpdate={(data) => updateMutation.mutate({ id: school.id, data })}
@@ -334,14 +351,16 @@ function ExpandedSchoolEdit({ school, onUpdate, isPending, onDelete, onUploadIma
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {seasons.map((season) => (
-                <div key={season}>
+                <div key={season} className="relative group">
                   <label className="text-sm font-medium">{season}</label>
                   <Input
                     type="number"
                     placeholder="Rank"
                     value={(localSchool.ranks as Record<string, number>)?.[season] || ""}
                     onChange={(e) => handleSeasonDataUpdate('ranks', season, e.target.value)}
+                    className="peer"
                   />
+                  <div className="absolute inset-0 rounded-md transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(173,216,230,0.7)] peer-focus:shadow-[0_0_15px_rgba(173,216,230,0.7)] pointer-events-none"></div>
                 </div>
               ))}
             </div>

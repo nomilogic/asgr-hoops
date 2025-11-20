@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
@@ -20,6 +19,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 const playerFormSchema = insertPlayerSchema.extend({
   gradeYear: z.coerce.number().nullable(),
@@ -28,6 +29,8 @@ const playerFormSchema = insertPlayerSchema.extend({
 });
 
 export default function AdminPlayers() {
+  const { toast } = useToast();
+  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editPlayer, setEditPlayer] = useState<Player | null>(null);
@@ -35,7 +38,20 @@ export default function AdminPlayers() {
   const [uploadingImage, setUploadingImage] = useState<number | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [expandedPlayerId, setExpandedPlayerId] = useState<number | null>(null);
-  const { toast } = useToast();
+
+  useEffect(() => {
+    if (!authLoading && (!isAuthenticated || user?.role !== 'admin')) {
+      toast({
+        title: "Unauthorized",
+        description: "You must be an admin to access this page.",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, user, toast]);
 
   const { data: players, isLoading } = useQuery<Player[]>({
     queryKey: ["/api/players"],
@@ -131,9 +147,9 @@ export default function AdminPlayers() {
     const matchesSearch = player.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       player.highSchool?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       player.committedCollege?.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesYear = !selectedYear || player.gradeYear?.toString() === selectedYear;
-    
+
     return matchesSearch && matchesYear;
   });
 
@@ -209,7 +225,8 @@ export default function AdminPlayers() {
               open={expandedPlayerId === player.id}
               onOpenChange={(open) => setExpandedPlayerId(open ? player.id : null)}
             >
-              <Card data-testid={`card-player-${player.id}`}>
+              <Card data-testid={`card-player-${player.id}`} className="group relative">
+                <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-primary group-hover:shadow-glow transition-all duration-300 pointer-events-none"></div>
                 <CollapsibleTrigger asChild>
                   <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
                     <div className="flex items-center justify-between">
@@ -320,20 +337,20 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
   const [localPlayer, setLocalPlayer] = useState(player);
   const [lists, setLists] = useState<string[]>(() => {
     const allLists = new Set<string>();
-    
+
     // Gather all existing list names from all JSONB fields
-    [player.ranks, player.ratings, player.notes, player.positions, player.heights, 
+    [player.ranks, player.ratings, player.notes, player.positions, player.heights,
      player.highSchools, player.circuitPrograms, player.committedColleges].forEach(field => {
       if (field && typeof field === 'object') {
         Object.keys(field).forEach(key => allLists.add(key));
       }
     });
-    
+
     // Add default years if no lists exist
     if (allLists.size === 0) {
       return ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
     }
-    
+
     return Array.from(allLists).sort((a, b) => {
       const aNum = parseInt(a);
       const bNum = parseInt(b);
@@ -364,13 +381,13 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
   const handleRemoveList = (listToRemove: string) => {
     const fields: (keyof Player)[] = ['ranks', 'ratings', 'notes', 'positions', 'heights', 'highSchools', 'circuitPrograms', 'committedColleges'];
     const updates: Partial<Player> = {};
-    
+
     fields.forEach(field => {
       const data = { ...(localPlayer[field] as Record<string, any>) };
       delete data[listToRemove];
       updates[field] = data as any;
     });
-    
+
     setLocalPlayer({ ...localPlayer, ...updates });
     setLists(lists.filter(l => l !== listToRemove));
   };
