@@ -222,7 +222,7 @@ export default function HighSchoolRankings() {
 
                       <div className="col-span-4 flex items-center gap-3">
                         {ranking.logoPath ? (
-                          <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center p-2 border-2 border-red-500/40 shadow-lg shadow-red-500/30">
+                          <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center p-2 border-2 border-red-500/40 shadow-lg shadow-red-500/30">
                             <img
                               src={ranking.logoPath}
                               alt={ranking.school}
@@ -235,7 +235,7 @@ export default function HighSchoolRankings() {
                             />
                           </div>
                         ) : (
-                          <div className="w-16 h-16 rounded-full bg-muted/50 border-2 border-muted shadow-lg shadow-muted/30 flex items-center justify-center">
+                          <div className="w-20 h-20 rounded-full bg-muted/50 border-2 border-muted shadow-lg shadow-muted/30 flex items-center justify-center">
                             <Trophy className="h-8 w-8 text-muted-foreground" />
                           </div>
                         )}
