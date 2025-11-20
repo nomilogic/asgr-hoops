@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
@@ -20,12 +20,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const playerFormSchema = insertPlayerSchema.extend({
   gradeYear: z.coerce.number().nullable(),
   rank: z.coerce.number().nullable(),
   rating: z.coerce.number().nullable(),
+  committedCollegeId: z.number().nullable(), // Add this for the new college selection
 });
 
 export default function AdminPlayers() {
@@ -53,8 +54,12 @@ export default function AdminPlayers() {
     }
   }, [isAuthenticated, authLoading, user, toast]);
 
-  const { data: players, isLoading } = useQuery<Player[]>({
+  const { data: players, isLoading: playersLoading } = useQuery<Player[]>({
     queryKey: ["/api/players"],
+  });
+
+  const { data: colleges, isLoading: collegesLoading } = useQuery<{ id: number; name: string; logoPath: string | null }[]>({
+    queryKey: ["/api/admin/colleges"],
   });
 
   const createMutation = useMutation({
@@ -171,7 +176,7 @@ export default function AdminPlayers() {
             <DialogHeader>
               <DialogTitle>Create New Player</DialogTitle>
             </DialogHeader>
-            <PlayerForm onSubmit={(data) => createMutation.mutate(data)} isPending={createMutation.isPending} />
+            <PlayerForm onSubmit={(data) => createMutation.mutate(data)} isPending={createMutation.isPending} colleges={colleges} />
           </DialogContent>
         </Dialog>
       </div>
@@ -210,7 +215,7 @@ export default function AdminPlayers() {
       </div>
 
       <div className="space-y-4">
-        {isLoading ? (
+        {playersLoading ? (
           Array.from({ length: 5 }).map((_, i) => (
             <Card key={i}>
               <CardContent className="p-6">
@@ -264,10 +269,15 @@ export default function AdminPlayers() {
                   <CardContent className="border-t pt-6">
                     <ExpandedPlayerEdit
                       player={player}
+                      colleges={colleges}
                       onUpdate={(data) => updateMutation.mutate({ id: player.id, data })}
                       isPending={updateMutation.isPending}
                       onDelete={() => setDeletePlayerId(player.id)}
                       onUploadImage={() => setUploadingImage(player.id)}
+                      setImageFile={setImageFile}
+                      imageFile={imageFile}
+                      uploadingImage={uploadingImage}
+                      handleImageUpload={handleImageUpload}
                     />
                   </CardContent>
                 </CollapsibleContent>
@@ -327,18 +337,35 @@ export default function AdminPlayers() {
   );
 }
 
-function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadImage }: {
+interface ExpandedPlayerEditProps {
   player: Player;
+  colleges: { id: number; name: string; logoPath: string | null }[] | undefined;
   onUpdate: (data: Partial<Player>) => void;
   isPending: boolean;
   onDelete: () => void;
   onUploadImage: () => void;
-}) {
+  setImageFile: React.Dispatch<React.SetStateAction<File | null>>;
+  imageFile: File | null;
+  uploadingImage: number | null;
+  handleImageUpload: (playerId: number) => void;
+}
+
+function ExpandedPlayerEdit({
+  player,
+  colleges,
+  onUpdate,
+  isPending,
+  onDelete,
+  onUploadImage,
+  setImageFile,
+  imageFile,
+  uploadingImage,
+  handleImageUpload,
+}: ExpandedPlayerEditProps) {
   const [localPlayer, setLocalPlayer] = useState(player);
   const [lists, setLists] = useState<string[]>(() => {
     const allLists = new Set<string>();
 
-    // Gather all existing list names from all JSONB fields
     [player.ranks, player.ratings, player.notes, player.positions, player.heights,
      player.highSchools, player.circuitPrograms, player.committedColleges].forEach(field => {
       if (field && typeof field === 'object') {
@@ -346,7 +373,6 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
       }
     });
 
-    // Add default years if no lists exist
     if (allLists.size === 0) {
       return ["2024", "2025", "2026", "2027", "2028", "2029", "2030"];
     }
@@ -360,7 +386,7 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
   });
   const [newListName, setNewListName] = useState("");
 
-  const handleYearDataUpdate = (field: keyof Player, year: string, value: string) => {
+  const handleYearDataUpdate = (field: keyof Player, year: string, value: string | number | null) => {
     const currentData = (localPlayer[field] as Record<string, any>) || {};
     const updatedData = { ...currentData, [year]: value };
     setLocalPlayer({ ...localPlayer, [field]: updatedData });
@@ -485,10 +511,65 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
           </div>
           <div>
             <label className="text-sm font-medium">Committed College</label>
-            <Input
-              value={localPlayer.committedCollege || ""}
-              onChange={(e) => setLocalPlayer({ ...localPlayer, committedCollege: e.target.value })}
-            />
+            <Select
+              value={localPlayer.committedCollegeId?.toString() || ""}
+              onValueChange={(value) => {
+                const collegeId = value ? parseInt(value) : null;
+                const college = colleges?.find(c => c.id === collegeId);
+                setLocalPlayer({
+                  ...localPlayer,
+                  committedCollegeId: collegeId,
+                  committedCollege: college?.name || null
+                });
+              }}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a college" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">No commitment</SelectItem>
+                {colleges?.map((college) => (
+                  <SelectItem key={college.id} value={college.id.toString()}>
+                    <div className="flex items-center gap-2">
+                      {college.logoPath && (
+                        <img src={college.logoPath} alt={college.name} className="w-6 h-6 object-contain" />
+                      )}
+                      {college.name}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {localPlayer.committedCollegeId && colleges && (
+              <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
+                {(() => {
+                  const college = colleges.find(c => c.id === localPlayer.committedCollegeId);
+                  return college?.logoPath ? (
+                    <>
+                      <img src={college.logoPath} alt={college.name} className="w-8 h-8 object-contain" />
+                      <span>{college.name}</span>
+                    </>
+                  ) : null;
+                })()}
+              </div>
+            )}
+          </div>
+          <div>
+            <label className="text-sm font-medium">Upload Player Image</label>
+            <div className="flex gap-2 mt-1">
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+              />
+              <Button
+                onClick={() => handleImageUpload(player.id)}
+                disabled={!imageFile || uploadingImage === player.id}
+                variant="outline"
+              >
+                {uploadingImage === player.id ? "Uploading..." : "Upload"}
+              </Button>
+            </div>
           </div>
           <div>
             <label className="text-sm font-medium">Rating Comment</label>
@@ -542,7 +623,7 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
                     type="number"
                     placeholder="Rank"
                     value={(localPlayer.ranks as Record<string, number>)?.[year] || ""}
-                    onChange={(e) => handleYearDataUpdate('ranks', year, e.target.value)}
+                    onChange={(e) => handleYearDataUpdate('ranks', year, parseInt(e.target.value) || null)}
                   />
                 </div>
                 <div>
@@ -551,7 +632,7 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
                     type="number"
                     placeholder="Rating"
                     value={(localPlayer.ratings as Record<string, number>)?.[year] || ""}
-                    onChange={(e) => handleYearDataUpdate('ratings', year, e.target.value)}
+                    onChange={(e) => handleYearDataUpdate('ratings', year, parseInt(e.target.value) || null)}
                   />
                 </div>
                 <div>
@@ -612,10 +693,11 @@ function ExpandedPlayerEdit({ player, onUpdate, isPending, onDelete, onUploadIma
   );
 }
 
-function PlayerForm({ defaultValues, onSubmit, isPending }: {
+function PlayerForm({ defaultValues, onSubmit, isPending, colleges }: {
   defaultValues?: Partial<Player>;
   onSubmit: (data: z.infer<typeof playerFormSchema>) => void;
   isPending: boolean;
+  colleges: { id: number; name: string; logoPath: string | null }[] | undefined;
 }) {
   const form = useForm<z.infer<typeof playerFormSchema>>({
     resolver: zodResolver(playerFormSchema),
@@ -629,6 +711,7 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
       circuitProgram: defaultValues?.circuitProgram || "",
       state: defaultValues?.state || "",
       committedCollege: defaultValues?.committedCollege || "",
+      committedCollegeId: defaultValues?.committedCollegeId || null,
       rating: defaultValues?.rating || null,
       ratingComment: defaultValues?.ratingComment || "",
       imagePath: defaultValues?.imagePath || "",
@@ -775,13 +858,36 @@ function PlayerForm({ defaultValues, onSubmit, isPending }: {
 
         <FormField
           control={form.control}
-          name="committedCollege"
+          name="committedCollegeId"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Committed College</FormLabel>
-              <FormControl>
-                <Input {...field} value={field.value ?? ""} data-testid="input-player-college" />
-              </FormControl>
+              <Select
+                value={field.value?.toString() || ""}
+                onValueChange={(value) => {
+                  const collegeId = value ? parseInt(value) : null;
+                  const college = colleges?.find(c => c.id === collegeId);
+                  field.onChange(collegeId);
+                  form.setValue("committedCollege", college?.name || "");
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a college" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">No commitment</SelectItem>
+                  {colleges?.map((college) => (
+                    <SelectItem key={college.id} value={college.id.toString()}>
+                      <div className="flex items-center gap-2">
+                        {college.logoPath && (
+                          <img src={college.logoPath} alt={college.name} className="w-6 h-6 object-contain" />
+                        )}
+                        {college.name}
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

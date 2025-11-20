@@ -20,7 +20,7 @@ import { useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 
 const userUpdateSchema = z.object({
-  role: z.enum(["user", "admin"]),
+  role: z.enum(["user", "admin", "editor", "viewer"]),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
 });
@@ -208,7 +208,7 @@ function UserForm({ defaultValues, onSubmit, isPending }: {
   const form = useForm<z.infer<typeof userUpdateSchema>>({
     resolver: zodResolver(userUpdateSchema),
     defaultValues: {
-      role: defaultValues.role as "user" | "admin",
+      role: defaultValues.role as "user" | "admin" | "editor" | "viewer",
       firstName: defaultValues.firstName || "",
       lastName: defaultValues.lastName || "",
     },
@@ -232,6 +232,8 @@ function UserForm({ defaultValues, onSubmit, isPending }: {
                 <SelectContent>
                   <SelectItem value="user">User</SelectItem>
                   <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="editor">Editor</SelectItem>
+                  <SelectItem value="viewer">Viewer</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />

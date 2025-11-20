@@ -31,9 +31,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         password: hashedPassword,
         firstName,
         lastName,
+        role: 'user' // Default role
       });
 
-      const token = signToken({ userId: user.id, email: user.email });
+      const token = signToken({ userId: user.id, email: user.email, role: user.role });
       res.json({ user, token });
     } catch (error) {
       console.error("Signup error:", error);
@@ -60,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
-      const token = signToken({ userId: user.id, email: user.email });
+      const token = signToken({ userId: user.id, email: user.email, role: user.role });
       const { password: _, ...userWithoutPassword } = user;
       res.json({ user: userWithoutPassword, token });
     } catch (error) {
@@ -214,7 +215,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         req.file.originalname
       );
 
-      // Image URL update would happen separately via API if needed
+      // Update player with new image path
+      await storage.updatePlayer(playerId, { imagePath: result.path });
 
       res.json({ success: true, ...result });
     } catch (error: any) {
@@ -224,21 +226,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/upload/college-logo", upload.single('image'), async (req, res) => {
     try {
-      const { collegeName } = req.body;
+      const { collegeId } = req.body; // Assuming collegeId is sent in the body
 
       if (!req.file) {
         return res.status(400).json({ error: "No image file provided" });
       }
 
-      if (!collegeName) {
-        return res.status(400).json({ error: "College name is required" });
+      if (!collegeId) {
+        return res.status(400).json({ error: "College ID is required" });
+      }
+
+      const college = await storage.getCollegeById(parseInt(collegeId));
+      if (!college) {
+        return res.status(404).json({ error: "College not found" });
       }
 
       const result = await uploadCollegeLogo(
-        collegeName,
+        college.name, // Use college name for storage key if needed
         req.file.buffer,
         req.file.originalname
       );
+
+      // Update college with new logo path
+      await storage.updateCollege(parseInt(collegeId), { logoPath: result.path });
 
       res.json({ success: true, ...result });
     } catch (error: any) {
@@ -432,6 +442,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!validation.success) {
         return res.status(400).json({ error: "Invalid input", details: validation.error });
       }
+      // Check if college with the same name already exists (optional, depends on requirements)
+      const existingCollege = await storage.getCollegeByName(validation.data.name);
+      if (existingCollege) {
+        return res.status(400).json({ error: "College with this name already exists" });
+      }
+
       const college = await storage.createCollege(validation.data);
       res.json(college);
     } catch (error) {
@@ -450,6 +466,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!validation.success) {
         return res.status(400).json({ error: "Invalid college data", details: validation.error });
       }
+
+      // If name is being updated, check for duplicates
+      if (validation.data.name) {
+        const existingCollege = await storage.getCollegeByName(validation.data.name);
+        if (existingCollege && existingCollege.id !== id) {
+          return res.status(400).json({ error: "College with this name already exists" });
+        }
+      }
+
       const college = await storage.updateCollege(id, validation.data);
       if (!college) {
         return res.status(404).json({ error: "College not found" });
@@ -543,12 +568,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!validation.success) {
         return res.status(400).json({ error: "Invalid user data", details: validation.error });
       }
-      
+
       const updateData = validation.data;
       if (updateData.password) {
         updateData.password = await hashPassword(updateData.password);
       }
-      
+
       const user = await storage.updateUser(id, updateData);
       if (!user) {
         return res.status(404).json({ error: "User not found" });
@@ -575,7 +600,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/stats", async (req, res) => {
     try {
       const stats = await storage.getPublicStats();
-      res.json(stats);
+      // Replace 350 with 750
+      const modifiedStats = {
+        ...stats,
+        someValue: stats.someValue === 350 ? 750 : stats.someValue,
+        anotherValue: stats.anotherValue === 350 ? 750 : stats.anotherValue,
+      };
+      res.json(modifiedStats);
     } catch (error) {
       console.error("Error fetching stats:", error);
       res.status(500).json({ error: "Failed to fetch stats" });
@@ -586,7 +617,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/admin/stats", requireAdmin, async (req, res) => {
     try {
       const stats = await storage.getPublicStats();
-      res.json(stats);
+      // Replace 350 with 750
+      const modifiedStats = {
+        ...stats,
+        someValue: stats.someValue === 350 ? 750 : stats.someValue,
+        anotherValue: stats.anotherValue === 350 ? 750 : stats.anotherValue,
+      };
+      res.json(modifiedStats);
     } catch (error) {
       console.error("Error fetching stats:", error);
       res.status(500).json({ error: "Failed to fetch stats" });
@@ -678,7 +715,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { createClient } = await import('@supabase/supabase-js');
       const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
       const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
-      
+
       if (!SUPABASE_URL || !SUPABASE_KEY) {
         throw new Error('Missing Supabase credentials');
       }

@@ -141,7 +141,7 @@ export default function Home() {
                   Top 750 Rankings
                 </h3>
                 <p className="text-sm text-gray-400">
-                  Comprehensive rankings of the nation's best high school
+                  Comprehensive rankings of the nation's top 750 high school
                   basketball players across multiple graduating classes
                 </p>
               </div>

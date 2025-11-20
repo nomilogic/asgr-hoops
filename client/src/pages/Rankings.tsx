@@ -107,13 +107,13 @@ export default function Rankings() {
           <div className="container mx-auto max-w-7xl relative z-10">
             <div className="text-center mb-8">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-red-400 to-red-500 bg-clip-text text-transparent" data-testid="text-page-title">
-                Top 350 Rankings
+                Top 750 Rankings
               </h1>
               <p className="text-xl text-gray-300 mb-2">
                 Class of {year}
               </p>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-                Comprehensive rankings of the nation's top high school basketball players
+                Comprehensive rankings of the nation's top 750 high school basketball players
               </p>
 
               <div className="flex items-center justify-center gap-2 flex-wrap">
