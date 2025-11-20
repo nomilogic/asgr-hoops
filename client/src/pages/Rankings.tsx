@@ -247,11 +247,11 @@ export default function Rankings() {
                                 <img
                                   src={player.imagePath}
                                   alt={player.name}
-                                  className="w-20 h-20 object-cover rounded-full border-2 border-red-900/30"
+                                  className="w-20 h-20 object-cover rounded-full border-2 border-red-500/50 shadow-lg shadow-red-500/30"
                                   data-testid={`img-player-${player.id}`}
                                 />
                               ) : (
-                                <div className="w-20 h-20 rounded-full bg-muted/50 border-2 border-muted flex items-center justify-center text-xs text-muted-foreground">
+                                <div className="w-20 h-20 rounded-full bg-muted/50 border-2 border-muted shadow-lg shadow-muted/30 flex items-center justify-center text-xs text-muted-foreground">
                                   N/A
                                 </div>
                               )}
