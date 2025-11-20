@@ -297,9 +297,9 @@ export default function Rankings() {
                                   const college = colleges.find(c => c.id === player.committedCollegeId);
                                   return college ? (
                                     <>
-                                      {college.logoUrl && (
+                                      {(college.logoUrl || college.logoPath) && (
                                         <img
-                                          src={college.logoUrl}
+                                          src={college.logoUrl || college.logoPath || ''}
                                           alt={college.name}
                                           className="h-10 w-10 object-contain"
                                           onError={(e) => {
