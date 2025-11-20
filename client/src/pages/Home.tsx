@@ -47,7 +47,7 @@ export default function Home() {
   const isLoadingProspects = isLoading2024 || isLoading2025;
 
   return (
-    <div className="min-h-screen w-screen  ">
+    <div className="min-h-screen w-screen bg-black ">
       <Header />
 
       <main className="flex w-full flex-col">
@@ -55,22 +55,22 @@ export default function Home() {
           <img
             src={basketGirl}
             alt=""
-            className="w-full object-cover object-center opacity-70"
+            className="w-full h-full object-cover object-center opacity-40"
             aria-hidden="true"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black w-full h-full"></div>
         </div>
-        <section className="relative bg-gradient-to-br from-black via-red-950/20 to-black overflow-hidden w-full">
-          <div className="absolute inset-0 w-full h-full">
+        <section className="relative  overflow-hidden w-full">
+          {/* <div className="absolute inset-0 w-full h-full">
             <img
               src={landingPageHeader}
               alt=""
               className="w-full h-full object-cover object-center opacity-40"
               aria-hidden="true"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black"></div>
-          </div>
+          </div> */}
 
-          <div className="container max-w-full relative z-10 bg-black/70 p-10 m-0 flex items-center flex-col lg:flex-row">
+          <div className="container max-w-full relative z-10  p-10 m-0 flex items-center flex-col lg:flex-row">
             <div className="w-[50%] justify-center flex">
               <div className="justify-center ">
                 <img
@@ -130,7 +130,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 px-4  z-20 bg-black/70">
+        <section className="py-16 px-4  z-20 ">
           <div className="container mx-auto max-w-6xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center group animate-slide-in-left hover:scale-105 transition-all duration-300">
@@ -175,7 +175,7 @@ export default function Home() {
         </section>
 
         <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-10 pointer-events-none hidden lg:block">
+          <div className="absolute right-0 top-[60%] -translate-y-1/2 w-1/3 h-full opacity-10 pointer-events-none hidden lg:block">
             <img
               src={basketballPlayerAction}
               alt=""
@@ -402,7 +402,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold mb-4 text-red-400">
                     Class of 2024
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                  <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
                     {[1, 2, 3, 4, 5].map((i) => (
                       <div key={i} className="space-y-4">
                         <Skeleton className="aspect-[3/4] w-full" />
@@ -421,7 +421,7 @@ export default function Home() {
                     <h3 className="text-2xl font-bold mb-4 text-red-400">
                       Class of 2025
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4">
                       {topProspects
                         .filter((p) => p.gradeYear === 2025)
                         .map((player) => (
