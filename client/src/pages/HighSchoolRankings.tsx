@@ -222,18 +222,20 @@ export default function HighSchoolRankings() {
 
                       <div className="col-span-4 flex items-center gap-3">
                         {ranking.logoPath ? (
-                          <img
-                            src={ranking.logoPath}
-                            alt={ranking.school}
-                            className="w-16 h-16 object-contain rounded"
-                            data-testid={`img-school-logo-${ranking.id}`}
-                            onError={(e) => {
-                              const target = e.target as HTMLImageElement;
-                              target.style.display = 'none';
-                            }}
-                          />
+                          <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center p-2 border border-gray-200">
+                            <img
+                              src={ranking.logoPath}
+                              alt={ranking.school}
+                              className="w-full h-full object-contain"
+                              data-testid={`img-school-logo-${ranking.id}`}
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.style.display = 'none';
+                              }}
+                            />
+                          </div>
                         ) : (
-                          <div className="w-16 h-16 rounded bg-muted/50 border border-muted flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-muted/50 border border-muted flex items-center justify-center">
                             <Trophy className="h-8 w-8 text-muted-foreground" />
                           </div>
                         )}
