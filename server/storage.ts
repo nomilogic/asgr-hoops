@@ -278,12 +278,17 @@ export class DbStorage implements IStorage {
   }
 
   async getAllColleges(): Promise<College[]> {
-    const result = await this.db.select().from(colleges);
-    return result.map(college => ({
-      ...college,
-      logoPath: addStoragePrefix(college.logoPath),
-      logoUrl: addStoragePrefix(college.logoUrl)
-    }));
+    try {
+      const result = await this.db.select().from(colleges);
+      return result.map(college => ({
+        ...college,
+        logoPath: addStoragePrefix(college.logoPath),
+        logoUrl: addStoragePrefix(college.logoUrl)
+      }));
+    } catch (error) {
+      console.error("Error fetching colleges:", error);
+      throw error;
+    }
   }
 
   async getCollegeById(id: number): Promise<College | undefined> {

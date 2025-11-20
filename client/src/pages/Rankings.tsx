@@ -295,11 +295,22 @@ export default function Rankings() {
                               {player.committedCollegeId && colleges ? (
                                 (() => {
                                   const college = colleges.find(c => c.id === player.committedCollegeId);
+                                  const logoUrl = college?.logoUrl || college?.logoPath;
+                                  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+                                  const bucketName = 'asgr-images';
+                                  
+                                  // Construct full URL if logoPath is relative
+                                  const fullLogoUrl = logoUrl 
+                                    ? (logoUrl.startsWith('http') 
+                                        ? logoUrl 
+                                        : `${supabaseUrl}/storage/v1/object/public/${bucketName}/${logoUrl}`)
+                                    : null;
+                                  
                                   return college ? (
                                     <>
-                                      {(college.logoUrl || college.logoPath) && (
+                                      {fullLogoUrl && (
                                         <img
-                                          src={college.logoUrl || college.logoPath || ''}
+                                          src={fullLogoUrl}
                                           alt={college.name}
                                           className="h-10 w-10 object-contain"
                                           onError={(e) => {
