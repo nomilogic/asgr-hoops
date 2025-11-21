@@ -527,7 +527,7 @@ function ExpandedPlayerEdit({
                 <SelectValue placeholder="Select a college" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">No commitment</SelectItem>
+                {/* <SelectItem value="">No commitment</SelectItem> */}
                 {colleges?.map((college) => (
                   <SelectItem key={college.id} value={college.id.toString()}>
                     <div className="flex items-center gap-2">

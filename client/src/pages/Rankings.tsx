@@ -147,7 +147,7 @@ export default function Rankings() {
                   />
                 </div>
 
-                <Select value={stateFilter} onValueChange={setStateFilter}>
+                {/* <Select value={stateFilter} onValueChange={setStateFilter}>
                   <SelectTrigger className="bg-background/50" data-testid="select-state-filter">
                     <SelectValue placeholder="All States" />
                   </SelectTrigger>
@@ -169,7 +169,7 @@ export default function Rankings() {
                       <SelectItem key={pos} value={pos || ""}>{pos}</SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
               </div>
 
               {(searchQuery || positionFilter !== "all" || stateFilter !== "all") && (
